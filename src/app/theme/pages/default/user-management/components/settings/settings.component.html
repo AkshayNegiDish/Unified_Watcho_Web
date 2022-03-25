@@ -428,20 +428,6 @@
                     </i>
                   </div>
                 </div>
-
-                <div class="trd-tab" *ngIf="isParentalActivated">
-                  <div class="trd-cont" style="cursor: pointer;" (click)="resendOtpForResetParental()">
-                    <div class="trd-cont">
-                      <h3>Forget Pin</h3>
-                      <p>Reset your PIN</p>
-                    </div>
-                  </div>
-                  <div class="trd-btnhere" (click)="resendOtpForResetParental()">
-                    <i class="material-icons ">
-                      arrow_forward_ios
-                    </i>
-                  </div>
-                </div>
               </div>
             </div>
           </ng-template>
@@ -916,75 +902,6 @@
               (click)="validateOtpForRegisterEmail()" tabindex="0">Continue</button>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
-
-<ng-template #OTPModalForResetParental let-modal>
-  <div class="modal-body">
-    <div class="otpRegisterModal otpParentalModal">
-      <!-- <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i> -->
-      <div class="parental-logo">
-        <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png">
-      </div><br />
-      <p class="heading-sm"> Please enter OTP <br> sent on {{sendOTPMsgForParental}} to login <br> </p>
-      <div class="tab-content ">
-        <div class="tab-pane active" id="tab1">
-          <div class="form-group">
-            <div class="input-group">
-              <div id="divOuter">
-                <div id="divInner">
-                  <input id="codeBoxRegister1" type="text"
-                    (keydown)="onKeyDownEvent('#codeBoxRegister1', $event, 'REGISTER')" maxlength="1"
-                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(1, $event)"
-                    (focus)="onFocusEventRegister(1)" />
-                  <input id="codeBoxRegister2" type="text"
-                    (keydown)="onKeyDownEvent('#codeBoxRegister2', $event, 'REGISTER')" maxlength="1"
-                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(2, $event)"
-                    (focus)="onFocusEventRegister(2)" />
-                  <input id="codeBoxRegister3" type="text"
-                    (keydown)="onKeyDownEvent('#codeBoxRegister3', $event, 'REGISTER')" maxlength="1"
-                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(3, $event)"
-                    (focus)="onFocusEventRegister(3)" />
-                  <input id="codeBoxRegister4" type="text"
-                    (keydown)="onKeyDownEvent('#codeBoxRegister4', $event, 'REGISTER')" maxlength="1"
-                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(4, $event)"
-                    (focus)="onFocusEventRegister(4)" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <span class="forgot"> <a class="active" style="cursor: pointer;" (click)="resendOtpForResetParental()">Resend OTP</a></span>
-          <p>Expires In 5 minutes</p>
-          <div>
-            <button type="button" id='pin' type="submit" class="btn btn-blue margin-top-30"
-              (click)="validateOTPForResetParentalPin()" tabindex="0">Continue</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
-
-<ng-template #resetParentalModal let-modal>
-  <div class="modal-body">
-    <div class="otpRegisterModal otpParentalModal">
-      <!-- <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i> -->
-      <div class="parental-logo">
-        <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png">
-      </div><br />
-      <div class="chngpasChange-password">
-        <div class="input-group">
-          <input type="text" maxlength="4" id="newPINCode" [(ngModel)]="newPinCode" placeholder="New PIN Code" pattern="[0-9]*" (keydown)="onKeyDownEventParental('#newPINCode', $event)">
-        </div>
-        <div class="input-group">
-          <input type="text" maxlength="4" id="confirmPINCode" [(ngModel)]="confirmPinCode" placeholder="Confirm PIN Code" pattern="[0-9]*" (keydown)="onKeyDownEventParental('#confirmPINCode', $event)">
-        </div>
-      </div><br /><br />
-      <div>
-        <button type="button" id='pin' type="submit" class="btn btn-blue margin-top-30"
-          (click)="resetParentalPin()" tabindex="0">Continue</button>
       </div>
     </div>
   </div>

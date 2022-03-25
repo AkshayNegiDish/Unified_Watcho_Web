@@ -16,7 +16,9 @@ export class MobileBottomNavComponent implements OnInit {
   isLiveTVActive: boolean = false;
   isMoreActive: boolean = false;
   isSwagActive: boolean = false;
-
+  isMyDishtvSpace: boolean = false;
+  isMyD2hSpace: boolean = false;
+  isBookDTH: boolean = false;
 
   url: string;
   attribute: any;
@@ -35,6 +37,7 @@ export class MobileBottomNavComponent implements OnInit {
 
   toggleActive() {
     this.url = this.router.url;
+    console.log(this.url, "56445645645645645645645645645645645645645645645645645645645645646")
     this.resetControlFlags();
     if ((this.url.indexOf("premium") > 0) && (this.url.indexOf("search") < 0) && (this.url.indexOf("details") < 0)) {
       this.ispremiumActive = true;
@@ -44,10 +47,19 @@ export class MobileBottomNavComponent implements OnInit {
       this.isLiveTVActive = true;
     } else if (this.url === '/') {
       this.isHomeIsActive = true;
+      this.isBookDTH = true;
     } else if ((this.url.indexOf("more-page") > 0)) {
       this.isMoreActive = true;
     } else if ((this.url.indexOf('ugc-videos') > 0) && (this.url.indexOf("details") < 0)) {
       this.isSwagActive = true;
+    } else if ((this.url.indexOf('user/mydishtvspace') > 0)) {
+      this.isMyDishtvSpace = true;
+    }
+    else if ((this.url.indexOf('user/myd2hspace') > 0)) {
+      this.isMyD2hSpace = true;
+    }
+    else if ((this.url.indexOf('bookDTH') > 0)) {
+      this.isBookDTH = true;
     }
   }
 
@@ -58,6 +70,9 @@ export class MobileBottomNavComponent implements OnInit {
     this.isLiveTVActive = false;
     this.isMoreActive = false;
     this.isSwagActive = false;
+    this.isMyDishtvSpace = false;
+    this.isMyD2hSpace = false;
+    this.isBookDTH = false;
   }
 
   clickUserIconWebMoEngageEvent() {
@@ -102,4 +117,24 @@ export class MobileBottomNavComponent implements OnInit {
     this.appUtilService.moEngageEventTracking("NAVIGATION_BAR_CLICKED", this.attribute);
   }
 
+  clickMyDishtvMoEngageEvent()  {
+    this.attribute = {
+      nav_item_name: "MyDishtv"
+    }
+    this.appUtilService.moEngageEventTracking("NAVIGATION_BAR_CLICKED", this.attribute);
+  }
+
+  clickMyD2hMoEngageEvent()  {
+    this.attribute = {
+      nav_item_name: "MyD2h"
+    }
+    this.appUtilService.moEngageEventTracking("NAVIGATION_BAR_CLICKED", this.attribute);
+  }
+
+  clickBookDTHMoEngageEvent()  {
+    this.attribute = {
+      nav_item_name: "BookDTH"
+    }
+    this.appUtilService.moEngageEventTracking("NAVIGATION_BAR_CLICKED", this.attribute);
+  }
 }

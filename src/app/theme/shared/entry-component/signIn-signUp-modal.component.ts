@@ -117,6 +117,7 @@ export class SignInSignUpModalComponent implements OnInit {
   userAttributes: UserAttributes;
   isSigninSignup: boolean = false;
   isRegisteredWithEmailId: boolean = false;
+  currentURL: string;
 
   constructor(@Inject(PLATFORM_ID) private platformId, public activeModal: NgbActiveModal, private modalService: NgbModal, private zone: NgZone,
     private loginMessageService: LoginMessageService, private smsService: SmsFormService, private userFormService: UserFormService,
@@ -142,7 +143,7 @@ export class SignInSignUpModalComponent implements OnInit {
       UniqueDeviceID: null,
       Platform: null
     }
-
+    this.currentURL = router.url
     this.userDetails = {
       name: null,
       password: null,
@@ -641,6 +642,11 @@ export class SignInSignUpModalComponent implements OnInit {
             this.gtmTagOnEnteredOTP();
             // this.getSubscriptionHistory();
             this.showRecommendationModal(false);
+            let category = res.Result.UserCategory
+            let platform = category == '1' ? 'mydishtvspace' : 'myd2hspace';
+            if (this.currentURL == '/bookDTH') {
+              this.router.navigate([`/user/${platform}`]);
+            }
           } else {
             this.snackbarUtilService.showError()
           }

@@ -63,10 +63,10 @@
             <div class="user-name">{{appUtilService.getNameInitials(ugcVideos[index], true)}}</div>
           </div>
           <div class="ugc-icon-counts">
-            <div class="right-icon" *ngIf="viewCountObject; else showViewCountLoader">
+            <!-- <div class="right-icon" *ngIf="viewCountObject; else showViewCountLoader">
               <span class="view-icon"><i class="la eye la-eye"></i></span>
               <span class="count-number">{{viewCountObject.views | parseCount}}</span>
-            </div>
+            </div> -->
             <ng-template #showViewCountLoader>
               <div class="right-icon">
                 <span class="view-icon"><i class="la eye la-eye"></i></span>
@@ -80,10 +80,10 @@
                 <app-share *ngIf="ugcVideos[index]" [assetDetails]="ugcVideos[index]"></app-share>
               </span>
             </div>
-            <div class="left-icon" *ngIf="!isLogin && viewCountObject" style="pointer-events: none;">
+            <!-- <div class="left-icon" *ngIf="!isLogin && viewCountObject" style="pointer-events: none;">
               <span class="like-icon"><i class="la las la-heart"></i></span>
               <span class="count-like">{{viewCountObject.likes + startLikes | parseCount}}</span>
-            </div>
+            </div> -->
             <div class="left-icon like-icon-component" *ngIf="isLogin && ugcVideos[index]">
               <app-like *ngIf="ugcVideos[index]" [assetDetails]="ugcVideos[index]"></app-like>
             </div>

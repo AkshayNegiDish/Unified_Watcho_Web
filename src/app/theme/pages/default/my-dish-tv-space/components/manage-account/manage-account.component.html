@@ -1,102 +1,194 @@
-<div [ngClass] = "platform?platform:''">
-<div class="row head-details justify-content-md-center">
-  <div class="card mb-3" style="max-width: 540px;">
-    <div class="col-12">
-      <div class="card-body">
-        <h5 class="card-title">Name of the User</h5>
-        <p class="card-text">{{Name?Name:'NA'}}</p>
+<div [ngClass]="platform?platform:''">
+  <div class="row head-details justify-content-md-center">
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="col-12">
+        <div class="card-body">
+          <h5 class="card-title">User Name</h5>
+          <p class="card-text">{{userDetails?.Name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="col-12">
+        <div class="card-body" style="width: 140%;">
+          <div class="dropdown">
+            <img src="./assets/images/mydishtvspace/icons-images/Polygon.png" *ngIf="userCategory == '1'"
+              class="card-img-top down-image dropdown-toggle" alt="..." id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+            <img src="./assets/images/mydishtvspace/icons-images/d2h/drop_down_d2h.png" *ngIf="userCategory == '2'"
+              class="card-img-top down-image dropdown-toggle" alt="..." id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" (click)="onClickVCNumber(userDetails?.Dishd2hSubscriberID)"
+                *ngFor="let vcnumber of allAccount">{{userDetails?.Dishd2hSubscriberID}}</a>
+            </div>
+          </div>
+          <h5 class="card-title">{{userCategory == '1' ? 'VC Number' : 'SC Number'}}</h5>
+          <p class="card-text">{{userDetails?.Dishd2hSubscriberID}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="userCategory == '2'" class="card mb-3" style="max-width: 540px;">
+      <div class="col-12">
+        <div class="card-body">
+          <h5 class="card-title">User Id</h5>
+          <p class="card-text">{{userDetails?.EmailId}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="userCategory == '2'" class="card mb-3" style="max-width: 540px;">
+      <div class="col-12">
+        <div class="card-body">
+          <h5 class="card-title">Customer Id</h5>
+          <p class="card-text">{{userDetails?.Dishd2hSubscriptionID}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="col-12">
+        <div class="card-body">
+          <h5 class="card-title">Recharge Due Date</h5>
+          <p class="card-text" *ngIf="userDetails?.RechargeDueDate">{{userDetails?.RechargeDueDate}}</p>
+          <p class="card-text" *ngIf="!userDetails?.RechargeDueDate">NA</p>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3" style="max-width: 540px;">
+      <div class="col-12">
+        <div class="card-body">
+          <h5 class="card-title">Switch Off Date</h5>
+          <p class="card-text" *ngIf="userCategory == '1' && userDetails?.SwitchOffDate">{{userDetails?.SwitchOffDate}}
+          </p>
+          <p class="card-text" *ngIf="userCategory == '2' && userDetails?.SwitchOffDate">{{userDetails?.SwitchOffDate}}
+          </p>
+          <p class="card-text" *ngIf="!userDetails?.SwitchOffDate">NA</p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card mb-3" style="max-width: 540px;">
-    <div class="col-12">
-      <div class="card-body">
-        <h5 class="card-title">{{userCategory == '1' ? 'VC Number' : 'Customer Id'}}</h5>
-        <p class="card-text">{{Dishd2hSubscriberID?Dishd2hSubscriberID:'NA'}}</p>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="recharge-card">
+        <div class="card-body">
+          <p class="card-title">Account Balance</p>
+          <p class="card-text" *ngIf="!userDetails?.AccountBalance">NA</p>
+          <p class="card-text" *ngIf="userDetails?.AccountBalance"><i class="la la-rupee"></i> {{userDetails?.AccountBalance}}</p>
+          <button type="button" *ngIf="userDetails?.Status == '1' && userCategory == '2'"
+            style="background: #0f9700;border-color: #0f9700; cursor: none;"
+            class="btn btn-primary cbtn status">Active</button>
+          <button type="button" *ngIf="userDetails?.Status == '2' && userCategory == '2'"
+            style="background: #f30000;border-color: #f30000; cursor: none;"
+            class="btn btn-primary cbtn status-deActive">Deactive</button>
+          <button type="button" (click)="refresh()" class="btn btn-primary cbtn">Refresh</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card mb-3" style="max-width: 540px;">
-    <div class="col-12">
-      <div class="card-body">
-        <h5 class="card-title">Recharge Due Date</h5>
-        <p class="card-text">{{RechargeDueDate?RechargeDueDate:'NA'}}</p>
-      </div>
-    </div>
-  </div>
-  <div *ngIf= "userCategory == '1'" class="card mb-3" style="max-width: 540px;">
-    <div class="col-12">
-      <div class="card-body">
-        <h5 class="card-title">Switch Off Date</h5>
-        <p class="card-text">{{SwitchOffDate?SwitchOffDate:'NA'}}</p>
-      </div>
-    </div>
-  </div>
-  <div *ngIf= "userCategory == '2'" class="card mb-3" style="max-width: 540px;">
-    <div class="col-12">
-      <div class="card-body">
-        <h5 class="card-title">User Id</h5>
-        <p class="card-text">{{UserID?UserID:'NA'}}</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row justify-content-md-center">
-    <div class="recharge-card">
-      <div class="card-body">
-        <p class="card-title">Account Balance</p>
-        <p class="card-text"><i class="la la-rupee"></i> {{AccountBalance?AccountBalance:'0.0'}}</p>
-        <button type="button" (click)="refresh()" class="btn btn-primary cbtn">Refresh</button>
-      </div>
-    </div>
-  </div>
-  <div class="row justify-content-md-center">
-    <div class="recharge-card">
-      <div class="card-body">
-        <p class="card-title">Your Registered Mobile Number</p>
-        <p class="card-text" [ngClass]="{'focused' : editmobile}" #mobile (blur)="mobileChange($event)" [contentEditable]="editmobile" tabindex="editmobile?0:'-1'">{{MobileNumber?MobileNumber:'NA'}}</p>
-        <!-- <button *ngIf="!editmobile" type="button" (click)="onMobileEdit(false,mobile)" class="btn btn-primary cbtn">Edit</button>
+    <div class="row justify-content-md-center">
+      <div class="recharge-card">
+        <div class="card-body">
+          <p class="card-title">Your Registered Mobile Number</p>
+          <p class="card-text" [ngClass]="{'focused' : editmobile}" #mobile (blur)="mobileChange($event)"
+            [contentEditable]="editmobile" tabindex="editmobile?0:'-1'" *ngIf="userDetails?.MobileNumber">{{userDetails?.MobileNumber}}</p>
+          <p class="card-text" *ngIf="!userDetails?.MobileNumber">NA</p>
+
+          <!-- <button *ngIf="!editmobile" type="button" (click)="onMobileEdit(false,mobile)" class="btn btn-primary cbtn">Edit</button>
         <button *ngIf="editmobile" type="button" (click)="onMobileEdit(true,mobile)" class="btn btn-primary cbtn">Save</button> -->
+          <button type="button" (click)="onMobileEditPopUp(content)" class="btn btn-primary cbtn">Edit</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row justify-content-md-center">
-    <div class="recharge-card">
-      <div class="card-body">
-        <p class="card-title">Your Email ID</p>
-        <p class="card-text" #email (blur)="emailChange($event)" [ngClass]="{'focused' : editemail}" [contentEditable]="editemail">{{EmailId?EmailId:'NA'}}</p>
-        <button *ngIf="!editemail" type="button" (click)="onEmailEdit(false,$event,email)" class="btn btn-primary cbtn">Edit</button>
-        <button *ngIf="editemail" type="button" (click)="onEmailEdit(true,$event,email)" class="btn btn-primary cbtn">Save</button>
+    <div class="row justify-content-md-center">
+      <div class="recharge-card">
+        <div class="card-body">
+          <p class="card-title">Your Email ID</p>
+          <p class="card-text" #email (blur)="emailChange($event)" [ngClass]="{'focused' : editemail}" [contentEditable]="editemail">{{userDetails?.EmailId?userDetails?.EmailId:'NA'}}</p>
+          <button *ngIf="!editemail" type="button" (click)="onEmailEdit(false,$event,email)" class="btn btn-primary cbtn">Edit</button>
+          <button *ngIf="editemail" type="button" (click)="onEmailEdit(true,$event,email)" class="btn btn-primary cbtn">Save</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div *ngIf= "userCategory == '1'" class="row justify-content-md-center">
-    <div class="recharge-card">
-      <div class="card-body">
-        <p class="card-title">Your Subscribed Pack</p>
-        <p class="card-text">{{SubscribePack?SubscribePack:'NA'}}</p>
-        <button type="button" (click) = "onClickChangePack()" class="btn btn-primary cbtn">Change</button>
+    <div class="row justify-content-md-center">
+      <div class="recharge-card">
+        <div class="card-body">
+          <p class="card-title">Your Subscribed Pack</p>
+          <p class="card-text" *ngIf="userDetails?.SubscribePack" >{{userDetails?.SubscribePack}}</p>
+          <p class="card-text" *ngIf="!userDetails?.SubscribePack">NA</p>
+          <button type="button" (click)="onClickChangePack()" class="btn btn-primary cbtn">Change</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div *ngIf= "userCategory == '2'" class="row justify-content-md-center">
-    <div class="recharge-card">
-      <div class="card-body">
-        <p class="card-title">Your Address</p>
-        <p class="text-truncate">{{Address?Address:'NA'}}</p>
+    <div class="row justify-content-md-center" *ngIf="userCategory == '1'">
+      <div class="recharge-card">
+        <div class="card-body">
+          <p class="card-title">Next Recharge Amount</p>
+          <p class="card-text" *ngIf="!userDetails?.RechargeAmount">NA</p>
+          <p class="card-text" *ngIf="userDetails?.RechargeAmount"><i class="la la-rupee"></i>{{userDetails?.RechargeAmount}}</p>
+          <button type="button" (click)="nextRechargeClick()" class="btn btn-primary cbtn">Detail</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div *ngIf= "userCategory == '1'" class="row justify-content-md-center">
-    <div class="recharge-card">
-      <div class="card-body">
-        <p class="card-title">Next Recharge Amount</p>
-        <p class="card-text"><i class="la la-rupee"></i> {{RechargeAmount?RechargeAmount:'NA'}}</p>
-        <button type="button" (click) = "nextRechargeClick()" class="btn btn-primary cbtn">Detail</button>
+    <div *ngIf="userCategory == '2'" class="row justify-content-md-center">
+      <div class="recharge-card">
+        <div class="card-body">
+          <p class="card-title" *ngIf="userDetails?.Address">Your Address</p>
+          <p class="card-text" *ngIf="!userDetails?.Address">NA</p>
+          <p class="text-truncate">{{userDetails?.Address}}</p>
+        </div>
       </div>
     </div>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
   </div>
-  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
 </div>
-</div>
+
+<ng-template #content let-modal>
+  <div class="model">
+    <p class="model-heading">Watcho</p>
+    <p class="model-sub-heading">Do you have mobile number with you?</p>
+    <br>
+    <div class="row justify-content-md-center card-body ">
+      <button type="button" (click)="onMobileConfirm('No',otpContent)" *ngIf="userCategory == '2'"
+        style="margin: 0%; background: #6A2381;border: none;" class="btn btn-primary ">No</button>
+      <button type="button" (click)="onMobileConfirm('Yes',otpContent)" *ngIf="userCategory == '2'"
+        style="margin: 0%; margin-left: 10px; background: #6A2381;border: none;" class="btn btn-primary ">Yes</button>
+      <button type="button" (click)="onMobileConfirm('No',otpContent)" *ngIf="userCategory == '1'"
+        style="margin: 0%; background: #f55d38;border: none;" class="btn btn-primary ">No</button>
+      <button type="button" (click)="onMobileConfirm('Yes',otpContent)" *ngIf="userCategory == '1'"
+        style="margin: 0%; margin-left: 10px; background: #f55d38;border: none;" class="btn btn-primary ">Yes</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #otpContent let-modal>
+  <div class="model">
+    <p class="model-heading">Watcho</p>
+    <p class="model-sub-heading" *ngIf="block == 1">Please Enter the otp sent to your current Register mobile number</p>
+    <p class="model-sub-heading" *ngIf="block == 2 && userCategory == '1'">Please Enter the otp sent to your current
+      Register VC number</p>
+    <p class="model-sub-heading" *ngIf="block == 2 && userCategory == '2'">Please Enter the otp sent to your current
+      Register SC number</p>
+    <br>
+    <div id="divOuter">
+      <div id="divInner">
+        <input id="codeBox1" type="text" (keydown)="onKeyDownEvent('#codeBox1', $event, 'SIGNIN')" maxlength="1"
+          inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(1, $event)"
+          (focus)="onFocusEvent(1)" />
+        <input id="codeBox2" type="text" (keydown)="onKeyDownEvent('#codeBox2', $event, 'SIGNIN')" maxlength="1"
+          inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(2, $event)"
+          (focus)="onFocusEvent(2)" />
+        <input id="codeBox3" type="text" (keydown)="onKeyDownEvent('#codeBox3', $event, 'SIGNIN')" maxlength="1"
+          inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(3, $event)"
+          (focus)="onFocusEvent(3)" />
+        <input id="codeBox4" type="text" (keydown)="onKeyDownEvent('#codeBox4', $event, 'SIGNIN')" maxlength="1"
+          inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(4, $event)"
+          (focus)="onFocusEvent(4)" />
+      </div>
+    </div><br>
+    <span class="forgot model-sub-heading" style="margin-left: 34%;">
+      <a class="active" style="cursor: pointer;" (click)="resendOtp()">Resend OTP</a>
+    </span>
+    <p class="model-sub-heading" style="margin-left: 30%; font-weight: 100;">Expires In 5 minutes</p>
+    <br>
+    <button type="button" id='otp2' type="submit" style="margin: 0%;    margin-right: 10%;    margin-bottom: 5%;"
+      class="btn btn-blue margin-top-30" (click)="submitOtp()" tabindex="0">Submit</button>
+  </div>
+</ng-template>

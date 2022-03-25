@@ -57,6 +57,36 @@
             <span *ngIf="!isLiveTVActive" class="inActive">LIVE TV</span>
           </a>
         </li>
+        <li (click)="toggleActive()" class="link-container">
+          <a routerLink="/user/mydishtvspace" (click)="clickMyDishtvMoEngageEvent()">
+            <span class="iconContainer liveTVContainer">
+              <i *ngIf="isMyDishtvSpace" class="dishTv active"> </i>
+              <i *ngIf="!isMyDishtvSpace" class="dishTv inActive"> </i>
+            </span>
+            <span *ngIf="isMyDishtvSpace" class="active">My Dish Tv</span>
+            <span *ngIf="!isMyDishtvSpace" class="inActive">My Dish Tv</span>
+          </a>
+        </li>
+        <li (click)="toggleActive()" class="link-container">
+          <a routerLink="/user/myd2hspace" (click)="clickMyD2hMoEngageEvent()">
+            <span class="iconContainer liveTVContainer">
+              <i *ngIf="isMyD2hSpace" class="d2h active"> </i>
+              <i *ngIf="!isMyD2hSpace" class="d2h inActive"> </i>
+            </span>
+            <span *ngIf="isMyD2hSpace" class="active">My D2h</span>
+            <span *ngIf="!isMyD2hSpace" class="inActive">My D2h</span>
+          </a>
+        </li>
+        <li (click)="toggleActive()" class="link-container">
+          <a routerLink="/bookDTH" (click)="clickBookDTHMoEngageEvent()">
+            <span class="iconContainer liveTVContainer">
+              <i *ngIf="isBookDTH" class="dth active"> </i>
+              <i *ngIf="!isBookDTH" class="dth inActive"> </i>
+            </span>
+            <span *ngIf="isBookDTH" class="active">Book DTH</span>
+            <span *ngIf="!isBookDTH" class="inActive">Book DTH</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -109,6 +139,36 @@
           </span>
           <span *ngIf="isLiveTVActive" class="active">LIVE TV</span>
           <span *ngIf="!isLiveTVActive" class="inActive">LIVE TV</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/user/mydishtvspace" (click)="clickMyDishtvMoEngageEvent()">
+          <span class="iconContainer liveTVContainer">
+            <i *ngIf="isMyDishtvSpace" class="dishTv active"> </i>
+            <i *ngIf="!isMyDishtvSpace" class="dishTv inActive"> </i>
+          </span>
+          <span *ngIf="isMyDishtvSpace" class="active">My Dish Tv</span>
+          <span *ngIf="!isMyDishtvSpace" class="inActive">My Dish Tv</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/user/myd2hspace" (click)="clickMyD2hMoEngageEvent()">
+          <span class="iconContainer liveTVContainer">
+            <i *ngIf="isMyD2hSpace" class="d2h active"> </i>
+            <i *ngIf="!isMyD2hSpace" class="d2h inActive"> </i>
+          </span>
+          <span *ngIf="isMyD2hSpace" class="active">My D2h</span>
+          <span *ngIf="!isMyD2hSpace" class="inActive">My D2h</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/bookDTH" (click)="clickBookDTHMoEngageEvent()">
+          <span class="iconContainer liveTVContainer">
+            <i *ngIf="isBookDTH" class="dth active"> </i>
+            <i *ngIf="!isBookDTH" class="dth inActive"> </i>
+          </span>
+          <span *ngIf="isBookDTH" class="active">Book DTH</span>
+          <span *ngIf="!isBookDTH" class="inActive">Book DTH</span>
         </a>
       </li>
       <li (click)="toggleActive()" class="link-container">
@@ -180,6 +240,36 @@
           </span>
           <span *ngIf="isLiveTVActive" class="active">LIVE TV</span>
           <span *ngIf="!isLiveTVActive" class="inActive">LIVE TV</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/user/mydishtvspace" (click)="clickMyDishtvMoEngageEvent()">
+          <span class="iconContainer liveTVContainer">
+            <i *ngIf="isMyDishtvSpace" class="dishTv active"> </i>
+            <i *ngIf="!isMyDishtvSpace" class="dishTv inActive"> </i>
+          </span>
+          <span *ngIf="isMyDishtvSpace" class="active">My Dish Tv</span>
+          <span *ngIf="!isMyDishtvSpace" class="inActive">My Dish Tv</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/user/myd2hspace" (click)="clickMyD2hMoEngageEvent()">
+          <span class="iconContainer liveTVContainer">
+            <i *ngIf="isMyD2hSpace" class="d2h active"> </i>
+            <i *ngIf="!isMyD2hSpace" class="d2h inActive"> </i>
+          </span>
+          <span *ngIf="isMyD2hSpace" class="active">My D2h</span>
+          <span *ngIf="!isMyD2hSpace" class="inActive">My D2h</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/bookDTH" (click)="clickBookDTHMoEngageEvent()">
+          <span class="iconContainer liveTVContainer">
+            <i *ngIf="isBookDTH" class="dth active"> </i>
+            <i *ngIf="!isBookDTH" class="dth inActive"> </i>
+          </span>
+          <span *ngIf="isBookDTH" class="active">Book DTH</span>
+          <span *ngIf="!isBookDTH" class="inActive">Book DTH</span>
         </a>
       </li>
       <li (click)="toggleActive()" class="link-container">

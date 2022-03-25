@@ -1,0 +1,70 @@
+<div class="container" *ngIf="!complaintContainer">
+    <div class="container faq-section">
+        <h2 class="title-faq">Account Balance</h2>
+        <a class="anchor" (click)="onClickAccountBalanceIssue()">
+            <div class="section">Account Balance Issue<i class="la la-angle-right"></i></div>
+        </a>
+        <a class="anchor" (click)="onClickRechargeFailure()">
+            <div class="section">Recharge Failure<i class="la la-angle-right"></i></div>
+        </a>
+    </div>
+    <div class="container faq-section">
+        <h2 class="title-faq">Facing Technical Problem</h2>
+        <a class="anchor" (click)="onClickRaiseServiceRequest()">
+            <div class="section">Raise Service Request<i class="la la-angle-right"></i></div>
+        </a>
+        <a class="anchor" (click)="onClickSelfTroubleshoting()">
+            <div class="section">Self Troubleshooting<i class="la la-angle-right"></i></div>
+        </a>
+    </div>
+    <div class="container faq-section">
+        <h2 class="title-faq">Trouble Using The Product</h2>
+        <a class="anchor" (click)="onClickHelpForUsingProduct()">
+            <div class="section">Help for using product<i class="la la-angle-right"></i></div>
+        </a>
+        <a class="anchor" (click)="onClickAddAnotherConnection()">
+            <div class="section">Add another connection<i class="la la-angle-right"></i></div>
+        </a>
+        <a class="anchor" (click)="onClickUpgradeTheHardware()">
+            <div class="section">Upgrade the hardware<i class="la la-angle-right"></i></div>
+        </a>
+        <a class="anchor" (click)="onClickTrackComplaintStatus()">
+            <div class="section">Track Complaint Status<i class="la la-angle-right"></i></div>
+        </a>
+    </div>
+    <div class="container faq-section">
+        <h2 class="title-faq">Dealer Locator</h2>
+        <a class="anchor" (click)="onClickDealerLocator()">
+            <div class="section">Dealer Locator<i class="la la-angle-right"></i></div>
+        </a>
+    </div>
+    <div class="container faq-section">
+        <h2 class="title-faq">Nodal Officer</h2>
+        <a class="anchor" (click)="onClickNodalOfficer()">
+            <div class="section">Nodal Officer<i class="la la-angle-right"></i></div>
+        </a>
+    </div>
+    <div class="container faq-section">
+        <h2 class="title-faq" style="font-size: 16px;">Application version</h2>
+        <p style="color: #6A2381;">1.1.1</p>
+    </div>
+</div>
+
+<div class="container" *ngIf="complaintContainer">
+    <form [formGroup]="complaintForm">
+        <div class="container faq-section">
+            <h2 class="title-faq">Search by complaint id</h2>
+            <input class="form-control edit-text" type="text" aria-label="Search" placeholder="Enter Complaint Id..."
+                id="search-input-control" autocomplete="off" formControlName="complaintID" maxlength="10">
+            <div class="recharge-box" style="background: #6A2381;">
+                <p class="side-sub-heading" style="padding-top: 5px; cursor: pointer;" (click)="onClickSubmit()">
+                    Submit
+                </p>
+            </div>
+        </div>
+        <div class="container faq-section" *ngIf="viewBlock">
+            <h2 class="title-faq">Complaint ID : {{complaintID}}</h2>
+            <h2 class="title-faq">Status : {{resultStatus}}</h2>
+        </div>
+    </form>
+</div>

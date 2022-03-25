@@ -237,7 +237,7 @@ span.inintchmg{
                         width: 90%;
                         float: left;
                         p{
-                            color: #757575;
+                            color: #ffffff;
                         }
                     }
                     .box-righttab{
@@ -280,7 +280,7 @@ span.inintchmg{
                                 // border: 1px solid #ccc;
                                 background: #201e1e;
                                 .changebtntype{
-                                    color: #757575;
+                                    color: #ffffff;
                                     width: 100%;
                                     float: left;
                                     font-size: 15px;
@@ -309,7 +309,7 @@ span.inintchmg{
                                             width: 100%;
                                             padding: 10px 40px 10px 0px;
                                             border: none;
-                                            border-bottom: 1px solid #757575;
+                                            border-bottom: 1px solid #ffffff;
                                         }
                                         button {
                                             width: 30%;
@@ -505,7 +505,7 @@ span.inintchmg{
                 margin: 0 auto;
                 max-width: 800px;
                 p{
-                    color: #757575;
+                    color: #ffffff;
                     font-size: 16px;
                     font-weight: 400;
                     margin: 15px 0;
@@ -545,7 +545,7 @@ span.inintchmg{
                 margin: 8px 0 0 0;
             }
             p{
-                color: #757575;
+                color: #ffffff;
                 font-weight: 400;
                 font-size: 14px;
             }
@@ -1651,7 +1651,7 @@ span.inintchmg{
       border-top: none;
       border-left: none;
       border-right: none;
-      border-bottom: 1px solid #757575;
+      border-bottom: 1px solid #ffffff;
       font-size: 15px;
       margin-bottom: 0;
       
@@ -1993,43 +1993,6 @@ span.inintchmg{
 
         .input-group {
             text-align: center;
-        }
-    }
-
-    /deep/.otpParentalModal {
-        .parental-logo {
-            text-align: center;
-        }
-
-        .chngpasChange-password {
-            .input-group {
-                input {
-                    height: 50px;
-                    border-radius: 0;
-                    background: transparent;
-                    box-shadow: none;
-                    outline: none;
-                    font-size: 15px;
-                    color: #fff;
-                    font-weight: 500;
-                    width: 100%;
-                    padding: 0px;
-                    border: none;
-                    border-bottom: 1px solid #757575;
-                }
-            }
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            border-radius: 5px;
-            outline: none;
-            font-size: 16px;
-            color: #fff;
-            outline: none;
-            border: none;
-            margin-top: 10px;
         }
     }
 }

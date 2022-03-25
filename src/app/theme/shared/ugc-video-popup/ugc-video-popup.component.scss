@@ -91,14 +91,14 @@
                     /deep/.Follow-profile{
                         float: left;
                         width: 100%;
-                        color: #757575;
+                        color: #ffffff;
                         cursor: pointer;
                         i{
-                          color: #757575;
+                          color: #ffffff;
                           font-size: 23px; 
                         }
                         &:hover{
-                          color: #757575 !important;
+                          color: #ffffff !important;
                         }
                     }
                   }
@@ -121,7 +121,7 @@
                   margin: 0 0 8px;
                 }
                 h5{
-                  color: #757575;
+                  color: #ffffff;
                   font-size: 14px;
                   width: 100%;
                   float: left;
@@ -129,7 +129,7 @@
                   font-weight: 300;
                 }
                 p{
-                  color: #757575;
+                  color: #ffffff;
                   font-size: 14px;
                   width: 100%;
                   font-weight: 300;
@@ -144,7 +144,7 @@
                 .left-icon{
                   float: left;
                   margin-right: 25px;
-                  color: #757575;
+                  color: #ffffff;
                   text-align: center;
                   cursor: pointer;
                   i{
@@ -160,7 +160,7 @@
                 .mid-icon{
                   float: left;
                   margin-right: 15px;
-                  color: #757575;
+                  color: #ffffff;
                   text-align: center;
                   cursor: pointer;
                   i{
@@ -174,11 +174,11 @@
                 }
                 /deep/.last-share-icon{
                   float: left;
-                  color: #757575;
+                  color: #ffffff;
                   cursor: pointer;
                   text-align: center;
                   position: absolute;
-                  left: 24%;
+                  left: 0;
                   .share > i{
                       font-size: 20px;
                   }

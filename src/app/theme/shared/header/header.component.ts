@@ -14,6 +14,7 @@ import { profilepicconst } from '../typings/image-constants';
 import { MessageServiceConstants, SearchQueryCommand } from '../typings/shared-typing';
 import { startWith, delay, tap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
+import { MyDishTvSpaceService } from '../../pages/default/my-dish-tv-space/services/mydishtvspace.service';
 
 
 declare var $: any;
@@ -77,16 +78,24 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   isHideLink: boolean = false;
   isMobileView: boolean = false;
   onNavigationPage: boolean = false;
-  userCategory: string;
+  userCategory: string 
   isUgcActive: boolean;
   ugcPageVisited: boolean = false;
   dms: any = null;
   showContest: boolean = false;
   browserDetails: any;
 
-  constructor(@Inject(PLATFORM_ID) private platformId, private modalService: NgbModal, private router: Router,
-    private loginMessageService: LoginMessageService, private commonMessageService: CommonMessageService,
-    public appUtilService: AppUtilService, private platformIdentifierService: PlatformIdentifierService, private smsService: SmsFormService) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId, 
+    private modalService: NgbModal, 
+    private router: Router,
+    private loginMessageService: LoginMessageService, 
+    private commonMessageService: CommonMessageService, 
+    private mydishtvspaceservice: MyDishTvSpaceService,
+    public appUtilService: AppUtilService, 
+    private platformIdentifierService: PlatformIdentifierService, 
+    private smsService: SmsFormService) {
+    this.userCategory = this.mydishtvspaceservice.getUserCategory();
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.url = event.url;
@@ -135,7 +144,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (this.isBrowser) {
-      this.userCategory = localStorage.getItem("user-category");
+      // this.userCategory = localStorage.getItem("user-category");
       $(document).ready(() => {
         branch.init(Branch.KEY, (err, data) => {
           this.Initdata = data.data;

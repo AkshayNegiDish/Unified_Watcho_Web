@@ -97,7 +97,7 @@ export const environment = {
   CHANNEL_ID: "WEB",
   KALTURA_PLAYER_API_VERSION: '/api_v3',
   IMAGES_CLOUDFRONT_URL: "https://d2nwj7mtazokqw.cloudfront.net",
-  WATCHO_QUIZ:"https://stage.smartconnect.videocond2h.tv/",
+  WATCHO_QUIZ:"https://quiz.watcho.com/",
   WEBP_JPEG_CLOUDFRONT_URL: 'https://d33ziwki8ny9c1.cloudfront.net/',
   WEBP_CLOUDFRONT_URL: "filters:format(webp):quality(60)/",
   JPEG_CLOUDFRONT_URL: "filters:format(jpeg):quality(60)/",

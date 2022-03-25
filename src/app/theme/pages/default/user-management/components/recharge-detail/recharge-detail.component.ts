@@ -177,7 +177,12 @@ export class RechargeDetailComponent implements OnInit {
     this.userFormService.getBestOfferForSubscriber(this.userSmsDetails.OTTSubscriberID, dishd2hSubscriberID, subscriberCategory).subscribe((res: any) => {
       this.loading = false;
       if (res.ResultCode === 0) {
-        this.noOffersFound = false;
+        if (res.Result.length) {
+          this.noOffersFound = false;
+        }
+        else {
+          this.noOffersFound = true;
+        }
         this.offersList = [];
         res.Result.forEach((ele: OfferCommand, index: number) => {
           let offer = new OfferCommand();

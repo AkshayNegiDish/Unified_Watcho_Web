@@ -125,7 +125,7 @@
     // font-family: 'HelveticaNeueBold';
     margin: 0px 0px 0px 0px;
     // padding-left: 15px;
-    color:$netflix-chnaget-color;
+    color:$fonts-grey-color;
     cursor: pointer;
     display: inline;
     h2{
@@ -139,7 +139,7 @@
     // font-family: 'HelveticaNeueBold';
     margin: 0px 0px 0px 0px;
     // padding-left: 15px;
-    color:$netflix-chnaget-color;
+    color:$fonts-grey-color;
     display: inline;
     h2{
       font-size: 20px;
@@ -361,7 +361,7 @@
 }
 
 /deep/ .carousel-indicators li {
-  background-color: #757575 !important;
+  background-color: #ffffff !important;
   margin: 0 2px !important;
   border: none !important;
 }
@@ -836,7 +836,7 @@ app-railitemview {
 .noCursorPointer{
   cursor: auto !important;
   &:hover{
-     color:$netflix-chnaget-color !important;
+     color:$fonts-grey-color !important;
   }
 }
 

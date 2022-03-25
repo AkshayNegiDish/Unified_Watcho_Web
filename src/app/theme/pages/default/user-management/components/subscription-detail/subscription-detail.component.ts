@@ -349,15 +349,15 @@ export class SubscriptionDetailComponent implements OnInit {
                                 console.error(error);
                             });
                         } else {
-                            this.openPaymentGateway(e);
-                            // this.openPayTMPaymentGateway(e);
+                            // this.openPaymentGateway(e);
+                            this.openPayTMPaymentGateway(e);
                         }
                     } else {
                         this.snackbarUtilService.showError('Select Payment Method');
                     }
                 } else {
-                    this.openPaymentGateway(e);
-                    // this.openPayTMPaymentGateway(e);
+                    // this.openPaymentGateway(e);
+                    this.openPayTMPaymentGateway(e);
                 }
             }
         } else {

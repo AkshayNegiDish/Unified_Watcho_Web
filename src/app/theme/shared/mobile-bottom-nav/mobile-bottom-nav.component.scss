@@ -55,7 +55,7 @@
     li{
         list-style: none;
         float: left;
-        width: 25%;
+        width: 20%;
         padding:0 5px;
         text-align: center;
         color: $meta-font-color;
@@ -63,7 +63,7 @@
         font-weight: 400;
         line-height: 20px;
         a{
-            color: #757575;
+            color: #ffffff;
             text-decoration: none !important;  
         }
         img{
@@ -169,6 +169,55 @@
             background: url($web-sprite-url) no-repeat -842px -959px;
         }
     }
+    .dishTv {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url(../../../../assets/images/dish-new.png)
+        }
+        &.inActive {
+            background: url(../../../../assets/images/dish-new.png) 
+        }
+    }
+
+    
+    .d2h {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url(../../../../assets/images/d2h_new.png) 
+        }
+        &.inActive {
+            background: url(../../../../assets/images/d2h_new.png)
+        }
+    }
+
+    
+    .dth {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url(../../../../assets/images/book-dth.png) no-repeat -730px -953px;   
+        }
+        &.inActive {
+            background: url(../../../../assets/images/book-dth.png) no-repeat -842px -959px;
+        }
+    }
 }
 
 
@@ -251,6 +300,56 @@
         }
         &.inActive {
             background: url($web-sprite-url) no-repeat -842px -959px;
+        }
+    }
+
+    .dishTv {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url(../../../../assets/images/dish-new.png) no-repeat -730px -953px;   
+        }
+        &.inActive {
+            background: url(../../../../assets/images/dish-new.png) no-repeat -842px -959px;
+        }
+    }
+
+    
+    .d2h {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url(../../../../assets/images/d2h_new.png) no-repeat -730px -953px;   
+        }
+        &.inActive {
+            background: url(../../../../assets/images/d2h_new.png) no-repeat -842px -959px;
+        }
+    }
+
+    
+    .dth {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url(../../../../assets/images/book-dth.png) no-repeat -730px -953px;   
+        }
+        &.inActive {
+            background: url(../../../../assets/images/book-dth.png) no-repeat -842px -959px;
         }
     }
 

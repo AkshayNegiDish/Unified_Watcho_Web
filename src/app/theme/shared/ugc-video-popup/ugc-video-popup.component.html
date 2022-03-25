@@ -37,7 +37,7 @@
                                 </p>
                             </div>
                             <div class="share-counts-section">
-                                <div class="left-icon" *ngIf="viewCountObject" style="cursor: auto;"
+                                <!-- <div class="left-icon" *ngIf="viewCountObject" style="cursor: auto;"
                                     [title]="viewCountObject.views + ' Views'">
                                     <i class="la eye la-eye"></i>
                                     <span class="count-number">{{viewCountObject.views | parseCount}}</span>
@@ -50,7 +50,7 @@
                                     [title]="(viewCountObject.likes + startLikes) + ' Likes'">
                                     <span class="like-icon"><i class="la las la-heart"></i></span>
                                     <span class="count-like">{{viewCountObject.likes + startLikes | parseCount}}</span>
-                                </div>
+                                </div> -->
                                 <div class="last-share-icon" title="Share">
                                     <!--Put-Share-icon-here-->
                                     <app-share *ngIf="ugcVideos[index]" [assetDetails]="ugcVideos[index]"></app-share>

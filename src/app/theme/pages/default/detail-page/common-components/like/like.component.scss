@@ -24,7 +24,7 @@
     .like-count{
       text-align: center;
       margin: -12px 0 0 0;
-      color: #757575;
+      color: #ffffff;
       &.liked{
         color: #fa0050;
       }
@@ -96,7 +96,7 @@
 .heart-icon{
   &:hover{
     .like-count{
-      color: #757575;
+      color: #ffffff;
     }
     .like-single{
       background: url($web-sprite-v3-url) no-repeat -650px -854px;

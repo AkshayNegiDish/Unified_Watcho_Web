@@ -13,7 +13,8 @@ export class MyDishTvSpaceService {
     isBrowser: any;
 
     constructor(@Inject(PLATFORM_ID) private platformId, private httpClient: HttpClient) {
-        this.ottApiUrl = 'https://ottmobileapis.dishtv.in/Api/'; //'https://ottmobileapisstaging.dishtv.in/Api/';
+        // this.ottApiUrl = 'https://ottmobileapis.dishtv.in/Api/';
+        this.ottApiUrl = 'https://ottmobileapisstaging.dishtv.in/Api/';
         this.isBrowser = isPlatformBrowser(platformId);
 
     }
@@ -140,7 +141,7 @@ export class MyDishTvSpaceService {
                 return res
             });
     }
-
+    
     getEpgToken() {
         if (this.isBrowser) {
             return JSON.parse(localStorage.getItem("mydishtv_token")).token;
@@ -192,4 +193,95 @@ export class MyDishTvSpaceService {
             return localStorage.getItem("user-category") == '1' ? 'dishtv' : 'd2h';
         }
     }
+
+    IsEligibleForWhatsAppConsentFlag(token: string, Dishd2hSubscriberID: string, SubscriberCategory: string): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.get(`https://ottmobileapisstaging.dishtv.in/Api/UniFiedAPP/IsEligibleForWhatsAppConsentFlag?OTTSubscriberID=${Dishd2hSubscriberID}&Flag=0&SubscriberCategory=${SubscriberCategory}`, { headers })
+            .pipe((res: Observable<HttpResponse<any>>) => {
+                return res
+            });
+    }
+
+    InsertWhatsAppConsentDetails(token: string, Dishd2hSubscriberID: string, SubscriberCategory: string): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.get(`https://ottmobileapisstaging.dishtv.in/Api/UniFiedAPP/InsertWhatsAppConsentDetails?OTTSubscriberID=${Dishd2hSubscriberID}&Flag=0&SubscriberCategory=${SubscriberCategory}`, { headers })
+            .pipe((res: Observable<HttpResponse<any>>) => {
+                return res
+            });
+    }
+
+    IsEligibleForPayLater(token: string, Dishd2hSubscriberID: string, SubscriberCategory: string): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.get(`https://ottmobileapisstaging.dishtv.in/Api/UniFiedAPP/IsEligibleForPayLater?OTTSubscriberID=${Dishd2hSubscriberID}&SubscriberCategory=${SubscriberCategory}`, { headers })
+            .pipe((res: Observable<HttpResponse<any>>) => {
+                return res
+            });
+    }
+
+    InsertPayLater(token: string, Dishd2hSubscriberID: string, SubscriberCategory: string): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.get(`https://ottmobileapisstaging.dishtv.in/Api/UniFiedAPP/InsertPayLater?OTTSubscriberID=${Dishd2hSubscriberID}&SubscriberCategory=${SubscriberCategory}`, { headers })
+            .pipe((res: Observable<HttpResponse<any>>) => {
+                return res
+            });
+    }
+
+    SubmitUserRequestToGetOtherConnection(token: string, data): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.post(`https://ottmobileapisstaging.dishtv.in/Api/UniFiedAPP/SubmitUserRequestToGetOtherConnection`, data, { headers })
+            .pipe((res: Observable<HttpResponse<any>>) => {
+                return res
+            });
+    }
+
+    upgradeBox(token: string, data): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.post(`https://ottmobileapisstaging.dishtv.in/Api/UniFiedAPP/SubmitBoxUpgradeLead`, data, { headers })
+            .pipe((res: Observable<HttpResponse<any>>) => {
+                return res
+            });
+    }
+    getEnID(token: string): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.get(`https://bfcafw1uea.execute-api.ap-south-1.amazonaws.com/prod/test`)
+            .pipe((res: Observable<HttpResponse<any>>) => {
+                return res
+            });
+    }
+
+    
+    GenerateMobileOTP(token: string, data): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.post(`${this.ottApiUrl}UserManageAccount/GenerateOTP`,data, { headers })
+            .pipe((res: Observable<HttpResponse<any>>) => {
+                return res
+            });
+    }
+
+    
+    ValidateMobileOTP(token: string, data): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.post(`${this.ottApiUrl}UserManageAccount/ValidateOTP`,data, { headers })
+            .pipe((res: Observable<HttpResponse<any>>) => {
+                return res
+            });
+    }
+
+    getComplaintIDStatus(token: string, complaintID: string): Observable<HttpResponse<any>> {
+        let headers = new HttpHeaders().set('Authorization', token);
+        headers = headers.append('Content-Type', 'application/json');
+        return this.httpClient.get(`${this.ottApiUrl}UserManageAccount/ServiceTicketTracking/${complaintID}/APP`, { headers: headers }).pipe((res: Observable<HttpResponse<any>>) => {
+            return res;
+        });
+    }
+
 }

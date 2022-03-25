@@ -35,7 +35,7 @@
         min-width: auto;
         padding-right: 0 !important;
         &:hover{
-          color: #757575;
+          color: #ffffff;
         }
         &.total-rating{
           width: 100%;
@@ -72,7 +72,7 @@
           width: 315px;
           position: absolute;
           right: 95px;
-          border: 1px solid #757575;
+          border: 1px solid #ffffff;
           border-radius: 10px;
           background: #3c3c3c;
           margin-top: -8px;
@@ -83,7 +83,7 @@
             width: 64px;
             text-align: center;
             margin-top: 9px;
-            border-right: 1px solid #757575;
+            border-right: 1px solid #ffffff;
             margin-right: 4px;
             span{
               padding-right: 0;
@@ -124,7 +124,7 @@
               min-width: auto;
               font-size: 12px;
               &:hover{
-                color: #757575;
+                color: #ffffff;
               }
             }
             &:last-child{

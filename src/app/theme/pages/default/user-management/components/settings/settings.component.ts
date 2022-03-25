@@ -13,7 +13,7 @@ import { MediaUploadService } from '../../../../../shared/services/media-upload.
 import { PlatformIdentifierService } from '../../../../../shared/services/platform-identifier.service';
 import { SmsFormService } from '../../../../../shared/services/sms-form.service';
 import { SnackbarUtilService } from '../../../../../shared/services/snackbar-util.service';
-import { AppConstants, QUALITY, QUALITYBITRATE, SMSConstants } from '../../../../../shared/typings/common-constants';
+import { AppConstants, QUALITY, QUALITYBITRATE } from '../../../../../shared/typings/common-constants';
 import { ChangePasswordCommand, UpdateUserProfileCommand, UserDetailsCommand } from '../../models/user';
 import { NgbDateCustomParserFormatter } from '../../services/ngb-parser-formater.service';
 import { UserFormService } from '../../services/user-form.service';
@@ -38,10 +38,6 @@ export class SettingsComponent implements OnInit {
     uploadModalRef: ElementRef;
 
     @ViewChild('emailVerifyOTPModal') emailVerifyOTPModal: ElementRef;
-
-    @ViewChild('OTPModalForResetParental') OTPModalForResetParental: ElementRef;
-
-    @ViewChild('resetParentalModal') resetParentalModal: ElementRef;
 
     disabled: boolean = true;
 
@@ -113,20 +109,12 @@ export class SettingsComponent implements OnInit {
     browserDetails: any;
     isSigninSignup: boolean = false;
     userOtp: string;
-    isResetParentalPin: boolean;
-    newPinCode: string;
-    confirmPinCode: string;
-    DMS: any;
-    ruleId: number;
-    sendOTPMsgForParental: string;
 
     constructor(@Inject(PLATFORM_ID) private platformId, private userFormService: UserFormService, private router: Router, private config: NgbDatepickerConfig, public modalService: NgbModal,
         public loginMessageService: LoginMessageService, private smsService: SmsFormService,
         private kalturaAppService: KalturaAppService, private snackbarUtilService: SnackbarUtilService, private titleService: Title,
         private appUtilService: AppUtilService, public mediaUploadService: MediaUploadService, private platformIdentifierService: PlatformIdentifierService, private cdr: ChangeDetectorRef) {
         this.isBrowser = isPlatformBrowser(platformId);
-        this.DMS = this.appUtilService.getDmsConfig();
-        this.ruleId = this.DMS.params.ParentalRules['16+'];
         this.userName = null;
         this.userEmail = null;
         this.userGender = null;
@@ -174,10 +162,6 @@ export class SettingsComponent implements OnInit {
         this.noRechargeHistoryFound = false;
         this.browserDetails = this.appUtilService.getBrowserDetails();
         this.userOtp = null;
-        this.isResetParentalPin = false;
-        this.newPinCode = null;
-        this.confirmPinCode = null;
-        this.sendOTPMsgForParental = null;
     }
 
     ngOnInit() {
@@ -1063,11 +1047,7 @@ export class SettingsComponent implements OnInit {
         } else {
           if (placement === 'REGISTER' && id === "#codeBoxRegister4") {
             setTimeout(() => {
-                if (this.isResetParentalPin) {
-                    this.validateOTPForResetParentalPin();
-                } else {
-                    this.validateOtpForRegisterEmail();
-                }
+                this.validateOtpForRegisterEmail();
             }, 500)
           }
         }
@@ -1081,7 +1061,6 @@ export class SettingsComponent implements OnInit {
     resendOtpForEmail() {
         this.loading = true;
         this.userOtp = null;
-        this.isResetParentalPin = false;
         this.smsService.ResendOtpForEmail(this.userDetailsCommand.email, this.appUtilService.getLoggedInUserSMSDetails().OTTSubscriberID.toString(), this.appUtilService.getAuthKey()).subscribe((res: any) => {
             this.loading = false;
             if (res.ResultCode === 0) {
@@ -1119,141 +1098,5 @@ export class SettingsComponent implements OnInit {
 
     backButton() {
         this.modalService.dismissAll();
-    }
-
-    resendOtpForResetParental() {
-        this.loading = true;
-        this.userOtp = null;
-        this.modalService.dismissAll();
-        this.isResetParentalPin = true;
-        if (this.appUtilService.getLoggedInUserSMSDetails().MobileNo !== "" && this.appUtilService.getLoggedInUserSMSDetails().EmailID === "") {
-            this.sendOTPMsgForParental = this.appUtilService.getLoggedInUserSMSDetails().MobileNo;
-            let userLoginType = SMSConstants.WATCHO_LOGIN_KEY
-            let userInputType = SMSConstants.REGISTER_TYPE_MOBILE_KEY
-            this.smsService.validateUser(this.appUtilService.getLoggedInUserSMSDetails().MobileNo, userLoginType, userInputType).subscribe((res: any) => {
-                this.loading = false;
-                if (res.ResultCode > 0) {
-                    this.modalService.open(this.OTPModalForResetParental);
-                    this.snackbarUtilService.showSnackbar('We have sent you an OTP on ' + this.appUtilService.getLoggedInUserSMSDetails().MobileNo + '. it is valid for 5 miniutes.');
-                } else {
-                    this.modalService.open(this.OTPModalForResetParental);
-                    // this.snackbarUtilService.showError(res.ResultDesc);
-                    if (!res.error) {
-                        this.snackbarUtilService.showError("An OTP has been sent to your " + this.appUtilService.getLoggedInUserSMSDetails().MobileNo + ". Please enter OTP to validate your e-mail address");
-                    }
-                }
-            }, (error) => {
-                this.loading = false;
-                // this.modalService.dismissAll();
-                this.snackbarUtilService.showError();
-            });
-        } else {
-            this.sendOTPMsgForParental = this.appUtilService.getLoggedInUserSMSDetails().EmailID;
-            this.smsService.ResendOtpForEmail(this.appUtilService.getLoggedInUserSMSDetails().EmailID, this.appUtilService.getLoggedInUserSMSDetails().OTTSubscriberID.toString(), this.appUtilService.getAuthKey()).subscribe((res: any) => {
-                this.loading = false;
-                if (res.ResultCode === 0) {
-                    this.modalService.open(this.OTPModalForResetParental);
-                    this.snackbarUtilService.showSnackbar('We have sent you an OTP on ' + this.appUtilService.getLoggedInUserSMSDetails().EmailID + '. it is valid for 5 miniutes.');
-                } else {
-                    this.modalService.open(this.OTPModalForResetParental);
-                    // this.snackbarUtilService.showError(res.ResultDesc);
-                    if (!res.error) {
-                        this.snackbarUtilService.showError("An OTP has been sent to your e-mail id. Please enter OTP to validate your e-mail address");
-                    }
-                }
-            }, (error) => {
-                this.loading = false;
-                // this.modalService.dismissAll();
-                this.snackbarUtilService.showError();
-            });
-        }
-    }
-
-    validateOTPForResetParentalPin() {
-        this.loading = true;
-        this.newPinCode = null;
-        this.confirmPinCode = null;
-        if (this.appUtilService.getLoggedInUserSMSDetails().MobileNo !== "" && this.appUtilService.getLoggedInUserSMSDetails().EmailID === "") {
-            // let commandmob: any = {
-            //     UserID: this.appUtilService.getLoggedInUserSMSDetails().MobileNo,
-            //     password: this.userOtp,
-            //     IsLoggedInFromOTP: 'true',
-            //     UserIDType: SMSConstants.REGISTER_TYPE_MOBILE_KEY,
-            // }
-            let validationToken = localStorage.getItem(AppConstants.AUTH_HEADER_KEY);
-            // this.smsService.LoginPasswordMob(commandmob, validationToken).subscribe((res: any) => {
-            this.smsService.ValidateRegisterOTP(this.appUtilService.getLoggedInUserSMSDetails().MobileNo, this.userOtp, validationToken).subscribe((res: any) => {
-                if (res.ResultCode > 0) {
-                    this.getUserDetails();
-                    this.snackbarUtilService.showSnackbar(res.ResultDesc);
-                    this.modalService.dismissAll();
-                    this.modalService.open(this.resetParentalModal);
-                } else {
-                    if (!res.error) {
-                        this.snackbarUtilService.showError('The OTP entered by you is not correct or has expired. Please enter the correct OTP or request for a new OTP.');
-                    }
-                }
-                this.loading = false;
-                this.userOtp = null;
-            }, (error) => {
-                this.loading = false;
-                this.snackbarUtilService.showError('The OTP entered by you is not correct or has expired. Please enter the correct OTP or request for a new OTP.');
-            });
-        } else {
-            this.smsService.ValidateRegisterOTPForEmail(this.appUtilService.getLoggedInUserSMSDetails().EmailID, this.userOtp, this.appUtilService.getLoggedInUserSMSDetails().OTTSubscriberID.toString(), this.appUtilService.getAuthKey()).subscribe((res: any) => {
-                if (res.ResultCode === 0) {
-                    this.getUserDetails();
-                    this.snackbarUtilService.showSnackbar(res.ResultDesc);
-                    this.modalService.dismissAll();
-                    this.modalService.open(this.resetParentalModal);
-                } else {
-                    if (!res.error) {
-                        this.snackbarUtilService.showError('The OTP entered by you is not correct or has expired. Please enter the correct OTP or request for a new OTP.');
-                    }
-                }
-                this.loading = false;
-                this.userOtp = null;
-            }, (error) => {
-                this.loading = false;
-                this.snackbarUtilService.showError('The OTP entered by you is not correct or has expired. Please enter the correct OTP or request for a new OTP.');
-            });
-        }
-    }
-
-    onKeyDownEventParental(id: String, e: any) {
-        setTimeout(() => {
-          if (isNaN(e.target.value)) {
-            $(id).val('');
-            $(id).focus();
-          }
-        })    
-      }    
-
-    resetParentalPin() {
-        this.loading = true;
-        if (this.newPinCode === "" || this.newPinCode === null || this.newPinCode.length < 4) {
-            this.loading = false;
-            this.snackbarUtilService.showError("Please enter valid new PIN code");
-            return;
-        }
-        if (this.confirmPinCode === "" || this.confirmPinCode === null || this.confirmPinCode.length < 4) {
-            this.loading = false;
-            this.snackbarUtilService.showError("Please enter valid confirm PIN code");
-            return;
-        }
-        if (this.confirmPinCode.indexOf(this.newPinCode) === -1) {
-            this.loading = false;
-            this.snackbarUtilService.showError("Confirm PIN code did not match");
-            return;
-        }
-        this.kalturaAppService.updateParentalPin(this.confirmPinCode, this.ruleId).then((res: any) => {
-            this.loading = false;
-            this.newPinCode = null;
-            this.confirmPinCode = null;
-            if (!res.error) {
-                this.snackbarUtilService.showSnackbar("You have set the password successfully.");
-                this.modalService.dismissAll();
-            }
-        });
     }
 }

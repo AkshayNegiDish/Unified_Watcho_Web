@@ -104,7 +104,7 @@
                       <div class="mobile-on-click" [hidden]="!isUserLogin">
                         <div class="mobile-show" aria-labelledby="dropdownMenuLink">
                           <ul>
-                            <li *ngIf="userCategory == '1'">
+                            <!-- <li *ngIf="userCategory == '1'">
                               <a class="dropdown-item" (click)="_toggleOpened()" (click)="clickMyDishTvSpace()"
                                 (click)="gtmTagEventButtonClickMyDishTvSpace()" routerLink="/user/mydishtvspace"><i
                                   class="la la-tv"></i><span>My Dish Tv Space</span></a>
@@ -114,7 +114,7 @@
                               <a class="dropdown-item" (click)="_toggleOpened()" (click)="clickMyD2hSpace()"
                                 (click)="gtmTagEventButtonClickMyD2hSpace()" routerLink="/user/myd2hspace"><i
                                   class="la la-tv"></i><span>My D2h Space</span></a>
-                            </li>
+                            </li> -->
 
                             <li *ngIf="showContest">
                               <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
@@ -125,13 +125,15 @@
                               <a class="dropdown-item" (click)="_toggleOpened();gtmTagOnWatchoAurJeeto()"
                                 routerLink="/user/quiz"><i class="fa fa-list"></i><span>Watcho Aur Jeeto</span></a>
                             </li>
- 
+
                             <li>
                               <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
-                                routerLink="/spotlight"><div class="la-icon-sprite"></div><span>Spotlight</span></a>
+                                routerLink="/spotlight">
+                                <div class="la-icon-sprite"></div><span>Spotlight</span>
+                              </a>
                             </li>
 
-                            
+
                             <!-- <li>
                               <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
                                 routerLink="/movies"><i class="la la-film"></i><span>Movies</span></a>
@@ -270,6 +272,18 @@
                           <a *ngIf="!isspotlightActive" class="nav-link spotlight-screen" [routerLink]="['/spotlight']"
                             (click)="clickSpotlightMoEngageEvent()">Spotlight</a>
                         </li>
+                        <li class="nav-item" *ngIf="userCategory == '1' && isUserLogin" routerLink="/user/mydishtvspace">
+                          <a class="nav-link active" style="cursor: pointer;">My Dish Tv
+                          </a>
+                        </li>
+                        <li class="nav-item" *ngIf="userCategory == '2' && isUserLogin" routerLink="/user/myd2hspace">
+                          <a class="nav-link active" style="cursor: pointer;">My D2h
+                          </a>
+                        </li>
+                        <li class="nav-item" *ngIf="!isUserLogin">
+                          <a class="nav-link active" routerLink="/bookDTH"
+                            style="cursor: pointer;">Book DTH</a>
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -303,9 +317,9 @@
 
                     <span class="search-input">
                       <input class="form-control" type="text" placeholder="Search Watcho" aria-label="Search"
-                        id="search-input-control" (keyup.enter)="$event.preventDefault()" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"
-                        [ngModelOptions]="{standalone: true}" [(ngModel)]="searchQuery.query"
-                        (keyup.enter)="searchdefault()">
+                        id="search-input-control" (keyup.enter)="$event.preventDefault()" autocomplete="off" readonly
+                        onfocus="this.removeAttribute('readonly');" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="searchQuery.query" (keyup.enter)="searchdefault()">
                       <i class="material-icons searchicon" (mouseup)="focus()" (mousedown)="focus2($event)"
                         (click)="clickSearchIconMoEngageEvent()">search</i>
                       <i class="material-icons searchicon-mobile">search</i>
@@ -329,7 +343,7 @@
                           </a>
                           <div class="dropdown-menu user-menu" aria-labelledby="dropdownMenuLink">
                             <ul>
-                              <li *ngIf="userCategory == '1'" routerLink="/user/mydishtvspace"
+                              <!-- <li *ngIf="userCategory == '1'" routerLink="/user/mydishtvspace"
                                 (click)="clickMyDishTvSpace()" (click)="gtmTagEventButtonClickMyDishTvSpace()">
                                 <a class="dropdown-item" style="cursor: pointer"><i class="la la-tv"></i><span>My Dish
                                     Tv
@@ -340,15 +354,16 @@
                                 (click)="gtmTagEventButtonClickMyD2hSpace()">
                                 <a class="dropdown-item" style="cursor: pointer"><i class="la la-tv"></i><span>My D2h
                                     Space</span></a>
-                              </li>
+                              </li> -->
                               <li routerLink="/ugc/my-contest" *ngIf="showContest">
                                 <a class="dropdown-item" style="cursor: pointer"><i
                                     class="la la-trophy"></i><span>Watcho SWAG</span></a>
                               </li>
                               <li routerLink="/user/quiz">
-                                <a class="dropdown-item" (click)="gtmTagOnWatchoAurJeeto()" style="cursor: pointer"><i class="fa fa-list"></i><span>Watcho
+                                <a class="dropdown-item" (click)="gtmTagOnWatchoAurJeeto()" style="cursor: pointer"><i
+                                    class="fa fa-list"></i><span>Watcho
                                     Aur Jeeto</span></a>
-                              </li>                             
+                              </li>
                               <li (click)="gotoRechargeClickEvent()" class="following-dropdown-item"
                                 (click)="stopBubbeling($event)">
                                 <a class="dropdown-item" style="cursor: pointer">
@@ -467,7 +482,7 @@
             <div class="navbar-brand">
               <!--TODO: change icon-->
               <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png" class=""
-              alt="watcho-logo">
+                alt="watcho-logo">
             </div>
             <div class="d-lg-block" id="desktop-main-nav">
               <ul class="navbar-nav mr-auto">

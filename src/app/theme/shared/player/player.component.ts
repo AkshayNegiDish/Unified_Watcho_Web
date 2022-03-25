@@ -411,14 +411,14 @@ export class KalturaPlayerComponent implements OnInit, OnChanges {
             entryId: this.entryId,
             userId: this.isUserLoggedIn ? JSON.parse(localStorage.getItem("user-sms")).OTTSubscriberID : null
           },
-          // ima: {
-          //   adTagUrl: this.isProgram ? "" : this.isSubscriptionEndData ? "" : "https://pubads.g.doubleclick.net/gampad/ads?iu=/11440465/Watcho_Video/Watcho_Video_Preroll&description_url=https%3A%2F%2Fwatcho.com&tfcd=0&npa=0&sz=640x480&gdfp_req=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&correlator=[timestamp]&hl=en"
-          // },
+          ima: {
+            adTagUrl: this.isProgram ? "" : this.isSubscriptionEndData ? "" : "https://pubads.g.doubleclick.net/gampad/ads?iu=/11440465/Watcho_Video/Watcho_Video_Preroll&description_url=https%3A%2F%2Fwatcho.com&tfcd=0&npa=0&sz=640x480&gdfp_req=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&correlator=[timestamp]&hl=en"
+          },
           youbora: {
 
             options: {
               accountCode: this.youboraAccountCode,
-              "username": JSON.parse(localStorage.getItem(AppConstants.USER_DETAILS_SMS)) ? JSON.parse(localStorage.getItem(AppConstants.USER_DETAILS_SMS)).OTTSubscriberID : '',
+              "username": JSON.parse(localStorage.getItem(AppConstants.USER_DETAILS_SMS)) ? JSON.parse(localStorage.getItem(AppConstants.USER_DETAILS_SMS)).OTTSubscriberID : this.deviceId ? this.deviceId : '',
               "content.title": this.assetDetail.name,
               "content.duration": this.isLive ? this.assetDetail.mediaFiles[0] : 0 ? this.assetDetail.mediaFiles[0].duration : null,
               "content.resource": this.assetDetail.mediaFiles === undefined ? null : this.mediaURL ? this.mediaURL : null,
@@ -571,15 +571,8 @@ export class KalturaPlayerComponent implements OnInit, OnChanges {
       });
 
       this.kalturaPlayer.addEventListener('medialoaded', (event) => {
-        let currentKalturaPlayer = KalturaPlayer.getPlayer("kalturaPlayerTargetId");
-        try {
-          let currentAudioTrack = currentKalturaPlayer.getTracks(currentKalturaPlayer.Track.AUDIO);
-          if (currentAudioTrack.length > 0) {
-            currentKalturaPlayer.selectTrack(currentAudioTrack[0]);
-          }
-        } catch (e) { }
         if (this.ugcPlayerFound) {
-          // let currentKalturaPlayer = KalturaPlayer.getPlayer("kalturaPlayerTargetId");
+          let currentKalturaPlayer = KalturaPlayer.getPlayer("kalturaPlayerTargetId");
           currentKalturaPlayer.muted = false;
           $(document).ready(function () {
             if (!$(".playkit-top-bar>.playkit-right-controls>.playkit-icon").hasClass("playkit-icon-volume-base")) {
@@ -1454,12 +1447,12 @@ export class KalturaPlayerComponent implements OnInit, OnChanges {
 
   showPrecedeTextAndNatureOfContentOnPlayer() {
     if (!this.isProgram && !this.ugcPlayerFound) {
-      let isPrecedeText: boolean = this.assetDetail.metas["PrecedeText"] ? this.assetDetail.metas["PrecedeText"].value !== '' ? true : false : false;
+      let isPrecedeText: boolean = this.assetDetail.metas["PrecedeText "] ? this.assetDetail.metas["PrecedeText "].value !== '' ? true : false : false;
       let isNatureOfContent: boolean = this.assetDetail.tags["NatureOfContent"] ? this.kalturaUtilService.getTagsObjectValue(this.assetDetail.tags["NatureOfContent"]) !== '' ? true : false : false;
       if (isPrecedeText && isNatureOfContent) {
         $("#player-gui").parent().append('<div class="asset-detail-onplayer">' +
           '<div class="player-add-asset-detail">' +
-          '<div class="precede-text">' + this.assetDetail.metas["PrecedeText"].value + '</div>' +
+          '<div class="precede-text">' + this.assetDetail.metas["PrecedeText "].value + '</div>' +
           '<div class="asset-genre-time-rating">' +
           '<span class="nature-of-content">' + this.kalturaUtilService.getTagsObjectValue(this.assetDetail.tags["NatureOfContent"]) + '</span>' +
           '</div>' +
@@ -1468,7 +1461,7 @@ export class KalturaPlayerComponent implements OnInit, OnChanges {
       } else if (isPrecedeText && !isNatureOfContent) {
         $("#player-gui").parent().append('<div class="asset-detail-onplayer">' +
         '<div class="player-add-asset-detail">' +
-        '<div class="precede-text">' + this.assetDetail.metas["PrecedeText"].value + '</div>' +
+        '<div class="precede-text">' + this.assetDetail.metas["PrecedeText "].value + '</div>' +
         '</div>' +
         '</div>');
       } else if (!isPrecedeText && isNatureOfContent) {

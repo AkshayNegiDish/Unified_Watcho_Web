@@ -2,7 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { MyDishTvSpaceService } from '../../services/mydishtvspace.service';
 import { Router } from '@angular/router';
 import { SnackbarUtilService } from '../../../../../shared/services/snackbar-util.service';
-
+import { NgbModal, ModalDismissReasons }
+  from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-manage-account',
@@ -35,8 +36,19 @@ export class ManageAccountComponent implements OnInit {
   platform: string;
   rootPlatform: string;
   eurl: string = '/';
+  closeResult = '';
+  block: number;
+  valueType: string;
+  value: string;
+  userDetails: any;
+  allAccount: any;
 
-  constructor(private router: Router, private mydishtvspaceservice: MyDishTvSpaceService, private snackbarUtilService: SnackbarUtilService) {
+  constructor(
+    private router: Router,
+    private mydishtvspaceservice: MyDishTvSpaceService,
+    private snackbarUtilService: SnackbarUtilService,
+    private modalService: NgbModal
+  ) {
     this.token = this.mydishtvspaceservice.getOttApiToken();
     this.OTTSubscriberID = this.mydishtvspaceservice.getOTTSubscriberID();
     this.userCategory = this.mydishtvspaceservice.getUserCategory();
@@ -44,41 +56,56 @@ export class ManageAccountComponent implements OnInit {
     this.rootPlatform = this.userCategory == '1' ? 'mydishtvspace' : 'myd2hspace';
   }
   ngOnInit() {
+    this.getData(this.OTTSubscriberID, 1)
+  }
+
+
+  getData(OTTSubscriberID, status) {
     this.loading = true;
-    this.mydishtvspaceservice.getUserAccountDetails(this.token, this.OTTSubscriberID).subscribe((response: any) => {
-      if (response.ResultDesc === "Success" && response.Result) {
-        response.Result.sort(function(a, b) {
+    this.mydishtvspaceservice.getUserAccountDetails(this.token, OTTSubscriberID).subscribe((response: any) => {
+      if (response.ResultDesc === "Success") {
+        response.Result.sort(function (a, b) {
           return a.Status - b.Status;
         });
-        this.Name = response.Result[0].Name;
-        this.Dishd2hSubscriberID = response.Result[0].Dishd2hSubscriberID;
-        this.Dishd2hSubscriptionID = response.Result[0].Dishd2hSubscriptionID
-        this.RechargeDueDate = response.Result[0].RechargeDueDate;
-        this.SwitchOffDate = response.Result[0].SwitchOffDate;
-        this.AccountBalance = response.Result[0].AccountBalance;
-        this.MobileNumber = response.Result[0].MobileNumber;
-        this.EmailId = response.Result[0].EmailId;
-        this.SubscribePack = response.Result[0].SubscribePack;
-        this.RechargeAmount = response.Result[0].RechargeAmount;
-        this.SubscriberCategory = response.Result[0].SubscriberCategory;
-        this.UserID = response.Result[0].UserID;
-        this.Address = response.Result[0].Address;
-        if (this.SubscriberCategory === 1) {
-          this.mydishtvspaceservice.getencryptedUrl(this.token, response.Result[0].Dishd2hSubscriptionID).subscribe((data: any) => {
-            if (!data.Result) {
-              this.snackbarUtilService.showSnackbar('Something went wrong');
-            } else {
-              this.eurl = `https://www.dishtv.in/Pages/map.aspx?Link=Internal&param=${data.Result}`;
-            }
-          });
-        } else {
-          this.eurl = `https://www.d2h.com/home/mobile-nto?emailid=${btoa(response.Result[0].MobileNumber)}&password=OTP`;
+        this.allAccount = response.Result
+        if (status == 1) {
+          this.userDetails = response.Result[0]
+          this.getAutoLoginURLs(this.userDetails)
+        }
+        else {
+          let value = this.allAccount.find(element => element.Dishd2hSubscriberID == status);
+          this.userDetails = value
+          this.getAutoLoginURLs(this.userDetails)
         }
       } else {
-        this.snackbarUtilService.showSnackbar('Something went wrong');
+        this.loading = false;
       }
-      this.loading = false;
     });
+  }
+
+  onClickVCNumber(vcNumber) {
+    this.getData(this.OTTSubscriberID, vcNumber)
+  }
+  getAutoLoginURLs(Dishd2hData) {
+    let dishtv = `https://www.dishtv.in`
+    // let dishtv = `https://beta.dishtv.in`
+    let d2h = `https://www.d2h.com`
+    // let d2h = `https://1www.d2h.com`
+
+    if (this.userCategory === "1") {
+      this.mydishtvspaceservice.getencryptedUrl(this.token, Dishd2hData.Dishd2hSubscriptionID).subscribe((data: any) => {
+        if (!data.Result) {
+          this.loading = false;
+          this.snackbarUtilService.showSnackbar('Something went wrong');
+        } else {
+          this.loading = false;
+          this.eurl = `${dishtv}/Pages/map.aspx?Link=Internal&param=${data.Result}`;
+        }
+      });
+    } else {
+      this.loading = false;
+      this.eurl = `${d2h}/home/external-login?emailid=${btoa(Dishd2hData.MobileNumber)}&password=&source=Watcho&returnUrl=myaccount/manage-pack`;
+    }
   }
   refresh() {
     this.loading = true;
@@ -95,7 +122,7 @@ export class ManageAccountComponent implements OnInit {
   onMobileEdit(val: boolean, mobileEl) {
     if (!val) {
       this.editmobile = true;
-      setTimeout(function() {
+      setTimeout(function () {
         mobileEl.focus();
       }, 0);
     } else {
@@ -106,9 +133,9 @@ export class ManageAccountComponent implements OnInit {
         this.loading = true;
         let reqObj = {
           MobileNUmber: this.tempMobile,
-          Dishd2hSubscriptionID: this.Dishd2hSubscriptionID,
-          Dishd2hSubscriberID: this.Dishd2hSubscriberID,
-          SubscriberCategory: this.SubscriberCategory
+          Dishd2hSubscriptionID: this.userDetails.Dishd2hSubscriptionID,
+          Dishd2hSubscriberID: this.userDetails.Dishd2hSubscriberID,
+          SubscriberCategory: this.userDetails.SubscriberCategory
         }
         this.mydishtvspaceservice.updateMobileNumber(this.token, reqObj).subscribe((response: any) => {
           if (response.ResultDesc === "Success") {
@@ -123,25 +150,27 @@ export class ManageAccountComponent implements OnInit {
       }
     }
   }
-  onEmailEdit(val: boolean, event, emailEl) {
+  async onEmailEdit(val: boolean, event, emailEl) {
     if (!val) {
       this.editemail = true;
-      setTimeout(function() {
+      setTimeout(function () {
         emailEl.focus();
       }, 0);
       event.target.focus();
     } else {
-      if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.tempEmail))) {
+      let emailStatus = await this.ValidateEmail(this.tempEmail)
+      if (!emailStatus) {
         this.snackbarUtilService.showSnackbar('Please enter a valid email');
         this.editemail = true;
       } else {
         this.loading = true;
         let reqObj = {
           Emailid: this.tempEmail,
-          Dishd2hSubscriptionID: this.Dishd2hSubscriptionID,
-          Dishd2hSubscriberID: this.Dishd2hSubscriberID,
-          SubscriberCategory: this.SubscriberCategory
+          Dishd2hSubscriptionID: this.userDetails.Dishd2hSubscriptionID,
+          Dishd2hSubscriberID: this.userDetails.Dishd2hSubscriberID,
+          SubscriberCategory: this.userDetails.SubscriberCategory
         }
+
         this.mydishtvspaceservice.updateEmailId(this.token, reqObj).subscribe((response: any) => {
           if (response.ResultDesc === "Success") {
             this.tempEmail = '';
@@ -155,6 +184,16 @@ export class ManageAccountComponent implements OnInit {
       }
     }
   }
+
+  ValidateEmail(mail) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return (true)
+    }
+    else {
+      return (false)
+    }
+  }
+
   mobileChange(event: any) {
     this.tempMobile = event.target.textContent;
   }
@@ -166,5 +205,83 @@ export class ManageAccountComponent implements OnInit {
   }
   onClickChangePack() {
     window.location.href = this.eurl;
+  }
+
+  onMobileEditPopUp(content) {
+    this.modalService.open(content,
+      {
+        ariaLabelledBy: 'modal-basic-title',
+        windowClass: 'first-box'
+      }).result.then((result) => {
+        this.closeResult = `Closed with: ${result}`;
+      }, (reason) => {
+        this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  onMobileConfirm(flag, otpContent) {
+    if (flag == 'Yes') {
+      this.block = 1
+      this.valueType = "Mobile";
+      this.value = this.userDetails.MobileNumber
+    }
+    else {
+      this.block = 2
+      this.valueType = "VCNO";
+      this.value = this.userDetails.Dishd2hSubscriberID
+    }
+    let reqObj = {
+      ValueType: this.valueType,
+      Value: this.value,
+      Source: `WEB`,
+      Dishd2hSubscriptionID: this.userDetails.Dishd2hSubscriptionID,
+      Dishd2hSubscriberID: this.userDetails.Dishd2hSubscriberID,
+      SubscriberCategory: this.userDetails.SubscriberCategory
+    }
+    this.mydishtvspaceservice.GenerateMobileOTP(this.token, reqObj).subscribe((response: any) => {
+      if (response.ResultDesc === "Success") {
+        this.modalService.open(otpContent,
+          {
+            ariaLabelledBy: 'modal-basic-title',
+            windowClass: 'second-box'
+          }).result.then((result) => {
+            this.closeResult = `Closed with: ${result}`;
+          }, (reason) => {
+            this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          });
+      }
+      else {
+        this.snackbarUtilService.showSnackbar(response.ResultDesc);
+      }
+    })
+  }
+  submitOtp() {
+    let reqObj = {
+      ValueType: this.valueType,
+      Value: this.value,
+      Source: `WEB`,
+      Dishd2hSubscriptionID: this.userDetails.Dishd2hSubscriptionID,
+      Dishd2hSubscriberID: this.userDetails.Dishd2hSubscriberID,
+      SubscriberCategory: this.userDetails.SubscriberCategory,
+      OTP: ' '
+    }
+    this.mydishtvspaceservice.GenerateMobileOTP(this.token, reqObj).subscribe((response: any) => {
+      console.log(response, "***********")
+      if (response.ResultDesc === "Success") {
+
+      }
+      else {
+
+      }
+    })
   }
 }

@@ -166,7 +166,7 @@ button.uploderifp {
         color: $fonts-white-color;
     }
     &:hover{
-        box-shadow: 0px 0px 5px 3px #757575b3;
+        box-shadow: 0px 0px 5px 3px #ffffffb3;
         transition: all ease .5s;
     }
 }
@@ -371,7 +371,7 @@ button.uploderifp {
         font-weight: 500;
     }
     p{
-        color: #757575;
+        color: #ffffff;
         font-size: 20px;
         line-height: 20px;
         float: left;
@@ -453,7 +453,7 @@ button.uploderifp {
                         padding: 25px;
                         transition: all ease .5s;
                         &:hover{
-                            box-shadow: 0px 0px 5px 3px #757575b3;
+                            box-shadow: 0px 0px 5px 3px #ffffffb3;
                             transition: all ease .5s;
                         }
                         .thumbnail-icon{
@@ -500,15 +500,15 @@ button.uploderifp {
                 }
                 span{
                     float: right;
-                    color: #757575;
+                    color: #ffffff;
                 }
             }
             input,select{
                 background: transparent;
-                border: 1.5px solid #757575;
+                border: 1.5px solid #ffffff;
                 height: 45px;
                 outline: none;
-                color: #757575;
+                color: #ffffff;
             }
             .select-div{
                 position: relative;
@@ -519,7 +519,7 @@ button.uploderifp {
                     top: 12px;
                     right: 20px;
                     font-size: 25px;
-                    color: #757575;
+                    color: #ffffff;
                 }
             }
             select{
@@ -533,9 +533,9 @@ button.uploderifp {
                 textarea{
                     min-height: 200px;
                     background: transparent;
-                    border: 1.5px solid #757575;
+                    border: 1.5px solid #ffffff;
                     outline: none;
-                    color: #757575;
+                    color: #ffffff;
                 }
             }
             &.upload{
@@ -551,12 +551,12 @@ button.uploderifp {
                     margin: 0 auto;
                     color: #fff;
                     &[disabled]{
-                        background-color: 757575;
+                        background-color: ffffff;
                         color: #ccc;
                     }
                 }
                 button:disabled,button[disabled=disabled]{
-                    background-color: #757575;
+                    background-color: #ffffff;
                     color: #ccc;
                     cursor: no-drop;
                 }

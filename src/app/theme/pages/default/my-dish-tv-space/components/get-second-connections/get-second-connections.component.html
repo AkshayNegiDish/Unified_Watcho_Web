@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="col-md-12">
+        <p class="icon-text" *ngIf="userCategory == 1">Verify your contact information and Dish TV Representative will get in touch with you
+        </p>
+        <p class="icon-text" *ngIf="userCategory == 2">Verify your contact information and D2h Representative will get in touch with you
+        </p>
+        <br>
+        <br>
+        <p class="icon-text">Name</p>
+        <p class="icon-sub-text">{{userDetails?.Name}}</p>
+        <br>
+        <p class="icon-text" *ngIf="userCategory == 1">VC Number</p>
+        <p class="icon-text" *ngIf="userCategory == 2">SC Number</p>
+        <p class="icon-sub-text">{{userDetails?.Dishd2hSubscriberID}}</p>
+        <br>
+        <p class="icon-text">Registered Mobile Number</p>
+        <div class="edit-btn" *ngIf="edit && userCategory == 1">
+            <p class="side-sub-heading" (click)="onClickEdit()">
+                Edit
+            </p>
+        </div>
+        <span class="search-input" *ngIf="!edit">
+            <input class="form-control edit-text" autoFocus={true} type="text" aria-label="Search" value="{{userDetails?.MobileNumber}}"
+                id="search-input-control" autocomplete="off">
+        </span>
+        <p class="icon-sub-text" *ngIf="edit">{{userDetails?.MobileNumber}}</p>
+        <br>
+        <div class="submit-btn" *ngIf="userCategory == 1">
+            <p class="side-sub-heading" (click)="onclickSubmit()">
+                Submit
+            </p>
+        </div>
+        <div class="submit-btn" *ngIf="userCategory == 2" style="background: #6A2381;">
+            <p class="side-sub-heading" (click)="onclickSubmit()">
+                Submit
+            </p>
+        </div>
+    </div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>

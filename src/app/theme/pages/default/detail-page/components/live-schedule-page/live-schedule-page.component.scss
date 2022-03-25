@@ -17,7 +17,7 @@
             border: 0px;
         }
         .nav-link {
-            color: #757575;
+            color: #ffffff;
             border: 0px;
         }
         .nav-link:hover {
@@ -674,7 +674,7 @@ background: grey !important;
     width: 100%;
     float: left;
     padding: 20px 0;
-    border-bottom: 1px solid #757575;
+    border-bottom: 1px solid #ffffff;
     margin-bottom: 10px;
     .imgbox{
         float: left;
@@ -702,20 +702,20 @@ background: grey !important;
                     font-size: 22px;
                 }
                 span.gerne-dot{
-                    color: #757575;
+                    color: #ffffff;
                     font-size: 15px;
                     &:after{
                         content: "\A";
                         width: 3px;
                         height: 3px;
                         border-radius: 50%;
-                        background: #757575;
+                        background: #ffffff;
                         display: inline-block;
                         margin: 3.5px 5px;
                     }
                 }
                 span.name-dot {
-                    color: #757575;
+                    color: #ffffff;
                     font-size: 15px;
                 }
             }

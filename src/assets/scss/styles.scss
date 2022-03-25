@@ -192,7 +192,7 @@ body {
 .more-btn {
   padding: 5px 10px;
   font-size: 16px;
-  color:$netflix-chnaget-color;
+  color:$fonts-grey-color;
   position: relative;
   height: 30px;
   border: none;
@@ -488,7 +488,7 @@ span.social-tooltip.slide-in-left {
   text-align: center;
   padding-right: 0;
   .sb-inner{
-    color: #757575;
+    color: #ffffff;
   }
 }
 .social-tooltip .sb-button{ margin: 0 0px;outline: none; }
@@ -572,8 +572,8 @@ outline: none;
 .tab-content > .tab-pane{ margin-top: 10px; }
 #divOuter{width: 88% !important;margin: 0 auto !important;display: inline-block;}
 .forgotPasswordModal .tab-content{padding: 28px !important;}
-.share-actions span:hover i,.share-actions span:hover{color: #757575;}
-.share-actions .addtolist:hover{color: #757575 !important;}
+.share-actions span:hover i,.share-actions span:hover{color: #ffffff;}
+.share-actions .addtolist:hover{color: #ffffff !important;}
 .parentalModal, .otpRegisterModal,  .otpModal{
   .input-group{
     text-align: center;
@@ -647,8 +647,8 @@ padding-top: 0;
      font-size: 16px !important;
   }
 }
-.share-actions span:hover i,.share-actions span:hover{color: #757575;}
-.share-actions .addtolist:hover{color: #757575 !important;}
+.share-actions span:hover i,.share-actions span:hover{color: #ffffff;}
+.share-actions .addtolist:hover{color: #ffffff !important;}
 
 
 /**********setting-page************/

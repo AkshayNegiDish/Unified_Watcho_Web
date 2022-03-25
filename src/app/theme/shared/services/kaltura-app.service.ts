@@ -1285,19 +1285,4 @@ export class KalturaAppService {
             });
     }
 
-    updateParentalPin(userPin: string, ruleId: number) {
-        let pin = {
-            objectType: "KalturaPin",
-            pin: userPin
-        };
-
-        return new Promise(
-            (resolve, reject) => {
-                KalturaPinService.update("user", "parental", pin, ruleId).execute(this.kalturaClient(), function (success, entry) {
-                    if (!success) reject(entry.result);
-                    resolve(entry.result);
-                });
-            });
-    }
-
 }

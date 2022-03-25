@@ -1,0 +1,81 @@
+.faq-section {
+    position: relative;
+    margin-bottom: 30px;
+    h2{
+        font-size: 28px;
+        float: left;
+        width: 100%;
+        color: #ffffff;
+        // text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    .section {
+        width: 100%;
+        background-color: #2d2d2d;
+        color: #ffffff;
+        height: 45px;
+        position: relative;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        padding-left: 15px;
+        font-size: 14px;
+        display: inline-block;
+        cursor: pointer;
+        line-height: 45px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-right: 50px;
+    }
+    a {
+        text-decoration: none !important;
+        cursor: pointer;
+        width: 100%;
+        float: left;
+    }
+    .la-angle-right:before {
+        content: "\f112";
+        font-weight: bold;
+        right: 15px;
+        position: absolute;
+        font-size: 21px;
+        line-height: 0px;
+    }
+}
+
+/deep/.noFooter {
+    display: none !important;
+}
+
+@media (min-width:320px) and (max-width:768px) {
+/********start********/
+.faq-section h2{ font-size: 24px; }
+.faq-section .la-angle-right:before{ margin-top: -3px;}
+
+/********end********/
+}
+
+
+@media (min-width:769px) and (max-width:992px) {
+/********start********/
+.faq-section{ margin-top: 40px;width: 100%;padding: 0; }
+.faq-section h2{ font-size: 25px; }
+
+/********end********/
+}
+
+.recharge-box {
+    height: 35px;
+    margin: 10px;
+    width: 140px;
+    border-radius: 25px;
+    margin-top: 20px;
+    margin-left: 25px;
+    background: #f55d38;
+}
+
+.side-sub-heading {
+    margin-left: 40px;
+    color: #ffffff;
+    font-size: 16px;
+}

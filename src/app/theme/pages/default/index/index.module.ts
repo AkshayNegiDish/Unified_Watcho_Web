@@ -17,6 +17,7 @@ import { SpotlightModule } from './spotlight.module';
 import { MorePageModule } from './more-page.module';
 import { TermsOfUseModule } from './terms-of-use.module';
 import { PrivacyPolicyModule } from './privacy-policy.module';
+import { BookDTHModule } from './bookDTH.module'
 import { UgcComponent } from './components/ugc/ugc.component';
 
 const routes: Routes = [
@@ -70,7 +71,11 @@ const routes: Routes = [
       {
         path: "ugc-videos",
         loadChildren: './ugc-videos.module#UgcVideosModule'
-      }
+      },
+      {
+        path: "bookDTH",
+        loadChildren: './bookDTH.module#BookDTHModule'
+      },
     ],
     runGuardsAndResolvers: 'always'
   }

@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="col-md-12">
+        <p class="icon-text">Verified your contact information and our representative will get in touch with you
+            shortly.
+        </p>
+        <br>
+        <p class="icon-text">Name</p>
+        <p class="icon-sub-text">{{userDetails?.Name}}</p>
+
+        <p class="icon-text">SC Number</p>
+        <p class="icon-sub-text">{{userDetails?.Dishd2hSubscriberID}}</p>
+
+        <p class="icon-text">Mobile Number</p>
+        <p class="icon-sub-text">{{userDetails?.MobileNumber}}</p>
+        <form [formGroup]="upgradeBoxForm">
+            <p class="icon-text">Alternate Mobile Number</p>
+            <input class="form-control edit-text" type="text" aria-label="Search" placeholder="Enter alternate number..."
+                id="search-input-control" autocomplete="off" formControlName="alternateNumber" maxlength="10">
+
+            <p class="icon-text">Select Language</p>
+            <select class="form-select edit-text" aria-label="Default select example" style="width: 100%;" formControlName="language">
+                <option *ngFor="let lang of languages" value="{{lang?.id}}">{{lang?.value}}</option>
+            </select>
+            <div class="submit-btn" style="background: #6A2381;">
+                <p class="side-sub-heading" (click)="onclickSubmit()">
+                    Submit
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>

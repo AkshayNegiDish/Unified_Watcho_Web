@@ -1,12 +1,8 @@
-@import '~assets/scss/theme-fonts.scss';
-@import '~assets/scss/theme-colors.scss';
+@import "~assets/scss/theme-fonts.scss";
+@import "~assets/scss/theme-colors.scss";
 
-
-
-$d2h-color: #9C42DC;
-$dishtv-color: #EF4923;
-
-
+$d2h-color: #9c42dc;
+$dishtv-color: #ef4923;
 
 .container {
   max-width: 1170px !important;
@@ -37,7 +33,7 @@ $dishtv-color: #EF4923;
 }
 
 .btn {
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 3px;
@@ -54,7 +50,7 @@ $dishtv-color: #EF4923;
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
-.show>.btn-primary.dropdown-toggle {
+.show > .btn-primary.dropdown-toggle {
   color: #fff;
 }
 
@@ -63,7 +59,7 @@ $dishtv-color: #EF4923;
 //     transition: box-shadow .3s ease-in-out;
 // }
 .card-title {
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
   font-size: large;
   font-weight: 100;
   color: #fff;
@@ -80,26 +76,33 @@ $dishtv-color: #EF4923;
   border: 2px solid transparent;
   font-size: 16px;
 }
-
+.recharge-box {
+  height: 35px;
+  margin: 10px;
+  width: 140px;
+  border-radius: 25px;
+  margin-top: -12px;
+  margin-left: 25px;
+  background: #f55d38;
+}
 .d2h {
   .card-text {
-    color: $d2h-color
+    color: $d2h-color;
   }
 
   .btn-primary:not(:disabled):not(.disabled).active,
   .btn-primary:not(:disabled):not(.disabled):active,
-  .show>.btn-primary.dropdown-toggle {
+  .show > .btn-primary.dropdown-toggle {
     background-color: $d2h-color;
-    border-color: $d2h-color
+    border-color: $d2h-color;
   }
 
-
   .btn {
-    background: $d2h-color
+    background: $d2h-color;
   }
 
   .btn-primary {
-    border-color: $d2h-color
+    border-color: $d2h-color;
   }
 
   .text-truncate {
@@ -109,30 +112,28 @@ $dishtv-color: #EF4923;
 
 .dishtv {
   .card-text {
-    color: $dishtv-color
+    color: $dishtv-color;
   }
 
   .btn-primary:not(:disabled):not(.disabled).active,
   .btn-primary:not(:disabled):not(.disabled):active,
-  .show>.btn-primary.dropdown-toggle {
+  .show > .btn-primary.dropdown-toggle {
     background-color: $dishtv-color;
-    border-color: $dishtv-color
+    border-color: $dishtv-color;
   }
 
-
   .btn {
-    background: $dishtv-color
+    background: $dishtv-color;
   }
 
   .btn-primary {
-    border-color: $dishtv-color
+    border-color: $dishtv-color;
   }
 
   .text-truncate {
     color: $dishtv-color;
   }
 }
-
 
 .card-text.focused {
   outline: none;
@@ -169,7 +170,7 @@ $dishtv-color: #EF4923;
   min-width: 100px;
 }
 
-@media (max-width:500px) {
+@media (max-width: 500px) {
   .cbtn {
     margin: -35px;
     margin-right: 0px;
@@ -180,3 +181,104 @@ $dishtv-color: #EF4923;
   }
 }
 
+::ng-deep .first-box {
+  .modal-dialog.modal-dialog .modal-content {
+    background: #141414;
+    width: 100%;
+    border-radius: 20px;
+    height: 200px
+  }
+}
+
+::ng-deep .second-box {
+  .modal-dialog.modal-dialog .modal-content {
+    background: #141414;
+    width: 105%;
+    border-radius: 20px
+  }
+}
+
+.model-heading {
+  padding-top: 12px;
+  font-size: 30px;
+  font-weight: 500;
+  margin-left: 75px;
+  color: #ffffff;
+}
+
+.model-sub-heading {
+  margin-left: 75px;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.button {
+  color: #9c42dc;
+}
+
+#divOuter {
+  width: 240px;
+  overflow: hidden;
+  margin:  0 auto;
+  #divInner {
+      left: 0;
+      position: -webkit-sticky;
+      position: sticky;
+      input{
+          width: 40px;
+          text-align: center;
+          border: 0;
+          background-image: linear-gradient(to left, #fff 70%, rgba(255, 255, 255, 0) 0);
+          background-position: bottom;
+          background-size: 45px 2px;
+          background-repeat: repeat-x;
+          background-position-x: 35px;
+          outline: none;
+          color: #fff;
+          background-color: transparent;  
+          appearance: none;  
+          -webkit-appearance: none;
+          -moz-appearance: none; 
+          -ms-appearance: none;
+      }
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+          -webkit-appearance: none; /* WebKit */
+          -moz-appearance: none; /* Mozilla */
+          -o-appearance: none; /* Opera */
+          -ms-appearance: none; /* Internet Explorer */
+          appearance: none; /* CSS3 */
+      }
+  }
+  
+}
+
+.forgot .link {
+  cursor: pointer;
+  text-decoration-line: underline !important
+}
+
+.status {
+  background: #0f9700;
+  margin-right: 140px;
+}
+
+.status-deActive {
+  background: #f30000;
+  margin-right: 140px;
+}
+
+.status-p {
+  font-size: 14px;
+  margin-left: 15px;
+  font-style: italic;
+  color: #ffffff;
+}
+
+.down-image {
+  float: right;
+  width: 10%;
+  margin-right: 25px;
+  margin-top: 30px;
+  cursor: pointer;
+}

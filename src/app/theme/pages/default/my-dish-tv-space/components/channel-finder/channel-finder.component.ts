@@ -37,6 +37,7 @@ export class ChannelFinderComponent implements OnInit {
   platform: string;
   isBrowser: any;
   timer: any;
+  dataStatus: boolean = false;
   constructor(@Inject(PLATFORM_ID) private platformId, private mydishtvspaceservice: MyDishTvSpaceService) {
     this.mydishtvspacetoken = this.mydishtvspaceservice.getEpgToken();
     this.userCategory = this.mydishtvspaceservice.getUserCategory();
@@ -103,6 +104,9 @@ export class ChannelFinderComponent implements OnInit {
         for (var i = 0; i < this.channelList.length; i++) {
           if (this.channelList[i].name.toLowerCase().search(text) >= 0 || this.channelList[i].lcn.toString().search(text) >= 0) {
             newlist.push(this.channelList[i]);
+          }
+          else {
+            this.dataStatus = true
           }
         }
         this.channelList = newlist;

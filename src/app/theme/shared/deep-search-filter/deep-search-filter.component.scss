@@ -5,7 +5,7 @@
 .filter-full-cover{
         width: 100%;
         float: left;
-        border-bottom: 2px solid #757575;
+        border-bottom: 2px solid #ffffff;
         margin-bottom: 10px;
         .fullopen-filter{
                 width: 100%;
@@ -15,14 +15,14 @@
                 border-radius: 10px;
                 hr{
                   margin-top: 0px !important;
-                  border-top: 1px solid #757575 !important;
+                  border-top: 1px solid #ffffff !important;
                 }
                 .title{
                     font-size: 18px;
                     font-weight: 600;
                     margin: 0px 0px 0px 0px;
                     padding-left: 15px;
-                    color: #757575;
+                    color: #ffffff;
                     h2{
                       font-size: 20px;
                     
@@ -43,7 +43,7 @@
                         display: inline-block;
                         border-radius: 20px;
                         margin: 8px;
-                        background: #757575;
+                        background: #ffffff;
                         cursor: pointer;
                         text-align: center;
                         float: none;
@@ -73,10 +73,10 @@
                 float: right;
                 margin: 16px 12px 8px;
                 i{
-                        border: 1px solid #757575;
+                        border: 1px solid #ffffff;
                         // border-radius: 50%;
                         display: inline-block;
-                        color: #757575;
+                        color: #ffffff;
                         padding: 5px 7px;
                         font-size: 24px;
                         transition: all .25s ease-in-out;
@@ -96,7 +96,7 @@
 }
 
 button.btn-pin{
-    color: #757575;;
+    color: #ffffff;;
     font-size: 20px;
     font-weight: 500;
     border: none;
@@ -142,7 +142,7 @@ button.btn-pin{
                 display: inline-block;
                 border-radius: 20px;
                 margin: 5px;
-                background: #757575;
+                background: #ffffff;
                 cursor: pointer;
                 text-align: center;
                 float: none;
@@ -168,7 +168,7 @@ button.btn-pin{
 }
 
 .radio .switch{
-  color: #757575;
+  color: #ffffff;
 
   position: relative;
   float: left;
@@ -188,7 +188,7 @@ button.btn-pin{
   display: inline-block;
   border-radius: 20px;
   // margin: 8px;
-  background: #757575;
+  background: #ffffff;
   cursor: pointer;
   text-align: center;
   float: none;
@@ -206,7 +206,7 @@ button.btn-pin{
 .radio .switch .check{
   display: none;
   position: absolute;
-  border: 2px solid #757575;
+  border: 2px solid #ffffff;
   border-radius: 100%;
   height: 25px;
   width: 25px;
