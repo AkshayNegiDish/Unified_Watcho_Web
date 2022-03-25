@@ -1,0 +1,206 @@
+.maintitle {
+    h2 {
+        color: #ffffff;
+        font-size: 22px;
+    }
+}
+
+.show-section {
+    width: 100%;
+    height: 80px;
+    background: #333333;
+    margin-bottom: 5px;
+    display: flex;
+    .content-left {
+        color: #ffffff;
+        font-size: 17px;
+        font-weight: 400;
+        width: 100%;
+        padding: 20px 0 0 10px;
+    }
+    .content-right {
+        width: 100%;
+        text-align: right;
+        padding: 20px 10px;
+        button {
+            color: #ffffff;
+            font-size: 17px;
+            line-height: 20px;
+            border-radius: 3px;
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            background: #04A5E8;
+            width: 100px;
+        }
+    }
+}
+
+.contact-details {
+    position: relative;
+    top: 15px;
+    padding-left: 10px;
+    .contact-info {
+        width: 100%;
+        max-width: 375px;
+        display: inline-block;
+        margin-bottom: 20px;
+        .contact-title {
+            color: #ffffff;
+        }
+        .contant-data {
+            color: #757575;
+        }
+    }
+}
+
+@media (min-width:320px) and (max-width:480px) {
+    .maintitle h2 { font-size: 18px; }
+    .show-section {
+        height: 50px;
+        .content-left {
+            display: none;
+        }
+        .mobile-content-left {
+            color: #ffffff;
+            font-weight: 400;
+            width: 100%;
+            padding: 15px 0 0 5px;
+            font-size: 14px;
+        }
+        .content-right {
+            display: none;
+        }
+    }
+}
+
+@media (min-width:481px) and (max-width:768px) {
+    .maintitle h2 { font-size: 20px; }
+    .show-section {
+        height: 50px;
+        .content-left {
+            display: none;
+        }
+        .mobile-content-left {
+            color: #ffffff;
+            font-weight: 400;
+            width: 100%;
+            font-size: 15px;
+            padding-top: 15px;
+            padding-left: 10px;
+        }
+        .content-right {
+            display: none;
+        }
+    }
+}
+
+@media (min-width:769px) {
+    .maintitle h2 { font-size: 22px; }
+    .show-section {
+        .mobile-content-left {
+            display: none;
+        }
+    }
+}
+
+// Mobile App Page Design
+.mobapp-maintitle {
+    h2 {
+        color: #ffffff;
+        font-size: 22px;
+        padding: 50px 0 8px 8px;
+    }
+    hr {
+        display: none;
+        border-top: 1px solid #333333;
+        margin-bottom: 5px !important;
+    }
+}
+
+.mobapp-show-section {
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid #333333;
+    margin-bottom: 5px;
+    display: flex;
+    color: #ffffff;
+    cursor: pointer;
+    .mobapp-content-left {
+        color: #ffffff;
+        font-size: 17px;
+        font-weight: 400;
+        width: 100%;
+        padding: 30px 0 0 10px;
+    }
+}
+
+.mobapp-contact-details {
+    position: relative;
+    top: 20px;
+    padding-left: 10px;
+    font-size: 17px;
+    .mobapp-contact-info {
+        width: 100%;
+        max-width: 365px;
+        display: inline-block;
+        margin-bottom: 20px;
+        .mobapp-contact-title {
+            color: #ffffff;
+        }
+        .mobapp-contant-data {
+            color: #fa0050;
+        }
+    }
+}
+
+@media (min-width:320px) and (max-width:480px) {
+    .mobapp-maintitle h2 { 
+        font-size: 18px; 
+        padding-left: 4px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+    .mobapp-show-section {
+        height: 50px;
+        .mobapp-content-left {
+            color: #ffffff;
+            font-weight: 400;
+            width: 100%;
+            padding: 15px 0 0 6px;
+            font-size: 13px;
+        }
+    }
+    .mobapp-contact-details {
+        padding-left: 8px;
+        font-size: 13px;
+    }
+}
+
+@media (min-width:481px) and (max-width:768px) {
+    .mobapp-maintitle h2 { 
+        font-size: 20px;
+        padding-left: 8px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+    .mobapp-show-section {
+        height: 50px;
+        .mobapp-content-left {
+            color: #ffffff;
+            font-weight: 400;
+            width: 100%;
+            font-size: 15px;
+            padding-top: 15px;
+            padding-left: 10px;
+        }
+    }
+    .mobapp-contact-details {
+        padding-left: 8px;
+        font-size: 15px;
+    }
+}
+
+@media (min-width:769px) {
+    .mobapp-maintitle h2 { font-size: 22px; }
+}

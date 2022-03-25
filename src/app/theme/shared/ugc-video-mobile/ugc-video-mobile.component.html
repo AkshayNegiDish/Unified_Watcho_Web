@@ -1,0 +1,97 @@
+<div class="ugc-video-mobile" *ngIf="ugcVideos.length > 0">
+  <div class="top-shadow" *ngIf="ugcVideos[index]">
+    <div class="pwa" routerLink="/" *ngIf="isPWA">
+      <div class="icon-image" style="display: none;">
+        <img id="f2" src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png">
+      </div>
+      <div class="home-icon">
+        <div>
+          <div class="home-icons">
+            <i class="homeIcon"></i>
+          </div>
+          <div class="home-text">
+            Home
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fadein" routerLink="/" *ngIf="!isPWA">
+      <div class="icon-image" style="display: none;">
+        <img id="f2" src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png">
+      </div>
+      <div class="home-icon">
+        <div>
+          <div class="home-icons">
+            <i class="homeIcon"></i>
+          </div>
+          <div class="home-text">
+            Home
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ugc-video-img">
+    <div class="player-container">
+      <app-kaltura-player *ngIf="ugcVideos[index]" [isAssetInWatchlist]='false' [assetDetail]="ugcVideos[index]"
+        [ugcPlayerFound]="true">
+      </app-kaltura-player>
+    </div>
+  </div>
+  <div class="description">
+    <div *ngIf="ugcVideos.length > 1">
+      <div class="next-icon" (click)="openNextImage()" [ngClass]="{'disable-arrow' : index === totalVideos-1}">
+        <i class="fa fa-angle-right"></i>
+      </div>
+      <div class="prev-icon" (click)="openPrevImage()" [ngClass]="{'disable-arrow' : index === 0}">
+        <i class="fa fa-angle-left"></i>
+      </div>
+    </div>
+
+    <div class="left-description">
+      <div class="name-follow"><span class="name">@{{ugcVideos[index].name | trim : 30}}</span>
+        <span class="name-follow-icon">
+          <app-follow-creator *ngIf="userAssetDetails" [hideFollowButton]="false" [assetDetails]="userAssetDetails">
+          </app-follow-creator>
+        </span></div>
+      <div class="asset-description">{{ugcVideos[index].description | trim : 190}} </div>
+    </div>
+    <div class="right-description">
+      <div class="ugc-img-desktop">
+        <div class="ugc-upper-section">
+          <div class="user-profile" (click)="gotoCreatorProfile(userAssetDetails ? userAssetDetails.id : null)">
+            <div class="user-name">{{appUtilService.getNameInitials(ugcVideos[index], true)}}</div>
+          </div>
+          <div class="ugc-icon-counts">
+            <div class="right-icon" *ngIf="viewCountObject; else showViewCountLoader">
+              <span class="view-icon"><i class="la eye la-eye"></i></span>
+              <span class="count-number">{{viewCountObject.views | parseCount}}</span>
+            </div>
+            <ng-template #showViewCountLoader>
+              <div class="right-icon">
+                <span class="view-icon"><i class="la eye la-eye"></i></span>
+                <span class="count-number">***</span>
+              </div>
+            </ng-template>
+
+            <div class="right-icon">
+              <span class="view-icon share-icon">
+                <!-- <i class="fa fa-share"></i> -->
+                <app-share *ngIf="ugcVideos[index]" [assetDetails]="ugcVideos[index]"></app-share>
+              </span>
+            </div>
+            <div class="left-icon" *ngIf="!isLogin && viewCountObject" style="pointer-events: none;">
+              <span class="like-icon"><i class="la las la-heart"></i></span>
+              <span class="count-like">{{viewCountObject.likes + startLikes | parseCount}}</span>
+            </div>
+            <div class="left-icon like-icon-component" *ngIf="isLogin && ugcVideos[index]">
+              <app-like *ngIf="ugcVideos[index]" [assetDetails]="ugcVideos[index]"></app-like>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div>
+  </ngx-slick-carousel> -->
+</div>

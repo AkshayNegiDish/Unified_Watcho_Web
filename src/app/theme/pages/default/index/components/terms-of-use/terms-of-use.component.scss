@@ -1,0 +1,36 @@
+.iframe-container{
+  width: 100%;
+  height: 120vh;
+
+overflow: hidden;
+
+.header-class {
+    /deep/.header {
+    height: 6% !important;
+    line-height: 2.5;
+}
+
+}
+
+iframe {
+  overflow: hidden;
+ 
+}
+.iframe-main-container{
+    width: 100%;
+    height: 100%;
+    margin-top: 12%;
+    overflow: auto;
+}
+}
+
+.back-button{
+   /deep/.back-icon{
+           position: fixed;
+   } 
+}
+
+.iframe-main-container::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}

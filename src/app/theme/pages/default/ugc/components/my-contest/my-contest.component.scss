@@ -1,0 +1,677 @@
+@import '~assets/scss/theme-fonts.scss';
+
+.my-contest{
+    min-height: 90vh;
+    /deep/.nav-tabs {
+        border-bottom: 0px;
+        background-color: #413e3e;
+        width: 100%;
+        float: left;
+        li{
+            text-align: center;
+            width: 33%;
+            font-size: 21px;
+            font-weight: 500;
+            .nav-item {
+                border: 0px;
+            }
+            .nav-link {
+                color: #757575;
+                border: 0px;
+            }
+            .nav-link:hover {
+                background-color: #413e3e;
+            }
+            .nav-link.active {
+                color: #ffffff;
+                background-color: #413e3e;
+                border-bottom: 4px solid $theme-pink !important
+            }
+            a{
+                padding: 0;
+                font-family: 'Rubik', sans-serif;
+                font-weight: 700;
+                margin-right: -0.4%;
+                .Upcoming-tab, .Live-tab, .Completed-tab{
+                    height: 50px;
+                    line-height: 50px;
+                }
+            }
+        }
+    }
+    .placeholder {
+        align-items: center;
+        text-align: center;
+        .img {
+        height: 600px;
+        width: auto;
+        margin: 0 auto;
+        vertical-align: middle;
+        }
+  }
+  
+}
+
+.my-contest{
+    .noPwa {
+        h2 {
+            font-size: 22px;
+            color: #ffffff;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 500;
+            margin-bottom: 15px;
+            float: left;
+        }
+        h3{
+            float: right;
+            color: #04A5E8;
+            cursor: pointer;
+            &:hover{
+                transition: 1.2s;
+                color: #214BA3
+            }
+        }
+    }
+    .pwa{
+        h2 {
+            font-size: 22px;
+            color: #ffffff;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 500;
+            margin-bottom: 15px;
+            float: left;
+            width: 100%;
+            text-align: center;
+        }
+        h3{
+            position: absolute;
+            right: 0;
+            color: #04A5E8;
+            cursor: pointer;
+            &:hover{
+                transition: 1.2s;
+                color: #214BA3
+            }
+        }
+    }
+
+    .watcho-brand-color-border{
+        width: 100%;
+        float: left;
+        background-image: -webkit-gradient(linear,left top,right top,color-stop(.3,#e94058),color-stop(.6,#f9a53c),color-stop(.75,#6dba8a),color-stop(.85,#224ca3));
+        height: 2px;
+    }
+
+    .rail-data-container{
+        margin: 40px 0;
+        float: left;
+        width: 100%;
+        .card.text-white{
+            float: left;
+            background: transparent;
+            border: none;
+           padding: 0 16px 0 0;
+           margin-bottom: 20px;
+           &:nth-child(4n){
+               padding: 0;
+           }
+        }
+    }
+    .clickable-item{
+        cursor: pointer;
+    }
+    .card-img1 {
+        width: 280px;
+        height: 158px;
+        position: relative;
+        border-radius: 8px;
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+
+        }
+        .description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 0 8px;
+            height: 100%;
+            width: 100%;
+            border-radius: 0 0 8px 8px;
+            background: rgb(0,0,0);
+            background: linear-gradient(0deg, rgba(0,0,0,0.8914916308320203) 0%, rgba(0,0,0,0.8970938717283788) 14%, rgba(255,255,255,0) 74%);
+           .icon-list{
+                position: absolute;
+                left: 8px;
+                bottom: 4px;
+                i{
+                    float: left;
+                    font-size: 20px;
+                    margin-right: 4px;
+                }
+                .review{
+                    float: left;
+                    font-size: 12px;
+                    margin-top: 2px;
+                    color: #ffffff;
+                    font-family: 'Rubik', sans-serif;
+                    font-weight: 500;
+                }
+                &.review-like{
+                    right: 8px;
+                    left: initial;
+                    .review-icon{
+                        span.material-icons{
+                            float: left;
+                            font-size: 20px;
+                            margin-right: 4px;
+                        }
+                        .review-count{
+                            float: left;
+                            font-size: 12px;
+                            margin-top: 2px;
+                            font-family: 'Rubik', sans-serif;
+                            font-weight: 500;
+                        }
+                    }
+                    .like-icon{
+                        margin-left: 10px;
+                        float: left;
+                        span.material-icons{
+                            float: left;
+                            font-size: 20px;
+                            margin-right: 4px;
+                            color: #ea2455;
+                        }
+                        .like-count{
+                            float: left;
+                            font-size: 12px;
+                            margin-top: 2px;
+                            color: #ea2455;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+
+    .Contest-list{
+        width: 100%;
+        float: left;
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            width: 100%;
+            float: left;
+            li{
+                width: 100%;
+                float: left;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: #2E2E2E;
+                margin-bottom: 28px;
+                min-height: 285px;
+                &:first-child{
+                    margin-top: 35px;
+                }
+                .left-contest-img{
+                    float: left;
+                    width: 39%;
+                    margin-right: 1%;
+                    cursor: pointer;
+                    img{
+                        width: 100%;
+                        border-radius: 10px;
+                        min-height: 275px;
+                    }
+                }
+                .right-contest-section{
+                    float: left;
+                    width: 60%;
+                    padding: 10px 15px;
+                    box-sizing: border-box;
+                    .upper-section{
+                        width: 100%;
+                        float: left;
+                        .left-side{
+                            float: left;
+                            h3{
+                                font-size: 24px;
+                                color: #ffffff;
+                                font-weight: 500;
+                                width: 100%;
+                                float: left;
+                                margin-top: 0;
+                            }
+                            .start-date{
+                                color: #fa0050;
+                                font-weight: 300;
+                                font-size: 15px;
+                                line-height: 27px;
+                            }
+                        }
+                        .right-icon{
+                            float: right;
+                            text-align: center;
+                            cursor: pointer;
+                            i{
+                                font-size: 30px;
+                                color: #ffffff;
+                                display: block;
+                            }
+                            span{
+                                color: #737373;
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                    .down-contest-section{
+                        width: 100%;
+                        float: left;
+                        margin-top: 10px;
+                        p{
+                            float: left;
+                            margin-bottom: 0;
+                            font-size: 14px;
+                            font-weight: 300;
+                            color: #ffffff;
+                            line-height: 20px;
+                            .check-more{
+                                color: #fa0050;
+                                font-weight: 300;
+                                font-size: 14px;
+                                margin-left: 5px;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/deep/.modal-dialog.modal-dialog{
+    /deep/.modal-content{
+        background-color: #141414;
+    }
+}
+
+@media(max-width:768px){
+    .no-result{
+        h4{
+            font-size: 16px !important;
+        }
+    }
+    .my-contest{
+        // padding: 0 10px !important;
+
+        .pwa {
+            h2{
+                text-align: center !important;
+                font-size: 17px !important;
+            }
+        }
+        .noPwa{
+                h2{
+                text-align: center !important;
+                font-size: 17px !important;
+                margin-left: 10px;
+            }
+        }
+        h3{
+            font-size: 17px !important;
+            margin-right: 10px !important;
+        }
+
+        .Upcoming-tab, .Live-tab, .Completed-tab{
+            font-size: 14px;
+            height: 40px !important;
+            line-height: 40px !important;
+        }
+        .rail-data-container{
+            margin-top: 10px;
+            .card.text-white {
+                width: 50%;
+                padding:  0 3px;
+                margin-bottom: 5px;
+                .card-img1{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 4px;
+                    img{
+                        border-radius: 4px;
+                    }
+                    .description{
+                        border-radius: 0 0 4px 4px;
+                        .icon-list{
+                            i{
+                                font-size: 16px;
+                            }
+                            .review{
+                                margin-top: 0;
+                            }
+                        } 
+                        .icon-list.review-like{
+                            .like-icon{
+                                .like-count{
+                                    margin-top: 0;
+                                }
+                                span.material-icons{
+                                    font-size: 17px;
+                                }
+                            }
+                            .review-icon{
+                                .review-count{
+                                    margin-top: 0;
+                                }
+                                span.material-icons{
+                                    font-size: 17px;
+                                }                                
+                            }
+                        }
+                    } 
+                }
+                &:nth-child(4n){
+                    padding: 0 3px;
+                }
+                .pending-description{
+                    margin-top: 5px;
+                    .delete{
+                        i{
+                            font-size: 16px;
+                        }
+                    }
+                    .content{
+                        span{
+                            font-size: 12px;
+                            &:nth-child(2) {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .placeholder {
+            .img {
+              height: 100%;
+              width: 100%;
+            }
+        }
+        .Contest-list{
+            ul{
+                li{
+                    min-height: auto;
+                    position: relative;
+                    margin-top: 10px !important;
+                    margin-bottom: 10px !important;
+                    .left-contest-img{
+                        width: 100%;
+                        img{
+                            min-height: auto;
+                        }
+                    }
+                    .right-contest-section{
+                        width: 100%;
+                        .upper-section{
+                            .right-icon{
+                                position: absolute;
+                                right: 9px;
+                                top: 10px;
+                                background-color: #0404049c;
+                                padding: 5px;
+                                border-radius: 10px;
+                                box-shadow: 4px 1px 5px 5px #3333338a;
+                                i{font-size: 20px;}
+                                span{font-size: 10px;}
+                            }
+                            .left-side{
+                                width: 100%;
+                                .start-date{
+                                    font-size: 12px;
+                                    line-height: 15px;
+                                }
+                                h3{ font-size: 15px;margin-bottom: 5px;}
+                            }
+                        } 
+                        .down-contest-section{
+                            margin-top: 5px;
+                            p{
+                                line-height: 14px;
+                                font-size: 12px;
+                                text-align: justify;
+                                .check-more{
+                                    font-size: 11px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } 
+    
+    /deep/.modal-dialog.modal-dialog {
+        max-width: 300px;
+    }
+
+}
+
+@media (min-width:769px) and (max-width:992px){
+        .no-result{
+            h4{
+                font-size: 16px !important;
+            }
+        }
+    .my-contest{
+        h2{
+            text-align: center !important;
+            font-size: 17px !important;
+        }
+        h3{
+            font-size: 17px !important;
+        }
+
+        .Upcoming-tab, .Live-tab, .Completed-tab{
+            font-size: 16px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .rail-data-container{
+            margin: 20px 0;
+            .card.text-white {
+                width: 33%;
+                padding:  0 8px;
+                .card-img1{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 4px;
+                    img{
+                        border-radius: 4px;
+                    }
+                    .description{
+                        border-radius: 0 0 4px 4px;
+                        .icon-list{
+                            i{
+                                font-size: 16px;
+                            }
+                        } 
+                    } 
+                }
+                &:nth-child(4n){
+                    padding: 0 8px;
+                }
+            }
+        }
+        .Contest-list{
+            ul{
+                li{
+                    min-height: auto;
+                    position: relative;
+                    .left-contest-img{
+                        // width: 100%;
+                        img{
+                            min-height: auto;
+                        }
+                    }
+                    .right-contest-section{
+                        // width: 100%;
+                        .upper-section{
+                            .right-icon{
+                                i{font-size: 20px;}
+                                span{font-size: 10px;}
+                            }
+                            .left-side{
+                                .start-date{
+                                    font-size: 12px;
+                                    line-height: 15px;
+                                }
+                                h3{ font-size: 15px;margin-bottom: 5px;}
+                            }
+                        } 
+                        .down-contest-section{
+                            margin-top: 5px;
+                            p{
+                                line-height: 15px;
+                                font-size: 12px;
+                                text-align: justify;
+                                .check-more{
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }  
+}
+
+@media (min-width:993px) and (max-width:1023px){
+    .my-contest{
+        .rail-data-container{
+            margin: 25px 0;
+            .card.text-white {
+                width: 33%;
+                padding:  0 8px;
+                .card-img1{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 4px;
+                    img{
+                        border-radius: 4px;
+                    }
+                    .description{
+                        border-radius: 0 0 4px 4px;
+                        .icon-list{
+                            i{
+                                font-size: 16px;
+                            }
+                        } 
+                    } 
+                }
+                &:nth-child(4n){
+                    padding: 0 8px;
+                }
+            }
+        }
+    }  
+}
+
+.no-result{
+    position: relative;
+    height: 70vh;
+    width: 100%;
+    top: 16vh;
+    img{
+        height: 160px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    h4{
+        display: block;
+        position: absolute;
+        top: 68%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #858585;
+    }
+}
+
+.downloadInAppmodal{
+    width: 100%;
+    float: left;
+}
+
+.contest-popup{
+    /deep/.modal-body{
+        padding: 0;
+    }
+}
+
+.pop-onlytab {
+    float: none;
+    display: inline-block;
+    width: 50%;
+}
+.downloadInAppmodal .new-video-upload-title {
+    margin-top: 0 !important;
+    text-align: center;
+    padding: 20px 0 0;
+    color: #fff;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+
+.link {
+    text-decoration: underline;
+    font-size: 13px;
+    color: #fff !important;
+    font-weight: 400;
+}
+
+a.hover  { 
+    text-decoration: underline;
+    color: #fff !important;
+}
+
+.txt-pink {
+    color: #04A5E8;
+ }
+
+ a.appstore img {
+    width: 130px;
+    height: 40px;
+    margin-right: 0!important;
+    margin-top: -10px;
+}
+
+a.googleplay img {
+    width: 150px;
+    height: 60px;
+    margin-right: 0!important;
+    margin-top: -10px;
+}
+
+
+.remaining-text{
+    float: right;
+    position: absolute;
+    bottom: 2%;
+    right: 0.6%;
+    color: wheat;
+}
+
+p{
+    word-break: break-all !important;
+    height: 100px;
+    white-space: normal;
+}

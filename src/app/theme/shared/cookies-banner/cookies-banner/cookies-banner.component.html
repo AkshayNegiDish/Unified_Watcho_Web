@@ -1,0 +1,11 @@
+<!-- <div *ngIf="!appUtilService.checkIfPWA();else pwaApp"> -->
+  <div *ngIf="!hideCookiesBanner && isDesktopView" class="sticky container-fluid"><span>We use cookies to personalize and
+      enhance your
+      experience on our site. Visit our <a [href]="privacyPolicy" target="_blank">Privacy
+        Policy </a> page to learn more. By using our site, you agree to our use of cookies.</span>
+    <button class='btn btn-blue' (click)="cookiesAllowed()">Accept</button>
+    <i class="material-icons" (click)="cookiesAllowed()">
+      clear
+    </i>
+  </div>
+<!-- </div> -->

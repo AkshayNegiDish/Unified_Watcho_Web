@@ -1,0 +1,29 @@
+<div class="screen">
+  <div class="pop-up">
+    <div *ngIf="popupDetail.isImage" class="icon-container">
+      <img [src]="popupDetail.isCorrect?'https://s3.ap-southeast-1.amazonaws.com/ads.assets/watcho-quiz/images_Assets/Khelojeeto/correct.png':'https://s3.ap-southeast-1.amazonaws.com/ads.assets/watcho-quiz/images_Assets/Khelojeeto/incorrect.png'" class="crct-icon" alt="...">
+    </div>
+    <div class="result">
+      <p class="result-text">{{popupDetail.titleMessage}}</p>
+    </div>
+    <div *ngIf="popupDetail.subTitle" class="result">
+      <p class="rmrk-text">{{popupDetail.subTitle}}</p>
+    </div>
+    <div *ngIf="popupDetail.nextQuestion" class="result">
+      <p class="rmrk-text">The next question will be available at</p>
+    </div>
+    <div *ngIf="popupDetail.nextQuestion" class="result">
+      <p class="time">{{popupDetail.isTime ? (popupDetail.nextQuestion|date:'shortTime'):popupDetail.nextQuestion|date:'dd/MM/yyyy, h:mm a'}}</p>
+      <!-- <p class="time-unit">pm</p> -->
+    </div>
+
+    <div *ngIf="!popupDetail.nextQuestion" class="result">
+      <p class="result-text">Quiz Completed, Thank you for playing.</p>
+    </div>
+
+
+    <div class="result">
+      <button type="button" (click)="onOkPress()" class="ok-btn btn-secondary btn-lg">OK</button>
+    </div>
+  </div>
+</div>

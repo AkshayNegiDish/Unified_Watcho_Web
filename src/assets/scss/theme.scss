@@ -1,0 +1,132 @@
+@import "./theme-colors";
+@import "./theme-constants";
+
+.green-text {
+    color: $theme-primary !important;
+}
+
+// @import "./theme-colors";
+
+
+
+@mixin button-bg($bg) {
+    background: $bg;
+    &:hover {
+      background:darken($bg,8%);
+      transition: all 0.3s ease;
+    }
+    &:active {
+      background:darken($bg,25%);
+    } 
+}
+
+.btn-no-bg {
+  background: transparent;
+  &:hover {
+    color: $theme-white;
+  }
+  &:active {
+    border-color: transparent;
+    outline: none !important;
+    box-shadow: none;
+  } 
+  &:focus {
+    outline: none !important;
+    box-shadow: none;
+  }
+}
+.main-container {
+		// background: $theme-light-grey;
+		background-color: $theme-black-color-change;
+		box-shadow: none;
+		margin-top: 65px;
+    // -webkit-box-shadow: 0 9px 0 0 #ddd, 0 -9px 0 0 #ddd, 0 0 15px -4px rgba(0,0,0,.1);
+    // -moz-box-shadow: 0 9px 0 0 #ddd,0 -9px 0 0 #ddd,0 0 15px -4px rgba(0,0,0,.1);
+    // -o-box-shadow: 0 9px 0 0 #ddd,0 -9px 0 0 #ddd,0 0 15px -4px rgba(0,0,0,.1);
+    // box-shadow: 0 9px 0 0 #ddd, 0 -9px 0 0 #ddd, 0 0 15px -4px rgba(0,0,0,.1);
+}
+
+.primari-btn{
+  @include button-bg($font-red-color)
+}
+
+.slide-in-left {
+	-webkit-animation: slideinleft .6s;
+	-moz-animation: slideinleft .6s;
+	-o-animation: slideinleft .6s;
+	animation: slideinleft .6s
+}
+
+.slide-up {
+	-webkit-animation: slideup .3s, hs-fadeIn .3s;
+	-moz-animation: slideup .3s, hs-fadeIn .3s;
+	-o-animation: slideup .3s, hs-fadeIn .3s;
+	animation: slideup .3s, hs-fadeIn .3s
+}
+
+.slide-in {
+	-webkit-animation: slidein .6s;
+	-moz-animation: slidein .6s;
+	-o-animation: slidein .6s;
+	animation: slidein .6s
+}
+
+.fade-in-quick {
+	-webkit-animation: hs-fadeIn .6s;
+	-moz-animation: hs-fadeIn .6s;
+	-o-animation: hs-fadeIn .6s;
+	animation: hs-fadeIn .6s
+}
+
+@keyframes slideinleft {
+	from {
+		transform: translate(-20%);
+		opacity: 0
+	}
+	to {
+		transform: translate(0);
+		opacity: 1
+	}
+}
+
+@keyframes slidein {
+	from {
+		transform: translate(20%);
+		opacity: 0
+	}
+	to {
+		transform: translate(0);
+		opacity: 1
+	}
+}
+
+@keyframes slideup {
+	from {
+		transform: translateY(5%)
+	}
+	to {
+		transform: translateY(0)
+	}
+}
+
+.txt-pink {
+	color: $theme-pink;
+}
+@media(max-width:769px){
+	.main-container {
+		margin-top: 0 !important;
+	}
+}
+
+// @media(min-width:769px) and (max-width:809px){
+// 	.main-container {
+// 		margin-top: 55px !important;
+// 	}
+
+// }
+
+@media (min-width:810px) and (max-width:992px){
+	.main-container {
+		margin-top: 65px !important;
+	}
+}

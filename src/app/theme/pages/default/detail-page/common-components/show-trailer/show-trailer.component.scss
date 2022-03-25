@@ -1,0 +1,50 @@
+
+@import '~assets/scss/theme-fonts.scss';
+ 
+ .btn-right-more{
+            float: right;
+            width: 140px;
+            i{
+                float: left;
+                margin: 10px 5px 0 5px;
+            }
+            .color-btn{
+                display: block !important;
+                border: 1px solid $blue-Lighter-chnage-color;
+                color: $blue-Lighter-chnage-color;
+                background: transparent;
+                width: 100%;
+                font-size: 15px;
+                text-align: left;
+                outline: none;
+                cursor: pointer;
+                line-height: 45px;
+                height: 45px;
+                &:hover{
+                    border: 1px solid $blue-bg-chnage-color !important;
+                    background: $blue-bg-chnage-color;
+                    color: $fonts-white-color;
+                }
+            }
+        }
+
+        @media (min-width:320px) and (max-width:768px){
+             
+            .btn-right-more{
+                
+                width: 100px;
+
+                i{
+                    float: left;
+                    margin: 5px 3px 0 3px;
+                    font-size: 12px;
+                }
+                .color-btn{
+                   
+                    line-height: 25px;
+                    height: 25px;
+                    font-size: 13px;
+                   
+                }
+            }
+        }

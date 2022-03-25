@@ -1,0 +1,54 @@
+<span *appShellNoRender>
+  <div *ngIf="!loading">
+    <div class="container watchlist">
+      <div [ngClass]="{'pwa' : isPwa}">
+        <h2>My Watchlist</h2>
+      </div>
+      <div class="row rail-data-container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+        (scrolled)="onScroll()">
+        <ng-container *ngIf="kalturaAssetListResponse">
+          <div class="card text-white" *ngFor="let response of assetList">
+            <div class="card-img" style="display: none;">
+              <span *ngIf="response.metas['Is Exclusive']?.value">
+                <div class="badge premium-badge">PREMIUM</div>
+              </span>
+              <span class="remove-mobile">
+                <div class="icon-remove" (click)="removeFromWatchlist(response.id)">
+                  <i class="material-icons">playlist_add_check</i>
+                </div>
+              </span>
+              <img class="img" (error)="imageLoadError($event)" (load)="imageLoadEvent($event)" [id]="response.id"
+                [attr.data]="response.entryId" (click)="watchAsset(response.name, response.id,response.type)"
+                [src]="response.images | thumbnail: 'LANDSCAPE'" [alt]="response.name">
+              <div class="description">
+                <span class="name">{{response.name | trim: 40}}</span>
+                <span class="meta">{{response.tags.Genre | tagObject}}</span>
+                <div class="icon-list" (click)="removeFromWatchlist(response.id)">
+                  <i class="material-icons">playlist_add_check</i><span>Remove from watchlist</span>
+                </div>
+              </div>
+            </div>
+            <div class="img-shell" [id]="response.entryId">
+              <app-default-rail-item-shell [viewType]="viewType"></app-default-rail-item-shell>
+            </div>
+
+          </div>
+        </ng-container>
+      </div>
+      <div *ngIf="noResultFound" class="placeholder">
+        <img class="img" [src]="placeholderImage">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading">
+    <app-default-rail-shell></app-default-rail-shell>
+  </div>
+</span>
+<span *appShellRender>
+  <!-- <div class="base-page"> -->
+  <app-default-rail-shell></app-default-rail-shell>
+  <!-- <app-listing-pages-shell></app-listing-pages-shell> -->
+  <!-- </div> -->
+</span>
+
+<app-back-button></app-back-button>

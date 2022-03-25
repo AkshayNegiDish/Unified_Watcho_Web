@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="heading">
+    <p>{{this.campaign.name}}</p>
+  </div>
+  <div class="line"></div>
+  <div class="ques-time-contnr">
+    <div class="quest">
+      <p>Question</p>
+      <p class="quest-no">{{this.currentQuestion ? this.currentQuestion['sort_id'] : '--'}} / {{this.campaign.questionCount}}</p>
+    </div>
+    <div class="timer">
+      <p>Timer</p>
+      <div class="time-container">
+        <p class="time">{{datestr}}</p>
+        <p class="unit">{{timeUnit}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="question">
+    <p>Q {{this.currentQuestion ? this.currentQuestion['sort_id'] : '--'}}. {{this.currentQuestion ? this.currentQuestion['title'] : '--'}}</p>
+    <div class="option-a">
+      <button [ngStyle]="{'color':selectedIndex == 0 ? '#fb0050' : '' }" type="button"  class="btn btn-secondary btn-lg" (click)="onSelect(0)">A. {{this.currentQuestion ? this.currentQuestion['options'][0]['value'] : '--' }}</button>
+      <button [ngStyle]="{'color':selectedIndex ==  1 ? '#fb0050' : '' }" type="button" class="btn btn-secondary btn-lg" (click)="onSelect(1)">B. {{this.currentQuestion ? this.currentQuestion['options'][1]['value'] : '--'}}</button>
+    </div>
+    <div class="option-a">
+      <button [ngStyle]="{'color':selectedIndex == 2 ? '#fb0050' : '' }" type="button" class="btn btn-secondary btn-lg" (click)="onSelect(2)">C. {{this.currentQuestion ? this.currentQuestion['options'][2]['value'] : '--'}}</button>
+      <button [ngStyle]="{'color':selectedIndex == 3 ? '#fb0050' : '' }" type="button" class="btn btn-secondary btn-lg" (click)="onSelect(3)">D. {{this.currentQuestion ? this.currentQuestion['options'][3]['value'] : '--'}}</button>
+    </div>
+  </div>
+  <div class="sbmt-buttn">
+    <button type="button" class="sub-btn btn-secondary btn-lg" (click)="onSubmit()">Submit</button>
+  </div>
+</div>
+
+  <quiz-popup *ngIf="popup && popup.titleMessage" (popupEvent)="closePopup($event)" [popupDetail]="popup"></quiz-popup>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+
+
+
+

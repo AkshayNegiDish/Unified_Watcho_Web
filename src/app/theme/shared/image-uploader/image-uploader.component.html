@@ -1,0 +1,64 @@
+<div class="col-lg-12 col-md-12 col-sm-12 padding0px" [hidden]="uploadStateHandler.showUploadControls">
+  <input type="file" id="file2" name="file2" class="custom-image-input m-input width100p inputfile" (change)="fileChangeEvent($event)"
+    accept="image/*">
+  <label class=" col-lg-12 col-md-12 col-sm-12 padding0px file-upload" for="file2"><i style="padding-right: 10px" class="fa fa-upload"></i>Choose
+    an Image</label>
+  <span id="addMediaClass" class="custom-file-control"></span>
+  <label id="imageRequiredErrorLabel" class="required-marker msg imageRequiredErrorLabel" style="display: none; margin-top: 15px !important;">
+    Image is required
+  </label>
+  <label id="imageSizeErrorLabel" class="required-marker msg imageSizeErrorLabel" style="display: none; margin-top: 15px !important;">
+    Image should be of maximum {{imageMaxSize}} MB
+  </label>
+  <label id="imageTypeErrorLabel" class="required-marker msg imageTypeErrorLabel" style="display: none; margin-top: 15px !important;">
+    Selected file type not supported, select jpeg, jpg, png, or gif files only
+  </label>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 padding0px" id="imageCropper" [hidden]="uploadStateHandler.showUploadLoader || !uploadStateHandler.showUploadControls || uploadCompleted">
+
+  <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="cropRatio"
+    [imageQuality]="100" format="png" (imageCroppedBase64)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+    (loadImageFailed)="loadImageFailed()"></image-cropper>
+
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 padding0px" id="croppedImage" style="margin-bottom: 10px;" [hidden]="!showCroppedImage">
+  <img [src]="croppedImage || ''" style="max-height: 150px;" id="croppedImageTag" />
+</div>
+
+
+<div class="col-lg-12 col-md-12 col-sm-12 padding0px" [hidden]="!uploadStateHandler.showUploadControls">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="form-group m-form__group padding0px">
+        <div class="input-group" id="file-upload-container">
+          <input type="text" class="form-control " placeholder="Asset File..." readonly id="file-name-container"
+            [(ngModel)]="selectedFile">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary " type="button" (click)="cancelFileSelection()" [hidden]="hideCancelButton">
+              Cancel
+            </button>
+            <button class="btn btn-secondary buttonload" type="button" style="margin-left: 10px" [disabled]="showImageMaxSizeError"
+              (click)="startVideoUpload()" [hidden]="hideUploadButton">
+              Upload
+              <i class="la la-spinner la-spin " style="width: 30px; display: inline-block;" [hidden]="!uploadStateHandler.showUploadLoader"></i>
+
+            </button>
+            <button class="btn btn-secondary" type="button" style="margin-left: 10px" (click)="startVideoUpload()"
+              [hidden]="!uploadFailed">
+              Retry
+            </button>
+          </span>
+          <div class="icon" [hidden]="!uploadFailed"><i class="flaticon-cancel m--font-danger"></i></div>
+            <div class="icon" [hidden]="!uploadCompleted"><i class="fa fa-check" style="font-size: 25px"></i></div>
+        </div>
+      </div>
+
+
+    </div>
+    <label id="addedImageErrorLabel" class="required-marker msg addedImageErrorLabel" style="display: none;">
+      error
+    </label>
+  </div>
+</div>

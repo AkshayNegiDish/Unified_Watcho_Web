@@ -1,0 +1,78 @@
+<div [ngClass]="platform?platform:''">
+  <div (window:resize)="onResize($event)" class="container" style="min-height: 500px;" infiniteScroll
+    [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
+    <div class="inner-header">
+      <div class="row justify-content-lg-center date-row">
+        <button [ngClass]="{
+      'btn-active':date.active
+    }" *ngFor="let date of dates; let i = index" type="button" (click)="onClickDate(i)"
+          class="btn btn-secondary btn-lg cbtn">{{date.name}}</button>
+      </div>
+    </div>
+    <div class="upper-menu">
+      <div class="row">
+        <div class="col-lg-12 rail-data-container">
+          <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="railConfig">
+            <!-- (afterChange)="slickAfterChange($event, slickModal)" (init)="slickInit($event, slickModal)" -->
+            <div ngxSlickItem class="slide" *ngFor="let genre of genreList; let i = index">
+              <div #wrap (click)="onClickGenre($event,i,wrap)" class="category-wrapper">
+                <div class="card">
+                  <img src="./assets/images/mydishtvspace/{{genre.channelgenre}}.png" class="card-img-top category-img"
+                    alt="...">
+                  <div class="card-body">
+                    <p class="card-text">{{genre.channelgenre}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+    </div>
+    <div class="content-rails">
+      <div *ngFor="let channel of channelList;let ci=index" class="row">
+        <div class="col-lg-12 rail-info-container">
+          <div class="row justify-content-md-left">
+            <!-- <div class="col-1 channel-img">
+              <img
+                onerror="this.src='https://epg-garcenote-assets.s3.amazonaws.com/dishtvd2h/resources/assets/thumbnails/channels/default/default_70x53.png'"
+                src="{{channel.channelimage}}" class="img-fluid" alt="image">
+            </div> -->
+            <h3 class="card-title-channelname align-bottom">{{channel.lcn}} &nbsp;&nbsp;<span
+                class="channel-name">{{channel.channelname}}</span></h3>
+          </div>
+        </div>
+        <div class="col-lg-12 rail-data-container">
+          <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="railConfig2">
+            <div *ngFor="let programe of channel.programs;let pi=index;" ngxSlickItem class="slide c-slide-item">
+              <div [class]="railViewTypeClass">
+                <div class="card text-white">
+                  <!-- (click)="getProgramDetails(ci,pi)" -->
+                  <div class="card-img img-fluid" style="background-color: #2A2A2A;">
+                    <div>
+                      <!-- <img applazyload="" class="card-img img-fluid"
+                        onerror="this.src='https://epg-garcenote-assets.s3.amazonaws.com/dishtvd2h/resources/assets/thumbnails/channels/default/default_70x53.png'"
+                        alt="image..." src="{{programe['images']['landscape']['360x270']}}"> -->
+                      <div *ngIf="pi === 0 && lastdateIndex === 0" class="progress">
+                        <div class="progress-bar bg-success" role="progressbar"
+                          [ngStyle]="{'width': programe['progress']}" aria-valuenow="25" aria-valuemin="0"
+                          aria-valuemax="100">
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <h6 class="card-title text-truncate">{{programe.title}}</h6>
+                        <p class="card-text text-truncate">{{tConvert(programe.programstart)}} -
+                          {{tConvert(programe.programstop)}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+    </div>
+  </div>
+</div>

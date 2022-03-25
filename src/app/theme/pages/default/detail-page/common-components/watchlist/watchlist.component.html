@@ -1,0 +1,13 @@
+<!--<div class="share-actions clearfix">-->
+  <ng-container>
+    <span class="addtolist" (click)="toggleWatchlist()" [hidden]="isAddedToWatchList">
+      <i class="material-icons">playlist_add</i><br>
+      Watchlist
+    </span>
+    <span class="addtolist" style="color: #04A5E8 !important; cursor: pointer;" (click)="toggleWatchlist()"
+      [hidden]="!isAddedToWatchList">
+      <i class="material-icons" style="color: #04A5E8">playlist_add_check</i><br>
+      Watchlist
+    </span>
+  </ng-container>
+<!--</div>-->

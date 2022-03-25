@@ -1,0 +1,17 @@
+<div class="container p-0">
+  <!-- <div [class]="'hero-image' + channelDetails.channelType">
+    <img appLazyLoad [src]="thumbnailUrl" alt="" (click)="openHeroDetails()">
+  </div> -->
+  <div *ngIf="thumbnailUrl" [ngClass]="{'fixdimgback': channelDetails.landingPage.target !== PreDefinedLandingTarget[PreDefinedLandingTarget.RCG], 'noimgback': channelDetails.landingPage.target === PreDefinedLandingTarget[PreDefinedLandingTarget.RCG]}">
+    <div *ngIf="(channelDetails.channelType === 'CIRCLE' && isMobileView) || !isMobileView" class="overlaybanner {{channelDetails.channelType}}">
+      <img class="backhero" appLazyLoad [src]="thumbnailUrl"
+        (error)="img.src=appUtilService.getDefaultThumbnail(channelDetails.channelType)" #img>
+    </div>
+    <div [class]="'hero-image' + channelDetails.channelType" [ngClass]="{'recharge-banner':
+      channelDetails.landingPage.target == PreDefinedLandingTarget[PreDefinedLandingTarget.RCG]}">
+      <img appLazyLoad [src]="thumbnailUrl" alt="" (click)="openHeroDetails('manual')"
+        (error)="img1.src=appUtilService.getDefaultThumbnail(channelDetails.channelType)" #img1>
+    </div>
+    <div class="backcolormobile recharge-banner-set" (click)="openHeroDetails('manual')"></div>
+  </div>
+</div>

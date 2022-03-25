@@ -1,0 +1,405 @@
+@import '~assets/scss/theme-fonts.scss';
+
+.ugc-my-upload{
+    min-height: 90vh;
+    /deep/.nav-tabs {
+        border-bottom: 0px;
+        background-color: #413e3e;
+        width: 100%;
+        float: left;
+        li{
+            text-align: center;
+            width: 49.8%;
+            font-size: 21px;
+            font-weight: 500;
+            .nav-item {
+                border: 0px;
+            }
+            .nav-link {
+                color: #757575;
+                border: 0px;
+            }
+            .nav-link:hover {
+                background-color: #413e3e;
+            }
+            .nav-link.active {
+                color: #ffffff;
+                background-color: #413e3e;
+                border-bottom: 4px solid $theme-pink !important
+            }
+            a{
+                padding: 0;
+                font-family: 'Rubik', sans-serif;
+                font-weight: 700;
+                margin-right: -0.4%;
+                .pending-tab, .uploaded-tab{
+                    height: 50px;
+                    line-height: 50px;
+                }
+            }
+        }
+    }
+    .placeholder {
+        align-items: center;
+        text-align: center;
+        .img {
+        height: 600px;
+        width: auto;
+        margin: 0 auto;
+        vertical-align: middle;
+        }
+  }
+  
+}
+
+.ugc-my-upload{
+    h2 {
+        font-size: 20px;
+        color: #ffffff;
+        font-family: 'Rubik', sans-serif;
+        font-weight: 500;
+        margin-bottom: 15px;
+    }
+    .watcho-brand-color-border{
+        width: 100%;
+        float: left;
+        background-image: -webkit-gradient(linear,left top,right top,color-stop(.3,#e94058),color-stop(.6,#f9a53c),color-stop(.75,#6dba8a),color-stop(.85,#224ca3));
+        height: 2px;
+    }
+
+    .rail-data-container{
+        margin: 40px 0;
+        float: left;
+        width: 100%;
+        .card.text-white{
+            float: left;
+            background: transparent;
+            border: none;
+           padding: 0 16px 0 0;
+           margin-bottom: 20px;
+           &:nth-child(4n){
+               padding: 0;
+           }
+        }
+    }
+    .clickable-item{
+        cursor: pointer;
+    }
+    .card-img1 {
+        width: 280px;
+        height: 158px;
+        position: relative;
+        border-radius: 8px;
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+
+        }
+        .description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 0 8px;
+            height: 100%;
+            width: 100%;
+            border-radius: 0 0 8px 8px;
+            background: rgb(0,0,0);
+            background: linear-gradient(0deg, rgba(0,0,0,0.8914916308320203) 0%, rgba(0,0,0,0.8970938717283788) 14%, rgba(255,255,255,0) 74%);
+           .icon-list{
+                position: absolute;
+                left: 8px;
+                bottom: 4px;
+                i{
+                    float: left;
+                    font-size: 20px;
+                    margin-right: 4px;
+                }
+                .review{
+                    float: left;
+                    font-size: 12px;
+                    margin-top: 2px;
+                    color: #ffffff;
+                    font-family: 'Rubik', sans-serif;
+                    font-weight: 500;
+                }
+                &.review-like{
+                    right: 8px;
+                    left: initial;
+                    .review-icon{
+                        span.material-icons{
+                            float: left;
+                            font-size: 20px;
+                            margin-right: 4px;
+                        }
+                        .review-count{
+                            float: left;
+                            font-size: 12px;
+                            margin-top: 2px;
+                            font-family: 'Rubik', sans-serif;
+                            font-weight: 500;
+                        }
+                    }
+                    .like-icon{
+                        margin-left: 10px;
+                        float: left;
+                        span.material-icons{
+                            float: left;
+                            font-size: 20px;
+                            margin-right: 4px;
+                            color: #ea2455;
+                        }
+                        .like-count{
+                            float: left;
+                            font-size: 12px;
+                            margin-top: 2px;
+                            color: #ea2455;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+.pending-description{
+    margin-top: 10px;
+   .content{
+       width: calc(100% - 20px);
+       float: left;
+       
+        span{
+            width: 100%;
+            float: left;
+            color: #ffffff;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 500;
+            &:nth-child(2){
+                color: #737373;
+                font-weight: 500;
+                font-size: 12px;
+                font-family: 'Rubik', sans-serif;
+            }
+        }
+   } 
+   .delete{
+       width: 20px;
+       float: left;
+       color: #696969;
+       cursor: pointer;
+       i{
+           font-size: 20px;
+           &.info-icon{
+            transform: rotate(180deg);
+           }
+       }
+   }
+}
+
+/deep/.modal-dialog.modal-dialog{
+    /deep/.modal-content{
+        background-color: #141414;
+    }
+}
+
+.modal-body{
+    .in-review-icon {
+        text-align: center;
+        color: yellow;
+        height: 80px;
+        display: block;
+        .material-icons{
+            font-size: 80px;
+        }
+    }
+    .rejected-icon{
+        text-align: center;
+        color: red;
+        height: 80px;
+        display: block;
+        .material-icons{
+            font-size: 80px;
+        } 
+    }
+    h3{
+        color: #ffffff;
+        text-align: center;
+        font-family: 'Rubik', sans-serif;
+        font-weight: 700;
+    }
+    div{
+        color: #737373;
+        h5, .h5 {
+            font-size: 18px;
+            font-weight: 400;
+            font-family: 'Rubik', sans-serif;
+            text-align: center;
+            line-height: 25px;
+        }
+    }
+}
+.modal-footer {
+    padding: 15px;
+    border-top: transparent;
+}
+.modal-header {
+    padding: 15px;
+    border-bottom: transparent;
+}
+
+@media(max-width:768px){
+    .ugc-my-upload{
+        h2{
+            text-align: center;
+            font-size: 17px;
+        }
+        .pending-tab, .uploaded-tab{
+            font-size: 14px;
+            height: 40px !important;
+            line-height: 40px !important;
+        }
+        .rail-data-container{
+            margin-top: 10px;
+            .card.text-white {
+                width: 50%;
+                padding:  0 3px;
+                margin-bottom: 5px;
+                .card-img1{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 4px;
+                    img{
+                        border-radius: 4px;
+                    }
+                    .description{
+                        border-radius: 0 0 4px 4px;
+                        .icon-list{
+                            i{
+                                font-size: 16px;
+                            }
+                            .review{
+                                margin-top: 0;
+                            }
+                        } 
+                        .icon-list.review-like{
+                            .like-icon{
+                                .like-count{
+                                    margin-top: 0;
+                                }
+                                span.material-icons{
+                                    font-size: 17px;
+                                }
+                            }
+                            .review-icon{
+                                .review-count{
+                                    margin-top: 0;
+                                }
+                                span.material-icons{
+                                    font-size: 17px;
+                                }                                
+                            }
+                        }
+                    } 
+                }
+                &:nth-child(4n){
+                    padding: 0 3px;
+                }
+                .pending-description{
+                    margin-top: 5px;
+                    .delete{
+                        i{
+                            font-size: 16px;
+                        }
+                    }
+                    .content{
+                        span{
+                            font-size: 12px;
+                            &:nth-child(2) {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .placeholder {
+            .img {
+              height: 100%;
+              width: 100%;
+            }
+        }
+    }  
+}
+
+@media (min-width:769px) and (max-width:992px){
+    .ugc-my-upload{
+        h2{
+            text-align: center;
+            font-size: 17px;
+        }
+        .pending-tab, .uploaded-tab{
+            font-size: 16px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .rail-data-container{
+            margin: 20px 0;
+            .card.text-white {
+                width: 33%;
+                padding:  0 8px;
+                .card-img1{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 4px;
+                    img{
+                        border-radius: 4px;
+                    }
+                    .description{
+                        border-radius: 0 0 4px 4px;
+                        .icon-list{
+                            i{
+                                font-size: 16px;
+                            }
+                        } 
+                    } 
+                }
+                &:nth-child(4n){
+                    padding: 0 8px;
+                }
+            }
+        }
+    }  
+}
+
+@media (min-width:993px) and (max-width:1023px){
+    .ugc-my-upload{
+        .rail-data-container{
+            margin: 25px 0;
+            .card.text-white {
+                width: 33%;
+                padding:  0 8px;
+                .card-img1{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 4px;
+                    img{
+                        border-radius: 4px;
+                    }
+                    .description{
+                        border-radius: 0 0 4px 4px;
+                        .icon-list{
+                            i{
+                                font-size: 16px;
+                            }
+                        } 
+                    } 
+                }
+                &:nth-child(4n){
+                    padding: 0 8px;
+                }
+            }
+        }
+    }  
+}
+

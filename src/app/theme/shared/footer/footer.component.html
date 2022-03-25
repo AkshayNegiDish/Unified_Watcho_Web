@@ -1,0 +1,119 @@
+<span *appShellNoRender>
+  <div class="container p-0" *ngIf="!appUtilService.checkIfPWA()">
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 app-footer padding0">
+      <div class="titlepadding0">
+        <div class="links">
+
+          <div class="items">
+            <a [href]="aboutUs" target="_blank">About Us</a>
+          </div>
+
+          <div class="items">
+            <a [href]="termsOfUse" target="_blank" (click)="clickTermsAndUseMoengage()">Terms of use</a>
+          </div>
+
+          <div class="items">
+            <a [href]="privacyPolicy" target="_blank">Privacy policy</a>
+          </div>
+
+          <div class="items">
+            <!-- <a [href]="fAQ" target="_blank">FAQ</a> -->
+            <a routerLink="/help/faq" target="_blank">FAQ</a>
+          </div>
+
+          <div class="items">
+            <a href="https://d1f8xt8ufwfd45.cloudfront.net/static-pages/swag-contest.html" target="_blank">SWAG T&C</a>
+          </div>
+
+          <div class="items">
+            <a [href]="help" target="_blank">Help</a>
+          </div>
+
+          <div class="items">
+            <a routerLink="/registergrievance" target="_blank">Register Grievance</a>
+          </div>
+
+          <!-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 items">
+            <a href="#"  target="_blank">FAQ</a>
+          </div> -->
+
+        </div>
+
+        <div class="info">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding0">
+            <span class="title-footer">
+              &copy;2019 Watcho. All Rights Reserved. www.watcho.com or abbreviated Watcho is an online video streaming
+              service where visitors can access a variety of films, web series, Live TV serials, user generated content,
+              etc., for which viewing rights are given by content copyright holders. Watcho and all related channel and
+              programming logos are service marks of, and all related programming audio-visuals and elements are the
+              property of Dish Infra Services Private Limited.
+            </span>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <span class="rights"> </span>
+        </div>
+      </div>
+
+
+      <div class="apps">
+        <div class="center-icon">
+          <h5>Connect with us</h5>
+          <a itemprop="sameAs" class="fb-icon" href="https://www.facebook.com/pg/LetsWatcho/about" target="_blank"
+            (click)="gtmtagOnSocialIcon(1)">
+            <i class="fa fa-facebook"></i>
+          </a>
+          <a itemprop="sameAs" class="twitter-icon" href="https://www.instagram.com/letswatcho" target="_blank"
+            (click)="gtmtagOnSocialIcon(2)">
+            <i class="fa fa-instagram"></i>
+          </a>
+          <a itemprop="sameAs" class="instagram-icon" href="https://twitter.com/LetsWatcho" target="_blank"
+            (click)="gtmtagOnSocialIcon(3)">
+            <i class="fa fa-twitter"></i>
+          </a>
+          <a itemprop="sameAs" class="instagram-icon" href="https://www.youtube.com/channel/UCs_VbCkjjq5x5yGFgY6tAPg"
+            target="_blank" (click)="gtmtagOnSocialIcon(4)">
+            <i class="fa fa-youtube-play" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="footerbackground">
+          <h5>Download Watcho App</h5>
+          <!-- <a class="appstore" href="https://testflight.apple.com/join/pqkvOX12" target="_blank">
+            </a>
+            <a class="googleplay" href="https://play.google.com/store/apps/details?id=com.watcho" target="_blank">
+            </a> -->
+
+
+          <a class="appStoreImg" href="https://itunes.apple.com/in/app/watcho-original-web-shows/id1440733653?mt=8"
+            style="display:inline-block;overflow:hidden no-repeat;width:135px;height:40px;">
+            <img alt="Get it on App Store" appLazyLoad [src]="appStoreImage" />
+          </a>
+          <a class="googlePlayImg" href="https://play.google.com/store/apps/details?id=com.watcho"
+            style="width:160px;height:40px;display: inline-block;">
+            <img alt="Get it on Google Play" appLazyLoad [src]="playStoreImage" />
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class="down-top" title="Go to top">
+        <a id="back2Top" (click)="goToTop()">
+          <i class="material-icons donngo">keyboard_arrow_up</i>
+        </a>
+      </div>
+      <!--down-top-->
+
+    </div>
+
+  </div>
+
+  <div class="noFooter">
+
+  </div>
+
+</span>
+<span *appShellRender>
+</span>

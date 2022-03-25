@@ -1,0 +1,117 @@
+.base-page {
+  min-height: auto;
+  overflow: hidden;
+  margin-top: 75px;
+  /deep/.mob-menu{
+      .dropdown{
+   /deep/.submenu{
+       float: left;
+       width: 100%;
+        li{
+            float: left;
+            &:first-child{
+                display: initial;
+            }
+            &:last-child{
+                border-bottom: 0;
+                padding-bottom: 0;
+            }
+            
+        }
+    }
+      }
+  }
+  li{
+      width: 100%;
+      border-bottom: 1px solid #252323;
+      padding-bottom: 15px;
+    &:first-child{
+        display: flex;
+        align-items: center;
+    }
+ 
+      .user-image {
+            float: left;
+            height: 110px;
+            img{
+                height: 100%;
+                border-radius: 50%;
+            }
+        }
+        .user-name{
+            font-size: 20px;
+            color: #cccccc;
+            margin-left: 15px;
+        }
+        .signin-button{
+                float: left;
+                margin-left: 20px;
+                button{
+                    height: 50px;
+                    border-radius: 5px;
+                    width: 40vw;
+                    font-size: 17px;
+                    background-color: #214ba3;
+                }
+            }
+        a.dropdown-item {
+                padding-top: 15px;
+                font-size: 16px;
+                color: #cccccc;
+                span{
+                    margin-left: 10px;
+                    margin-bottom: 5px;
+                    float: left;
+                }
+                i{
+                    font-size: 24px;
+                    float: left;
+                }
+                .arrow-toogle{
+                   font-size: 16px;
+                   margin-left: 5px; 
+                   i{
+                        float: right;
+                    }
+                }
+                &:focus{
+                background-color: transparent !important;
+            }
+
+            }
+            .dropdown-item:hover {
+                background-color: transparent !important;
+            }
+        .submenu{
+            li{
+            margin-left: 8%;
+            }
+    }
+  }
+}
+
+.Recharge-mobile-icon{
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    float: left;
+    width: 25px;
+    height: 25px;
+        &:before {
+            background: url(https://d1f8xt8ufwfd45.cloudfront.net/web/statics/web-sprite/sprite_v2.png) no-repeat -109px -854px;
+            width: 37px;
+            height: 58px;
+            position: absolute;
+            left: 7px;
+            top: 3px;
+            -moz-transform: scale(0.28);
+            -moz-transform-origin: 0 0;
+            -webkit-transform: scale(0.28);
+            -ms-transform: scale(0.28);
+            transform: scale(0.28);
+            -webkit-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+            transform-origin: 0 0;
+            content: '';
+    }
+}

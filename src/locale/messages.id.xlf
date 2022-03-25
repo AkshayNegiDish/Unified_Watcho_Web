@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="id" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="UGCIdentifierText" datatype="html">
+        <source>UGC</source>
+        <target>Konten Pengguna</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TVShowsIdentifierText" datatype="html">
+        <source>TV Shows</source>
+        <target>Acara TV</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TrendingVideosIdentifierText" datatype="html">
+        <source>Trending Videos</source>
+        <target>Tren Video</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="HomeIdentifierText" datatype="html">
+        <source>Home</source>
+        <target>Rumah</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="OriginalIdentifierText" datatype="html">
+        <source>Original</source>
+        <target>Asli</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="PremiumIdentifierText" datatype="html">
+        <source>Premium</source>
+        <target>Premi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SinetronIdentifierText" datatype="html">
+        <source>Sinetron</source>
+        <target>Sinetron</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SignInIdentifierText" datatype="html">
+        <source>Sign In</source>
+        <target>Masuk</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="FollowingIdentifierText" datatype="html">
+        <source>Following</source>
+        <target>Berikut</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="MyWatchlistIdentifierText" datatype="html">
+        <source>My Watchlist</source>
+        <target>Daftar Pantau Saya</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="MyDownloadsIdentifierText" datatype="html">
+        <source>My Downloads</source>
+        <target>Unduhan Saya</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="MyUploadsIdentifierText" datatype="html">
+        <source>My Uploads</source>
+        <target>Upload Saya</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="SettingsIdentifierText" datatype="html">
+        <source>Settings</source>
+        <target>Pengaturan</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="MembershipPlansIdentifierText" datatype="html">
+        <source>Membership and Plans</source>
+        <target>Keanggotaan dan Rencana</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="HelpIdentifierText" datatype="html">
+        <source>Help</source>
+        <target>Membantu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="TermsAndConditionsIdentifierText" datatype="html">
+        <source>Terms and Conditions</source>
+        <target>Syarat dan Ketentuan</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="LogoutIdentifierText" datatype="html">
+        <source>Logout</source>
+        <target>Keluar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/theme/shared/header/header.component.html</context>
+          <context context-type="linenumber">148</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

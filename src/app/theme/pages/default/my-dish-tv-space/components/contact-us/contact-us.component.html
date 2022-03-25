@@ -1,0 +1,79 @@
+<div [ngClass] = "platform?platform:''">
+<div *ngIf="userCategory == '1'" class="container">
+  <div class="ticket-height row">
+    <div class="help-section">
+      <div *ngIf="(complaintTypeList && complaintTypeList.length);else emptyComplaints" class="anchor">
+        <button class="btn complaints" *ngFor="let type of complaintTypeList; let i = index" (click)="reasonClicked($event,i)">{{type.ComplaintType}}</button>
+      </div>
+      <ng-template #emptyComplaints>
+        <div class="anchor">
+          <button class="btn complaints" disabled>--</button>
+          <button class="btn complaints" disabled>--</button>
+          <button class="btn complaints" disabled>--</button>
+          <button class="btn complaints" disabled>--</button>
+          <button class="btn complaints" disabled>--</button>
+          <button class="btn complaints" disabled>--</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div>
+    <textarea (blur)="onChange($event)" *ngIf="showtextArea" class="form-control" rows="4" id="comment" placeholder="Type here"></textarea>
+  </div>
+  <div *ngIf="showtextArea" class="row">
+    <div class="submitbtn">
+      <p class="btn-text" (click)="onSumbit()">Submit</p>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-4 contact-row">
+      <h4 class="contect-info">For more you can call Us (Charges Apply)</h4>
+      <h5 class="contect-info1">+91 9501795017</h5>
+    </div>
+    <div class="col-md-4 contact-row">
+      <h4 class="contect-info">You can email us at</h4>
+      <h5 class="contect-info1">customercare@dishtv.in</h5>
+    </div>
+    <div class="col-md-4 contact-row">
+      <h4 class="contect-info">Our website URL</h4>
+      <h5 ><a class="contect-info1" href="https://www.dishtv.in/">www.dishtv.in</a></h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 contact-row">
+      <h4 class="contect-info">For missed call service click the button below</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="btnacive">
+      <a class="btn-text" href="https://www.dishtv.in/Pages/DIY/missed-call.aspx"> <p class="btn-text" >Missed Call service</p></a>
+    </div>
+  </div>
+</div>
+<div *ngIf="userCategory == '2'" class="container">
+  <div class="contectus-section">
+    <div class="row justify-content-md-left">
+      <div class="card w-100">
+        <div class="card-body">
+          <h5 class="card-title">For details visit our website</h5>
+          <a class="card-text" href="https://www.d2h.com/">www.d2h.com</a>
+          <!-- <p class="card-text"><a>www.d2h.com</a></p> -->
+        </div>
+      </div>
+      <div class="card w-100">
+        <div class="card-body">
+          <h5 class="card-title">email your queries to</h5>
+          <p class="card-text">Customercare@d2h.com</p>
+        </div>
+      </div>
+      <div class="card w-100">
+        <div class="card-body">
+          <h5 class="card-title">call us at</h5>
+          <p class="card-text">9115691156</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+</div>

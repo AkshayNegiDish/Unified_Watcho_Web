@@ -1,0 +1,74 @@
+<div class="base-page container">
+    <ul class="mob-menu list-inline">
+        <li>
+            <div class="user-image">
+                <img [src]="userImage"
+                    onerror="this.src='https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/user.png'" alt="">
+            </div>
+            <div class="signin-button" *ngIf="!showUserName">
+                <button type="button" class="btn btn-blue" (click)="openLoginModal()"> Log In / Sign Up </button>
+            </div>
+            <div class="user-name " *ngIf="showUserName">
+                <span>{{userName | trim: 15}}</span>
+            </div>
+        </li>
+        <li>
+            <a class="dropdown-item" routerLink="/ugc-videos"><i class="la la-video-camera"></i><span>Talentbaaz</span></a>
+        </li>
+        <li *ngIf="showContest">
+            <a class="dropdown-item" routerLink="/ugc/my-contest"><i class="la la-trophy"></i><span>Contest</span></a>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-item " style="cursor: pointer" (click)="toogleFollowList()"
+                (click)="clickFollowingMoEngageEvent()"><i class="la la-user"></i><span
+                    i18n="@@SettingsIdentifierText">Following</span><i class="arrow-toogle fa"
+                    [ngClass]="{'fa-chevron-down': !followToogleFlag, 'fa-chevron-up': followToogleFlag}"></i></a>
+            <ul class="submenu follow follow-submenu list-inline" style="display: none">
+                <li>
+                    <a class="dropdown-item" (click)="openCreatorFollowingPage()">
+                        <i class="la la-user"></i>
+                        <span>Creators</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" (click)="openFollowedSeries()">
+                        <i class="la la-mobile"></i><span>Series</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a class="dropdown-item" (click)="openMyWatchlist()" style="cursor: pointer"><i
+                    class="la la-binoculars"></i><span i18n="@@MyWatchlistIdentifierText">My
+                    Watchlist</span></a>
+        </li>
+        <li>
+            <a class="dropdown-item" style="cursor: pointer" (click)="openMyUploads()"><i class="la la-upload"></i>
+                <span i18n="@@MyUploadsIdentifierText">My
+                    Uploads</span></a>
+        </li>
+        <li>
+            <a class="dropdown-item" style="color: #cccccc" (click)="gotoRechargeClickEvent()">
+                <div class="Recharge-mobile-icon"></div><span>Recharge</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" style="color: #cccccc" routerLink="/user/membershipandplans"><i
+                    class="la la-certificate"></i><span>Membership and Plans</span></a>
+        </li>
+        <li>
+            <a class="dropdown-item" (click)="openSettings()"><i class="la la-gear"></i><span
+                    i18n="@@SettingsIdentifierText">Account
+                    & Settings</span></a>
+        </li>
+
+        <li>
+            <a class="dropdown-item" routerLink="/privacyPolicy"><i class="la la-shield"></i><span>Privacy
+                    Policy</span></a>
+        </li>
+        <li>
+            <a class="dropdown-item" style="color: #cccccc" routerLink="/termsAndConditions"><i
+                    class="la la-file-text"></i><span>Terms & Condition</span></a>
+        </li>
+    </ul>
+</div>

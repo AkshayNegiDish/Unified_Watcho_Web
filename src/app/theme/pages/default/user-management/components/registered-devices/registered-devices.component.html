@@ -1,0 +1,19 @@
+<ngx-loading [show]="loading" class="col-lg-offset-5" *ngIf="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+<ul *ngIf="deviceList">
+
+  <li *ngFor="let device of deviceList.objects">
+    <span class="devices-icon">
+      <i *ngIf="device.brandId === 2" class="material-icons">android</i>
+      <i *ngIf="device.brandId === 1" class="material-icons">phone_android</i>
+      <i *ngIf="device.brandId === 3" class="material-icons"> device_unknown</i>
+      <i *ngIf="device.brandId === 22" class="material-icons">computer</i>
+      <i *ngIf="device.brandId === 14" class="material-icons">tv</i>
+      <i *ngIf="device.brandId === 105" class="material-icons">live_tv</i>
+    </span>
+    {{device.name}}
+    <span  class="pull-right" style="cursor: pointer" title="Remove this device"
+      *ngIf="!showDeleteIcon(device.udid, device.brandId)" (click)="deleteDevice(device.udid)">
+      <i class="material-icons">delete_forever</i>
+    </span>
+  </li>
+</ul>

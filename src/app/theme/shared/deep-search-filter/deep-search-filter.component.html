@@ -1,0 +1,81 @@
+<div [ngClass]="{ 'pwa' : isPwa, 'filter-full-cover' : true}" *ngIf="filter || sortable">
+
+  <div (click)="toggleFilterBox('filter')" class="filter-icon">
+    <i class="material-icons">
+      filter_list
+    </i>
+    <div class="Filter-section">
+    </div>
+  </div>
+  <!--filter-icon-->
+
+  <div style="display : none" class="fullopen-filter">
+    <div *ngIf="filter">
+      <div class="title">
+        <h2>
+          Genres
+        </h2>
+      </div>
+      <hr>
+      <ul *ngIf="genreList">
+
+        <ng-container *ngFor="let genre of genreList.objects">
+          <li (click)="selectGenre(genre.id, genre.name)">
+            <span [id]="genre.name.replace(' ', '_')">
+              {{genre.name}}
+            </span>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div *ngIf="sortable">
+      <div class="title">
+        <h2>Sort</h2>
+      </div>
+      <hr>
+      <div class="sort">
+        <div class="radio">
+          <!-- <input type="radio" name="optradio" checked><div  class="check"></div><label>Option 1</label> -->
+          <label class="switch">
+            <div id="f-option-Auto1" checked name="selector"></div>
+            <label class="atoz" (click)="radioChanged('AtoZ')" for="f-option-Auto1"> A - Z</label>
+            <div class="check"></div>
+          </label>
+        </div>
+        <div class="radio">
+          <!-- <input type="radio" name="optradio" checked>
+            <div class="check"></div><label>Option 1</label> -->
+          <label class="switch">
+            <div id="f-option-Auto2" name="selector"> </div>
+            <label class="ztoa" (click)="radioChanged('ZtoA')" for="f-option-Auto2">Z - A</label>
+            <div class="check"></div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-buttons">
+      <button (click)="submit()" class="btn-pin apply-filter"><i class="material-icons">
+          check_circle_outline
+        </i>Apply Filter</button>
+      <button (click)="clearAll()" class="btn-pin"><i class="material-icons clear-icon">
+          remove
+        </i>Reset</button>
+    </div>
+
+  </div>
+  <div [hidden]="!hidden" class="selected-genres">
+    <ul *ngIf="submittedGenres">
+      <ng-container *ngFor="let genre of submittedGenres">
+        <li class='active' (click)="removeGenre(genre)">
+          <span>
+            {{genre}}
+          </span>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <!--fullopen-filter-->
+
+</div>
+<!--filter-full-cover-->

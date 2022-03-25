@@ -1,0 +1,195 @@
+<div class="recharge-plan">
+  <div class="container">
+    <div class="row">
+      <!-- <div class="steps bread-crumbs">
+        <div class="col-lg-12 col-xs-12 col-md-12 recharge-padding">
+          <div [ngClass]="{'bread-crumbs-wrapper' : isDishUser, 'bread-crumbs-wrapper-d2h' : isD2hUser}" class="">
+            <div class="line"></div>
+            <div class="line-active" style="width: 0%;"></div>
+            <ul>
+              <li class="active">
+                <div class="dot">
+                  <span>Recharge</span>
+                </div>
+              </li>
+              <li class="">
+                <div class="dot">
+                  <span>Confirmation</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> -->
+
+      <div [ngClass]="{'recharge-from-d2h': isD2hUser, 'recharge-from': isDishUser}" class="" *ngIf="!loading">
+        <div class="col-lg-12 col-xs-12 col-md-12 onlyfor-mobile-view">
+          <div class="logo-d2h" *ngIf="isD2hUser || isMobileView">
+            <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/statics/D2H-logo.png">
+          </div>
+          <div class="logo-dish" *ngIf="isDishUser || isMobileView">
+            <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/statics/dish-logo.png">
+          </div>
+          <div class="title-rechages">
+            <div class="user-account-name">
+              Dear <span>{{userSmsDetails.Name}}</span>,
+            </div>
+            <h3 class="dish-title" *ngIf="isDishUser">Recharge for VC number</h3>
+            <h3 class="d2h-title" *ngIf="isD2hUser">Recharge your d2h account / Customer Id</h3>
+          </div>
+          <div class="vc-number" *ngIf="isDishUser">
+            <select class="opction-number" (change)="dishd2hSubscriberIDChangeEvent($event)"
+              [value]="selectedSubscriberDetail.Dishd2hSubscriberID">
+              <option class="octnnumber" *ngFor="let detail of subscriberDetailsList; let index = index"
+                [value]="detail.Dishd2hSubscriberID">
+                <label class="switch">
+                  <input type="radio" [id]="f-option-Auto" name="selector">
+                  <label for="f-option-Auto"></label>
+                  <div class="check"></div>
+                </label>
+                {{detail.Dishd2hSubscriberID}}
+              </option>
+            </select>
+          </div>
+
+          <div class="vc-number" *ngIf="isD2hUser">
+            <input class="opction-d2h" type="text" placeholder="" readonly="readonly"
+              [(ngModel)]="selectedSubscriberDetail.Dishd2hSubscriberID" maxlength="20"
+              [ngModelOptions]="{standalone: true}">
+          </div>
+
+          <div class="amounts-box">
+            <div class="cover-amounts">
+              <div class="rupe-icon"></div>
+              <input type="number" maxlength="9" pattern="[0-9]" placeholder="" id="rechargeAmount"
+                [(ngModel)]="rechargeAmount" (keydown)="rechargeAmountKeyDownEvent($event)"
+                [ngModelOptions]="{standalone: true}" (ngModelChange)="rechargeAmountChangeEvent($event)">
+            </div>
+            <span class="text-amounts" *ngIf="isDishUser">Your monthly recharge amount. Tap to edit.</span>
+            <span class="text-amounts-d2h" *ngIf="isD2hUser">Your monthly recharge amount,<br> Minimum recharge amount
+              should be ₹{{selectedSubscriberDetail.MinimumRechargeAmount}}.</span>
+          </div>
+          <div class="payamounts">
+            <button class="pay-btn" *ngIf="isDishUser" (click)="proceedToPayClickEvent()">Recharge Now</button>
+            <button class="pay-btn-d2h" *ngIf="isD2hUser" (click)="rechargeNowClickEvent()">Recharge Now</button>
+            <div class="d2h-Recharge-text" *ngIf="isD2hUser">It is recommended that your set top box is <br>Switched ON
+              during the transaction.</div>
+          </div>
+          <div class="offeramounts">
+            <button class="offer-btn" *ngIf="isDishUser"
+              (click)="getBestOfferForSubscriber(selectedSubscriberDetail.Dishd2hSubscriberID, selectedSubscriberDetail.SubscriberCategory)">OFFERS</button>
+            <button class="offer-btn-d2h" *ngIf="isD2hUser"
+              (click)="getBestOfferForSubscriber(selectedSubscriberDetail.Dishd2hSubscriberID, selectedSubscriberDetail.SubscriberCategory)">Best
+              offers for You</button>
+          </div>
+          <div class="rechage-amounts-box">
+            <ul *ngIf="offersList.length > 0">
+              <li class="amounts-section" *ngFor="let offer of offersList; let i = index"
+                id="offer-{{offer.OfferID}}-{{offer.offerIndex}}" (click)="selectOfferEvent(offer, $event)">
+                <div class="select-prices">
+                  <div class="prices-icon select-offer">
+                    <i class="material-icons select-offer">check</i>
+                  </div>
+                  <div class="prices-box-left">
+                    <h3 class="select-offer">{{offer.OfferName | slice:0:25}}</h3>
+                    <p>{{offer.OfferDiscription | slice:0:110}}<a class="onetwo offer-info"
+                        (click)="offerMoreClickEvent(offer, $event)">more...</a></p>
+                  </div>
+                  <div class="prices-box-right">
+                    <div class="price-box-icon"></div>
+                    <span>{{offer.OfferAmount}}</span>
+                    <div class="mobile-icon offer-info" (click)="offerMoreClickEvent(offer)"></div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <ul *ngIf="noOffersFound">
+              <li class="amounts-section no-offer-found">
+                <img class="no-offer-img"
+                  src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/no-result.png">
+                <span class="text">
+                  We are unable to fetch offers for you right now. Please try again.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div [ngClass]="{'payment-annually-d2h': isD2hUser, 'payment-annually': isDishUser}" class="">
+        <div class="annually-type">
+          <h3>Annually</h3>
+          <p>You're paying <span>1299</span> for this transaction Annually</p>
+        </div>
+        <div class="payment-mode">
+          <ul>
+            <li>
+              <label class="switch">
+                <input type="radio" id="f-option-Auto" name="selector">
+                <label for="f-option-Auto"></label>
+                <div class="check"></div>
+              </label>
+              <div class="seleted-paytype" *ngIf="isDishUser">Dish wallet</div>
+              <div class="seleted-paytype-d2h" *ngIf="isD2hUser">d2h wallet</div>
+            </li>
+            <li>
+              <label class="switch">
+                <input type="radio" id="f-option-Auto" name="selector">
+                <label for="f-option-Auto"></label>
+                <div class="check"></div>
+              </label>
+              <div class="seleted-paytype" *ngIf="isDishUser">Credit Card</div>
+              <div class="seleted-paytype-d2h" *ngIf="isD2hUser">Credit Card</div>
+            </li>
+            <li>
+              <label class="switch">
+                <input type="radio" id="f-option-Auto" name="selector">
+                <label for="f-option-Auto"></label>
+                <div class="check"></div>
+              </label>
+              <div class="seleted-paytype" *ngIf="isDishUser">Debit Card</div>
+              <div class="seleted-paytype-d2h" *ngIf="isD2hUser">Debit Card</div>
+            </li>
+            <li>
+              <label class="switch">
+                <input type="radio" id="f-option-Auto" name="selector">
+                <label for="f-option-Auto"></label>
+                <div class="check"></div>
+              </label>
+              <div class="seleted-paytype" *ngIf="isDishUser">Net Banking</div>
+              <div class="seleted-paytype-d2h" *ngIf="isD2hUser">Net Banking</div>
+            </li>
+            <li>
+              <label class="switch">
+                <input type="radio" id="f-option-Auto" name="selector">
+                <label for="f-option-Auto"></label>
+                <div class="check"></div>
+              </label>
+              <div class="seleted-paytype" *ngIf="isDishUser">UPI</div>
+              <div class="seleted-paytype-d2h" *ngIf="isD2hUser">UPI</div>
+            </li>
+            <li>
+              <label class="switch">
+                <input type="radio" id="f-option-Auto" name="selector">
+                <label for="f-option-Auto"></label>
+                <div class="check"></div>
+              </label>
+              <div class="seleted-paytype" *ngIf="isDishUser">Wallet</div>
+              <div class="seleted-paytype-d2h" *ngIf="isD2hUser">Wallet</div>
+            </li>
+          </ul>
+        </div>
+        <div class="payamounts">
+          <button class="pay-btn">Proceed to pay</button>
+        </div>
+      </div>
+
+    </div>
+    <div>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+    </div>
+  </div>
+  <!--container-->
+</div>
+<!--recharge-plan-->
+<app-back-button></app-back-button>

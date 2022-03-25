@@ -1,0 +1,227 @@
+
+@import '~assets/scss/theme-fonts.scss';
+
+
+.base-page {
+    min-height: 100vh;
+}
+
+.base-page .jumbotron {
+    padding: 0px;
+    max-height: 362px;
+}
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+// for main carousel
+
+.jumbotron .carousel .carousel-item {
+    max-height: 362px;
+    border-radius: 10px;
+}
+
+.jumbotron .carousel .carousel-indicators {
+    width: inherit;
+}
+
+.jumbotron .carousel {
+    .carousel-control-prev, .carousel-control-next {
+        height: 26%;
+        top: 33%;
+        width: 86px;
+    }
+}
+
+
+#main-carousel {
+    .carousel-control-prev, .carousel-control-next {
+        visibility: hidden;
+    }
+}
+
+#main-carousel:hover {
+    .carousel-control-prev, .carousel-control-next {
+        visibility: visible;
+    }
+}
+
+
+// for rails
+.base-page .rails-container {
+    min-height: 580px;
+}
+
+.rail-info-container {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.rail-data-container {
+    min-height: 150px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.railControl.left {
+    position: absolute;
+    left: 0px;
+}
+
+.railControl.right {
+    position: absolute;
+    right: 0px;
+}
+
+.railControl:focus {
+    outline: none;
+}
+
+.rail-info-container{
+    .rail-title{
+        font-size: 15px;
+        font-weight: 400;
+        // font-family: 'HelveticaNeueBold';
+        margin: 0px 0px 0px 0px;
+        padding-left: 15px;
+        color:$fonts-grey-color;
+        cursor: pointer;
+    }
+    :hover{
+        color: $netflix-chnaget-color;
+    }
+}
+.rail-data-container{
+    // margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.rail-data-container:hover {
+    /deep/.slick-prev, /deep/.slick-next {
+        visibility: visible;
+    }
+
+    /deep/.slick-disabled {
+        visibility: hidden;
+    }
+}
+
+/deep/.slick-slide:focus {
+    outline: none;
+}
+
+/deep/.slick-prev, /deep/.slick-next {
+    visibility: hidden;
+    height: 44px;
+    width: auto;
+    z-index: 2;
+}
+
+/deep/.slick-prev {
+    left:0;
+}
+
+/deep/.slick-next {
+    right:0;
+}
+
+/deep/.slick-prev:hover:before {
+    content: "\f053";
+    color: $rail-controls-color;
+    font-size: 30px;
+    font: normal normal normal 24px/1 FontAwesome;
+    background: rgba(0,0,0,.5);
+    padding: 10px 8px 10px 8px;
+}
+
+/deep/.slick-prev:before {
+    content: "\f053";
+    color: $rail-controls-color;
+    font-size: 30px;
+    font: normal normal normal 24px/1 FontAwesome;
+    background: rgba(0,0,0,.5);
+    padding: 10px 8px 10px 8px;
+  }
+  
+/deep/.slick-next:before {
+    content: "\f054";
+    color: $rail-controls-color;
+    font-size: 30px;
+    font: normal normal normal 24px/1 FontAwesome;
+    background: rgba(0,0,0,.5);
+    padding: 10px 8px 10px 8px;
+  }
+/deep/.owl-carousel {
+    .owl-stage-outer{
+        height: 200px !important;  
+    }
+}
+
+.custom-carousel{
+    background: #000 !important;
+}
+
+
+
+.privacy{
+    background: #efefef;
+    padding:30px 40px;
+    h3{
+        margin:auto;
+        font-size:22px;
+        text-transform:none;
+        font-weight:500;
+        margin: 0 0 40px 0;
+        }
+    p{
+    margin:auto;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 300;  
+    line-height: 18px; 
+    }
+    h4{
+        margin:auto;
+        margin-top:10px;
+        margin-bottom:15px;    
+    }
+    ul {
+        padding: 0; 
+        margin-bottom: 20px; 
+        li{
+         font-size: 14px;
+        font-weight: 300;  
+        line-height: 20px; 
+        padding: 0;
+        }
+    } 
+    .notes.notes.notes{
+        font-style:italic;
+        font-size: 13px;
+        display: block;
+        margin:0 0;
+    }   
+}
+
+
+@media only screen and (max-width:768px) {
+
+    #main-carousel {
+        .carousel-control-prev, .carousel-control-next {
+            visibility: visible;
+            width: 35px;
+            .carousel-control-next-icon,.carousel-control-prev-icon{
+                padding: 12px;
+              }
+        }
+    }
+
+  }
+
+@media (min-width: 768px) {
+    .rail-data-container{
+        margin-bottom: 10px;
+    }
+}

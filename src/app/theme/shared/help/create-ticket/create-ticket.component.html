@@ -1,0 +1,56 @@
+<div class="container create-ticket">
+  <h2>Create Ticket</h2>
+  <div class="ticketForm">
+    <form [formGroup]="form" novalidate (submit)="submit()" #myform="ngForm">
+      <div class="form-group row">
+        <input type="text" class="form-control" formControlName="email" placeholder="Email" required
+          pattern="[a-zA-Z0-9!#$%&'*+/=?^_`{|}~\-`']+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~\-`']+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?">
+          <p class="alert alert-danger" *ngIf="(form.get('email').hasError('required') || form.get('email').hasError('pattern')) && myform.submitted">Please enter a valid Email ID</p>
+      </div>
+       <div class="form-group row">
+          <input type="text" class="form-control" formControlName="userName" placeholder="User Name" required>
+          <p class="alert alert-danger" *ngIf="form.get('userName').hasError('required') && myform.submitted">Please enter user name</p>
+      </div>
+     <div class="form-group row">
+          <input type="text" class="form-control" formControlName="subject" placeholder="Title" required>
+          <p class="alert alert-danger" *ngIf="form.get('subject').hasError('required') && myform.submitted">Please enter a Title</p>
+      </div>
+      <div class="form-group row">
+        <label class="calltheCategory" for="calltheCategory">Call Category&ensp;</label>
+        <select class="form-controls" formControlName="callCategories" id="calltheCategory">
+          <option selected value="">Select the call category</option>
+          <option *ngFor="let callCategory of callCategories">{{ callCategory }}</option>
+        </select>
+        <p class="alert alert-danger" *ngIf="form.get('callCategories').hasError('required') && myform.submitted">Please select a Call Category</p>
+      </div>
+      <div class="form-group row">
+          <textarea rows="4" class="form-control" formControlName="description" placeholder="Description" required></textarea>
+          <p class="alert alert-danger" *ngIf="form.get('description').hasError('required') && myform.submitted">Please enter a Description</p>
+      </div>
+      <div class="form-group row">
+          <label class="type" for="type">Type</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="feedback" [(ngModel)]="isFeedbackChecked" (change)="getCheckboxValue($event)" [ngModelOptions]="{standalone: true}" id="formTypeFeedback" value="feedback">
+                <label class="form-check-label" for="formTypeFeedback">Feedback</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="complaint" [(ngModel)]="isComplaintChecked" (change)="getCheckboxValue($event)" [ngModelOptions]="{standalone: true}" id="formTypeComplaint" value="complaint">
+                <label class="form-check-label" for="formTypeComplaint">Complaint</label>
+              </div>
+        </div>
+      <div class="form-group row image-upload">
+          <label for="uploads">Add Attachment</label>
+          <label for="userImg">
+            <img class="defaultImg" onerror="this.src='https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/square.png'"
+            [src]="userImage" alt="">
+          </label>
+          <input type="file" accept="image/jpeg" hidden (change)="onSelectFile($event)" formControlName="uploads" id="userImg">
+        </div>
+      <div class="form-group row">
+          <button type="submit" class="btn">Submit Ticket</button>
+      </div>
+    </form>
+  </div>
+  <ngx-loading [show]="loading" class="col-lg-offset-5" *ngIf="loading" [config]="{ backdropBorderRadius: '0px' }">
+    </ngx-loading>
+</div>

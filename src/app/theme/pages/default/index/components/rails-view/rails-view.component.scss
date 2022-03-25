@@ -1,0 +1,87 @@
+
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/bootstrap-sass/_variables.scss';
+@import '~assets/scss/theme-constants.scss';
+
+.base-page {
+  min-height: auto;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.adsContainer{
+  margin-bottom: 30px;
+}
+
+
+
+@media (min-width:320px) and (max-width:480px) {
+  /********start********/
+.base-page {
+    min-height: auto;
+    margin-top: 0;
+}    
+       
+.adsContainer{
+  margin-bottom: 10px;
+}
+.no-result{
+  img{
+    width: 70% !important;
+  }
+  div{
+    width: 70% !important;
+  }
+}
+
+/********end********/
+}
+@media (min-width:481px) and (max-width:768px) {
+/********start********/
+.base-page {
+  min-height: auto;
+  margin-top: 0;
+} 
+.adsContainer{
+  margin-bottom: 10px;
+}
+.no-result{
+  img{
+    width: 50% !important;
+  }
+  div{
+    width: 50% !important;
+  }
+}
+
+/********end********/
+}
+
+.no-result{
+  height: 85vh;
+  img{
+    max-width: 100%;
+    height: auto;
+    width: 300px;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    display: inline-block;
+    transform: translate(-50%, -50%);
+    top: 50%;
+  }
+  div{
+    max-width: 100%;
+    height: auto;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    display: inline-block;
+    transform: translate(-50%, -50%);
+    top: 70%;
+    text-align: center;
+    font-size: 24px;
+  }
+}
+

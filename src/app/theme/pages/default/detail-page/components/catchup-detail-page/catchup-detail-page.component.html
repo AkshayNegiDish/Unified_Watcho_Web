@@ -1,0 +1,43 @@
+<div class="base-page ">
+  <div class="container p-0">
+    <div class="channel-schedule">
+      <app-kaltura-player *ngIf="channelAssetDetails && reinitiatePlayer" [channelFileIdIn]="fileIdIn" [showWaterMark]="true"
+        [isCatchup]="true" [assetDetail]="mediaAssetDetails" [channelId]="channelId"></app-kaltura-player>
+    </div>
+    <div>
+      <div>
+        <div class="tab-top">
+          <div class="imgbox">
+            <div [hidden]="!isImagLoaded">
+              <img *ngIf="channelAssetDetails" [src]="channelAssetDetails?.images | thumbnail: 'SQUARE':100:100:80"
+                (load)="onImageLoaded($event)">
+            </div>
+            <div [hidden]="isImagLoaded">
+              <app-default-rail-item-shell *ngIf="!isImageLoaded" [viewType]="'LANDSCAPE'">
+              </app-default-rail-item-shell>
+            </div>
+          </div>
+          <div class="mid-tab">
+            <h4>{{mediaAssetDetails?.name}} <br> <span>{{videoDuration}}</span></h4>
+            <p class="text-tab">{{mediaAssetDetails?.description}}</p>
+          </div>
+          <div class="stat-times">
+            <span>Start &nbsp; {{mediaAssetDetails?.startDate * 1000 | date:'HH:mm'}}</span>
+            <div class="endnow">End &nbsp;&nbsp;&nbsp; {{mediaAssetDetails?.endDate * 1000 | date:'HH:mm'}}</div>
+          </div>
+
+        </div>
+        <div style="display: block" class="channelshare share-actions">
+          <app-share *ngIf="mediaAssetDetails" [assetDetails]="mediaAssetDetails"></app-share>
+        </div>
+      </div>
+      <div class="rails">
+        <!-- <app-rail-item [showLiveChannel]="true" [channelName]="'Live Now'" [viewType]="'LANDSCAPE'"></app-rail-item>
+        <app-rail-item [showSimilarChannel]="true" [channelName]="'Similar Channel'" [viewType]="'CIRCLE'"></app-rail-item> -->
+      </div>
+    </div>
+  </div>
+  <div class="catchupRail">
+    <app-rails-view [screenId]="screenId" [fromDetailScreen]="true"></app-rails-view>
+  </div>
+</div>

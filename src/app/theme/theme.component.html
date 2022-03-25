@@ -1,0 +1,17 @@
+<!-- <div *ngIf="isMobileTabletView && ugcPageVisited; else showHeader">
+</div>
+<ng-template #showHeader>
+    <app-header></app-header>
+</ng-template> -->
+<app-register-grievance *ngIf="isShowFullRegisterGrievancePage"></app-register-grievance>
+<app-header></app-header>
+<!-- begin::Body -->
+<router-outlet></router-outlet>
+<!-- end:: Body -->
+<div [hidden]="appUtilService.checkIfPWA() && ugcPageVisited">
+    <app-cookies-banner></app-cookies-banner>
+</div>
+<app-footer [hidden]="ugcPageVisited"></app-footer>
+<app-mobile-bottom-nav *ngIf="isMobileTabletView && !ugcPageVisited"></app-mobile-bottom-nav>
+<div id="snackbar-container">
+</div>

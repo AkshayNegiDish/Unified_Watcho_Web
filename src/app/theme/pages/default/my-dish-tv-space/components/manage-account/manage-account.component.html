@@ -1,0 +1,102 @@
+<div [ngClass] = "platform?platform:''">
+<div class="row head-details justify-content-md-center">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="col-12">
+      <div class="card-body">
+        <h5 class="card-title">Name of the User</h5>
+        <p class="card-text">{{Name?Name:'NA'}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="col-12">
+      <div class="card-body">
+        <h5 class="card-title">{{userCategory == '1' ? 'VC Number' : 'Customer Id'}}</h5>
+        <p class="card-text">{{Dishd2hSubscriberID?Dishd2hSubscriberID:'NA'}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="col-12">
+      <div class="card-body">
+        <h5 class="card-title">Recharge Due Date</h5>
+        <p class="card-text">{{RechargeDueDate?RechargeDueDate:'NA'}}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf= "userCategory == '1'" class="card mb-3" style="max-width: 540px;">
+    <div class="col-12">
+      <div class="card-body">
+        <h5 class="card-title">Switch Off Date</h5>
+        <p class="card-text">{{SwitchOffDate?SwitchOffDate:'NA'}}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf= "userCategory == '2'" class="card mb-3" style="max-width: 540px;">
+    <div class="col-12">
+      <div class="card-body">
+        <h5 class="card-title">User Id</h5>
+        <p class="card-text">{{UserID?UserID:'NA'}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="recharge-card">
+      <div class="card-body">
+        <p class="card-title">Account Balance</p>
+        <p class="card-text"><i class="la la-rupee"></i> {{AccountBalance?AccountBalance:'0.0'}}</p>
+        <button type="button" (click)="refresh()" class="btn btn-primary cbtn">Refresh</button>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="recharge-card">
+      <div class="card-body">
+        <p class="card-title">Your Registered Mobile Number</p>
+        <p class="card-text" [ngClass]="{'focused' : editmobile}" #mobile (blur)="mobileChange($event)" [contentEditable]="editmobile" tabindex="editmobile?0:'-1'">{{MobileNumber?MobileNumber:'NA'}}</p>
+        <!-- <button *ngIf="!editmobile" type="button" (click)="onMobileEdit(false,mobile)" class="btn btn-primary cbtn">Edit</button>
+        <button *ngIf="editmobile" type="button" (click)="onMobileEdit(true,mobile)" class="btn btn-primary cbtn">Save</button> -->
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="recharge-card">
+      <div class="card-body">
+        <p class="card-title">Your Email ID</p>
+        <p class="card-text" #email (blur)="emailChange($event)" [ngClass]="{'focused' : editemail}" [contentEditable]="editemail">{{EmailId?EmailId:'NA'}}</p>
+        <button *ngIf="!editemail" type="button" (click)="onEmailEdit(false,$event,email)" class="btn btn-primary cbtn">Edit</button>
+        <button *ngIf="editemail" type="button" (click)="onEmailEdit(true,$event,email)" class="btn btn-primary cbtn">Save</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf= "userCategory == '1'" class="row justify-content-md-center">
+    <div class="recharge-card">
+      <div class="card-body">
+        <p class="card-title">Your Subscribed Pack</p>
+        <p class="card-text">{{SubscribePack?SubscribePack:'NA'}}</p>
+        <button type="button" (click) = "onClickChangePack()" class="btn btn-primary cbtn">Change</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf= "userCategory == '2'" class="row justify-content-md-center">
+    <div class="recharge-card">
+      <div class="card-body">
+        <p class="card-title">Your Address</p>
+        <p class="text-truncate">{{Address?Address:'NA'}}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf= "userCategory == '1'" class="row justify-content-md-center">
+    <div class="recharge-card">
+      <div class="card-body">
+        <p class="card-title">Next Recharge Amount</p>
+        <p class="card-text"><i class="la la-rupee"></i> {{RechargeAmount?RechargeAmount:'NA'}}</p>
+        <button type="button" (click) = "nextRechargeClick()" class="btn btn-primary cbtn">Detail</button>
+      </div>
+    </div>
+  </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+</div>
+</div>

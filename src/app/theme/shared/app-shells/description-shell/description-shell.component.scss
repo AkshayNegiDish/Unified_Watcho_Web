@@ -1,0 +1,175 @@
+
+@import '~assets/scss/theme-fonts.scss';
+.asset-detail{
+    //   padding:0 20px; 
+    //   margin-bottom: 40px;
+    .title-movie-page{
+        width: 100%;
+        float: left;
+        z-index: 9;
+        position: relative;
+        .left-title{
+            float: left;
+            width: 80%;
+            h1{
+                font-size: 24px;
+                color:$theme-heading;
+                line-height: 36px;
+                font-weight: 500;
+                margin: 0;
+            }
+        }
+       
+    }
+      h1{
+          font-size: 24px;
+          color:$theme-heading;
+          line-height: 36px;
+          font-weight: 500;
+          margin: 0;
+          .like{
+              font-size: 16px;
+              float:right;
+              color:#577fbc;
+              i{
+                  font-size: 20px;
+              }
+          }
+      }
+      .meta{
+          color:$fonts-white-color;
+          font-size: 14px;
+          font-weight: 400;
+          text-align: left;
+          word-spacing: 1px;
+          display: block;
+          margin: 5px 0 10px 0;
+      }
+      b{
+          color: $fonts-grey-color;
+          letter-spacing: 1px;
+      }
+      .cast-n-crew {
+        margin-bottom: 30px;
+      }
+      .show-text-btn {
+        display: none;
+      }
+    }
+    
+
+@media (min-width:320px) and (max-width:480px){
+/*************start***************/
+.detail-section{
+    margin-bottom: 17px;
+}
+            .asset-detail{
+                .title-movie-page{
+                    .left-title{
+                        width: 63%;
+                        h1{
+                        font-size: 16px;
+                        line-height: 25px;
+                        margin-bottom: 10px;
+                        }
+                    }
+                    .btn-right-more{
+                        width: 17%;
+                        margin-top: 8px;
+                        .color-btn{
+                            font-size: 12px;
+                            padding: 2px;
+                        }
+                    }
+                }
+             .meta{
+              font-size: 12px;
+             }
+            }
+         .share-actions{
+            span{
+                font-size: 12px !important;
+                i{
+                font-size: 18px;
+                }
+            }
+          }
+        .cast-n-crew{
+            width: 85%;
+            float: left;   
+        }
+        .show-text {
+            float: right;
+            width: 15%;
+        }
+        .show-text-btn{
+            display: block !important;
+            border: 1px solid $blue-Lighter-chnage-color !important;
+            color: $blue-Lighter-chnage-color;
+            background: transparent;
+            width: 100%;
+            font-size: 13px;
+            float: right;
+            outline: none;
+            cursor: pointer;
+        }
+        
+/************End******************/
+}
+
+@media (min-width:481px) and (max-width:768px){
+/*************start***************/
+.detail-section{
+    margin-bottom: 17px;
+}
+            .asset-detail{
+                .title-movie-page{
+                    .left-title{
+                        width: 75%;
+                        h1{
+                        font-size: 17px;
+                        line-height: 25px;
+                        margin-bottom: 10px;
+                        }
+                    }
+                    .btn-right-more{
+                        width: 18%;
+                        margin-top: 8px;
+                        .color-btn{
+                            font-size: 13px;
+                        }
+                    }
+                }
+                .meta{
+                font-size: 12px;
+                }
+            }
+        .share-actions{
+                span{
+                 font-size: 12px !important;
+                 i{
+                  font-size: 20px;
+                 }
+            }
+        }
+        .cast-n-crew{
+            width: 87%; 
+        }
+        .show-text-btn{
+            display: block !important;
+            border: 1px solid $blue-Lighter-chnage-color !important;
+            color: $blue-Lighter-chnage-color;
+            background: transparent;
+            width: 55px;
+            font-size: 13px;
+            float: right;
+            outline: none;
+            cursor: pointer;
+        }
+/************End******************/
+}
+
+.subTitle {
+    color: #ffffff;
+    font-size: 14px;
+}

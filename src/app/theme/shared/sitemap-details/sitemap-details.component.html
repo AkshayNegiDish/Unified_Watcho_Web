@@ -1,0 +1,17 @@
+<div *ngIf="ottCategory">
+  <div class="channelNames">
+    <span>{{channelName}}</span>
+  </div>
+    <div class="overflow sitemap-bg-color">
+      <table class="table table-responsive table-dark">
+        <tbody>
+          <tr *ngFor="let assetDetail of assetList?.objects">
+            <td class="action"><span class="anchor" (click)="watchAsset(assetDetail?.name, assetDetail?.id, assetDetail?.type, assetDetail?.startDate, assetDetail?.linearAssetId)">{{assetDetail?.name}}</span></td>
+            <td class="noaction"><span>{{assetDetail.tags['Genre']?.objects[0].value || 'N.A'}}</span></td>
+            <td class="noaction textalign"><span>{{assetDetail.tags['Asset Language']?.objects[0].value || 'N.A'}}</span></td>
+            <td class="noaction"><span>{{assetDetail?.typeDescription || 'N.A'}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

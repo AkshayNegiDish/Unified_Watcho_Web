@@ -1,0 +1,433 @@
+<!-- <ng-template #signInModal let-modal> -->
+<div class="login-modal">
+
+  <div class="pull-right">
+    <!-- <span class="close " aria-hidden="true" (click)="activeModal.dismiss('Cross click')">&times;</span> -->
+  </div>
+
+  <ngx-loading [show]="loading" class="col-lg-offset-5" *ngIf="loading" [config]="{ backdropBorderRadius: '0px' }">
+  </ngx-loading>
+
+  <div class="modal-body">
+    <!-- login modal -->
+
+    <div id="exTab1" class="loginModal" [hidden]="!showLoginModal">
+      <ul class="nav nav-tabs">
+        <li [ngClass]="{'active': isTab1Active}">
+          <a href="#tab1" data-toggle="tab" (click)="toogleTabs(1)">WATCHO USER</a>
+        </li>
+        <li [ngClass]="{'active': isTab2Active}">
+          <a href="#tab2" data-toggle="tab" (click)="toogleTabs(2)">DISH / D2H USER</a>
+        </li>
+      </ul>
+
+      <div class="tab-content active">
+        <div class="tab-pane active" id="tab1">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" required="" class="form-control" name="email" (keyup.enter)="$event.preventDefault()"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="userEmailContactInput"
+                (keyup.enter)="validateUserLoginInput()" (focus)="resetErrors()">
+              <span class="input-labelleft">Email Address / Mobile Number</span>
+              <!-- <span id="emailError" *ngIf="userEmailContactInputErrorMessage" class="error">{{userEmailContactInputErrorMessage}}</span> -->
+            </div>
+          </div>
+          <div>
+            <button type="button" class="btn btn-blue"
+              (click)="validateUserLoginInput()" tabindex="0">Continue</button>
+          </div>
+
+          <span 
+            class="forgot"><a href="javascript:;" class="active link" (click)="gotoForgotPasswordModal()">Forgot
+              Password ?</a></span>
+          <div class="login-or">
+            <span class="span-or">or</span>
+          </div>
+          <div>
+            <button 
+              type="button" type="submit" class="btn btn-blue fb-color" tabindex="0" (click)="loginWithFB()"><i
+                class="fa fa-facebook" aria-hidden="true"></i>Login
+              with Facebook</button>
+            <span  class="forgot">New
+              User ? <a (click)="gotoRegisterModal()" class="link">
+        Click Here        </a></span>
+          </div>
+          <br>
+          <span class="forgot">
+            <div class="intoo">By continuing you agree to</div> <a [href]="termsOfUse" target="_blank"
+              class="link" (click)="gtmTagOnTermsAndConditions()">Terms
+              of Use</a> and <a [href]="privacyPolicy" target="_blank" class="link" (click)="gtmTagOnPrivacyPolicy()">Privacy
+              Policy</a>
+          </span>
+        </div>
+
+        <div class="tab-pane" id="tab2">
+          <p class="heading-sm">Please enter your RMN/ RTN to Login</p>
+          <div class="form-group phone-no margin-top-30">
+            <div class="input-group"><i class="la la-phone"></i>
+              <input type="text" required="" id="mobileNumber" class="form-control" name="mobileNumber"
+                (keyup.enter)="$event.preventDefault()" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="userEmailContactInput" (focus)="resetErrors()" (keyup.enter)="signInDishD2hUser()">
+              <span class="input-label">RMN / RTN</span>
+              <!-- <span *ngIf="userEmailContactInputErrorMessage" class="error">{{userEmailContactInputErrorMessage}}</span> -->
+            </div>
+          </div>
+          <div>
+            <button type="button" class="btn btn-blue" (click)="signInDishD2hUser()" tabindex="0">Continue</button>
+          </div>
+          <div>
+            <span class="forgot">New
+              User ? <a (click)="gotoRegisterModal()">
+                Click Here</a></span>
+          </div>
+          <br>
+          <span class="forgot">
+            <div class="intoo">By continuing you agree to</div> <a [href]="termsOfUse" target="_blank"
+              class="link" (click)="gtmTagOnTermsAndConditions()">Terms
+              of Use</a> and <a [href]="privacyPolicy" target="_blank" class="link" (click)="gtmTagOnPrivacyPolicy()">Privacy
+              Policy</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- New user register modal -->
+
+    <div id="exTab2" class="registerModal" [hidden]="!showRegisterModal">
+      <div class="tab-content">
+        <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i>
+        <p class="heading">Register</p>
+        <p class="heading-sm">Please enter your Mobile Number or Email Address. We will send a one time verification
+          code</p>
+        <div class="input-group margin-top-30">
+          <input type="text" required="" id="email" class="form-control" name="email"
+            (keyup.enter)="$event.preventDefault()" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="userEmailContactInput" (keyup.enter)="newUserValidateInput()" (focus)="resetErrors()">
+          <span class="input-labelleft">Email Address / Mobile Number</span>
+        </div>
+        <div>
+          <button type="button" class="btn btn-blue no-margin" tabindex="0"
+            (click)="newUserValidateInput()">Continue</button>
+        </div>
+        <div class="login-or">
+          <span class="span-or">or</span>
+        </div>
+        <div>
+          <button
+            type="button" class="btn btn-blue fb-color" tabindex="0" (click)="loginWithFB()"><i class="fa fa-facebook"
+              aria-hidden="true"></i>Register
+            with
+            Facebook</button>
+          <span 
+            class="forgot">Existing User ? <a (click)="gotoLoginModal()" href="javascript:;" class="link">
+              Click Here</a></span>
+        </div>
+        <br>
+        <span class="forgot">
+          <div class="intoo">By continuing you agree to</div> <a [href]="termsOfUse" target="_blank" class="link">Terms
+            of Use</a> and <a [href]="privacyPolicy" target="_blank" class="link">Privacy
+            Policy</a>
+        </span>
+      </div>
+    </div>
+
+    <!-- forgot password -->
+
+    <div id="exTab3" class="forgotPasswordModal" [hidden]="!showForgotPasswordModal">+
+      <div class="tab-content">
+        <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i>
+        <p class="heading">Enter registered Email Address / Mobile Number and we will send you a link to reset your
+          password.</p>
+        <div class="input-group margin-top-30">
+          <input type="text" required="" class="form-control" name="email" (keyup.enter)="$event.preventDefault()"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="userEmailContactInput" (keyup.enter)="forgotPassword()"
+            (focus)="resetErrors()">
+          <span class="input-labelleft">Email Address / Mobile Number</span>
+          <!-- <span id="emailError" *ngIf="userEmailContactInputErrorMessage" class="error">{{userEmailContactInputErrorMessage}}</span> -->
+        </div>
+        <div class="margin-top-30">
+          <button type="button" class="btn btn-blue margin-top-30" tabindex="0"
+            (click)="forgotPassword()">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- validate otp modal -->
+
+    <div id="exTab4" class="otpModal" [hidden]="!showOtpModal">
+      <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i>
+      <p class="heading-sm">
+        Please enter OTP
+        <br>
+        sent on +91 {{userEmailContactInput}} to login <br>
+      </p>
+      <span class="forgot"><a href="javascript:;" (click)="backButton()" class="active">Change</a></span>
+
+      <div class="tab-content ">
+        <div class="tab-pane active" id="tab1">
+          <div class="form-group">
+            <div class="input-group otpsing">
+              <!-- <input type="number" class="form-control inputterm" placeholder="OTP" name="otp" (keyup.enter)="$event.preventDefault()"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="userOtp" (keyup.enter)="userLogin()" (focus)="resetErrors()"
+                 maxlength="4"> -->
+              <div id="divOuter">
+                <div id="divInner">
+                  <!-- <input id="otpInput1" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="userOtp"
+                    (keyup.enter)="userLogin()" (focus)="resetErrors()" maxlength="4" /> -->
+                    <input id="codeBox1" type="text" (keydown)="onKeyDownEvent('#codeBox1', $event, 'SIGNIN')" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(1, $event)" (focus)="onFocusEvent(1)" />
+                    <input id="codeBox2" type="text" (keydown)="onKeyDownEvent('#codeBox2', $event, 'SIGNIN')" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(2, $event)" (focus)="onFocusEvent(2)" />
+                    <input id="codeBox3" type="text" (keydown)="onKeyDownEvent('#codeBox3', $event, 'SIGNIN')" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(3, $event)" (focus)="onFocusEvent(3)" />
+                    <input id="codeBox4" type="text" (keydown)="onKeyDownEvent('#codeBox4', $event, 'SIGNIN')" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(4, $event)" (focus)="onFocusEvent(4)" />
+                </div>
+              </div>
+              <!-- <div>
+                <span *ngIf="userOtpErrorMessage" class="error">{{userOtpErrorMessage}}</span>
+              </div> -->
+            </div>
+            <span class="forgot"><a class="active" (click)="resendOtp()">Resend OTP</a></span>
+            <p>Expires In 5 minutes</p>
+            <div *ngIf="showLoginWithPassword">
+              <div class="login-or">
+                <span class="span-or">or</span>
+              </div>
+              <!-- hello -->
+              <span class="forgot"><a (click)="loginWithPassword()" href="javascript:;" class="link">
+                  Login with Password</a></span>
+            </div>
+
+            <div>
+              <button type="button" id='otp2' type="submit" class="btn btn-blue margin-top-30" (click)="userLogin()"
+                tabindex="0">Continue</button>
+              <span class="forgot">New User ? <a href="javascript:;" class="active link" (click)="gotoRegisterModal()">
+                  Click Here</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- register form modal -->
+
+    <div id="exTab5" class="registerFormModal" [hidden]="!showRegisterFormModal">
+      <div class="tab-content resgister-modal">
+        <div class="tab-pane active" id="tab1">
+          <div class="userImageEdit">
+            <ngx-loading [show]="showProfilrDisplayLoader" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+            <div class="uplodeimg">
+              <img class="userImage" onerror="this.src='https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/user.png'"
+                [src]="userImage || ''" alt="">
+              <div (click)="browseThumbnail()" class="cameraIcon">
+                <i class="material-icons">camera_enhance</i>
+                <input type="file" id="uploadThumbnailFile" accept="image/*" hidden
+                  (change)="videoThumbnailSelected($event)" />
+                <label> Update</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <i class="la la-user"></i>
+              <input type="text" maxlength="40" class="form-control" placeholder="Name" name="fullName"
+                (keyup.enter)="$event.preventDefault()" [ngModelOptions]="{standalone: true}" [(ngModel)]="newUserName"
+                (focus)="resetRegisterFormError(0)">
+              <!-- <span *ngIf="newUserNameErrorMessage" class="error">{{newUserNameErrorMessage}}</span> -->
+            </div>
+            <div class="input-group">
+              <input type="text" class="form-control padding0" readonly Change [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="userEmailContactInput">
+              <a class="change-btn" href="javascript:;" (click)="changeOnRegisterForm()">Change</a>
+            </div>
+            <div class="input-group" *ngIf="showPasswordInRegisterModal">
+              <i class="la la-unlock"></i>
+              <input [type]="registerFormPasswordInputType" class="form-control inputterm" placeholder="Password"
+                name="password" (keyup.enter)="$event.preventDefault()" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="newUserPassword" (focus)="resetRegisterFormError(2)">
+              <i [class]="eyeIconClass" (click)="toogleEyeIcon()"></i>
+              <!-- <span *ngIf="newUserPasswordErrorMessage" class="error">{{newUserPasswordErrorMessage}}</span> -->
+            </div>
+            <div class="input-group">
+              <i class="la la-calendar" (click)="d.toggle()"></i>
+              <input class="form-control" style="cursor: pointer" id="dob" (click)="d.toggle()" readonly
+                placeholder="Date of Birth" name="dp" [(ngModel)]="newUserDateOfBirth" ngbDatepicker #d="ngbDatepicker"
+                [ngModelOptions]="{standalone: true}">
+              <!-- <span *ngIf="newUserDateOfBirthErrorMessage" class="error">{{newUserDateOfBirthErrorMessage}}</span> -->
+            </div>
+          </div>
+          <div>
+            <div class="input-group custom-radio">
+              <a id="male" (click)="selectMale()">Male</a>
+              <a id="female" (click)="selectFemale()">Female</a>
+            </div>
+            <button type="button" type="submit" class="btn btn-blue margin-top-30" (click)="newUserRegistration()"
+              tabindex="0">Register</button>
+          </div>
+        </div>
+        <br>
+        <span class="forgot">
+          <div class="intoo">By continuing you agree to </div> <a [href]="termsOfUse" target="_blank" class="link">Terms
+            of Use</a> and <a [href]="privacyPolicy" target="_blank" class="link">Privacy
+            Policy</a>
+        </span>
+
+      </div>
+    </div>
+
+    <!-- enter password modal -->
+
+    <div id="exTab6" class="enterPasswordModal" [hidden]="!showPasswordModal">
+      <div class="tab-content">
+        <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i>
+        <div class="tab-pane active">
+          <div class="form-group">
+            <p class="heading-sm">Enter your Dish/D2H password</p>
+            <div class="input-group margin-top-30">
+              <i class="la la-unlock"></i>
+              <input [type]="registerFormPasswordInputType" required="" class="form-control inputterm" name="password"
+                (keyup.enter)="$event.preventDefault()" [ngModelOptions]="{standalone: true}" [(ngModel)]="userPassword"
+                (keyup.enter)="userLogin()" (focus)="resetErrors()">
+              <i [class]="eyeIconClass" (click)="toogleEyeIcon()"></i>
+              <span class="input-label">Dish/D2H Password</span>
+              <!-- <span *ngIf="userPasswordErrorMessage" class="error">{{userPasswordErrorMessage}}</span> -->
+            </div>
+          </div>
+          <div>
+            <button type="button" type="button" class="btn btn-blue margin-top-30" (click)="userLogin()"
+              tabindex="0">Sign
+              In</button>
+          </div>
+          <span class="forgot"><a href="javascript:;" class="active link" (click)="gotoForgotPasswordModal()">Forgot
+              Password ?</a></span>
+          <span class="forgot">New User ? <a href="javascript:;" class="active link" (click)="gotoRegisterModal()">
+              Click Here</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- register otp modal -->
+
+    <div id="exTab7" class="otpRegisterModal" [hidden]="!showOtpModalRegister">
+      <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i>
+      <p class="heading-sm" *ngIf="!isRegisteredWithEmailId">
+        Please enter OTP
+        <br>
+        sent on +91 {{userEmailContactInput}} to login <br>
+      </p>
+      <p class="heading-sm" *ngIf="isRegisteredWithEmailId">
+        Please enter OTP
+        <br>
+        sent on {{userEmailContactInput}} to login <br>
+      </p>
+      <span class="forgot"><a href="javascript:;" (click)="gotoRegisterModal()" class="active">Change</a></span>
+
+      <div class="tab-content ">
+        <div class="tab-pane active" id="tab1">
+          <div class="form-group">
+            <div class="input-group">
+              <!-- <input type="number" class="form-control inputterm" placeholder="OTP" name="otp" (keyup.enter)="$event.preventDefault()"
+                  [ngModelOptions]="{standalone: true}" [(ngModel)]="userOtp" (keyup.enter)="validateOtpForRegister()"
+                  (focus)="resetErrors()" maxlength="4"> -->
+              <!-- <span *ngIf="userOtpErrorMessage" class="error">{{userOtpErrorMessage}}</span> -->
+              <div id="divOuter">
+                <div id="divInner">
+                  <!-- <input id="otpInput2" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="userOtp"
+                    (keyup.enter)="userLogin()" (focus)="resetErrors()" maxlength="4" /> -->
+                    <input id="codeBoxRegister1" type="text" (keydown)="onKeyDownEvent('#codeBoxRegister1', $event, 'REGISTER')" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(1, $event)" (focus)="onFocusEventRegister(1)" />
+                    <input id="codeBoxRegister2" type="text" (keydown)="onKeyDownEvent('#codeBoxRegister2', $event, 'REGISTER')" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(2, $event)" (focus)="onFocusEventRegister(2)" />
+                    <input id="codeBoxRegister3" type="text" (keydown)="onKeyDownEvent('#codeBoxRegister3', $event, 'REGISTER')" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(3, $event)" (focus)="onFocusEventRegister(3)" />
+                    <input id="codeBoxRegister4" type="text" (keydown)="onKeyDownEvent('#codeBoxRegister4', $event, 'REGISTER')" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(4, $event)" (focus)="onFocusEventRegister(4)" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="forgot" *ngIf="!isRegisteredWithEmailId">
+            <a  class="active"
+              (click)="resendOtp()">Resend
+              OTP</a></span>
+              <span class="forgot" *ngIf="isRegisteredWithEmailId">
+                <a  class="active"
+                  (click)="resendOtpForEmail()">Resend
+                  OTP</a></span>
+          <p>Expires In 5 minutes</p>
+          <div *ngIf="!isRegisteredWithEmailId">
+            <button type="button" id='pin' type="submit" class="btn btn-blue margin-top-30"
+              (click)="validateOtpForRegister()" tabindex="0">Continue</button>
+            <span 
+              class="forgot">Existing
+              User ? <a (click)="gotoLoginModal()" href="javascript:;" class="link">
+                Click Here</a></span>
+          </div>
+          <div *ngIf="isRegisteredWithEmailId">
+            <button type="button" id='pin' type="submit" class="btn btn-blue margin-top-30"
+              (click)="validateOtpForRegisterEmail()" tabindex="0">Continue</button>
+            <span 
+              class="forgot">Existing
+              User ? <a (click)="gotoLoginModal()" href="javascript:;" class="link">
+                Click Here</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #uploadModal let-modal>
+  <div class="Profile-modal">
+    <div class="modal-body">
+      <div class="">
+        <div class="form-group">
+          <div class="">
+            <div class="input-group">
+              <div class="col-lg-12 text-profile">
+                <h1>Upload Profile Pic</h1>
+              </div>
+              <div class="col-lg-12 profile-crop">
+                <div class="uplodefst Profile">
+                  <div [hidden]="thumbnailSelected === false || thumbnailCropped === true">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                      [aspectRatio]="1 / 1" [format]="jpeg" [autoCrop]="false" (imageCropped)="imageCropped($event)"
+                      [outputType]="base64" [resizeToWidth]="200" [onlyScaleDown]="true" #imageCropper>
+                    </image-cropper>
+                    <div class="crop-controls">
+                      <button class="accept-crop" (click)="cropImage(imageCropper)">
+                        Upload
+                      </button>
+                      <button class="cancel-crop" (click)="cancelImageSelect(imageCropper)">
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                  <div [hidden]="thumbnailCropped === false" class="cropped-thumbnail-container">
+                    <img class="thumbnail-img" src="#" (load)="croppedImageLoaded()" />
+                    <ngx-loading [show]="showThumbnailUploadLoader" [config]="{ backdropBorderRadius: '0px' }">
+                    </ngx-loading>
+                    <!-- <div *ngIf="showThumbnailUploadLoader === true" class="thumbnail-upload-progress">
+                      <div class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div> -->
+                  </div>
+                  <!-- <div *ngIf="thumbnailSelected !== true" class="no-thumbnail-browse">
+                    <i (click)="browseThumbnail()" class="material-icons profil-icon">backup</i>
+                    <label> + Upload photo</label>
+                    <input type="file" id="uploadThumbnailFile" accept="image/*" hidden (change)="videoThumbnailSelected($event)" />
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #recommendationModal let-modal>
+  <div class="modal-body">
+    <app-content-preference [isSigninSignupModal]="isSigninSignup"></app-content-preference>
+  </div>
+  <!-- <div class="modal-footer">
+    <button class="btn btn-continue">Continue</button>
+  </div> -->
+</ng-template>

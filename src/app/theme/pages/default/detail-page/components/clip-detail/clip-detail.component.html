@@ -1,0 +1,20 @@
+<div class="base-page ">
+  <!-- <div [id]="divId" style="width: 1170px; height: 658px;"></div> -->
+  <div class="container p-0">
+    <app-poster *ngIf="assetDetails && !showPlayer && reinitiatePlayer" [assetDetail]="assetDetails" (playEvent)="playEvent()"></app-poster>
+    <app-kaltura-player *ngIf="assetDetails && showPlayer" [isAssetInWatchlist]='isAssetInWatchlist'
+      [assetDetail]="assetDetails"></app-kaltura-player>
+    <div class="container">
+      <div class="detail-section">
+        <app-asset-detail *ngIf="assetDetails" [assetDetails]="assetDetails"></app-asset-detail>
+        <div class="share-actions clearfix">
+          <app-watchlist *ngIf="assetDetails" [assetDetails]="assetDetails" (isInWatchlist)="isInWatchlist($event)"
+            [videoId]="assetId"></app-watchlist>
+          <app-share *ngIf="assetDetails" [assetDetails]="assetDetails"></app-share>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-rails-view [screenId]="screenId" [fromDetailScreen]="true"></app-rails-view>
+</div>  
+<app-back-button></app-back-button>

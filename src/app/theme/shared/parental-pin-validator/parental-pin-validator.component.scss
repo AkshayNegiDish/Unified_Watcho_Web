@@ -1,0 +1,83 @@
+
+@import '~assets/scss/theme-fonts.scss';
+.parentalModal{
+    .modal-header{
+        border-bottom: 0px;
+        .close{
+            margin-right: 0;
+            color: #5b5b5b;
+            opacity: 1;
+            outline: none;
+            padding-top: 0;
+        }
+        .modal-title{
+            width: 100%;
+            color: #fff;
+            margin-left: 25px;
+        }
+    }
+    .modal-footer{
+        border-top: 0px;
+        button{
+            width: 50%;
+            float: left;
+            text-align: center;
+            padding: 8px 0;
+            border-radius: 4px;
+            background-color: #04a5e8;
+            color: #fff;
+            margin: 0 auto;
+            &:hover{
+                background-color: #214ba3;
+                color: #fff;
+
+            }
+        }
+    }
+.modal-body{
+        outline: none;
+        border: none;
+  #divOuter {
+        width: 165px;
+        overflow: hidden;
+        margin:  0 auto;
+        #divInner {
+            left: 0;
+            position: -webkit-sticky;
+            position: sticky;
+            input{
+                width: 40px;
+                text-align: center;
+                border: 0;
+                background-image: linear-gradient(to left, #fff 70%, rgba(255, 255, 255, 0) 0);
+                background-position: bottom;
+                background-size: 45px 2px;
+                background-repeat: repeat-x;
+                background-position-x: 35px;
+                outline: none;
+                color: #fff;
+                background-color: transparent;  
+                appearance: none;  
+                -webkit-appearance: none;
+                -moz-appearance: none; 
+                -ms-appearance: none;
+            }
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none; /* WebKit */
+                -moz-appearance: none; /* Mozilla */
+                -o-appearance: none; /* Opera */
+                -ms-appearance: none; /* Internet Explorer */
+                appearance: none; /* CSS3 */
+            }
+        }
+        
+    }
+    }
+  
+}
+
+
+
+
+

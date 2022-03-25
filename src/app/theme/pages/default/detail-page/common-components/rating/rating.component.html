@@ -1,0 +1,73 @@
+<div class="rating">
+  <div class="star-icon">
+    <div class="ratingicon all-rating">
+      <div class="select-ratingicon">
+          <div class="rating-alsoicon"></div>
+      </div>
+      <div class="rating-text">
+        <span class="total-rating">
+          <span class="give-rating">{{totalRatingValue}}</span>
+          <span class="max-rating-slash">/</span>
+          <span class="max-rating">5</span>
+        </span>
+        <span class="max-rating-user">{{rateCount | parseCount}}</span>
+      </div>
+    </div><!--likeicon-->
+    <div class="ratingicon">
+      <div class="select-ratingicon">
+          <div class="rating-single rating-show"></div>
+      </div>
+      <div class="rating-text">
+        <span  *ngIf="rateText">
+          <span class="give-rating" *ngIf="!selectedRating">{{rating}}</span>
+          <span class="give-rating" *ngIf="selectedRating">{{selectedUserRate}}</span>
+          <span class="max-rating-slash">/</span>
+          <span class="max-rating">5</span>
+        </span>
+        <span *ngIf="!rateText">Rate</span>
+        <span *ngIf="rateText" class="rate-contant-text">You</span>
+        <span *ngIf="!rateText">This</span>
+      </div>
+      <div class="select-star slide-in-rating-box">
+        <!-- <div class="remove-selection">
+            <span class="remove-icon"><i class="material-icons">clear</i></span>
+            <span>Remove</span>
+        </div> -->
+        <ul class="list-inline">
+          <li>
+            <div class="select-ratingicon" id="nah">
+                <div class="rating-single"></div>
+            </div>
+            <span>Nah!</span>
+          </li>     
+          <li>
+            <div class="select-ratingicon" id="meh">
+                <div class="rating-single"></div>
+            </div>
+            <span>Meh!</span>
+          </li>     
+          <li>
+            <div class="select-ratingicon" id="nice">
+                <div class="rating-single"></div>
+            </div>
+            <span>Nice</span>
+          </li>     
+          <li>
+            <div class="select-ratingicon" id="cool">
+                <div class="rating-single"></div>
+            </div>
+            <span>Cool</span>
+          </li>     
+          <li>
+            <div class="select-ratingicon" id="awesome">
+                <div class="rating-single"></div>
+            </div>
+            <span>Awesome</span>
+          </li>
+  
+        </ul>
+      </div>
+     
+    </div><!--likeicon-->
+  </div><!--heart-icon-->
+</div>

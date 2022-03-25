@@ -1,0 +1,42 @@
+
+  <div ngbDropdown class="d-inline-block col-12">
+    <button class="btn btn-outline-primary col-12" id="dropdownBasic1" ngbDropdownToggle>{{selectedValue}}</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <div ngbDropdownItem class="option" *ngFor="let campaign of campaignList; let i = index" (click)="onSelect(i)">{{campaign['name']}}</div>
+    </div>
+  </div>
+
+
+  <div class="ldrbrd">
+    <p class="ldrbrd-txt">Leaderboard</p>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <p class="tbl-txt1">Rank</p>
+    </div>
+    <div class="col-8">
+      <p class="tbl-txt2">Name</p>
+    </div>
+    <div class="col-2">
+      <p class="tbl-txt3">Prize</p>
+    </div>
+  </div>
+  <div *ngIf="(totalCount===undefined || (totalCount>0));else nodataTemplate">
+  <div  class="row col" *ngFor="let user of leaderboard; let i = index" >
+    <div class="col-2">
+      <p class="tbl-txt1">{{i + 1}}.</p>
+    </div>
+    <div class="col-8">
+      <p class="tbl-txt2">{{user['name']}}</p>
+    </div>
+    <div class="col-2">
+      <p class="tbl-txt3">Rs. {{user['reward']}}</p>
+    </div>
+  </div>
+  </div>
+ <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+<ng-template #nodataTemplate>
+    <div class="nodata col-12">
+        <p class="font-weight-reguler">No Data Found</p>
+    </div>
+  </ng-template>

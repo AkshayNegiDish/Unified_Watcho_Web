@@ -1,0 +1,179 @@
+<div class="base-page">
+  <div class="container p-0 live-contest">
+    <h2>Leaderboard</h2>
+    <div class="watcho-brand-color-border"></div>
+    <ngb-tabset #t="ngbTabset">
+      <ngb-tab id="monthly-leaderBoard">
+        <ng-template ngbTabTitle>
+          <div class="View-entries-tab" (click)="getMonthlyLeaderBoard()">Monthly</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div *ngIf="!noResultFound">
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+            <div class="first-tab-inner-tabs ">
+              <div class="rank-leaderboard">
+                <div class="title-leaderboard">
+                  <div class="rank-name-leaderborad">Rank</div>
+                  <div class="rank-name-leaderborad">Name</div>
+                  <div class="rank-name-leaderborad">Points</div>
+                </div>
+                <div class="leaderboard-full-listing infinite-container" infiniteScroll [infiniteScrollDistance]="2"
+                  [infiniteScrollContainer]="'.infinite-container'" [fromRoot]="true" [scrollWindow]="false"
+                  [infiniteScrollThrottle]="400" (scrolled)="getMoreVideos(TimeSlab[TimeSlab.MONTHLY].toString())">
+                  <ul>
+                    <li class="values" style="cursor: pointer;"
+                      *ngFor="let leaderboard of leaderboardArray.leaderboard; let i = index"
+                      (click)="goToCreatorPage(leaderboard.ottSubcriberId)">
+                      <div class="count-number">{{leaderboard.rank}}.</div>
+                      <div class="rank-img-section">
+                        <div class="contest-user-profile" [ngStyle]="leaderboard.bgColor">{{leaderboard.nameInitials}}
+                        </div>
+                      </div>
+                      <div class="title-video-name">{{leaderboard.userName}}</div>
+                      <div class="points-totale"> {{leaderboard.score}}</div>
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <!-----Sticky-tabs------>
+                    <li class="Sticky values own-leaderboard"
+                      (click)="goToCreatorPage(userLeaderboardModal.ottSubcriberId)" *ngIf="showUserLeaderBoard">
+                      <div class="count-number">{{userLeaderboardModal.rank}}.</div>
+                      <div class="rank-img-section">
+                        <div class="contest-user-profile" [ngStyle]="userLeaderboardModal.bgColor">
+                          {{userLeaderboardModal.nameInitials}}
+                        </div>
+                      </div>
+                      <div class="title-video-name">{{userLeaderboardModal.userName}}</div>
+                      <div class="points-totale">
+                        <div class="troffi-img"></div> {{userLeaderboardModal.score}}
+                      </div>
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <!-----Sticky-tabs-end------>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="no-result" *ngIf="noResultFound">
+            <img [src]="placeholderImage" alt="">
+            <h4>No Leaderboard Available ...</h4>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="weekly-leaderBoard">
+        <ng-template ngbTabTitle>
+          <div class="Leaderboard-tab" (click)="getWeeklyLeaderboard()">Weekly</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div *ngIf="!noResultFound">
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+            <div class="second-tab-inner-tabs">
+              <div class="rank-leaderboard">
+                <div class="title-leaderboard">
+                  <div class="rank-name-leaderborad">Rank</div>
+                  <div class="rank-name-leaderborad">Name</div>
+                  <div class="rank-name-leaderborad">Points</div>
+                </div>
+                <div class="leaderboard-full-listing infinite-container2" infiniteScroll [infiniteScrollDistance]="2"
+                  [infiniteScrollContainer]="'.infinite-container2'" [fromRoot]="true" [scrollWindow]="false"
+                  [infiniteScrollThrottle]="400" (scrolled)="getMoreVideos(TimeSlab[TimeSlab.WEEKLY].toString())">
+                  <ul>
+                    <li class="values" style="cursor: pointer;"
+                      *ngFor="let leaderboard of leaderboardArray.leaderboard; let i = index"
+                      (click)="goToCreatorPage(leaderboard.assetId)">
+                      <div class="count-number">{{leaderboard.rank}}.</div>
+                      <div class="rank-img-section">
+                        <div class="contest-user-profile" [ngStyle]="leaderboard.bgColor">{{leaderboard.nameInitials}}
+                        </div>
+                      </div>
+                      <div class="title-video-name">{{leaderboard.userName}}</div>
+                      <div class="points-totale"> {{leaderboard.score}}</div>
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <!-----Sticky-tabs------>
+                    <li class="Sticky values own-leaderboard" style="cursor: pointer;" *ngIf="showUserLeaderBoard">
+                      <div class="count-number">{{userLeaderboardModal.rank}}.</div>
+                      <div class="rank-img-section">
+                        <div class="contest-user-profile" [ngStyle]="userLeaderboardModal.bgColor">
+                          {{userLeaderboardModal.nameInitials}}
+                        </div>
+                      </div>
+                      <div class="title-video-name">{{userLeaderboardModal.userName}}</div>
+                      <div class="points-totale">
+                        <div class="troffi-img"></div> {{userLeaderboardModal.score}}
+                      </div>
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <!-----Sticky-tabs-end------>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="no-result" *ngIf="noResultFound">
+            <img [src]="placeholderImage" alt="">
+            <h4>No Leaderboard Available ...</h4>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="allTime-leaderBoard">
+        <ng-template ngbTabTitle>
+          <div class="allyear-tab" (click)="getAllTimeLeaderboard()">All Time</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div *ngIf="!noResultFound">
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+            <div class="thrd-tab-inner-tabs">
+              <div class="rank-leaderboard">
+                <div class="title-leaderboard">
+                  <div class="rank-name-leaderborad">Rank</div>
+                  <div class="rank-name-leaderborad">Name</div>
+                  <div class="rank-name-leaderborad">Points</div>
+                </div>
+                <div class="leaderboard-full-listing infinite-container3" infiniteScroll [infiniteScrollDistance]="2"
+                  [infiniteScrollContainer]="'.infinite-container3'" [fromRoot]="true" [scrollWindow]="false"
+                  [infiniteScrollThrottle]="400" (scrolled)="getMoreVideos(TimeSlab[TimeSlab.LIFETIME].toString())">
+                  <ul>
+                    <li class="values" style="cursor: pointer;"
+                      *ngFor="let leaderboard of leaderboardArray.leaderboard; let i = index"
+                      (click)="goToCreatorPage(leaderboard.assetId)">
+                      <div class="count-number">{{leaderboard.rank}}.</div>
+                      <div class="rank-img-section">
+                        <div class="contest-user-profile" [ngStyle]="leaderboard.bgColor">{{leaderboard.nameInitials}}
+                        </div>
+                      </div>
+                      <div class="title-video-name">{{leaderboard.userName}}</div>
+                      <div class="points-totale"> {{leaderboard.score}}</div>
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <!-----Sticky-tabs------>
+                    <li class="Sticky values own-leaderboard" style="cursor: pointer;" *ngIf="showUserLeaderBoard">
+                      <div class="count-number">{{userLeaderboardModal.rank}}.</div>
+                      <div class="rank-img-section">
+                        <div class="contest-user-profile" [ngStyle]="userLeaderboardModal.bgColor">
+                          {{userLeaderboardModal.nameInitials}}
+                        </div>
+                      </div>
+                      <div class="title-video-name">{{userLeaderboardModal.userName}}</div>
+                      <div class="points-totale">
+                        <div class="troffi-img"></div> {{userLeaderboardModal.score}}
+                      </div>
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <!-----Sticky-tabs-end------>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="no-result" *ngIf="noResultFound">
+            <img [src]="placeholderImage" alt="">
+            <h4>No Leaderboard Available ...</h4>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>
+
+<app-back-button></app-back-button>

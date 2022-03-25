@@ -1,0 +1,42 @@
+<!-- <div class="container-fluid"> -->
+
+<ng-container *ngIf="showSubscriptionPlans">
+    <div class="subscriptionPlans container">
+        <div class="subscriptionPlans slate-holder">
+            <div class="slate-wrapper blackBg">
+                <div class="slate-wrapper hide"></div>
+                <div class="nudge-holder">
+                    <div class="wrapper premium">
+                        <p class="heading">You need a Premium Membership to watch this video.</p>
+                        <a class="premium-free-trial" routerLink="/user/membershipandplans">Start your membership</a>
+                        <div>
+                            <hr>
+                            <span class="premium-nudge-note" *ngIf="isUserLoggedIn"> Already a member? Please logout and
+                                sign in again to refresh your account </span>
+                            <span class="premium-nudge-note" *ngIf="!isUserLoggedIn"> Already have a Membership? &nbsp;
+                                <span class="premium-free-trial" (click)="showLoginPopup()">
+                                    Log In
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-container>
+    <app-poster *ngIf="!showPlayer && !ugcPlayerFound" style="height: 100%"
+        [assetDetail]="programAssetDetail?programAssetDetail:assetDetail" (playEvent)="playEvent()"
+        [showWaterMark]="appPosterWaterMark" [channelLogo]="channelLogo"></app-poster>
+</ng-container>
+
+
+<ngx-loading [show]="loading" class="col-lg-offset-5" *ngIf="loading && !ugcPlayerFound"
+    [config]="{ backdropBorderRadius: '0px' }">
+</ngx-loading>
+<div [ngClass]="{'hidePlayer': !showPlayer}" id="kalturaPlayerTargetId"
+    style="width: 100%;height: 658px;max-width: 1170px;margin-bottom: 30px;"></div>
+<app-back-button></app-back-button>
+
+<!-- </div> -->

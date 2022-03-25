@@ -1,0 +1,64 @@
+@import "./theme-colors";
+
+
+body {
+  font-family: 'Ubuntu', sans-serif !important;
+  font-display: fallback;
+  // background-color: $theme-base-light-grey;
+  background-color: $theme-black-color-change;
+}
+
+
+@font-face {
+  font-family: 'HelveticaNeueBold';
+  src: url('https://d1f8xt8ufwfd45.cloudfront.net/web/font/HelveticaNeueBold/HelveticaNeueBold.eot') format('embedded-opentype'),
+    url('https://d1f8xt8ufwfd45.cloudfront.net/web/font/HelveticaNeueBold/HelveticaNeueBold.woff') format('woff'),
+    url('https://d1f8xt8ufwfd45.cloudfront.net/web/font/HelveticaNeueBold/HelveticaNeueBold.ttf') format('truetype'),
+    url('https://d1f8xt8ufwfd45.cloudfront.net/web/font/HelveticaNeueBold/HelveticaNeueBold.svg') format('svg');
+  font-weight: normal;
+  font-display: fallback;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), local('ubuntu'), url(https://fonts.gstatic.com/s/ubuntu/v15/4iCv6KVjbNBYlgoCjC3jsGyNPYZvgw.woff2) format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), local('ubuntu'), url(https://fonts.gstatic.com/s/ubuntu/v15/4iCv6KVjbNBYlgoC1CzjsGyNPYZvgw.woff2) format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), local('ubuntu'), url(https://fonts.gstatic.com/s/ubuntu/v15/4iCs6KVjbNBYlgoKfw72nU6AFw.woff2) format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'LineAwesome';
+  font-style: normal;
+  font-weight: 400;
+  src: local('LineAwesome'), local('line-awesome'), url(https://maxcdn.icons8.com/fonts/line-awesome/1.1/fonts/line-awesome.woff2?v=1.1.);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://fonts.gstatic.com/s/materialicons/v67/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}

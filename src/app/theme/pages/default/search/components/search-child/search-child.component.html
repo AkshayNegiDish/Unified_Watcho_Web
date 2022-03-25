@@ -1,0 +1,107 @@
+<div class="web-search" [hidden]="!assetList">
+  <ng-container *ngIf="assetList">
+    <div class="rails-container">
+      <ng-container>
+        <div class="row" *ngIf="assetList.totalCount > 0">
+          <div class="col-lg-12 rail-info-container">
+            <div class="rail-title col-lg-10" *ngIf="!showPopularSearch">
+              <h2 *ngIf="assetList.totalCount === 1" (click)="showMoreResults(assetList.objects[0].type)" 
+              (click)="clickMoreResultsMoEngage(searchQuery.query, assetList.objects[0].type)">{{railTitle}}
+                - {{assetList.totalCount}} RESULT</h2>
+              <h2 *ngIf="assetList.totalCount > 1" (click)="showMoreResults(assetList.objects[0].type)" 
+                (click)="clickMoreResultsMoEngage(searchQuery.query, assetList.objects[0].type)">{{railTitle}}
+                - {{assetList.totalCount}} RESULTS</h2>
+            </div>
+            <div class="rail-title col-lg-10" *ngIf="showPopularSearch">
+              <h2>Popular Search</h2>
+            </div>
+            <div class="rail-title col-lg-2">
+              <button  class="more-btn pull-right"
+                *ngIf="assetList.totalCount > pageSize" (click)="showMoreResults(assetList.objects[0].type)" 
+                (click)="clickMoreResultsMoEngage(searchQuery.query, assetList.objects[0].type)">
+                Show All
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="assetList.totalCount > 0">
+          <div class="col-lg-12 rail-data-container">
+            <div class="col-lg-3 {{borderPadding}}" *ngFor="let search of assetList.objects;let j = index">
+              <div [class]="viewType">
+                <app-railItemView [imagesAsset]="search?.images" [name]="search?.name" [runtime]="search?.metas['Runtime']?.value"
+                  [isPremium]="search?.metas['Is Exclusive']?.value" [assetDetail]="search"
+                  (click)="watchAsset(search.name, search.id, search.type, search?.startDate, search?.linearAssetId, j)" [viewType]="railViewType" [showDescription]="true"
+                  [mediaType]="search?.type" (click)="clickPopularSearchMoEngageEvent(search.name, search.id)"
+                  (click)="clickSearchResultsMoEngageEvent(searchQuery.query, search.id, search.name, search, search.type)">
+                </app-railItemView>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>
+<ng-container *ngIf="loading">
+  <app-default-rail-shell [viewType]="railViewType">
+  </app-default-rail-shell>
+</ng-container>
+<!-- <app-no-result *ngIf="noResultFound"></app-no-result> -->
+
+
+
+<!----------------------mobile-serch---------------------->
+
+<div class="container mobile-serch-child" [ngClass]="{'min-height-700': showPopularSearch}">
+  <!-- <div class="mobile search-bar">
+    <i class="first material-icons">arrow_back</i>
+    <input class="form-control" type="text" placeholder="Start Searching..." id="mobile-input-control">
+    <i class="secnd material-icons">close</i>
+  </div> -->
+
+  <div class="result-serch" *ngIf="assetList">
+    <div class="title-serch col-lg-12" *ngIf="!showPopularSearch">
+      <div class="title-info">
+        <h4 *ngIf="assetList.totalCount === 1">{{railTitle}}
+          - {{assetList.totalCount}} RESULT</h4>
+        <h4 *ngIf="assetList.totalCount > 1">{{railTitle}}
+          - {{assetList.totalCount}} RESULTS</h4>
+        <div  class="show-right-serch" *ngIf="assetList.totalCount > pageSize"
+          (click)="showMoreResults(assetList.objects[0].type)" (click)="clickMoreResultsMoEngage(searchQuery.query, assetList.objects[0].type)">
+          <h5>Show All</h5>
+        </div>
+      </div>
+    </div>
+    <div class="title-serch" *ngIf="showPopularSearch">
+      <h4>Popular Search</h4>
+    </div>
+    <!--title-serch-->
+    <ul class="mange-serch" *ngIf="assetList.totalCount > 0">
+      <li class="{{MobBorderWidth}}" *ngFor="let search of assetList.objects;let j = index">
+        <div class="images-serch">
+          <!-- <img [src]="search?.images | thumbnail: 'LANDSCAPE':210:119:50" (load)="imageLoadEvent($event)" alt="">
+          <div class="overlay-text">
+            <i class="material-icons">play_arrow</i>
+            <p>{{search?.name}}</p>
+          </div>
+          <div class="minutes-show">
+            {{search?.metas?.Runtime?.value | mediaTime}}
+          </div> -->
+          <app-railItemView [imagesAsset]="search?.images" [name]="search?.name" [runtime]="search?.metas['Runtime']?.value"
+            [isPremium]="search?.metas['Is Exclusive']?.value" [assetDetail]="search"
+            (click)="watchAsset(search.name, search.id, search.type, search?.startDate, search?.linearAssetId)" [viewType]="railViewType" [showDescription]="false"
+            [mediaType]="search?.type" (click)="clickPopularSearchMoEngageEvent(search.name, search.id)"
+            (click)="clickSearchResultsMoEngageEvent(searchQuery.query, search.id, search.name, search, search.type)">
+          </app-railItemView>
+        </div>
+        <!-- <app-default-rail-item-shell *ngIf="!isImageLoaded" [viewType]="'LANDSCAPE'"></app-default-rail-item-shell> -->
+      </li>
+      <!--end-li-->
+    </ul>
+    <!--mange-serch-->
+  </div>
+  <!--result-serch-->
+
+</div>
+<!--mobile-serch-->

@@ -1,0 +1,182 @@
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-colors.scss';
+
+
+
+$d2h-color: #9C42DC;
+$dishtv-color: #EF4923;
+
+
+
+.container {
+  max-width: 1170px !important;
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.recharge-card {
+  position: relative;
+  display: -ms-flexbox;
+  cursor: pointer;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  margin-top: 10px;
+  background: #333;
+  border: none;
+  width: 816px;
+  height: 85px;
+  float: left;
+}
+
+.btn {
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 10px;
+  font-weight: 400;
+
+  float: right;
+  outline: none;
+  margin: -50px;
+  margin-right: 20px;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+  color: #fff;
+}
+
+// .recharge-card:hover {
+//     box-shadow: 2px 2px 5px 4px #242424;
+//     transition: box-shadow .3s ease-in-out;
+// }
+.card-title {
+  margin-bottom: .75rem;
+  font-size: large;
+  font-weight: 100;
+  color: #fff;
+}
+
+.card-text {
+  font-size: 16px;
+
+  text-align: left;
+  border: 2px solid transparent;
+}
+
+.text-truncate {
+  border: 2px solid transparent;
+  font-size: 16px;
+}
+
+.d2h {
+  .card-text {
+    color: $d2h-color
+  }
+
+  .btn-primary:not(:disabled):not(.disabled).active,
+  .btn-primary:not(:disabled):not(.disabled):active,
+  .show>.btn-primary.dropdown-toggle {
+    background-color: $d2h-color;
+    border-color: $d2h-color
+  }
+
+
+  .btn {
+    background: $d2h-color
+  }
+
+  .btn-primary {
+    border-color: $d2h-color
+  }
+
+  .text-truncate {
+    color: $d2h-color;
+  }
+}
+
+.dishtv {
+  .card-text {
+    color: $dishtv-color
+  }
+
+  .btn-primary:not(:disabled):not(.disabled).active,
+  .btn-primary:not(:disabled):not(.disabled):active,
+  .show>.btn-primary.dropdown-toggle {
+    background-color: $dishtv-color;
+    border-color: $dishtv-color
+  }
+
+
+  .btn {
+    background: $dishtv-color
+  }
+
+  .btn-primary {
+    border-color: $dishtv-color
+  }
+
+  .text-truncate {
+    color: $dishtv-color;
+  }
+}
+
+
+.card-text.focused {
+  outline: none;
+  background: #000;
+  border-radius: 6px;
+  border: 2px solid #505050;
+  padding-left: 10px;
+  color: #fff;
+}
+
+.head-details .card-text {
+  width: 100%;
+}
+
+.container .card-text {
+  width: 60%;
+}
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  margin-left: 0px;
+  // margin-right: auto;
+  background: none;
+  border: none;
+}
+
+.cbtn {
+  min-width: 100px;
+}
+
+@media (max-width:500px) {
+  .cbtn {
+    margin: -35px;
+    margin-right: 0px;
+  }
+
+  .recharge-card {
+    height: 100px;
+  }
+}
+

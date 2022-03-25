@@ -1,0 +1,27 @@
+<div class="contentpreference-view">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+  <!-- <div class="container"> -->
+  <div class="common-text">
+    <p class="font-normal">
+      Select genre as per your interest for best results. You can select multiple choices of interest (max 5)
+    </p>
+    <ul class="tags clearfix" *ngIf="genreList">
+      <ng-container *ngFor="let genre of genreList.objects">
+        <li (click)="selectGenre(genre.id)">
+          <span [id]="genre.id">
+            {{genre.name}}
+          </span>
+          <span class="click-content material-icons">done</span>
+        </li>
+      </ng-container>
+    </ul>
+    <div class="center">
+      <button class="btn width"
+        (click)="updatePrefrences()">Continue</button>
+    </div>
+  </div>
+  <!--common-text-->
+  <!-- </div> -->
+  <!--container-->
+</div>
+<!--contentpreference-view-->

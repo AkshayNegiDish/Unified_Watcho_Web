@@ -1,0 +1,50 @@
+<span *appShellNoRender>
+  <app-pwa-header *ngIf="isPwa" [displayName]="'Creators'"></app-pwa-header>
+  <div *ngIf="!loading">
+    <div class="container following-creator">
+      <div>
+        <h2 *ngIf="!isPwa">Creators</h2>
+      </div>
+      <div [ngClass]="{'pwa-padding-top' : isPwa, 'row rail-data-container':true}">
+        <ng-container *ngIf="kalturaAssetListResponseCreator">
+          <div class="card text-white " *ngFor="let response of kalturaAssetListResponseCreator.objects">
+            <div class="card-img " [ngStyle]="solidColor" style="display: none;">
+              <img class="img" [src]="noCreatorPlaceholder" (load)="imageLoadEvent($event)"
+                [attr.data]="response.entryId" [id]="response.id" [alt]="response.name">
+              <div class="description" (click)="watchAsset(response.name, response.id, null, null, response.type)">
+                <span class="name">{{response.name | trim: 40}}</span>
+              </div>
+              <div>
+                <div class="icon-list unfoll-crt" (click)="unfollowCreator(response.id, response.name)">
+                  <i class="material-icons">playlist_add_check</i>
+                  <span>Unfollow</span>
+                </div>
+              </div>
+              <div class="icon-list unfoll-crt-mobile" (click)="unfollowCreator(response.id, response.name)">
+                <i class="material-icons">playlist_add_check</i>
+              </div>
+            </div>
+            <div class="img-shell" [id]="response.entryId">
+              <app-default-rail-item-shell [viewType]="viewType"></app-default-rail-item-shell>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="placeholder" *ngIf="noCreator">
+        <img class="img" [src]="noCreatorFoundPlaceholder">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading">
+    <app-default-rail-shell [viewType]="'CIRCLE'"></app-default-rail-shell>
+  </div>
+  <div class="back-button">
+    <app-back-button></app-back-button>
+  </div>
+</span>
+<span *appShellRender>
+  <!-- <div class="base-page"> -->
+  <app-default-rail-shell [viewType]="'CIRCLE'"></app-default-rail-shell>
+  <!-- <app-listing-pages-shell></app-listing-pages-shell> -->
+  <!-- </div> -->
+</span>

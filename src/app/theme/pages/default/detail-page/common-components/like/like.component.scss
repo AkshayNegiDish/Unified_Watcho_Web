@@ -1,0 +1,113 @@
+@import '~assets/scss/theme-constants.scss';
+
+.heart-icon{
+  display: inline-block;
+  margin: 0 10px 0 0;
+  text-align: center;
+  &:hover{
+    .like-count{
+      color: #fff;
+    }
+    .like-single{
+      // &:hover{
+        background: url($web-sprite-v3-url) no-repeat -739px -854px;
+      // }
+    }
+
+  }
+    .likeicon{
+      width: 32px;
+      height: 32px;
+     display: inline-block;
+     cursor: pointer;
+    }
+    .like-count{
+      text-align: center;
+      margin: -12px 0 0 0;
+      color: #757575;
+      &.liked{
+        color: #fa0050;
+      }
+    }
+}
+
+.like-single{
+  background: url($web-sprite-v3-url) no-repeat -650px -854px;
+  width: 83px;
+  height: 83px;
+  display: block;
+  -moz-transform: scale(0.35);
+  -moz-transform-origin: 0 0;
+  -webkit-transform: scale(0.35);
+  -ms-transform: scale(0.35);
+  transform: scale(0.35);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  border-radius: 0%;
+  // &:hover{
+  //   background: url($web-sprite-v3-url) no-repeat -739px -854px;
+  // }
+}
+
+.like-fillicon{
+  background: url(https://d13hscxm4hs8s.cloudfront.net/static/icons-sprite.png) no-repeat -381px -203px;
+  width: 83px;
+  height: 83px;
+  display: block;
+  -moz-transform: scale(0.35);
+  -moz-transform-origin: 0 0;
+  -webkit-transform: scale(0.35);
+  -ms-transform: scale(0.35);
+  transform: scale(0.35);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  border-radius: 0%;
+}
+
+.like-alsoicon{
+  background: url($web-sprite-v3-url) no-repeat -550px -854px;
+  width: 83px;
+  height: 83px;
+  display: block;
+  -moz-transform: scale(0.35);
+  -moz-transform-origin: 0 0;
+  -webkit-transform: scale(0.35);
+  -ms-transform: scale(0.35);
+  transform: scale(0.35);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  border-radius: 0%;
+  // &:hover{
+  //   background: url(https://d13hscxm4hs8s.cloudfront.net/static/icons-sprite.png) no-repeat -381px -203px;
+  // }
+}
+
+
+
+
+
+
+
+@media (max-width:768px){
+/*************start***************/
+.heart-icon{
+  &:hover{
+    .like-count{
+      color: #757575;
+    }
+    .like-single{
+      background: url($web-sprite-v3-url) no-repeat -650px -854px;
+    }
+
+  }
+  .like-count{
+    &.liked{
+      color: #fa0050;
+    }
+  }
+}
+/************End******************/
+}

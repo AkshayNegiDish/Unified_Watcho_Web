@@ -1,0 +1,139 @@
+<div [ngClass] = "platform?platform:''">
+<div *ngIf="details else empty" class="container">
+  <div class="row justify-content-md-center">
+    <div class="col">
+      <p>VC: {{Dishd2hSubscriberID}}</p>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-4">
+      <p>Selection</p>
+    </div>
+    <div class="col-4">
+      <p>Quantity</p>
+    </div>
+    <div class="col-4">
+      <p>Price</p>
+    </div>
+  </div>
+  <div *ngFor="let detail of details" class="row justify-content-md-center">
+    <div *ngIf="detail.TotalPrice" class="col-4">
+      <p>Total</p>
+    </div>
+    <div class="col-sm">
+      <p>{{detail.Type}}</p>
+    </div>
+    <div class="col-sm">
+      <p>{{detail.Count}}</p>
+    </div>
+    <div *ngIf="!detail.TotalPrice" class="col-sm">
+      <p>Rs. {{detail.Price}}</p>
+    </div>
+    <div *ngIf="detail.TotalPrice" class="col-4">
+      <p>Rs. {{detail.TotalPrice}}</p>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #empty>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col">
+        <h3>VC: NA</h3>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-4">
+        <p>Selection</p>
+      </div>
+      <div class="col-4">
+        <p>Quantity</p>
+      </div>
+      <div class="col-4">
+        <p>Price</p>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-sm">
+        <p>Bouquet</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-sm">
+        <p>Combos</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-sm">
+        <p>Add-ons</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-sm">
+        <p>VAS</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-sm">
+        <p>Alacarte</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-sm">
+        <p>NFC</p>
+      </div>
+      <div class="col-sm">
+        <p></p>
+      </div>
+      <div class="col-sm">
+        <p>NA</p>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-4">
+        <p>Total</p>
+      </div>
+      <div class="col-4">
+        <p></p>
+      </div>
+      <div class="col-4">
+        <p>NA</p>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+
+</div>

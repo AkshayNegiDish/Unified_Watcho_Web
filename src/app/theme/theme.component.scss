@@ -1,0 +1,144 @@
+@import '~assets/scss/styles';
+
+.container {
+    // background-color: $theme-light-grey;
+    background-color: $theme-black-color-change;
+}
+
+.fullcontainer {
+  width: 100%;
+  float: left;
+  min-height: 100%;
+
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 100% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 100% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 998px !important;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1170px !important;
+    }
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+    padding: 0 !important;
+    border-radius: 0px !important;
+}
+
+.modal-backdrop.fade
+{
+  opacity: 0.5 !important;
+}
+.modal-open .modal
+{
+  opacity: 1 !important;
+  z-index: 9999;
+}
+
+
+.backsearch{
+    background-color: #fff !important;
+    opacity: 0.5 !important;
+}
+
+::-ms-reveal {
+    display: none;
+ }
+
+ ::-ms-clear {
+    display: none;
+ }
+
+ .input-group .input-label{
+    position: absolute;
+    width: 92%;
+    left: 25px;
+    font-size: 16px;
+    top: 0;
+    padding: 5px 0;
+    color: #989898;
+    -webkit-transition: all .3s;
+      -moz-transition: all .3s;
+      -o-transition: all .3s;
+      transition: all .3s;
+     
+  }
+  .input-group .input-labelleft{
+    position: absolute;
+    left: 0;
+    font-size: 16px;
+    padding: 5px 0;
+    top: 0px;
+    color: $fonts-grey-color;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    
+  }
+ 
+input:focus + .input-labelleft,input:valid + .input-labelleft{
+  top: -22px;  
+  font-size: 90%;
+}
+
+input:focus + .input-label,input:valid + .input-label{
+  top: -22px;
+  font-size: 90%;
+}
+input:focus ~ .input-labelleft,input:valid ~ .input-labelleft{
+  top: -22px;  
+  font-size: 90%;
+}
+
+input:focus ~ .input-label,input:valid ~ .input-label{
+  top: -22px;
+  font-size: 90%;
+}
+  
+
+  .input-group .form-control:focus~.input-label, .input-group .form-control:valid.error~.input-label, .input-group .form-control:focus~.input-labelleft, .input-group .form-control:valid.error~.input-labelleft, .input-group .form-control:valid .input-labelleft ,.input-group .form-control:valid .input-label, .input-group .form-control:active .input-labelleft ,.input-group .form-control:active .input-label, .input-group input:focus .input-labelleft ,.input-group .form-control:focus .input-label, .input-group .form-control:focus:not([readonly])+.input-labelleft ,.input-group .form-control:focus:not([readonly])+.input-label
+  {
+    color: $fonts-grey-color !important;
+  }
+  
+
+.vertical-offset-2 {
+    margin-top: 20px;
+}
+
+
+.vertical-offset-4 {
+    margin-top: 40px;
+}
+
+body .ugc-video-mobile{
+    position: fixed;
+    overflow: hidden;
+    bottom: 0;
+}
+
+

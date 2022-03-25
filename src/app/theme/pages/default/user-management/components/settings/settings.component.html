@@ -1,0 +1,991 @@
+<div class="container">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+
+  <div class="setting-form" style="display:none;">
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <h3>Profile Details</h3>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3 label">
+          <span>User name</span>
+        </div>
+        <div class="col-lg-6">
+          <input class="form-control" type="text" disabled="disabled" maxlength="30"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="userName">
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-lg-3 label">
+          <span>Date of birth</span>
+        </div>
+        <div class="col-lg-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="dd-mm-yyyy" disabled="disabled"
+              [ngModelOptions]="{standalone: true}" [(ngModel)]="userDob">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-3 label">
+          <span>Gender</span>
+        </div>
+        <div class="col-lg-6">
+          <input type="text" class="form-control" placeholder="Gender" disabled="disabled"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="userGender">
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-lg-3 label">
+          <span>Phone Number</span>
+        </div>
+        <div class="col-lg-6">
+          <input type="text" maxlength="10" class="form-control" placeholder="Your Number" disabled="disabled"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="userContactNumber">
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-3 label">
+          <span>E mail</span>
+        </div>
+        <div class="col-lg-6">
+          <input class="form-control" placeholder="Enter Email" type="text" disabled="disabled"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="userEmail">
+        </div>
+        <div class="col-lg-3">
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h3>Change Password</h3>
+        </div>
+      </div>
+      <div class="row change-password-from">
+        <div class="col-lg-3">
+          <span class="inintchmg">Change Password</span>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="form-group">
+            <i class="la la-unlock"></i>
+            <input type="password" class="form-control" placeholder="New Password">
+            <span class="error"></span>
+            <i class="la eye la-eye-slash" (click)="toogleEyeIcon()"></i>
+
+          </div>
+          <div class="form-group">
+            <i class="la la-unlock"></i>
+            <input type="password" class="form-control" placeholder="Confirm Password">
+            <span class="error"></span>
+            <i class="la eye la-eye-slash" (click)="toogleEyeIcon()"></i>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-blue"> Change password</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!--form-group-->
+  </div>
+  <!--setting-form-->
+
+
+  <div class="tabs-top">
+    <div class="maintitle">
+      <h2>Account &amp; Settings</h2>
+    </div>
+    <!--maintitle-->
+
+    <ngb-tabset #t="ngbTabset">
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div (click)="resetButtons()">Your Account</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="inner-tabs-section">
+            <div class="first-tab">
+              <ul>
+                <li>
+                  <div class="box-lefttab" (click)="mobileView('#changeDetailsDiv')" (click)="getUserDetails()">
+                    <h3>Your Details</h3>
+                    <p>Change your Profile Pic, Name, Date of Birth and Gender</p>
+                  </div>
+                  <!--box-lefttab-->
+                  <div class="box-righttab">
+                    <button class="btn-pink" (click)="getUserDetails()"
+                      (click)="toggleUserDetailsDiv()">{{userDetailsEditButton}}<i
+                        class="material-icons">{{userDetailsarrowType}}</i></button>
+                  </div>
+                  <!--box-righttab-->
+                  <div class="showsection">
+                    <div class="changePasswordBody" style="display : none" id="changeDetailsDiv">
+                      <div class="changebtntype">
+                        <div class="userImageEdit">
+                          <ngx-loading [show]="showProfilrDisplayLoader" [config]="{ backdropBorderRadius: '0px' }">
+                          </ngx-loading>
+                          <i *ngIf="isUserImage" class="secnd-close material-icons"
+                            (click)="clearUploadedImage()">close</i>
+                          <div class="uplodeimg">
+                            <img class="userImage"
+                              onerror="this.src='https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/user.png'"
+                              [src]="userImage" alt="">
+                            <div (click)="browseThumbnail()" class="cameraIcon">
+                              <i class="material-icons">camera_enhance</i>
+                              <input type="file" id="uploadThumbnailFile" accept="image/*" hidden
+                                (change)="videoThumbnailSelected($event)" />
+                              <label> Update</label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="chngpasChange-password">
+                          <!-- <label>New Password</label> -->
+                          <div class="input-group">
+                            <input type="text" maxlength="30" [(ngModel)]="userDetailsCommand.name" placeholder="Name">
+                          </div>
+                        </div>
+                        <div class="chngpasChange-password" *ngIf="userDetailsCommand.email">
+                          <!-- <label>Confirm Password</label> -->
+                          <div class="input-group">
+                            <input type="text" disabled [(ngModel)]="userDetailsCommand.email"
+                              placeholder="Email Address">
+                            <div class="email-verified">
+                              <span class="verify" *ngIf="!userDetailsCommand.emailVerified" (click)="resendOtpForEmail()">Verify</span>
+                              <span class="virified" *ngIf="userDetailsCommand.emailVerified"><i class="la la-check"></i></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="chngpasChange-password" *ngIf="userDetailsCommand.mobileNo">
+                          <!-- <label>Confirm Password</label> -->
+                          <div class="input-group">
+                            <input type="text" disabled [(ngModel)]="userDetailsCommand.mobileNo"
+                              placeholder="Phone Number">
+                          </div>
+                        </div>
+
+                        <div class="chngpasChange-password">
+                          <!-- <label>Confirm Password</label> -->
+                          <div class="input-group">
+                            <i class="la la-calendar" (click)="d.toggle()"></i>
+                            <input class="form-control" (click)="d.toggle()" id="dob"
+                              [(ngModel)]="userDetailsCommand.dateOfBirth" readonly placeholder="Date of Birth"
+                              name="dp" ngbDatepicker #d="ngbDatepicker">
+                            <!-- <span *ngIf="newUserDateOfBirthErrorMessage" class="error">{{newUserDateOfBirthErrorMessage}}</span> -->
+                          </div>
+                        </div>
+                        <div class="chngpasChange-password">
+                          <div class="input-group custom-radio">
+                            <a id="male" (click)="selectMale()">Male</a>
+                            <a id="female" (click)="selectFemale()">Female</a>
+                          </div>
+                        </div>
+
+                        <div class="chngpasChange-password">
+                          <button class="btn-pink" (click)="updateUserProfile()">Save Changes</button>
+                        </div>
+                      </div>
+                      <!--changebtntype-->
+                    </div>
+                  </div>
+                </li>
+                <li *ngIf="isUserType === '3'">
+                  <div class="box-lefttab" (click)="mobileView('#changePasswordDiv')">
+                    <h3>Change Password</h3>
+                    <p>Change your Password</p>
+                  </div>
+                  <!--box-lefttab-->
+                  <div class="box-righttab">
+                    <button class="btn-pink" (click)="toggleChangePasswordDiv()">{{passwordEditButton}}<i
+                        class="material-icons">{{arrowType}}</i></button>
+                  </div>
+                  <!--box-righttab-->
+                  <div class="showsection">
+                    <div class="changePasswordBody" style="display : none" id="changePasswordDiv">
+                      <div class="changebtntype">
+
+                        <div class="chngpasChange-password">
+                          <!-- <label>New Password</label> -->
+                          <div class="input-group">
+                            <input [type]="newPasswordTextBoxType" [(ngModel)]="changePasswordcommand.newPassword"
+                              placeholder="New Password">
+                            <i [class]="newPasswordToggleEye" (click)="toggleNewPasswordClass()"></i>
+                          </div>
+                        </div>
+                        <div class="chngpasChange-password">
+                          <!-- <label>Confirm Password</label> -->
+                          <div class="input-group">
+                            <input [type]="confirmPasswordTextBoxType"
+                              [(ngModel)]="changePasswordcommand.confirmPassword" placeholder="Confirm Password">
+                            <i [class]="confirmPasswordToggleEye" (click)="toggleConfirmPasswordClass()"></i>
+                          </div>
+                        </div>
+                        <div class="chngpasChange-password">
+                          <button class="btn-pink" (click)="changePassword()">Save Changes</button>
+                        </div>
+                      </div>
+                      <!--changebtntype-->
+                    </div>
+                  </div>
+                </li>
+                <!-- 
+                <li>
+                  <div class="box-lefttab">
+                    <h3>Your Payment History</h3>
+                    <p>Go to Amazon to view your payment history.</p>
+                  </div>
+                  <div class="box-righttab">
+                    <button href="#" class="btn-pink"><i class="material-icons">keyboard_arrow_right</i>Edit</button>
+                  </div>
+                </li> -->
+                <li>
+                  <div class="box-lefttab" (click)="mobileView('#logoutUser')">
+                    <h3>Log Out</h3>
+                    <p>Log Out from this account</p>
+                  </div>
+                  <!--box-lefttab-->
+                  <div class="box-righttab">
+                    <button href="javascript:;" class="btn-pink" (click)="logoutUser()" id="logoutUser"><i
+                        class="fa fa-sign-out  logoutmobile" aria-hidden="true"></i>Log Out</button>
+                  </div>
+                  <!--box-righttab-->
+                </li>
+              </ul>
+            </div>
+            <!--first-tab-->
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div (click)="videoQualityTab()">Video Quality</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="inner-tabs-section">
+            <div class="secnd-tab">
+              <h3 style="text-align:center; margin-bottom:25px;">Video Quality</h3>
+              <div class="autobtn">
+                <form action="" style=" margin: 0 auto; max-width: 336px; width: 100%;">
+                  <div class="cover">
+                    <label class="switch">
+                      <input type="radio" [(ngModel)]="videoQuality" id="f-option-Auto" value="Auto" name="selector">
+                      <label for="f-option-Auto"></label>
+                      <div class="check"></div>
+                    </label>
+                    <span>Auto</span>
+                    <p>Default video quality and data usage</p>
+                  </div>
+                  <div class="cover">
+                    <label class="switch">
+                      <input type="radio" [(ngModel)]="videoQuality" id="f-option-low" value="Low" name="selector">
+                      <label for="f-option-low"></label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </label>
+                    <span>Low</span>
+                    <p>Basic video quality, up to 0.21 GB per hour</p>
+                  </div>
+                  <div class="cover">
+                    <label class="switch">
+                      <input type="radio" [(ngModel)]="videoQuality" id="f-option-medium" value="Medium"
+                        name="selector">
+                      <label for="f-option-medium"></label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </label>
+                    <span>Medium</span>
+                    <p>Standard video quality, up to 0.4 GB per hour</p>
+                  </div>
+                  <div class="cover">
+                    <label class="switch">
+                      <input type="radio" [(ngModel)]="videoQuality" id="f-option-high" value="High" name="selector">
+                      <label for="f-option-high"></label>
+                      <div class="check">
+                        <div class="inside"></div>
+                      </div>
+                    </label>
+                    <span>High</span>
+                    <p>Best video quality, up to 0.9 GB per hour </p>
+                  </div>
+                  <div class="cover">
+                    <h5>Auto-Play</h5>
+                    <!-- .squaredTwo -->
+                    <div class="squaredTwo">
+                      <input type="checkbox" [(ngModel)]="isAutoPlay" id="squaredTwo" name="check" />
+                      <label for="squaredTwo"></label>
+                    </div>
+                    <!-- end .squaredTwo -->
+                    <span class="chekinnto">Play next episode automatically</span>
+                  </div>
+                  <div class="actionbtn">
+                    <button class="btn-pink" (click)="selectQualityPrefences()">Update</button>
+                    <button class="btn-pink" (click)="videoQualityTab()">Cancel</button>
+                  </div>
+                </form>
+              </div>
+              <!--autobtn-->
+            </div>
+            <!--secnd-tab-->
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ng-container *ngIf="qaEnvironment">
+        <ngb-tab title="">
+          <ng-template ngbTabTitle>
+            <div (click)="getParentalStatus()">Parental Control</div>
+          </ng-template>
+          <ng-template ngbTabContent>
+            <div class="inner-tabs-section">
+              <div class="parental-tab">
+                <div class="trd-tab2">
+                  <div class="trd-cont">
+                    <h3>Parental Restriction</h3>
+                    <p>Enable or Disable Parental Restriction</p>
+                  </div>
+                  <div class="radio-parental">
+                    <label class="switch" onClick=''>
+                      <input type="checkbox" id="checkBox" [checked]='isParentalActivated'
+                        (click)="activateParental($event)">
+                      <span class="slider round"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="trd-tab1">
+                  <div class="trd-cont" (click)="mobileView('#restriction-table')">
+                    <h3>Watcho Restriction Level</h3>
+                    <p>View Parental Restriction levels</p>
+                  </div>
+                  <button class="btn-pink" (click)="toggleRestrictionBox()">{{toggleViewButton}}<i
+                      class="material-icons">{{restrictionArrowType}}</i>
+                  </button>
+                  <div class="restriction-table" style="display: none" id="restriction-table">
+                    <h4>Videos rated as 16+ require a PIN to view</h4>
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td></td>
+                          <td>All</td>
+                          <td class="text-right">Kids</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>7+</td>
+                          <td class="text-right">Older Kids</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>13+</td>
+                          <td class="text-right">Teens</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="prental-active"></div>
+                          </td>
+                          <td>16+</td>
+                          <td class="text-right">Young Adults</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="prental-active"></div>
+                          </td>
+                          <td>18+</td>
+                          <td class="text-right">Adults</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="trd-tab">
+                  <div class="trd-cont" style="cursor: pointer;" (click)="openChangePinValidatorModal()">
+                    <div class="trd-cont">
+                      <h3>Change PIN</h3>
+                      <p>Change your PIN</p>
+                    </div>
+                  </div>
+                  <div class="trd-btnhere" (click)="openChangePinValidatorModal()">
+                    <i class="material-icons ">
+                      arrow_forward_ios
+                    </i>
+                  </div>
+                </div>
+
+                <div class="trd-tab" *ngIf="isParentalActivated">
+                  <div class="trd-cont" style="cursor: pointer;" (click)="resendOtpForResetParental()">
+                    <div class="trd-cont">
+                      <h3>Forget Pin</h3>
+                      <p>Reset your PIN</p>
+                    </div>
+                  </div>
+                  <div class="trd-btnhere" (click)="resendOtpForResetParental()">
+                    <i class="material-icons ">
+                      arrow_forward_ios
+                    </i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ng-container>
+
+
+      <!-- 
+      <ngb-tab id="your_devices" title="Your Devices" (click)="clickYourDevicesPageMoEngage()">
+        <ng-template ngbTabContent>
+          <div class="inner-tabs-section">
+            <div class="Devices-tab">
+              <h3>Your Devices</h3>
+              <div class="autobtn">
+                <div class="midlvl-section" action="" style="margin:0 auto; max-width:600px;width:100%;">
+                  <div class="cover">
+                    <app-registered-devices class="devices-icon"></app-registered-devices>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab> -->
+
+
+      <!-- <ngb-tab title="Application Settings">
+        <ng-template ngbTabContent>
+          <div class="inner-tabs-section">
+            <div class="Application-tab">
+              <h3>Device Management</h3>
+              <div class="autobtn">
+                <div class="midlvl-section" action="" style="margin:0 auto; max-width:500px;width:100%;">
+                  <div class="cover">
+                    <ul>
+                      <li>
+                        <span class="devices-icon">
+                          <i class="material-icons">android</i>
+                        </span>
+                        For Android Os
+                        <span class="delet-devices">
+                          <i class="material-icons">delete_forever</i>
+                        </span>
+                      </li>
+                      <li>
+                        <span class="devices-icon">
+                          <i class="material-icons">desktop_windows</i>
+                        </span>
+                        Chrome Windows 71.0.3578.98
+                        <span class="delet-devices">
+                          <i class="material-icons">delete_forever</i>
+                        </span>
+                      </li>
+                      <li>
+                        <span class="devices-icon">
+                          <i class="material-icons">desktop_windows</i>
+                        </span>
+                        Safari iOS 12.0
+                        <span class="delet-devices">
+                          <i class="material-icons">delete_forever</i>
+                        </span>
+                      </li>
+                      <li>
+                        <span class="devices-icon">
+                          <i class="material-icons">desktop_windows</i>
+                        </span>
+                        Chrome Mac For 71.0.3578.98
+                        <span class="delet-devices">
+                          <i class="material-icons">delete_forever</i>
+                        </span>
+                      </li>
+                      <li>
+                        <span class="devices-icon">
+                          <i class="material-icons">desktop_windows</i>
+                        </span>
+                        Chrome Windows 71.0.3578.98
+                        <span class="delet-devices">
+                          <i class="material-icons">delete_forever</i>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab> -->
+
+      <ngb-tab title="Content Preferences">
+        <ng-template ngbTabContent>
+          <div class="inner-tabs-section">
+            <div class="Application-tab">
+              <div class="autobtn">
+                <div class="midlvl-section" action="" style="margin:0 auto;width:100%;">
+                  <div class="cover">
+                    <app-content-preference [isSigninSignupModal]="isSigninSignup"></app-content-preference>
+                  </div>
+                </div>
+                <!--midlvl-section-->
+              </div>
+              <!--autobtn-->
+            </div>
+            <!--Application-tab-->
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="">
+        <ng-template ngbTabTitle>
+          <div (click)="getUserSubscriptionHistory()">Subscription History</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="inner-tabs-section">
+            <div class="parental-tab" *ngIf="userSubscribedPlans.length > 0">
+              <div class="trd-tab subscribe-plan">
+                <ngb-accordion [closeOthers]="true" activeIds="static-0">
+                  <ngb-panel *ngFor="let plan of userSubscribedPlans; let i = index" id="static-{{i}}">
+                    <ng-template ngbPanelTitle>
+                      <div class="subscribedplan-header">
+                        <h3>{{plan.SubscribedPlan}}
+                          <span class="btn-subscribed active-plan" *ngIf="plan.SubscriptionStatus === 'Active'">Active
+                            <i class="material-icons">check_circle_outline</i>
+                          </span>
+                        </h3>
+                      </div>
+                    </ng-template>
+
+                    <ng-template ngbPanelContent>
+                      <div class="" style="cursor: pointer;">
+                        <div class="subscribedplan-cove">
+                          <p>
+                            <ng-container *ngIf="plan.SubscriptionCategory === 'Watcho'; else dishD2hUser">
+                              <span class="subscribed-watcho">
+                                <img
+                                  src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png">
+                              </span>
+                            </ng-container>
+                            <ng-template #dishD2hUser>
+                              <span class="subscribed-dish" *ngIf="isDishUser">
+                                <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/statics/dish-logo.png">
+                              </span>
+                              <span class="subscribed-d2h" *ngIf="isD2hUser">
+                                <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/statics/D2H-logo.png">
+                              </span>
+                            </ng-template>
+                          </p>
+                          <p *ngIf="plan.InvoiceNo">
+                            Invoice #
+                            <span class="subscribedplan">
+                              {{plan.InvoiceNo}}
+                            </span>
+                          </p>
+                          <p>
+                            Status
+                            <span class="subscribedplan">
+                              {{plan.SubscriptionStatus}}
+                            </span>
+                          </p>
+                          <ng-container *ngIf="plan.SubscriptionCategory === 'Recharge'; else watchoUser">
+                            <p>
+                              Recharge Date
+                              <span class="subscribedplan">
+                                {{plan.SubscriptionStartDate | date : 'longDate'}}
+                                {{plan.SubscriptionStartDate | date : 'shortTime'}}
+                              </span>
+                            </p>
+                          </ng-container>
+                          <ng-template #watchoUser>
+                            <p>
+                              Start Date
+                              <span class="subscribedplan">
+                                {{plan.SubscriptionStartDate | date : 'longDate'}}
+                                {{plan.SubscriptionStartDate | date : 'shortTime'}}
+                              </span>
+                            </p>
+                            <p>
+                              Valid Till
+                              <span class="subscribedplan">
+                                {{plan.SubscriptionEndDate | date : 'longDate'}}
+                                {{plan.SubscriptionStartDate | date : 'shortTime'}}
+                              </span>
+                            </p>
+                          </ng-template>
+                          <p *ngIf="plan.InvoiceNo">
+                            Invoice
+                            <span class="subscribedplan">
+                              <a class="btn-subscribed" href="javascript:;"
+                                (click)="downloadInvoice(plan.InvoiceNo, plan.SubscribedPlan, plan.SubscriptionStartDate, plan.SubscriptionCategory)">
+                                Download
+                                <!--                                <i class="material-icons">assignment_returned</i>-->
+                              </a>
+                            </span>
+                          </p>
+                        </div>
+
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+
+
+                <!-- <div class="trd-btnhere" (click)="openChangePinValidatorModal()">
+                    <i class="material-icons ">arrow_forward_ios</i>
+                  </div> -->
+              </div>
+            </div>
+            <div class="parental-tab" *ngIf="noSubscriptionHistoryFound">
+              <div class="no-data">
+                <img class="image" src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/no-result.png">
+                <span>
+                  There is no Subscription History
+                </span>
+                <span class="meta">
+                  You haven't bought any plan yet
+                </span>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="" *ngIf="isD2hUser || isDishUser">
+        <ng-template ngbTabTitle>
+          <div (click)="getUserRechargeHistory()">Recharge History</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="inner-tabs-section">
+            <div class="parental-tab" *ngIf="userRecharges.length > 0">
+              <div class="trd-tab subscribe-plan">
+                <ngb-accordion [closeOthers]="true" activeIds="static-rec-0">
+                  <ngb-panel *ngFor="let recharge of userRecharges; let i = index" id="static-rec-{{i}}">
+                    <ng-template ngbPanelTitle>
+                      <div class="subscribedplan-header">
+                        <h3>{{recharge.RechargeDate}}
+                          <span class="btn-subscribed active-plan" *ngIf="recharge.Status === 'Active'">Active
+                            <i class="material-icons">check_circle_outline</i>
+                          </span>
+                        </h3>
+                      </div>
+                    </ng-template>
+
+                    <ng-template ngbPanelContent>
+                      <div class="" style="cursor: pointer;">
+                        <div class="subscribedplan-cove">
+                          <p>
+                            <span class="subscribed-dish" *ngIf="isDishUser">
+                              <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/statics/dish-logo.png">
+                            </span>
+                            <span class="subscribed-d2h" *ngIf="isD2hUser">
+                              <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/statics/D2H-logo.png">
+                            </span>
+                          </p>
+                          <p *ngIf="recharge.InvoiceNo">
+                            Invoice #
+                            <span class="subscribedplan">
+                              {{recharge.InvoiceNo}}
+                            </span>
+                          </p>
+                          <p>
+                            Status
+                            <span class="subscribedplan">
+                              {{recharge.Status}}
+                            </span>
+                          </p>
+                          <p>
+                            Recharge Date
+                            <span class="subscribedplan">
+                              {{recharge.RechargeDate}}
+                            </span>
+                          </p>
+
+                          <p *ngIf="recharge.InvoiceNo">
+                            Invoice
+                            <span class="subscribedplan">
+                              <a class="btn-subscribed" href="javascript:;"
+                                (click)="downloadInvoice(recharge.InvoiceNo, 'recharge', recharge.RechargeDate, recharge.SubscriptionCategory)">
+                                Download
+                              </a>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
+            </div>
+            <div class="parental-tab" *ngIf="noRechargeHistoryFound">
+              <div class="no-data">
+                <img class="image" src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/no-result.png">
+                <span>
+                  There is no Recharge History
+                </span>
+                <span class="meta">
+                </span>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <!-- <ngb-tab title="Language">
+        <ng-template ngbTabContent>
+          <div class="inner-tabs-section">
+            <div class="Language-tab">
+              <h3>Website Language</h3>
+              <div class="autobtn">
+                <form action="" style="margin:0 auto; max-width:400px;width:100%;">
+                  <ul>
+                    <li>
+                      <input name="radio" type="radio" checked>
+                      <span>English</span>
+                    </li>
+                  
+                    <li>
+                      <input name="radio" type="radio" checked>
+                      <span>Español</span>
+                    </li>
+                    <li>
+                      <input name="radio" type="radio" checked>
+                      <span>Italiano</span>
+                    </li>
+                    <li>
+                      <input name="radio" type="radio" checked>
+                      <span>Nederlands</span>
+                    </li>
+                    <li>
+                      <input name="radio" type="radio" checked>
+                      <span>Svenska</span>
+                    </li>
+                    <li>
+                      <input name="radio" type="radio" checked>
+                      <span>हिन्दी</span>
+                    </li>
+                    <li>
+                      <input name="radio" type="radio" checked>
+                      <span>Português(Brasil)</span>
+                    </li>
+                    <li>
+                      <input name="radio" type="radio" checked>
+                      <span>தமிழ்</span>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab> -->
+    </ngb-tabset>
+  </div>
+  <!--tabs-top-->
+
+
+</div>
+<!--container-->
+
+<ng-template #content let-modal>
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update Password</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <!-- <ngx-loading [show]="changingPassword" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading> -->
+  <div class="modal-body">
+
+    <form>
+      <p>Are You sure want to change password?</p>
+      <button class="btn btn-warning"> Update </button>
+      <button class="btn btn-warning" (click)="modal.dismiss('Cross click')"> Cancel</button>
+      <div> <span class="error"></span>
+      </div>
+
+    </form>
+    <form>
+      <p>
+        Password Updated Sucessfully :)
+      </p>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+
+<ng-template #uploadModal let-modal>
+  <div class="Profile-modal">
+    <div class="modal-body">
+      <div class="">
+        <div class="form-group">
+          <div class="">
+            <div class="input-group">
+              <div class="col-lg-12 text-profile">
+                <h1>Create Profile Picture</h1>
+              </div>
+              <div class="col-lg-12 profile-crop">
+                <div class="uplodefst Profile">
+                  <div [hidden]="thumbnailSelected === false || thumbnailCropped === true">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                      [aspectRatio]="1 / 1" [format]="jpeg" [autoCrop]="false" (imageCropped)="imageCropped($event)"
+                      [outputType]="base64" [resizeToWidth]="200" [onlyScaleDown]="true" #imageCropper>
+                    </image-cropper>
+                    <div class="crop-controls">
+                      <button class="accept-crop" (click)="cropImage(imageCropper)">Upload</button>
+                      <button class="cancel-crop" (click)="cancelImageSelect(imageCropper)">Cancel</button>
+                    </div>
+                  </div>
+                  <div [hidden]="thumbnailCropped === false" class="cropped-thumbnail-container">
+                    <img class="thumbnail-img" src="#" (load)="croppedImageLoaded()" />
+                    <ngx-loading [show]="showThumbnailUploadLoader" [config]="{ backdropBorderRadius: '0px' }">
+                    </ngx-loading>
+                    <!-- <div *ngIf="showThumbnailUploadLoader === true" class="thumbnail-upload-progress">
+                      <div class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                    </div> -->
+                  </div>
+                  <!-- <div *ngIf="thumbnailSelected !== true" class="no-thumbnail-browse">
+                    <i (click)="browseThumbnail()" class="material-icons profil-icon">backup</i>
+                    <label> + Upload photo</label>
+                    <input type="file" id="uploadThumbnailFile" accept="image/*" hidden (change)="videoThumbnailSelected($event)" />
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<app-back-button></app-back-button>
+
+<ng-template #emailVerifyOTPModal let-modal>
+  <div class="modal-body">
+    <div class="otpRegisterModal">
+      <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i>
+      <p class="heading-sm"> Please enter OTP <br> sent on {{userDetailsCommand.email}} to login <br> </p>
+      <div class="tab-content ">
+        <div class="tab-pane active" id="tab1">
+          <div class="form-group">
+            <div class="input-group">
+              <div id="divOuter">
+                <div id="divInner">
+                  <input id="codeBoxRegister1" type="text"
+                    (keydown)="onKeyDownEvent('#codeBoxRegister1', $event, 'REGISTER')" maxlength="1"
+                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(1, $event)"
+                    (focus)="onFocusEventRegister(1)" />
+                  <input id="codeBoxRegister2" type="text"
+                    (keydown)="onKeyDownEvent('#codeBoxRegister2', $event, 'REGISTER')" maxlength="1"
+                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(2, $event)"
+                    (focus)="onFocusEventRegister(2)" />
+                  <input id="codeBoxRegister3" type="text"
+                    (keydown)="onKeyDownEvent('#codeBoxRegister3', $event, 'REGISTER')" maxlength="1"
+                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(3, $event)"
+                    (focus)="onFocusEventRegister(3)" />
+                  <input id="codeBoxRegister4" type="text"
+                    (keydown)="onKeyDownEvent('#codeBoxRegister4', $event, 'REGISTER')" maxlength="1"
+                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(4, $event)"
+                    (focus)="onFocusEventRegister(4)" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="forgot"> <a class="active" (click)="resendOtpForEmail()">Resend OTP</a></span>
+          <p>Expires In 5 minutes</p>
+          <div>
+            <button type="button" id='pin' type="submit" class="btn btn-blue margin-top-30"
+              (click)="validateOtpForRegisterEmail()" tabindex="0">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #OTPModalForResetParental let-modal>
+  <div class="modal-body">
+    <div class="otpRegisterModal otpParentalModal">
+      <!-- <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i> -->
+      <div class="parental-logo">
+        <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png">
+      </div><br />
+      <p class="heading-sm"> Please enter OTP <br> sent on {{sendOTPMsgForParental}} to login <br> </p>
+      <div class="tab-content ">
+        <div class="tab-pane active" id="tab1">
+          <div class="form-group">
+            <div class="input-group">
+              <div id="divOuter">
+                <div id="divInner">
+                  <input id="codeBoxRegister1" type="text"
+                    (keydown)="onKeyDownEvent('#codeBoxRegister1', $event, 'REGISTER')" maxlength="1"
+                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(1, $event)"
+                    (focus)="onFocusEventRegister(1)" />
+                  <input id="codeBoxRegister2" type="text"
+                    (keydown)="onKeyDownEvent('#codeBoxRegister2', $event, 'REGISTER')" maxlength="1"
+                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(2, $event)"
+                    (focus)="onFocusEventRegister(2)" />
+                  <input id="codeBoxRegister3" type="text"
+                    (keydown)="onKeyDownEvent('#codeBoxRegister3', $event, 'REGISTER')" maxlength="1"
+                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(3, $event)"
+                    (focus)="onFocusEventRegister(3)" />
+                  <input id="codeBoxRegister4" type="text"
+                    (keydown)="onKeyDownEvent('#codeBoxRegister4', $event, 'REGISTER')" maxlength="1"
+                    inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEventRegister(4, $event)"
+                    (focus)="onFocusEventRegister(4)" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="forgot"> <a class="active" style="cursor: pointer;" (click)="resendOtpForResetParental()">Resend OTP</a></span>
+          <p>Expires In 5 minutes</p>
+          <div>
+            <button type="button" id='pin' type="submit" class="btn btn-blue margin-top-30"
+              (click)="validateOTPForResetParentalPin()" tabindex="0">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #resetParentalModal let-modal>
+  <div class="modal-body">
+    <div class="otpRegisterModal otpParentalModal">
+      <!-- <i class="material-icons back-button" (click)="backButton()">arrow_back_ios</i> -->
+      <div class="parental-logo">
+        <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png">
+      </div><br />
+      <div class="chngpasChange-password">
+        <div class="input-group">
+          <input type="text" maxlength="4" id="newPINCode" [(ngModel)]="newPinCode" placeholder="New PIN Code" pattern="[0-9]*" (keydown)="onKeyDownEventParental('#newPINCode', $event)">
+        </div>
+        <div class="input-group">
+          <input type="text" maxlength="4" id="confirmPINCode" [(ngModel)]="confirmPinCode" placeholder="Confirm PIN Code" pattern="[0-9]*" (keydown)="onKeyDownEventParental('#confirmPINCode', $event)">
+        </div>
+      </div><br /><br />
+      <div>
+        <button type="button" id='pin' type="submit" class="btn btn-blue margin-top-30"
+          (click)="resetParentalPin()" tabindex="0">Continue</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

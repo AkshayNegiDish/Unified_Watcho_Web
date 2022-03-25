@@ -1,0 +1,88 @@
+
+
+
+//Modal of downloadInAppModal
+.downloadInAppmodal{
+    width: 100%;
+    float: left;
+  }
+  .pop-onlytab {
+    float: none;
+    display: inline-block;
+    width: 50%;
+  }
+  .downloadInAppmodal .new-video-upload-title {
+    margin-top: 0 !important;
+  }
+  
+  .link {
+    text-decoration: underline;
+    font-size: 13px;
+    color: #fff !important;
+    font-weight: 400;
+  }
+  
+  a.hover  { 
+    text-decoration: underline;
+    color: #fff !important;
+  }
+  
+  .txt-pink {
+    color: #04A5E8;
+  }
+  
+  a.appstore img {
+    width: 130px;
+    height: 40px;
+    margin-right: 0!important;
+    margin-top: -10px;
+  }
+  
+  a.googleplay img {
+    width: 150px;
+    height: 60px;
+    margin-right: 0!important;
+    margin-top: -10px;
+  }
+
+@media (min-width:320px) and (max-width:768px){
+  
+  .downloadInAppmodal.appDownlaodModal {
+            padding: 15px 0;
+        .new-video-upload-title{
+            color:#fff;
+            text-align: center;
+        }
+        .pop-onlytab{
+            text-align: center;
+        }
+        .modal-body{
+            padding: 0;
+            .upload-form-btn{
+                padding: 0;
+            }
+        }
+  }
+
+}
+
+@media (min-width:769px) and (max-width:992px){
+  
+  .downloadInAppmodal.appDownlaodModal {
+            padding: 15px 0;
+        .new-video-upload-title{
+            color:#fff;
+            text-align: center;
+        }
+        .pop-onlytab{
+            text-align: center;
+        }
+        .modal-body{
+            padding: 0;
+            .upload-form-btn{
+                padding: 0;
+            }
+        }
+  }
+
+}

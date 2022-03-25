@@ -1,0 +1,23 @@
+<div class="offer-info-modal">
+  <div class="modal-body">
+    <div class="" [ngClass]="{'mobile-d2h-offer-popup': isD2hUser, 'mobile-dish-offer-popup': isDishUser}">
+      <div class="offer-mobile">
+        <div class="dishoffer-title">{{selectedOffer.OfferName}}</div>
+        <div class="d2hoffer-title">{{selectedOffer.OfferName}}</div>
+        <div class="description">
+          <p class="description-dish">
+            {{selectedOffer.OfferDiscription}}
+          </p>
+          <p class="description-d2h">
+            {{selectedOffer.OfferDiscription}}
+          </p>
+        </div>
+        <div class="btn-mobile">
+          <div class="btn-d2h" (click)="availOffer()">Avail Offer</div>
+          <div class="btn-dish" (click)="availOffer()">Avail Offer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

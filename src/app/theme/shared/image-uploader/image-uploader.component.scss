@@ -1,0 +1,108 @@
+
+@import '~assets/scss/theme-fonts.scss';
+
+.cancel-thumbnail-button {
+    display: block;
+    float: right;
+    padding-left: 5px;
+    margin-top: -2px;
+    cursor: pointer;
+}
+
+.progress {
+    margin-top: 100px;
+}
+
+input:focus {
+    outline:none !important;
+}
+
+#fileupload {
+  width: 100%
+}
+
+.channel-form {
+  width: 96%;
+  margin-left: 15px;
+}
+
+.video-update {
+  width: 96%;
+  margin-left: 2%;
+}
+
+.width100p {
+  width: 100%;
+}
+
+.padding0px {
+  padding: 0px !important;
+}
+
+.required-marker {
+  color: #f4516c !important;
+  margin-top: .2rem !important;;
+  font-size: .85rem !important;
+}
+
+.required-marker.msg{
+  margin-top: 10px !important;
+}
+
+.buttonload {
+  background-color: #4CAF50; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  // padding: 12px 16px; /* Some padding */
+  // font-size: 16px /* Set a font size */
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  background-color: grey;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: rgb(124, 61, 61);
+}
+#file-upload-container{
+  .form-control{
+      margin-right: 10px;
+      float: left;
+      width: calc(100% - 150px);
+  }
+  .input-group-btn{
+    float: left;
+    width: auto
+  }
+  .icon{
+    float: left;
+    padding-left:10px;
+    margin-top:5px;
+  }
+  .fa-check{
+    color: $theme-primary
+  }
+}
+.file-upload.file-upload.file-upload{
+  background-color: transparent;
+  color: $theme-primary;
+  &:hover{
+    background-color: transparent;
+  }
+}

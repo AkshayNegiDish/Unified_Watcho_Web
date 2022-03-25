@@ -1,0 +1,631 @@
+
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-constants.scss';
+
+.border-padding {
+  // padding: 10px 10px 10px 10px;
+  padding: 15px 15px 15px 0px;
+  float: left;
+  width: 20%;
+}
+
+.col-lg-3 {
+  width: 20%;
+}
+
+.circle-item-more {
+  .col-lg-3 {
+    text-align: center;
+    width: 14.2%;
+  }
+
+  .circle-item {
+    text-align: center;
+    padding: 2px 0 10px;
+  }
+}
+
+
+.rails-container {
+  position: relative;
+  overflow: visible;
+}
+
+.rails-container:after,
+.rails-container:before {
+  content: "";
+  display: block;
+  height: 100%;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.rails-container:before {
+  right: 25px;
+  // background-image: linear-gradient(to right, rgba(238, 238, 238, 0), rgba(238, 238, 238, 0) 10px, #eeeeee 30px);
+  transform: translateX(100%);
+  width: calc((98vw - 1170px + 60px)/ 2);
+}
+
+.rails-container:after {
+  left: 18px;
+  transform: translateX(-100%);
+  // background-image: linear-gradient(to left, rgba(238, 238, 238, 0), #eeeeee 30px);
+  width: calc((98vw - 1170px)/ 2);
+}
+
+.rail-info-container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.rail-data-container {
+  min-height: 150px;
+  // padding-right: 0px;
+  // padding-left: 0px;
+}
+
+.railControl.left {
+  position: absolute;
+  left: 0px;
+}
+
+.railControl.right {
+  position: absolute;
+  right: 0px;
+}
+
+.railControl:focus {
+  outline: none;
+}
+
+.rail-info-container {
+  .rail-title {
+    font-size: 18px;
+    font-weight: 400;
+    // font-family: 'HelveticaNeueBold';
+    margin: 0px 0px 0px 0px;
+    padding-left: 15px;
+    color:$fonts-grey-color;
+    cursor: pointer;
+    h2{
+      font-size: 20px;
+      font-weight: 400;
+      color: #e5e5e5;
+    }
+  }
+
+  :hover {
+    color: $netflix-chnaget-color;
+  }
+  h2{
+    font-size: 20px;
+  }
+}
+
+.rail-data-container {
+
+  // margin-bottom: 30px;
+  // margin-top: 10px;
+  .more-button {
+    display: none;
+  }
+}
+
+// widescreen-landscape-item
+
+/deep/.widescreen-landscape-item {
+  &:hover {
+    transform: $landscape-transform;
+    z-index: 44;
+    transition: $transition;
+    transition-delay: $transition-delay;
+
+    .description {
+      display: block;
+    }
+     .subtitles {
+      display: block;
+    }
+
+    /deep/.badge.premium-badge {
+      transform: scale3d(0.75, 0.75, 1) translate3d(-17%, -18%, 0);
+      transition: 0.5s;
+      z-index: 55;
+    }
+  }
+  .img-shell {
+    width: 210px;
+  }
+}
+
+
+/*********************Responsive************************/
+
+@media (min-width:320px) and (max-width:480px){
+/**********start**********/
+.rails-container{
+  overflow: hidden;
+}
+.rail-info-container{
+  margin: 0 10px;
+  h2{
+    font-size: 14px !important;
+  }
+}
+.rail-data-container{
+   margin: 0 7px;
+.border-padding{
+    padding: 6px;
+    float: none;
+    width: 50%;
+    display: inline-block;
+    /deep/.widescreen-landscape-item{
+      height: 100% !important;
+      width: 100% !important;
+      &:hover{
+          position: initial;
+          -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+            .badge.premium-badge{
+              -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+              transform: scale3d(1,1, 1) translate3d(0,0,0);
+            }
+            .description{
+              display: none;
+            }
+          }
+      .card{
+          .card-img{
+            height: calc((100vw - 35px)/ 2 * 0.5625) !important;
+            width: calc((100vw - 35px)/ 2) !important;
+            min-height: calc((100vw - 35px)/ 2 * 0.5625);
+
+           }
+         .description{
+           display:none !important;
+           height: 40px;
+            bottom: 0 !important;
+            top: auto;
+            padding: 0 10px;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+            
+          }
+        }    
+    }
+  }
+}
+
+.rail-data-container{
+  .border-padding{
+    /deep/.widescreen-landscape-item{
+         app-railitemview {
+                width: 100%;
+            }
+        .img-shell{
+             width:100%;
+             height:100%;
+        }
+     } 
+  } 
+} 
+.placeholder {
+  .no-result-found{
+    font-size: 22px !important;
+    bottom: 15% !important;
+  }
+}
+/***********end*********/
+}
+  
+@media (min-width:481px) and (max-width:768px){
+/**********start**********/
+.rails-container{
+  overflow: hidden;
+}
+.rail-info-container{
+  margin: 0 10px;
+  h2{
+    font-size: 16px !important;
+  }
+}
+.rail-data-container{
+   margin: 0 7px;
+.border-padding{
+    padding: 6px;
+    float: none;
+    width: 50%;
+    display: inline-block;
+    /deep/.widescreen-landscape-item{
+      height: 100% !important;
+      width: 100% !important;
+      &:hover{
+          position: initial;
+          -webkit-transform: scale3d(1, 1, 1);
+          transform: scale3d(1, 1, 1);
+            .badge.premium-badge{
+              -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+              transform: scale3d(1,1, 1) translate3d(0,0,0);
+            }
+            .description{
+              display: none;
+            }
+          }
+      .card{
+          .card-img{
+            height: calc((100vw - 35px)/ 2 * 0.5625) !important;
+            width: calc((100vw - 35px)/ 2) !important;
+            min-height: calc((100vw - 35px)/ 2 * 0.5625);
+           }
+         .description{
+           display:none !important;
+           height: 40px;
+            bottom: 0 !important;
+            top: auto;
+            padding: 0 10px;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+            .info{
+              .name{
+                 font-size: 12px;
+              }
+             }
+          }
+        }    
+        .img-shell {
+            width: 244px;
+            height: 145px;
+        
+        }
+    }
+  }
+}
+    
+.circle-item{
+  .img-shell{
+    width: 100%;
+  }
+}
+    
+.rail-data-container{
+  .border-padding{
+    /deep/.widescreen-landscape-item{
+         app-railitemview {
+                width: 100%;
+            }
+        .img-shell{
+             width:100%;
+             height:100%;
+             .animated-background-landscape {
+              height: 100%;
+          }
+        }
+     } 
+  } 
+} 
+.placeholder {
+  .no-result-found{
+    font-size: 25px !important;
+  }
+}
+/***********end*********/
+}
+
+@media (min-width:769px) and (max-width:992px){
+  /**********start**********/
+  .rails-container{
+    overflow: hidden;
+  }
+  .rail-info-container{
+    margin: 0 10px;
+    h2{
+      font-size: 16px !important;
+    }
+  }
+  .rail-data-container{
+     margin: 0 7px;
+  .border-padding{
+      padding: 6px;
+      float: none;
+      width: 25%;
+      display: inline-block;
+      /deep/.widescreen-landscape-item{
+        height: 100% !important;
+        width: 100% !important;
+        &:hover{
+            position: initial;
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+              .badge.premium-badge{
+                -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+                transform: scale3d(1,1, 1) translate3d(0,0,0);
+              }
+              .description{
+                display: none;
+              }
+            }
+        .card{
+            .card-img{
+                  height: calc((100vw - 95px)/ 4 * 0.5625) !important;
+                  width: calc((100vw - 95px)/ 4) !important;
+                  min-height: calc((100vw - 95px)/ 4 * 0.5625);
+             }
+           .description{
+             display:none !important;
+             height: 40px;
+              bottom: 0 !important;
+              top: auto;
+              padding: 0 10px;
+              background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+              .info{
+                .name{
+                   font-size: 12px;
+                }
+               }
+            }
+          }    
+          .img-shell {
+  
+              width: 141px;
+              height: 84px;
+          
+          }
+      }
+    }
+  }
+      
+  .circle-item{
+    .img-shell{
+      width: 100%;
+    }
+  }
+     
+  .rail-data-container{
+    .border-padding{
+      /deep/.widescreen-landscape-item{
+           app-railitemview {
+                  width: 100%;
+              }
+          .img-shell{
+               width:100%;
+               height:100%;
+          }
+       } 
+    } 
+  } 
+  /***********end*********/
+  }
+
+  @media (min-width:993px) and (max-width:1024px){
+    /**********start**********/
+    .rails-container{
+      overflow: hidden;
+    }
+    .rail-info-container{
+      margin: 0 10px;
+      h2{
+        font-size: 16px !important;
+      }
+    }
+    .rail-data-container{
+       margin: 0 7px;
+    .border-padding{
+        padding: 6px;
+        float: none;
+        width: 25%;
+        display: inline-block;
+        /deep/.widescreen-landscape-item{
+          height: 100% !important;
+          width: 100% !important;
+          &:hover{
+              position: initial;
+              -webkit-transform: scale3d(1, 1, 1);
+              transform: scale3d(1, 1, 1);
+                .badge.premium-badge{
+                  -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+                  transform: scale3d(1,1, 1) translate3d(0,0,0);
+                }
+                .description{
+                  display: none;
+                }
+              }
+          .card{
+              .card-img{
+                height: calc((100vw - 105px)/ 4 * 0.5625) !important;
+                width: calc((100vw - 105px)/ 4) !important;
+                min-height: calc((100vw - 105px)/ 4 * 0.5625);
+               }
+             .description{
+               display:none !important;
+               height: 40px;
+                bottom: 0 !important;
+                top: auto;
+                padding: 0 10px;
+                background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+                .info{
+                  .name{
+                     font-size: 12px;
+                  }
+                 }
+              }
+            }    
+            .img-shell {
+    
+                width: 141px;
+                height: 84px;
+            
+            }
+        }
+      }
+    }
+        
+    .circle-item{
+      .img-shell{
+        width: 100%;
+      }
+    }
+    .rail-data-container{
+      .border-padding{
+        /deep/.widescreen-landscape-item{
+             app-railitemview {
+                    width: 100%;
+                }
+            .img-shell{
+                 width:100%;
+                 height:100%;
+            }
+         } 
+      } 
+    }  
+    /***********end*********/
+    }  
+
+    @media (min-width:1025px) and (max-width:1200px){
+      /**********start**********/
+      .rails-container{
+        overflow: hidden;
+      }
+      .rail-info-container{
+        margin: 0 10px;
+        h2{
+          font-size: 16px !important;
+        }
+      }
+      .rail-data-container{
+         margin: 0 7px;
+      .border-padding{
+          padding: 6px;
+          float: none;
+          width: 20%;
+          display: inline-block;
+          /deep/.widescreen-landscape-item{
+            height: 100% !important;
+            width: 100% !important;
+            &:hover{
+                position: initial;
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+                  .badge.premium-badge{
+                    -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+                    transform: scale3d(1,1, 1) translate3d(0,0,0);
+                  }
+                  .description{
+                    display: none;
+                  }
+                }
+            .card{
+                .card-img{
+                      height:106px !important;
+                      width: 100% !important;
+                      img{
+                        height: 100%!important;
+                        width: 100% !important;
+                     }
+                 }
+               .description{
+                 display:none !important;
+                 height: 40px;
+                  bottom: 0 !important;
+                  top: auto;
+                  padding: 0 10px;
+                  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+                  .info{
+                    .name{
+                       font-size: 12px;
+                    }
+                   }
+                }
+              }    
+              .img-shell {
+      
+                  width: 141px;
+                  height: 84px;
+              
+              }
+          }
+        }
+      }
+          
+      .circle-item{
+        .img-shell{
+          width: 100%;
+        }
+      }
+      .rail-data-container{
+        .border-padding{
+          /deep/.widescreen-landscape-item{
+               app-railitemview {
+                      width: 100%;
+                  }
+              .img-shell{
+                   width:100%;
+                   height:100%;
+              }
+           } 
+        } 
+      }   
+      /***********end*********/
+      }    
+
+
+.placeholder {
+  align-items: center;
+  text-align: center;
+  display: inline-block;
+  margin: auto;
+  min-height: auto;
+  width: 100%;
+  .img {
+    height: 50%;
+    width: 40%;
+    margin: 120px auto;
+    vertical-align: middle;
+  }
+  .no-result-found{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    padding: 0 auto 0 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    color: #757575;
+  }
+}
+.padding-container0{
+  padding: 0;
+}
+
+@media (min-width:1200px) and (max-width:1200px){
+  .rail-data-container{
+    .border-padding{
+        /deep/.widescreen-landscape-item{
+          .card{
+              .card-img{
+                height: 125px !important;
+                width: 100% !important;
+                min-height: 125px;
+               }
+            }    
+        }
+      }
+    }
+}
+
+.pwa{
+    text-align: center !important;
+}
+
+.back-button{
+   /deep/.back-icon{
+           position: fixed;
+   } 
+}
+
+.no-filter{
+  margin-top : 65px;  
+}
+
+
+
+

@@ -1,0 +1,163 @@
+<div [ngClass]="{'base-page container p-0' :listingLayout === ListingLayoutType[ListingLayoutType.GRD]}">
+  <app-pwa-header *ngIf="isPwa" [displayName]="pageTitle"></app-pwa-header>
+  <div class="container padding-container0" *ngIf="showFilter">
+    <app-deep-search-filter (shortedBy)="getShorting($event)" (genres)=getGenres($event)
+      (submitted)='addFilters($event)'></app-deep-search-filter>
+  </div>
+  <div class="rails-container" *ngIf="listingLayout === ListingLayoutType[ListingLayoutType.GRD]">
+    <div class="row" *ngIf="!recommendedFound">
+      <div class="col-lg-12 rail-info-container">
+        <div
+          [ngClass]="{'pwa' : isPwa && !showFilter,'rail-title col-lg-11 col-md-11 col-sm-11 col-xs-11' : !isPwa || showFilter}">
+          <h2 *ngIf="!isPwa">{{pageTitle}}</h2>
+
+        </div>
+      </div>
+    </div>
+    <div class="row" *ngIf="recommendedFound">
+      <div class="col-lg-12 rail-info-container">
+        <div
+          [ngClass]="{'pwa' : isPwa && !showFilter,'rail-title col-lg-11 col-md-11 col-sm-11 col-xs-11' : !isPwa || showFilter}">
+          <h2 *ngIf="recommendedFound">{{channelNameArray[0] | titlecase}}-{{channelNameArray[1] | titlecase}}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div [ngClass]="{'no-filter' :!showFilter && isPwa,  'row' : true}">
+      <div class="col-lg-12 rail-data-container"
+        [ngClass]="{'circle-item-more': railViewType === 'CIRCLE' || railViewType === 'SQUARE' || railViewType === 'PORTRAIT'}"
+        infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()"
+        *ngIf="!noResultFound">
+        <div class="{{cardsize}} {{railTypeViewClass}} border-padding"
+          *ngFor="let assetObject of assetListObjects;let i = index">
+          <div [class]=railConfigService.getRailTypeCssClass(railViewType)>
+            <app-railItemView [imagesAsset]="assetObject?.images" [name]="assetObject?.name"
+              [runtime]="assetObject?.metas['Runtime']?.value" [isPremium]="assetObject?.metas['Is Exclusive']?.value"
+              (click)="watchAsset(assetObject.name, assetObject.id, assetObject.type, assetObject?.linearAssetId, i)"
+              [viewType]="railViewType" [assetDetail]="assetObject" [liveNow]="liveNow"
+              [showDescription]="showDescription" [mediaType]="assetObject?.type"
+              [watchedDuration]="getWatchedDuration(assetObject.id)" (outputEvent)="outputEvent($event)">
+            </app-railItemView>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="noResultFound && !showLoader" class="placeholder">
+        <img class="img" [src]="placeholderImage">
+        <div class="no-result-found"> No result found </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-default-rail-shell *ngIf="showLoader" [viewType]="railViewType">
+        </app-default-rail-shell>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="back-button">
+  <app-back-button></app-back-button>
+
+</div>
+
+<!--For list view-->
+<div class="base-page container p-0"
+  *ngIf="listingLayout === ListingLayoutType[ListingLayoutType.LST] && assetListObjects">
+  <div class="col-lg-12 rail-info-container">
+    <div class="rail-title" style="padding-left: 0;">
+      <h2 *ngIf="!isPwa">{{pageTitle}}</h2>
+    </div>
+  </div>
+  <div class="listview-section" *ngFor="let assetObject of assetListObjects;let i = index">
+    <!-- <h2 class="listview-title">{{name}} <span class="countepisode">({{total}})</span></h2> -->
+    <div class="listsection-list-desktopview">
+      <ul class="listinner">
+        <li class="listdata">
+          <div class="backcovelist"
+            (click)="watchAsset(assetObject.name, assetObject.id, assetObject.type, assetObject?.linearAssetId, i)">
+            <img class="backimgview"
+              [src]="kalturaUtilService.getImageByOrientation(assetObject.images,railViewType , null, null, null, isMobileTabletView)">
+            <div [class]="railViewType">
+              <img
+                [src]="kalturaUtilService.getImageByOrientation(assetObject.images,railViewType , null, null, null, isMobileTabletView)">
+            </div>
+            <!--left-listview-->
+            <div class="rating-list" *ngIf="assetObject?.metas['Is Exclusive']?.value"><span>ORIGINALS</span></div>
+          </div>
+          <!--backcovelist-->
+          <div class="right-listview">
+            <div class="leftsidelist">
+              <div class="playsectionlistview">
+                <div class="playiconlist"
+                  (click)="watchAsset(assetObject.name, assetObject.id, assetObject.type, assetObject?.linearAssetId, i)">
+                  <div class="Play-listbtn">
+                    <i class="material-icons">play_arrow</i>
+                  </div>
+                </div>
+                <div class="titlelistview">
+                  <h3>{{assetObject?.name}}</h3>
+                  <div class="subtitele-list">
+                    <span *ngIf="assetObject?.tags?.Genre">Genre</span>
+                    <div *ngFor="let genre of assetObject.tags.Genre?.objects[0].value.split(',')">
+                      <span class="tabcolor">{{genre}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="listview-discussions">
+                <p>{{assetObject?.description | trim : 250}}</p>
+                <!-- <div class="titleright">
+                  <div class="sublisting">
+                    <div class="imgsub">
+                      <span class="iconsub"></span>
+                    </div>
+                    <span class="subtitle">English</span>
+                  </div>
+                  <div class="Languageslist">
+                    <div class="Languaimg">
+                      <span class="iconLangua"></span>
+                    </div>
+                    <span class="list-Languagescover">
+                      <span class="list-Languages">English</span>
+                    </span>
+                    <span class="list-Languages">N.A</span>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <div class="rightsidelist">
+              <div class="list-date" *ngIf="assetObject.createDate">
+                <span class="yearlist">Year</span>
+                <span>{{assetObject.createDate *1000 | date : 'yyyy'}}</span>
+                <!-- <span>N.A</span> -->
+              </div>
+              <div class="list-time" *ngIf="assetObject.mediaFiles && assetObject.mediaFiles.length > 0 && assetObject.mediaFiles[0].duration">
+                <span class="durationlist">Duration
+                </span><span>{{assetObject.mediaFiles[0].duration | mediaTime}}</span></div>
+              <!-- <div class="list-seasons" *ngIf="commonPlaylistItems"><span>4</span> Seasons </div> -->
+              <!-- <span class="list-seasons">3</span> -->
+              <!-- <span class="list-seasons">{{commonPlaylistItems.seasonCount}}
+                    Seasons</span>
+                  <span class="list-seasons"> {{commonPlaylistItems.vodCount}}
+                    Episodes</span> -->
+              <!-- <div class="countandlike">
+                  <span class="likesection">
+                    <i class="likeicon fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <span>10</span>
+                  </span>
+                  <span class="countsection">
+                    <i class="counticon fa fa-comment-o" aria-hidden="true"></i>
+                    <span>05</span>
+                  </span>
+                </div> -->
+            </div>
+          </div>
+          <!--right-listview-->
+        </li>
+        <!--listdata-->
+      </ul>
+    </div>
+    <!--listsection-list-desktopview-->
+  </div>
+  <!--listview-section-->
+</div>

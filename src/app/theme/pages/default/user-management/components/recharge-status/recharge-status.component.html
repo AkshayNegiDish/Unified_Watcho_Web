@@ -1,0 +1,91 @@
+<div class="recharge-plan">
+  <div class="container" *ngIf="!loading">
+    <div class="row">
+      
+      <!-- <div class="steps bread-crumbs">
+        <div class="col-lg-12 col-xs-12 col-md-12 recharge-padding">
+          <div [ngClass]="{'bread-crumbs-wrapper' : isDishUser, 'bread-crumbs-wrapper-d2h' : isD2hUser}" class="">
+            <div class="line"></div>
+            <div class="line-active" style="width: 100%;"></div>
+            <ul>
+              <li class="active">
+                <div class="dot">
+                  <span>Recharge</span>
+                </div>
+              </li>
+              <li class="active">
+                <div class="dot">
+                  <span>Confirmation</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="payment-successful" [ngClass]="{'payment-successful': isDishUser, 'payment-successful-d2h': isD2hUser}" *ngIf="isPaymentSuccessfull">
+        <div class="payment-msg-icon">
+          <div class="payment-icon"></div>
+        </div>
+        <div class="successful-title">
+          <h3>Recharge Successful !</h3>
+          <p>Thank you! Your payment of ₹{{updatePaymentStatusCommand.Amount}} has been received.</p>
+        </div>   
+        <div class="paymentline"></div>
+        <div class="successful-show-ammount">
+          <ul>
+            <li>
+              <div class="text-successful">Total Amount </div>
+              :
+              <div class="auto-set-amount">{{updatePaymentStatusCommand.Amount}}/-</div>
+              <div class="auto-set-amount-d2h">{{updatePaymentStatusCommand.Amount}}/-</div>
+            </li>
+            <li>
+              <div class="text-successful">Order ID </div>
+              :
+              <div class="auto-set-amount">{{updatePaymentStatusCommand.OrderID}}</div>
+              <div class="auto-set-amount-d2h">{{updatePaymentStatusCommand.OrderID}}</div>
+            </li>
+            <li>
+              <div class="text-successful">Transaction ID</div>
+              :
+              <div class="auto-set-amount">{{updatePaymentStatusCommand.TransactionNo}}</div>
+              <div class="auto-set-amount-d2h">{{updatePaymentStatusCommand.TransactionNo}}</div>
+            </li>
+            <li *ngIf="isTransactionDateValid">
+              <div class="text-successful">Transaction Date</div>
+              :
+              <div class="auto-set-amount">{{transactionDate | date : 'longDate'}} {{transactionDate | date : 'shortTime'}}</div>
+              <div class="auto-set-amount-d2h">{{transactionDate | date : 'longDate'}} {{transactionDate | date : 'shortTime'}}</div>
+            </li>
+            <li *ngIf="!isTransactionDateValid">
+              <div class="text-successful">Transaction Date</div>
+              :
+              <div class="auto-set-amount">{{transactionDate}}</div>
+              <div class="auto-set-amount-d2h">{{transactionDate}}</div>
+            </li>
+          </ul>
+          <div class="payamounts">
+            <button class="pay-btn" (click)="continueClickEvent()">Continue</button>
+          </div>
+        </div> 
+      </div>
+      <div class="payment-successful" [ngClass]="{'payment-successful': isDishUser, 'payment-successful-d2h': isD2hUser}" *ngIf="!isPaymentSuccessfull">
+        <div  class="subscription-success">
+          <span  class="failure-icon">
+            <i  class="material-icons"> clear </i>
+          </span>
+          <span  class="success-text">Oops! Error processing  your <br> payment request</span>
+          <span class="name"> For further queries write us at <a  href="mailto:hello@watcho.com" target="_top">hello@watcho.com</a></span>
+          <span  class="action"><a href="javascript:;" routerLink="/">Back to Home</a><br><a  href="javascript:;" routerLink="/user/rechargedetail">Retry</a>
+          </span>
+        </div>
+      </div>
+
+      </div>
+  </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+</div>      
+
+
+

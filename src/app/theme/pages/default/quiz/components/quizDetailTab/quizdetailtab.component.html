@@ -1,0 +1,12 @@
+<div class="container">
+	<div class="top-menue">
+		<p (click)="onTabChange($event)" value="campaign" class="cntnt-text active">Contest</p>
+		<p (click)="onTabChange($event)" value="leaderboard" class="cntnt-text">Leaderboard</p>
+		<p (click)="onTabChange($event)" value="playerhistory" class="cntnt-text">My Contests</p>
+	</div>
+	<div class="line"></div>
+	<quiz-campaign *ngIf="tabType=='campaign'"></quiz-campaign>
+	<quiz-leaderboard *ngIf="tabType=='leaderboard'"></quiz-leaderboard>
+	<quiz-playerhistory *ngIf="tabType=='playerhistory'"></quiz-playerhistory>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading> 

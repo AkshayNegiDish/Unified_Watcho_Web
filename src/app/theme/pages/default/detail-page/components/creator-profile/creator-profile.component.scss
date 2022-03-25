@@ -1,0 +1,231 @@
+
+
+@import '~assets/scss/theme-fonts.scss';
+
+.rightcrt.diskview {
+    margin-left: 25px;
+}
+.creater-profile{
+    width: 100%;
+    float: left;
+    margin-bottom: 20px;
+    position: relative;
+    margin-top: 5px;
+    img{
+    width: 100%;
+    border-radius: 10px;
+    height: 231px;
+    }
+    .creater-profileon{
+        padding: 15px 20px;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 10%, black 100%);
+        border-radius: 10px;
+        position: absolute;
+        bottom: 60px;
+    }
+    .Circle-profile{
+        width: 115px;
+        display: inline-block;
+        margin-left: 30px;
+        height: 115px;
+        line-height: 115px;
+        font-size: 30px;
+        letter-spacing: 2px;
+        text-align: center;
+        background: #e7195b;
+        border-radius: 50%;
+        color: #fff;
+        position: absolute;
+        top: 30px;
+        z-index: 1;
+    }
+    .midlecrt {
+        margin-top: 5px;
+    }
+    .title-profile{
+        h3{
+            float: left;
+            width: 100%;
+            color: #fff;text-transform: capitalize;
+        }
+        span{
+           display: block;
+           color: #fff;
+        }
+    }
+    
+}
+.col-lg-4.col-md-4.col-sm-12.col-xs-12.rightcrt.mobileview {
+    display: none;
+}
+.profile-icon{
+    width: 50%;
+    float: right;
+    text-align: center;
+    margin-top: 15px;
+    .Follow-profile{
+        float: left;
+        width: 45%;
+        border-right: 1px solid #ccc;
+        color: $fonts-white-color;
+        cursor: pointer;
+        i{
+            color: $fonts-white-color;  
+        }
+        &:hover{
+            color: $fonts-white-color !important;
+        }
+    }
+    .share-profile{
+        float: left;
+        width: 50%;
+        cursor: pointer;
+        color: $fonts-white-color;
+        i{
+            color: $fonts-white-color;  
+        }
+    }
+}
+
+.creatorRail {
+    float: left;
+    width: 100%;
+}
+
+
+.simlarVideos {
+    float: left;
+    width: 100%;
+}
+
+.videopage{
+    position: relative;
+    .actions{
+        padding:15px;
+        font-size: 20px;
+        color: #ffffff;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding-left: 20px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 26%, rgba(0, 0, 0, 0.65) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+        span{
+            text-align: center;
+            padding: 10px;
+            display: block;
+            float: left;
+            min-width: 100px;
+            cursor: pointer;
+        }
+        i{
+            font-size: 30px;
+            vertical-align: middle;
+        }
+        .play-btn{
+            float:right;
+            margin-top: 28px;
+            i{
+                margin-bottom: 2px;
+            }
+        }
+        .share{
+          position: relative;
+          .social-tooltip{
+              display: none;
+              font-size: 20px;
+              color:$meta-font-color;
+              i{
+                  margin: 0 10px;
+              }
+          }
+          &:hover .social-tooltip{
+              display:block;
+          }
+          
+      }
+    }
+  }
+
+
+
+@media only screen and (min-width:320px) and (max-width:480px){
+/************start***********/ 
+.creater-profile {margin-top: 0px;}
+.creater-profileon{ padding: 10px !important;}
+.creater-profile .Circle-profile{ width: 60px !important;top: 3px; height: 56px !important; line-height: 56px !important; margin-left: 0 !important; font-size: 20px !important;  }
+.midlecrt{ padding: 0 !important; }
+.title-profile h3{font-size: 13px; margin: 20px 0 0px;width:80% !important;}
+.title-profile span{ font-size: 11px; }
+.col-lg-4.col-md-4.col-sm-12.col-xs-12.rightcrt.mobileview{float: right;display: block;width: 100%;padding: 0;}
+.col-lg-4.col-md-4.col-sm-4.col-xs-4.rightcrt.diskview{display: none;}
+.col-lg-2.col-md-4.col-sm-4.col-xs-4.leftcrt{ width: 70px;padding: 5px;}
+.rightcrt.mobileview .profile-icon {width: 100% !important;margin-top: 28px;}
+.rightcrt.mobileview .profile-icon .Follow-profile{ font-size:10px; border-right: 1px solid #ccc; color: #fff;float: left;width: 70px; }
+.rightcrt.mobileview .profile-icon .share-profile{ font-size:10px; color: #fff;float: left;width: 70px; }
+.rightcrt.mobileview .profile-icon .share-profile i{ color: #fff; }
+// .creater-profile .Circle-profile{top: }
+
+/************End***********/ 
+}
+
+@media only screen and (min-width:481px) and (max-width:768px){
+/************start***********/ 
+    .creater-profile .creater-profileon{ padding: 10px !important;bottom: 50px ; }
+    .Circle-profile{top:0px !important; width: 90px !important; height: 90px !important; line-height: 90px !important; margin-left: 0 !important; font-size: 26px !important; }
+    .midlecrt{ padding: 0 !important; }
+    .title-profile h3{font-size: 18px; margin: 20px 0 0;width:80% !important;}
+    .title-profile span{ font-size: 11px; }
+    .col-lg-4.col-md-4.col-sm-12.col-xs-12.rightcrt.mobileview{float: left;display: block;width:100%;padding: 0;}
+    .col-lg-4.col-md-4.col-sm-4.col-xs-4.rightcrt.diskview{display: none;}
+    .col-lg-2.col-md-4.col-sm-4.col-xs-4.leftcrt{ width: 105px;padding: 5px;}
+    .rightcrt.mobileview .profile-icon {width: 100% !important;margin-top: 11px;}
+    .rightcrt.mobileview .profile-icon .Follow-profile{ font-size:11px;float: left;width: 70px; border-right: 1px solid #ccc; color: #fff;margin-left: 105px; }
+    .rightcrt.mobileview .profile-icon .share-profile{ font-size:11px; color: #fff;float: left;width: 70px; }
+    .rightcrt.mobileview .profile-icon .share-profile i{ color: #fff; }
+    
+    
+/************End***********/ 
+}
+
+@media only screen and (min-width:769px) and (max-width:899px){
+/************start***********/ 
+        .creater-profileon{ padding: 10px !important; bottom: 50px !important; }
+        .Circle-profile{ width: 100px !important; height: 100px !important; line-height: 100px !important; margin-left: 0 !important; }
+        .midlecrt{ padding: 0 !important; }
+        .title-profile h3{margin-top: 34px;width:80% !important;}
+        .title-profile span{ font-size: 11px; }
+        .col-lg-4.col-md-4.col-sm-12.col-xs-12.rightcrt.mobileview{float: left;display: block;width:100%;padding: 0;margin-left: 5%;}
+        .col-lg-4.col-md-4.col-sm-4.col-xs-4.rightcrt.diskview{display: none;}
+        
+        .col-lg-2.col-md-4.col-sm-4.col-xs-4.leftcrt{ width: 17%;padding: 5px;}
+        .rightcrt.mobileview .profile-icon {width: 100% !important;margin-top: 18px;}
+        .rightcrt.mobileview .profile-icon .Follow-profile{ font-size:12px;margin-left:30%;width: 70px;float: left; border-right: 1px solid #ccc; color: #fff; }
+        .rightcrt.mobileview .profile-icon .share-profile{ font-size:12px; color: #fff;width: 70px;float: left; }
+        .rightcrt.mobileview .profile-icon .share-profile i{ color: #fff; }
+        
+        
+/************End***********/ 
+}
+
+@media only screen and (min-width:900px) and (max-width:991px){
+    /************start***********/ 
+            .creater-profileon{ padding: 10px !important; bottom: 59px !important; }
+            .Circle-profile{ width: 100px !important; height: 100px !important; line-height: 100px !important; margin-left: 0 !important; }
+            .midlecrt{ padding: 0 !important; }
+            .title-profile h3{margin-top: 34px;width:80% !important;}
+            .title-profile span{ font-size: 11px; }
+            .col-lg-4.col-md-4.col-sm-12.col-xs-12.rightcrt.mobileview{float: left;display: block;width:100%;padding: 0;margin-left: 3%;}
+            .col-lg-4.col-md-4.col-sm-4.col-xs-4.rightcrt.diskview{display: none;}
+            
+            .col-lg-2.col-md-4.col-sm-4.col-xs-4.leftcrt{ width: 17%;padding: 5px;}
+            .rightcrt.mobileview .profile-icon {width: 100% !important;margin-top: 18px;}
+            .rightcrt.mobileview .profile-icon .Follow-profile{ font-size:12px;margin-left:105px;width: 70px;float: left; border-right: 1px solid #ccc; color: #fff; }
+            .rightcrt.mobileview .profile-icon .share-profile{ font-size:12px; color: #fff;width: 70px;float: left; }
+            .rightcrt.mobileview .profile-icon .share-profile i{ color: #fff; }
+            
+            
+    /************End***********/ 
+    }
+

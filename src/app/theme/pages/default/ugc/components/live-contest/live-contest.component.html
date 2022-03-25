@@ -1,0 +1,173 @@
+<div class="base-page">
+  <div class="container p-0 live-contest">
+    <h2>Live Contest</h2>
+    <div class="watcho-brand-color-border"></div>
+    <ngb-tabset #t="ngbTabset">
+      <ngb-tab id="Entries-videos">
+        <ng-template ngbTabTitle>
+          <div class="View-entries-tab" (click)="getContest(contestModal.id)">View Entries</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div *ngIf="!noResultFound">
+            <div class="first-tab">
+              <div class="leaderboard-Contest-list">
+                <div class="banner-section">
+                  <div class="banner-img">
+                    <img [src]="contestModal.thumbnailUrl" (error)="handleImageError($event)">
+                  </div>
+                  <div class="banner-shadow">
+                    <div class="banner-text">
+                      <div class="title-banner">{{contestModal.name}}</div>
+                      <div class="left-side">
+                        <div class="start-date">
+                          Start-date : <span>{{contestModal.startDate | date : 'dd-MM-yyyy'}} at
+                            {{contestModal.startDate | date : 'h:mm a'}}</span>
+                        </div>
+                        <div class="start-date">
+                          End-date : <span>{{contestModal.endDate | date : 'dd-MM-yyyy'}}</span>
+                        </div>
+                      </div>
+                      <button class="current-btn btn-pink" (click)="participateNow(contestModal.id)">Participate
+                        Now</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="bottom-nav-shadow"></div>
+                <div class="description-text">
+                  <p>{{contestModal.description}}
+                  </p>
+                </div>
+                <div class="first-rail">
+                  <app-rail-item *ngIf="firstRailData" [channelId]="null" [channelName]="'Latest Uploaded Video'"
+                    [viewType]="'LANDSCAPE'" [screenId]="null" [isCarousel]="false" [isYouMayAlsoLike]="false"
+                    [isSimilarMovie]="false" [railData]="firstRailData" [showMoreButton]="true" [showHeader]="true"
+                    [isContestRail]="true" [filterType]="RailFilterType[RailFilterType.CREATE_DATE_DESC]"
+                    [contestId]="contestId">
+                  </app-rail-item>
+                </div>
+                <div class="second-rail">
+                  <app-rail-item *ngIf="secondRailData" [channelId]="null" [channelName]="'Most View Video'"
+                    [viewType]="'LANDSCAPE'" [screenId]="null" [isCarousel]="false" [isYouMayAlsoLike]="false"
+                    [isSimilarMovie]="false" [railData]="secondRailData" [showMoreButton]="true" [showHeader]="true"
+                    [isContestRail]="true" [filterType]="RailFilterType[RailFilterType.VIEWS_DESC]"
+                    [contestId]="contestId">
+                  </app-rail-item>
+                </div>
+                <div class="third-rail">
+                  <app-rail-item *ngIf="thirdRailData" [channelId]="null" [channelName]="'Most Like Video'"
+                    [viewType]="'LANDSCAPE'" [screenId]="null" [isCarousel]="false" [isYouMayAlsoLike]="false"
+                    [isSimilarMovie]="false" [railData]="thirdRailData" [showMoreButton]="true" [showHeader]="true"
+                    [isContestRail]="true" [filterType]="RailFilterType[RailFilterType.LIKES_DESC]"
+                    [contestId]="contestId">
+                  </app-rail-item>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="no-result" *ngIf="noResultFound">
+            <img [src]="placeholderImage" alt="">
+            <h4>No Contest Available ...</h4>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="Leaderboard-live">
+        <ng-template ngbTabTitle>
+          <div class="Leaderboard-tab" (click)="getLeaderboardByContestid()">Leaderboard</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+          <div *ngIf="!noResultFound && leaderBoardArray.leaderBoard.length > 0">
+            <div class="second-tab">
+              <div class="leaderboard-Contest-list">
+                <div class="banner-section">
+                  <div class="banner-img">
+                    <img [src]="contestModal.thumbnailUrl" (error)="handleImageError($event)">
+                  </div>
+                  <div class="banner-shadow">
+                    <div class="banner-text">
+                      <div class="title-banner">{{contestModal.name}}</div>
+                      <div class="left-side">
+                        <div class="start-date">
+                          Start-date : <span>{{contestModal.startDate | date : 'dd-MM-yyyy'}} at
+                            {{contestModal.startDate | date : 'h:mm a'}}</span>
+                        </div>
+                        <div class="start-date">
+                          End-date : <span>{{contestModal.endDate | date : 'dd-MM-yyyy'}}</span>
+                        </div>
+                      </div>
+                      <button class="current-btn btn-pink" (click)="participateNow(contestModal.id)">Participate
+                        Now</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="bottom-nav-shadow"></div>
+              </div>
+              <div class="rank-leaderboard">
+                <div class="title-leaderboard">
+                  <div class="rank-name-leaderborad">Rank</div>
+                  <div class="rank-name-leaderborad">Name</div>
+                  <div class="rank-name-leaderborad">Points</div>
+                </div>
+                <div class="leaderboard-full-listing infinite-container" infiniteScroll [infiniteScrollDistance]="2"
+                  [infiniteScrollContainer]="'.infinite-container'" [fromRoot]="true" [scrollWindow]="false"
+                  [infiniteScrollThrottle]="400" (scrolled)="getMoreLeaderBoard(true)">
+                  <ul>
+                    <li class="values" style="cursor: pointer;"
+                      *ngFor="let leaderBoard of leaderBoardArray.leaderBoard ; let i = index"
+                      [ngClass]="{'active': leaderBoard.winner}"
+                      (click)="openVideoDetails(leaderBoard.assetId,leaderBoard.videoTitle)">
+                      <div class="count-number">{{leaderBoard.rank}}.</div>
+                      <div class="rank-img-section">
+                        <img [src]="leaderBoard.videoThumbnailURI" (error)="handleImageError($event)">
+                      </div>
+                      <div class=" title-video-name">{{leaderBoard.videoTitle}}</div>
+                      <div class="points-totale">
+                        <div class="troffi-img"></div> {{leaderBoard.score}}
+                      </div>
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <!-----Sticky-tabs------>
+                    <li class="Sticky values own-leaderboard" style="cursor: pointer;"
+                      *ngIf="showUserLeaderBoard && !userLeaderboardModal.winner"
+                      (click)="openVideoDetails(userLeaderboardModal.assetId, userLeaderboardModal.videoTitle)">
+                      <div class="count-number">{{userLeaderboardModal.rank}}.</div>
+                      <div class="rank-img-section">
+                        <img [src]="userLeaderboardModal.videoThumbnailURI" (error)="handleImageError($event)">
+                      </div>
+                      <div class="title-video-name">My Ranking</div>
+                      <div class="points-totale">
+                        <div class="troffi-img"></div> {{userLeaderboardModal.score}}
+                      </div>
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <li class="Sticky values active" style="cursor: pointer;"
+                      *ngIf="showUserLeaderBoard && userLeaderboardModal.winner"
+                      (click)="openVideoDetails(userLeaderboardModal.assetId, userLeaderboardModal.videoTitle)">
+                      <div class="count-number">{{userLeaderboardModal.rank}}.</div>
+                      <div class="rank-img-section">
+                        <img [src]="userLeaderboardModal.videoThumbnailURI" (error)="handleImageError($event)">
+                      </div>
+                      <div class="title-video-name">My Ranking</div>
+                      <div class="points-totale">
+                        <div class="troffi-img"></div> {{userLeaderboardModal.score}}
+                      </div>
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </li>
+                    <!-----Sticky-tabs-end------>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="no-result" *ngIf="noResultFound">
+            <img [src]="placeholderImage" alt="">
+            <h4>No Leaderboard Available ...</h4>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>
+
+<app-back-button></app-back-button>

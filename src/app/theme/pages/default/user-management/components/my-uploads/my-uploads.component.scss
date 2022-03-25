@@ -1,0 +1,662 @@
+
+
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-constants.scss';
+
+.myUploads {
+    min-height: 700px;
+    background-color: $theme-black-color-change;
+    h2{
+      font-size: 20px;
+      color: $fonts-white-color;
+      font-weight: 500;
+    }
+  }
+  
+  .rail-data-container {
+    .name {
+      color: #fff;
+      text-align: left;
+      font-size: 11px;
+    }
+  
+    .time {
+      font-size: 8px;
+      margin-bottom: 2px;
+      color: #fff;
+      margin-top: 3px;
+      display: none;
+    }
+  
+    .card-img {
+      height: $widescreen-landscape-card-height !important;
+      width: $widescreen-landscape-card-width !important;
+      background-size: cover !important;
+      border-radius: 5px;
+      cursor: pointer;
+  
+      .img {
+        border-radius: 5px;
+        width: 100%;
+        height: 100%;
+      }
+  
+      .description {
+        // background-color: #fff;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        // background-color: rgba(0, 0, 0, 0.4);
+        padding: 75px 5px 0;
+        display: none;
+        z-index: 111;
+        //   background-color: rgba(0, 0, 0, .4);
+        background-image: $item-hover-gradient;
+        border-radius: 5px;
+      }
+  
+      .description span {
+        font-size: 8px;
+        margin-bottom: 2px;
+        color: #fff;
+        margin-top: 3px;
+        display: block;
+        margin: 0 !important;
+      }
+  
+      .description .meta {
+        padding: 0px 0px 0px 4px;
+      }
+
+      .viewCount {
+        float: right;
+        padding: 3px 0px;
+        display: flex !important;
+      }
+      .la-eye{
+        left: auto;
+        right: 15px;
+        top: auto;
+        z-index: 1;
+        font-size: 10px;
+        margin-right: 2px;
+      }
+      .description .name {
+        padding: 1px 0px 0px 4px;
+      }
+  
+      .icon-list {
+        float: left;
+        width: 100%;
+        padding: 3px;
+        transition: 0.25s;
+        border-radius: 2px;
+        position: relative;
+        z-index: 55;
+        &:hover {
+          background-color: $hover-color-section;
+          transition: 0.5s;
+        }
+        i {
+          // display: inline-block;
+          font-size: 11px;
+          float: left;
+          color: $blue-bg-chnage-color;
+        }
+        span {
+          padding-left: 3px;
+          float: left;
+          font-size: 7px;
+          margin-top: 2px;
+          text-transform: uppercase;
+        }
+      }
+      &:hover {
+        transform: scale3d(1.7, 1.7, 1.7) translate3d(0, 0, 0);
+        z-index: 44;
+        transition: 0.5s;
+        transition-delay: 0.25s;
+        .badge.premium-badge {
+          transform: scale3d(0.75, 0.75, 1) translate3d(-17%, -18%, 0);
+          transition: 0.25s;
+          transition-delay: 0.25s;
+          z-index: 999;
+          border-radius: 5px 0px 5px 0px !important;
+          top: 0;
+          left: 0;
+        }
+        .description {
+          display: block;
+        }
+        .remove-mobile {
+          display: none;
+        }
+      }
+    }
+  
+    .card {
+      border: 0;
+      padding: 12px;
+      transition: 0.3s;
+      overflow: visible;
+      border-radius: 5px;
+      background-color: transparent;
+    }
+    .card-img-overlay {
+      display: none !important;
+    }
+    .badge {
+      position: absolute;
+      top: 10;
+      left: 10;
+      border-radius: 5px 0px 5px 0px !important;
+    }
+    .badge.premium-badge {
+      background-image: linear-gradient(107deg, $theme-pink, $theme-pink);
+    }
+    .img-shell {
+      width: $widescreen-landscape-card-width;
+    }
+  }
+  .placeholder {
+    align-items: center;
+    text-align: center;
+    .img {
+      height: 600px;
+      width: auto;
+      margin: 0 auto;
+      vertical-align: middle;
+    }
+  }
+  
+/*********************Responsive************************/
+  @media (min-width:320px) and (max-width:480px){
+    /**********start**********/
+    .placeholder {
+      .img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .myUploads{
+      min-height: auto;
+      h2{
+         font-size: 15px;
+         margin-left: -10px;
+      }
+    }
+    .rail-data-container{
+      .card{
+        display: inline-block;
+        float: none;
+        width: 50%;
+        padding: 5px;
+        .img-shell {
+          width: 100%;
+        }
+        .card-img{
+          height: 100% !important;
+          width: 100% !important;
+          &:hover{
+            position: initial;
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+            .badge.premium-badge{
+              -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+              transform: scale3d(1,1, 1) translate3d(0,0,0);
+            }
+            .description{
+              display: none;
+              height: 30px;
+              left:0;
+              width: 100%;
+              bottom: 0;
+              top: auto;
+              padding: 0px 5px 0;
+            }
+          }
+          .description{
+            display: none;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+            height: 30px;
+            width: 95%;
+            bottom: 5px;
+            left: 5px;
+            top: auto;
+            z-index: 1;
+            padding: 0px 5px 0;
+            span.name{
+              white-space: nowrap; 
+              width: 90%; 
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-weight: 500;
+              font-size: 11px;
+              line-height: 12px;
+            }
+            span.meta{
+              display:none;
+            }
+            .icon-list{
+              padding: 0 2px !important;
+              span{
+                font-size: 8px;
+              }
+              i{
+                font-size: 14px;
+              }
+            }
+          }
+          .remove-mobile {
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #30303080;
+            border-radius: 0px 5px 0px 5px;
+  
+            .icon-remove {
+              font-size: 20px;
+              float: left;
+              color: $blue-bg-chnage-color;
+              padding-left: 5px;
+            }
+          }
+        }
+      } 
+    } 
+/***********end*********/
+}
+  @media (min-width:481px) and (max-width:768px){
+    /**********start**********/
+    .placeholder {
+      .img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .myUploads{
+      min-height: auto;
+      h2{
+         font-size: 17px;
+         margin-left: -10px;
+      }
+    }
+    .rail-data-container{
+      .card{
+        display: inline-block;
+        float: none;
+        width: 33.33%;
+        padding: 5px;
+        .img-shell {
+          width: 100%;
+        }
+        .card-img{
+          height: 100% !important;
+          width: 100% !important;
+          &:hover{
+            position: initial;
+            -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+            .badge.premium-badge{
+              -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+              transform: scale3d(1,1, 1) translate3d(0,0,0);
+            }
+            .description{
+              display: none;
+              height: 35px;
+              left: 0;
+              width: 100%;
+              bottom: 0;
+              top: auto;
+              padding: 0px 5px 0;
+            }
+          }
+          .description{
+            display: none;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+            height: 35px;
+            width: 95%;
+            bottom: 5px;
+            left: 5px;
+            top: auto;
+            padding: 0px 5px 0;
+            z-index: 1;
+            span.name{
+              white-space: nowrap; 
+              width: 90%; 
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-weight: 500;
+              font-size: 13px;
+              line-height: 13px;
+            }
+            span.meta{
+              display:none;
+            }
+            .icon-list{
+              padding: 0 1px !important;
+              i{
+                font-size: 18px;
+                width: 10%;
+                line-height: 15px;
+              }
+              span{
+                font-size: 9px;
+                width: 90%;
+              }
+            }
+          }
+          .remove-mobile {
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #30303080;
+            border-radius: 0px 5px 0px 5px;
+  
+            .icon-remove {
+              font-size: 20px;
+              float: left;
+              color: $blue-bg-chnage-color;
+              padding-left: 5px;
+            }
+          }
+        }
+      } 
+    } 
+  /***********end*********/
+  }
+  @media (min-width:769px) and (max-width:992px){
+  /**********start**********/
+      .myUploads{
+        min-height: auto;
+        h2{
+           font-size: 19px;
+           margin-left: -10px;
+        }
+      }
+      .rail-data-container{
+        .card{
+          display: inline-block;
+          float: none;
+          width: 25%;
+          padding: 5px;
+          .img-shell {
+            width: 100%;
+          }
+          .card-img{
+            height: 100% !important;
+            width: 100% !important;
+            &:hover{
+              position: initial;
+              -webkit-transform: scale3d(1, 1, 1);
+              transform: scale3d(1, 1, 1);
+              .badge.premium-badge{
+                -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+                transform: scale3d(1,1, 1) translate3d(0,0,0);
+              }
+              .description{
+                display: none;
+                height: 35px;
+                left: 0;
+                width: 100%;
+                bottom: 0;
+                top: auto;
+                padding: 0px 5px 0;
+              }
+            }
+            .description{
+              display: none;
+              background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+              height: 35px;
+              width: 95%;
+              bottom: 5px;
+              left: 5px;
+              top: auto;
+              padding: 0px 5px 0;
+              z-index: 1;
+              span.name{
+                white-space: nowrap; 
+                width: 90%; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 13px;
+              }
+              span.meta{
+                display:none;
+              }
+              .icon-list{
+                padding: 0 1px !important;
+                i{
+                  font-size: 18px;
+                  width: 10%;
+                  line-height: 15px;
+                }
+                span{
+                  font-size: 9px;
+                  width: 90%;
+                }
+              }
+            }
+            .remove-mobile {
+              display: block;
+              position: absolute;
+              top: 5px;
+              right: 5px;
+              background-color: #30303080;
+              border-radius: 0px 5px 0px 5px;
+    
+              .icon-remove {
+                font-size: 20px;
+                float: left;
+                color: $blue-bg-chnage-color;
+                padding-left: 5px;
+              }
+            }
+          }
+        } 
+      } 
+/***********end*********/
+}
+
+@media (min-width:993px) and (max-width:1024px){
+  /**********start**********/
+      .myUploads{
+        min-height: auto;
+        h2{
+           font-size: 19px;
+           margin-left: -10px;
+        }
+      }
+      .rail-data-container{
+        .card{
+          display: inline-block;
+          float: none;
+          width: 25%;
+          padding: 5px;
+          .img-shell {
+            width: 100%;
+          }
+          .card-img{
+            height: 100% !important;
+            width: 100% !important;
+            &:hover{
+              position: initial;
+              -webkit-transform: scale3d(1, 1, 1);
+              transform: scale3d(1, 1, 1);
+              .badge.premium-badge{
+                -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+                transform: scale3d(1,1, 1) translate3d(0,0,0);
+              }
+              .description{
+                display: none;
+                height: 35px;
+                left: 0;
+                width: 100%;
+                bottom: 0;
+                top: auto;
+                padding: 0px 5px 0;
+              }
+            }
+            .description{
+              display: none;
+              background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+              height: 35px;
+              width: 95%;
+              bottom: 5px;
+              left: 5px;
+              top: auto;
+              padding: 0px 5px 0;
+              z-index: 1;
+              span.name{
+                white-space: nowrap; 
+                width: 90%; 
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 13px;
+              }
+              span.meta{
+                display:none;
+              }
+              .icon-list{
+                padding: 0 1px !important;
+                i{
+                  font-size: 18px;
+                  width: 10%;
+                  line-height: 15px;
+                }
+                span{
+                  font-size: 9px;
+                  width: 90%;
+                }
+              }
+            }
+            .remove-mobile {
+              display: block;
+              position: absolute;
+              top: 5px;
+              right: 5px;
+              background-color: #30303080;
+              border-radius: 0px 5px 0px 5px;
+    
+              .icon-remove {
+                font-size: 20px;
+                float: left;
+                color: $blue-bg-chnage-color;
+                padding-left: 5px;
+              }
+            }
+          }
+        } 
+      } 
+/***********end*********/
+}
+  @media (min-width:1025px) and (max-width:1200px){
+    /**********start**********/
+        .myUploads{
+          min-height: auto;
+          h2{
+             font-size: 19px;
+             margin-left: -10px;
+          }
+        }
+        .rail-data-container{
+          .card{
+            display: inline-block;
+            float: none;
+            width: 20%;
+            padding: 5px;
+            .img-shell {
+              width: 100%;
+            }
+            .card-img{
+              height: 100% !important;
+              width: 100% !important;
+              &:hover{
+                position: initial;
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+                .badge.premium-badge{
+                  -webkit-transform: scale3d(1,1, 1) translate3d(0,0,0);
+                  transform: scale3d(1,1, 1) translate3d(0,0,0);
+                }
+                .description{
+                  display: block;
+                  height: 55px;
+                  left: 0;
+                  width: 100%;
+                  bottom: 0;
+                  top: auto;
+                  padding: 0px 5px 0;
+                }
+              }
+              .description{
+                display: block;
+                background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 100%);
+                height: 55px;
+                width: 95%;
+                bottom: 5px;
+                left: 5px;
+                top: auto;
+                padding: 0px 5px 0;
+                z-index: 1;
+                span.name{
+                  white-space: nowrap; 
+                  width: 90%; 
+                  display: inline;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  font-weight: 500;
+                  font-size: 13px;
+                  line-height: 13px;
+                }
+                span.meta{
+                  display:none;
+                }
+                .icon-list{
+                  padding: 5px 1px !important;
+                  i{
+                    font-size: 18px;
+                    width: 10%;
+                    line-height: 15px;
+                  }
+                  span{
+                    font-size: 9px;
+                    width: 90%;
+                  }
+                }
+              }
+              .remove-mobile {
+                display: none;
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                background-color: #30303080;
+                border-radius: 0px 5px 0px 5px;
+      
+                .icon-remove {
+                  font-size: 20px;
+                  float: left;
+                  color: $blue-bg-chnage-color;
+                  padding-left: 5px;
+                }
+              }
+            }
+          } 
+        }     
+/***********end*********/
+}  
+    @media screen and (min-width: 1025px){
+          span.remove-mobile.myUploadsClose{
+            .icon-remove{
+              display: none !important;
+            } 
+        }
+    }

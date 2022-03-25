@@ -1,0 +1,75 @@
+<div class="ugc-video-popup">
+    <div class="modal-body">
+        <!-- <div class="ugc-title">UGC video popup</div> -->
+        <div class="form-group">
+            <div class="vertical-offset-4">
+                <div class="col-lg-12 video-ugc-section p-0">
+                    <div class="video-popup-left">
+                        <app-kaltura-player *ngIf="ugcVideos[index]" [isAssetInWatchlist]='false'
+                            [assetDetail]="ugcVideos[index]" [ugcPlayerFound]="true"></app-kaltura-player>
+                        <!-- <img
+                            [src]="kalturaUtilService.getImageByOrientation(ugcVideos[index].images, 'PORTRAIT', null, null, null, false)"> -->
+                    </div>
+                    <div class="video-popup-right">
+                        <div class="popup-title">
+                            <div class="profile-section" (click)="gotoCreatorProfile(userAssetDetails ? userAssetDetails.id : null)">
+                                <div class="user-profile" [ngStyle]="solidColor">
+                                    {{appUtilService.getNameInitials(ugcVideos[index], true)}}</div>
+                            </div>
+                            <div class="user-name-section" *ngIf="ugcVideos[index]">
+                                <h3>{{ugcVideos[index].tags["Series Name"].objects[0].value}}</h3>
+                                <div class="icon-follow" *ngIf="isLogin">
+                                    <div class="profile-icon">
+                                        <app-follow-creator *ngIf="userAssetDetails" [hideFollowButton]="false"
+                                            [assetDetails]="userAssetDetails">
+                                        </app-follow-creator>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="details-section">
+                            <div class="details-type" *ngIf="ugcVideos[index]">
+                                <h4>{{ugcVideos[index].name | trim : 30}}</h4>
+                                <h5 *ngIf="ugcVideos[index] && ugcVideos[index].tags.Genre">
+                                    {{ugcVideos[index].tags.Genre.objects[0].value}}
+                                </h5>
+                                <p>{{ugcVideos[index].description | trim : 230}}
+                                </p>
+                            </div>
+                            <div class="share-counts-section">
+                                <div class="left-icon" *ngIf="viewCountObject" style="cursor: auto;"
+                                    [title]="viewCountObject.views + ' Views'">
+                                    <i class="la eye la-eye"></i>
+                                    <span class="count-number">{{viewCountObject.views | parseCount}}</span>
+                                </div>
+                                <div class="mid-icon" *ngIf="isLogin && ugcVideos[index]"
+                                    [title]="viewCountObject ? viewCountObject.likes + ' Likes': 'Like Video'">
+                                    <app-like *ngIf="ugcVideos[index]" [assetDetails]="ugcVideos[index]"></app-like>
+                                </div>
+                                <div class="mid-icon" *ngIf="!isLogin && viewCountObject" style="cursor: auto;"
+                                    [title]="(viewCountObject.likes + startLikes) + ' Likes'">
+                                    <span class="like-icon"><i class="la las la-heart"></i></span>
+                                    <span class="count-like">{{viewCountObject.likes + startLikes | parseCount}}</span>
+                                </div>
+                                <div class="last-share-icon" title="Share">
+                                    <!--Put-Share-icon-here-->
+                                    <app-share *ngIf="ugcVideos[index]" [assetDetails]="ugcVideos[index]"></app-share>
+                                </div>
+                            </div>
+                            <!-- TODO: Uncomment when comment willl be given -->
+                            <!-- <div class="info-section">
+                                <p> <a href="https://lets.watcho.com/appdownload">Get the app</a> to Shoot videos and upload them on Watcho!</p>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="Controle-arrow">
+                        <i (click)="openPrevImage()" class="fa fa-chevron-left"
+                            [ngClass]="{'disable-arrow' : index === 0}"></i>
+                        <i (click)="openNextImage()" class="fa fa-chevron-right"
+                            [ngClass]="{'disable-arrow' : index === totalVideos-1}"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

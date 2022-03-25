@@ -1,0 +1,5 @@
+<div class="container sitemap" *ngIf="ottCategoryList">
+  <div *ngFor="let ottCategory of ottCategoryList">
+    <app-sitemap-details [ottCategory]="ottCategory"></app-sitemap-details>      
+  </div>
+</div>

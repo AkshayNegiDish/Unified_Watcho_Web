@@ -1,0 +1,283 @@
+
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-constants.scss';
+
+.bottom-nav-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    background: $mobile-footer-background-color;
+    padding:15px 0 10px 0;
+    -webkit-box-shadow: 0 0 7px 0 rgba(0,0,0,.25);
+    -moz-box-shadow: 0 0 7px 0 rgba(0,0,0,.25);
+    -o-box-shadow: 0 0 7px 0 rgba(0,0,0,.25);
+    box-shadow: 0 0 7px 0 rgba(0,0,0,.25);
+    z-index: 9;
+}
+
+
+
+.active {
+    color: #ffffff;
+}
+
+.iconContainer {
+    width: 22px;
+    height: 25px;
+    margin: 0 auto;
+    
+    &.premiumContainer {
+        width: 28px;
+        padding-top: 4px;
+    }
+
+    &.spotlightContainer {
+        width: 22px;
+        padding-top: 2px;
+    }
+
+    &.swagContainer {
+        width: 22px;
+        padding-top: 2px;
+    }
+    
+    &.liveTVContainer {
+        width: 22px;
+    }
+}
+
+.bottom-nav{
+    padding: 0;
+    list-style: none;
+    margin: 0;
+    li{
+        list-style: none;
+        float: left;
+        width: 25%;
+        padding:0 5px;
+        text-align: center;
+        color: $meta-font-color;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 20px;
+        a{
+            color: #757575;
+            text-decoration: none !important;  
+        }
+        img{
+            height: 22px;
+        }
+        span{
+            display: block; 
+            font-weight: 500; 
+        }
+        .la{
+            font-size: 27px;
+        }
+        .swagimg {
+            width: 100%;
+            margin-top: -6px;
+            margin-left: 4px;
+            img{
+                height: 45px;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1) {
+    .homeIcon {
+        height: 72px;
+        width: 72px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -1px -953px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -80px -953px;
+        }
+    }
+
+    .premium {
+        height: 72px;
+        width: 84px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -154px -973px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -234px -973px;
+        }
+    }
+
+    .spotlight, .swag {
+        height: 83px;
+        width: 85px;
+        display: block;
+        -moz-transform:scale(0.25);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.25);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -313px -941px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -392px -941px;
+        }
+    }
+
+    .liveTV {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -478px -947px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -557px -947px;
+        }
+    }
+
+    .More {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -730px -953px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -842px -959px;
+        }
+    }
+}
+
+
+@media (min-width: 992px){ 
+   
+    .homeIcon {
+        height: 72px;
+        width: 72px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -1px -953px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -80px -953px;
+        }
+    }
+
+    .premium {
+        height: 72px;
+        width: 84px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -154px -973px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -234px -973px;
+        }
+    }
+
+    .spotlight, .swag {
+        height: 83px;
+        width: 85px;
+        display: block;
+        -moz-transform:scale(0.25);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.25);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -313px -941px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -392px -941px;
+        }
+    }
+
+    .liveTV {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -478px -947px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -557px -947px;
+        }
+    }
+
+    .More {
+        height: 82px;
+        width: 77px;
+        display: block;
+        -moz-transform:scale(0.3);
+        -moz-transform-origin: 0 0;
+        transform: scale(0.3);
+        transform-origin: 0 0;
+        &.active {
+            background: url($web-sprite-url) no-repeat -730px -953px;   
+        }
+        &.inActive {
+            background: url($web-sprite-url) no-repeat -842px -959px;
+        }
+    }
+
+}
+
+
+.pwaheader-nav-mobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 72px;
+    background: #000;
+    padding: 15px 0 10px;
+    -o-box-shadow: 0 0 7px 0 rgba(0,0,0,.25);
+    box-shadow: 0 0 7px 0 rgba(0,0,0,.25);
+    z-index: 9;
+}
+.pwaheader-nav-mobile .bottom-nav li {
+    width: 20%;
+    padding: 0 3px;
+}
+.pwaheader-nav-mobile .bottom-nav li{
+    font-size: 11px;
+    font-weight: 500;
+}
+.pwaheader-nav-mobile .bottom-nav li .swagimg{
+    margin-left: 0;
+    margin-top: -10px;
+}

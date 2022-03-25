@@ -1,0 +1,9 @@
+<div class="heart-icon">
+  <div class="likeicon">
+      <div class="like-single" (click)="toggleLike()" *ngIf="!isLiked"></div>
+      <div class="like-alsoicon" (click)="toggleLike()" *ngIf="isLiked"></div>
+  </div><!--likeicon-->
+  <div class="like-count" *ngIf="!isLiked">{{likeCount | parseCount}}</div>
+  <div class="like-count liked" *ngIf="isLiked">{{likeCount | parseCount}}</div>
+
+</div><!--heart-icon-->

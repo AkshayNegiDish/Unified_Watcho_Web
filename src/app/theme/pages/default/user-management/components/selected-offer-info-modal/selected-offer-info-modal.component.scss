@@ -1,0 +1,322 @@
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-constants.scss';
+
+.offer-info-modal {
+  width: 514px;
+  height: auto;
+  .modal-body{
+    padding:0;
+    .mobile-d2h-offer-popup {
+      display: block;
+      width: 100%;
+      height: 100%;
+      //min-height: 500px;
+  
+      .offer-mobile {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        //margin: 20% auto;
+        padding: 5% 0 15px;
+        //max-width: 70%;
+        border-radius: 5px;
+        background: #232323 url(https://d1f8xt8ufwfd45.cloudfront.net/web/statics/web-sprite/d2h_background.png) no-repeat;
+  
+        .d2hoffer-title {
+          color: #5b2d7a;
+          font-weight: 600;
+          letter-spacing: 1px;
+          font-size: 16px;
+          text-align: center;
+          width: 100%;
+          margin: 0 auto 15px;
+          position: relative;
+          max-width: 80%;
+  
+          &:before {
+            background: url($web-dish-sprite-url) no-repeat -104px -689px;
+            width: 65px;
+            height: 64px;
+            position: absolute;
+            left: -15px;
+            top: 3px;
+            -moz-transform: scale(0.3);
+            -moz-transform-origin: 0 0;
+            transform: scale(0.3);
+            transform-origin: 0 0;
+            content: '';
+          }
+  
+          &:after {
+            background: url($web-dish-sprite-url) no-repeat -104px -689px;
+            width: 65px;
+            height: 64px;
+            position: absolute;
+            right: -59px;
+            top: 3px;
+            -moz-transform: scale(0.3);
+            -moz-transform-origin: 0 0;
+            transform: scale(0.3);
+            transform-origin: 0 0;
+            content: '';
+          }
+        }
+  
+        .dishoffer-title {
+          display: none;
+        }
+  
+        .description {
+          p.description-d2h {
+            color: #ccc;
+            font-size: 12px;
+            width: 100%;
+            padding: 0 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 300;
+  
+            span {
+              color: #ffffff;
+              font-weight: 500;
+            }
+          }
+  
+          p.description-dish {
+            display: none;
+          }
+        }
+  
+        .btn-mobile {
+          width: 100%;
+          float: left;
+          text-align: center;
+  
+          .btn-d2h {
+            width: 100%;
+            max-width: 210px;
+            font-size: 15px;
+            height: 35px;
+            border-radius: 5px;
+            background-color: #5b2d7a;
+            outline: none;
+            border: none;
+            color: #ffffff;
+            transition: 0.5s;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 35px;
+            cursor: pointer;
+          }
+  
+          .btn-dish {
+            display: none;
+          }
+        }
+      }
+    }
+    .mobile-dish-offer-popup {
+      display: block;
+      width: 100%;
+      height: 100%;
+      //min-height: 500px;
+  
+      .offer-mobile {
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        //margin: 20% auto;
+        padding: 5% 0 15px;
+        //max-width: 70%;
+        border-radius: 5px;
+        background: #232323 url(https://d1f8xt8ufwfd45.cloudfront.net/web/statics/web-sprite/background_dish_tv_info.png) no-repeat;
+  
+        .dishoffer-title {
+          color: #ef4923;
+          font-weight: 600;
+          letter-spacing: 1px;
+          font-size: 16px;
+          text-align: center;
+          width: 100%;
+          margin: 0 auto 15px;
+          position: relative;
+          max-width: 80%;
+  
+          &:before {
+            background: url($web-dish-sprite-url) no-repeat -21px -689px;
+            width: 65px;
+            height: 64px;
+            position: absolute;
+            left: -15px;
+            top: 3px;
+            -moz-transform: scale(0.3);
+            -moz-transform-origin: 0 0;
+            transform: scale(0.3);
+            transform-origin: 0 0;
+            content: '';
+          }
+  
+          &:after {
+            background: url($web-dish-sprite-url) no-repeat -21px -689px;
+            width: 65px;
+            height: 64px;
+            position: absolute;
+            right: -59px;
+            top: 3px;
+            -moz-transform: scale(0.3);
+            -moz-transform-origin: 0 0;
+            transform: scale(0.3);
+            transform-origin: 0 0;
+            content: '';
+          }
+        }
+  
+        .d2hoffer-title {
+          display: none;
+        }
+  
+        .description {
+          p.description-dish {
+            color: #ccc;
+            font-size: 12px;
+            width: 100%;
+            padding: 0 10px;
+            margin-bottom: 20px;
+            // display: inline-block;
+            font-weight: 300;
+            text-align: center;
+  
+            span {
+              color: #ffffff;
+              font-weight: 500;
+            }
+          }
+  
+          p.description-d2h {
+            display: none;
+          }
+        }
+  
+        .btn-mobile {
+          width: 100%;
+          float: left;
+          text-align: center;
+  
+          .btn-dish {
+            width: 100%;
+            max-width: 210px;
+            font-size: 15px;
+            height: 35px;
+            border-radius: 5px;
+            background-color: #ef4923;
+            outline: none;
+            border: none;
+            color: #ffffff;
+            transition: 0.5s;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 35px;
+            cursor: pointer;
+          }
+  
+          .btn-d2h {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .offer-info-modal{
+    width: 100% !important;
+    .mobile-d2h-offer-popup{
+      .offer-mobile{
+        .dishoffer-title, .d2hoffer-title{
+          font-size: 12px;
+          max-width: 210px;
+        }
+        .description{
+          p.description-dish , p.description-d2h{
+            font-size: 10px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+    .mobile-dish-offer-popup{
+      .offer-mobile{
+        .dishoffer-title, .d2hoffer-title{
+          font-size: 12px;
+          max-width: 210px;
+        }
+        .description{
+          p.description-dish , p.description-d2h{
+            font-size: 10px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+  .modal.show.show .modal-dialog {
+    margin-top: 38% !important;
+  } 
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .offer-info-modal{
+    width: 100% !important;
+    .mobile-d2h-offer-popup{
+      .offer-mobile{
+        .dishoffer-title, .d2hoffer-title{
+          font-size: 14px;
+          max-width: 70%;
+        }
+        .description{
+          p.description-dish , p.description-d2h{
+            font-size: 12px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+    .mobile-dish-offer-popup{
+      .offer-mobile{
+        .dishoffer-title, .d2hoffer-title{
+          font-size: 14px;
+          max-width: 70%;
+        }
+        .description{
+          p.description-dish , p.description-d2h{
+            font-size: 10px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .offer-info-modal{
+    .mobile-d2h-offer-popup{
+      .offer-mobile{
+        .dishoffer-title, .d2hoffer-title{
+          max-width: 80%;
+        }
+      }
+    }
+    .mobile-dish-offer-popup{
+      .offer-mobile{
+        .dishoffer-title, .d2hoffer-title{
+          max-width: 80%;
+        }
+      }
+    }
+  }
+
+}

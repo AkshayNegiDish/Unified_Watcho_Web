@@ -1,0 +1,10 @@
+<span *appShellNoRender>
+        <app-rails-view *ngIf="screenId" [screenId]="screenId"></app-rails-view>
+    </span>
+<span *appShellRender>
+    <!-- <div class="base-page"> -->
+        <app-default-shell></app-default-shell>
+    <!-- </div> -->
+</span>
+
+<!-- <app-rails-view [screenId]="screenId"></app-rails-view> -->

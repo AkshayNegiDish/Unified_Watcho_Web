@@ -1,0 +1,14 @@
+
+@import '~assets/scss/theme-fonts.scss';
+.main-content {
+    // margin-top: 60px;
+    min-height: 500px;
+    background-color: $theme-black-color-change;
+//    position: relative;
+}
+
+@media (min-width:320px) and (max-width:768px){
+    .main-content{
+        margin-top: 0;
+    }
+}

@@ -1,0 +1,208 @@
+<div class="base-page">
+  <div class="container p-0 my-contest">
+    <div class="noPwa" *ngIf="!isPWA">
+      <h2>Contest</h2>
+      <h3 routerLink="/ugc/full-leaderboard" class="leaderboard-text">Leaderboard</h3>
+    </div>
+    <div class="pwa" *ngIf="isPWA">
+      <h2>Contest</h2>
+      <h3 routerLink="/ugc/full-leaderboard" class="leaderboard-text">Leaderboard</h3>
+    </div>
+    <div class="watcho-brand-color-border"></div>
+    <ngb-tabset #t="ngbTabset">
+      <ngb-tab id="Upcoming-videos">
+        <ng-template ngbTabTitle>
+          <div class="Upcoming-tab" (click)="getUpcommingContest()">Upcoming</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div *ngIf="!noResultFound">
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+            <div class="first-tab">
+              <div class="Contest-list">
+                <div class="scroller" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+                  (scrolled)="getMoreVideos(ContestType[ContestType.UPCOMING].toString())"></div>
+                <ul>
+                  <li *ngFor="let contest of contestArray.contestModal">
+                    <div class="left-contest-img"
+                      (click)="goToContestPage(contest.id, ContestType[ContestType.UPCOMING].toString())">
+                      <img [src]="contest.thumbnailUrl" (error)="handleImageError($event)">
+                    </div>
+                    <div class="right-contest-section">
+                      <div class="upper-section">
+                        <div class="left-side">
+                          <h3>{{contest.name}}</h3>
+                          <div class="start-date">
+                            Start-date : <span>{{contest.startDate | date : 'dd-MM-yyyy'}} at
+                              {{contest.startDate | date : 'h:mm a'}}</span>
+                          </div>
+                          <div class="start-date">
+                            End-date : <span>{{contest.endDate | date : 'dd-MM-yyyy'}}</span>
+                          </div>
+                        </div>
+                        <div class="right-icon" *ngIf="reminders[contest.id]; else showRemingMe">
+                          <i class="la la-bell" style="color: #fa0050;"></i>
+                          <span style="color: #fa0050;">Reminder set</span>
+                        </div>
+                        <ng-template #showRemingMe>
+                          <div class="right-icon" (click)="setReminder(contest)">
+                            <i class="la la-bell"></i>
+                            <span>Remind Me</span>
+                          </div>
+                        </ng-template>
+                      </div>
+                      <div class="down-contest-section">
+                        <p>{{contest.description}}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="no-result" *ngIf="noResultFound">
+            <img [src]="noResultImage" alt="">
+            <h4>No Contest Available ...</h4>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="uploaded-live">
+        <ng-template ngbTabTitle>
+          <div class="Live-tab" (click)="getLiveContest()">Live</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div *ngIf="!noResultFound">
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+            <div class="second-tab">
+              <div class="Contest-list">
+                <div class="scroller" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+                  (scrolled)="getMoreVideos(ContestType[ContestType.LIVE].toString())"></div>
+                <ul>
+                  <li *ngFor="let contest of contestArray.contestModal">
+                    <div class="left-contest-img"
+                      (click)="goToContestPage(contest.id, ContestType[ContestType.LIVE].toString())">
+                      <img [src]="contest.thumbnailUrl" (error)="handleImageError($event)">
+                    </div>
+                    <div class="right-contest-section">
+                      <div class="upper-section">
+                        <div class="left-side">
+                          <h3>{{contest.name}}</h3>
+                          <div class="start-date">
+                            Start-date : <span>{{contest.startDate | date : 'dd-MM-yyyy'}} at
+                              {{contest.startDate | date : 'h:mm a'}}</span>
+                          </div>
+                          <div class="start-date">
+                            End-date : <span>{{contest.endDate | date : 'dd-MM-yyyy'}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="down-contest-section">
+                        <p>{{contest.description}}
+                          <span class="check-more"
+                            (click)="goToContestPage(contest.id, ContestType[ContestType.LIVE].toString())">Check
+                            more...</span>
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="no-result" *ngIf="noResultFound">
+            <img [src]="noResultImage" alt="">
+            <h4>No Contest Available ...</h4>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="Completed-Content">
+        <ng-template ngbTabTitle>
+          <div class="Completed-tab" (click)="getCompletedContest()">Completed</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div *ngIf="!noResultFound">
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+            <div class="third-tab">
+              <div class="Contest-list">
+                <div class="scroller" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+                  (scrolled)="getMoreVideos(ContestType[ContestType.COMPLETED].toString())"></div>
+                <ul>
+                  <li *ngFor="let contest of contestArray.contestModal">
+                    <div class="left-contest-img"
+                      (click)="goToContestPage(contest.id, ContestType[ContestType.COMPLETED].toString())">
+                      <img [src]="contest.thumbnailUrl" (error)="handleImageError($event)">
+                    </div>
+                    <div class="right-contest-section">
+                      <div class="upper-section">
+                        <div class="left-side">
+                          <h3>{{contest.name}}</h3>
+                          <div class="start-date">
+                            Start-date : <span>{{contest.startDate | date : 'dd-MM-yyyy'}} at
+                              {{contest.startDate | date : 'h:mm a'}}</span>
+                          </div>
+                          <div class="start-date">
+                            End-date : <span>{{contest.endDate | date : 'dd-MM-yyyy'}}</span>
+                          </div>
+                        </div>
+                        <!-- <div class="right-icon">
+                                <i class="la la-bell"></i>
+                                <span>Remind Me</span>
+                              </div> -->
+                      </div>
+                      <div class="down-contest-section">
+                        <p>{{contest.description}}
+                          <span class="check-more"
+                            (click)="goToContestPage(contest.id, ContestType[ContestType.COMPLETED].toString())">Check
+                            more...</span>
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="no-result" *ngIf="noResultFound">
+            <img [src]="noResultImage" alt="">
+            <h4>No Contest Available ...</h4>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>
+
+<app-back-button></app-back-button>
+
+
+
+<ng-template #downloadtheAppModal>
+  <div class="contest-popup downloadInAppmodal">
+    <div class="modal-body">
+      <div class="new-video-upload-title">
+        Download Watcho App
+      </div>
+      <div class="form-group">
+
+        <div class="vertical-offset-4">
+          <div class="input-group">
+            <div class="col-lg-12 upload-form-btn">
+              <div class="pop-onlytab">
+                <a class="appstore" href="https://itunes.apple.com/in/app/watcho/id1440733653?mt=8" target="_blank">
+                  <img alt="Download on the App Store" src="../../../../assets/images/ios-app@2x.png">
+                </a>
+              </div>
+              <div class="pop-onlytab">
+                <a class="googleplay"
+                  href='https://play.google.com/store/apps/details?id=com.watcho&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
+                  target="_blank">
+                  <img alt='Get it on Google Play'
+                    src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,81 @@
+<div class="base-page">
+  <div class="container p-0 live-contest">
+    <h2>Upcoming Contest</h2>
+    <div class="watcho-brand-color-border"></div>
+    <div *ngIf="!noResultFound">
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+      <div class="first-tab">
+        <div class="live-Contest-list">
+          <div class="banner-section">
+            <div class="banner-img">
+              <img [src]="contestModal.thumbnailUrl" (error)="handleImageError($event)">
+            </div>
+            <div class="banner-shadow">
+              <div class="banner-text">
+                <div class="title-banner">{{contestModal.name}}</div>
+                <div class="Countdown-start">
+                  <h4>Countdown to Start</h4>
+                  <div class="running-time"><span>{{this.timerModal.hours}}</span> hrs </div>
+                  <div class="running-time"><span>{{this.timerModal.minutes}}</span> min </div>
+                  <div class="running-time"><span>{{this.timerModal.seconds}}</span> sec </div>
+                </div>
+                <div *ngIf="reminders[contestModal.id] ; else showRemindMeButton">
+                  <button class="upcoming-btn btn-pink"><i class="la la-bell"></i> Reminder set</button>
+                </div>
+                <ng-template #showRemindMeButton>
+                  <button class="upcoming-btn btn-pink" (click)="setReminder(contestModal)"><i class="la la-bell"></i>
+                    Remind Me</button>
+                </ng-template>
+
+              </div>
+            </div>
+          </div>
+          <div class="bottom-nav-shadow"></div>
+          <div class="description-text">
+            <p>{{contestModal.description}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="no-result" *ngIf="noResultFound">
+      <img [src]="placeholderImage" alt="">
+      <h4>No Contest Available ...</h4>
+    </div>
+  </div>
+</div>
+
+<app-back-button></app-back-button>
+
+
+<ng-template #downloadtheInAppModal>
+  <div class="upcoming-popup downloadInAppmodal">
+    <div class="modal-body">
+      <div class="new-video-upload-title">
+        Download Watcho App
+      </div>
+      <div class="form-group">
+
+        <div class="vertical-offset-4">
+          <div class="input-group">
+            <div class="col-lg-12 upload-form-btn">
+              <div class="pop-onlytab">
+                <a class="appstore" href="https://itunes.apple.com/in/app/watcho/id1440733653?mt=8" target="_blank">
+                  <img alt="Download on the App Store" src="../../../../assets/images/ios-app@2x.png">
+                </a>
+              </div>
+              <div class="pop-onlytab">
+                <a class="googleplay"
+                  href='https://play.google.com/store/apps/details?id=com.watcho&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
+                  target="_blank">
+                  <img alt='Get it on Google Play'
+                    src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

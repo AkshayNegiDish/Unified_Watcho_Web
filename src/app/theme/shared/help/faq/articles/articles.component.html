@@ -1,0 +1,10 @@
+<div id="accordion" *ngIf="articleList" class="container article-section">
+    <h2 class="section">{{sectionName}}</h2>
+    <div class="sub-container" *ngFor="let article of articleList">
+        <div class="article collapsed" data-toggle="collapse" [attr.data-target]="'#c' + article.id" aria-expanded="true" [attr.aria-controls]="'c' + article.id">
+            {{article.name}}
+            <span><i class="la la-angle-up"></i></span>
+        </div>
+        <div [attr.id]="'c' + article.id" class="collapse articleBody" data-parent="#accordion" [innerHTML]="article.body"></div>
+    </div>
+</div>

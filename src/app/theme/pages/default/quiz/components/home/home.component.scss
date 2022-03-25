@@ -1,0 +1,107 @@
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-colors.scss';
+$d2h-color: #9C42DC;
+$dishtv-color: #EF4923;
+
+
+
+.container {
+    background-image: url('https://s3.ap-southeast-1.amazonaws.com/ads.assets/watcho-quiz/images_Assets/Khelojeeto/Jeeto_Horizontal.png');
+    background-color: #e6175b;
+
+
+}
+
+.top-banner {
+    margin-left: -15px;
+}
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.tnc-cntnr {
+    display: grid;
+    justify-content: center;
+}
+
+.col-4 {
+    margin: auto;
+}
+
+.col-12 {
+    display: flex;
+    justify-content: center;
+    max-width: 440px;
+}
+
+.font-weight-light {
+    text-align: center;
+    color: #fff;
+    font-size: large;
+}
+
+.font-weight-bold {
+    text-align: center;
+    color: #fff;
+    font-size: x-large;
+}
+
+.text-muted {
+    color: #fff !important;
+    font-weight: 100;
+    margin-top: -30px;
+    margin-bottom: 30px;
+    font-size: 12px;
+    text-align: center;
+
+}
+
+.text-reset {
+    color: #fff;
+    font-weight: 500;
+}
+
+.btn {
+    border-radius: 3px;
+    font-size: large;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    width: 40%
+}
+
+.btn-primary {
+    border-color: #333;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #000;
+    border-color: #333;
+}
+
+@media (min-width:1025px) and (max-width:1920px) {
+    .row {
+        // margin-left: 5%;
+    }
+}
+
+@media (min-width:769px) and (max-width:1024px) {
+    .row {
+        // margin-left: 3%;
+    }
+}
+
+@media (min-width:320px) and (max-width:768px) {
+    .font-weight-light {
+        font-size: medium;
+    }
+
+    .font-weight-bold {
+        font-size: large;
+    }
+}

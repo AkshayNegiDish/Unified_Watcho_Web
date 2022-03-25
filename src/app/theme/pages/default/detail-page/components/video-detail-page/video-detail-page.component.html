@@ -1,0 +1,173 @@
+<div class="base-page container p-0">
+  <div class="videopage jumbotron">
+    <div class="inner-details">
+      <div [id]="divId" style="width: 1170px; height: 658px;"></div>
+    </div>
+  </div>
+  <!-- <div class="share-actions clearfix">
+       <span class="addtolist" (click)="addToWatchlist()" [hidden]="alreadyInPlaylist">
+          <i class="la la-plus"></i><br>
+          Watchlist
+      </span>
+      <span class="addtolist" style="color: green; cursor: pointer; font-weight: 300" (click)="removeFromWatchList()"
+          [hidden]="!alreadyInPlaylist">
+          <i class="la la-check" style="font-weight: 600"></i><br>
+          Watchlist
+      </span>
+      <span class="addtolist" (click)="addToLikeList()" [hidden]="isLiked">
+          <i class="la la-thumbs-up"></i><br>
+          Like
+      </span>
+      <span class="addtolist" style="color: green" (click)="removeToLikeList()" [hidden]="!isLiked">
+          <i class="la la-thumbs-up"></i><br>
+          Liked
+      </span> -->
+  <!-- <span class="share" (mouseenter)="setupDeepLink()">
+          <i class="la la-share-alt"></i><br>
+          Share
+          <span class="social-tooltip slide-in-left">
+              <share-buttons [theme]="'modern-dark'" (mouseenter)="setupDeepLink()" [include]="['facebook','twitter']"
+                  [show]="5" [url]="videoDeepUrl" [autoSetMeta]="true"></share-buttons>
+              <share-buttons [theme]="'modern-dark'" (click)="copyToClipboard()" (mouseenter)="setupDeepLink()" [include]="['copy']"
+                  [show]="5" [url]="videoDeepUrl" [autoSetMeta]="true"></share-buttons>
+          </span>
+      </span> -->
+  <!-- </div> -->
+
+  <div class="container">
+    <div class="detail-section">
+      <h1>{{mediaAssetDetails?.name}}</h1>
+      <!-- <span class="meta"></span> -->
+      <span class="meta" *ngIf="mediaAssetDetails">
+        <span *ngIf="mediaAssetDetails?.tags">
+          {{kalturaUtilService.getGenre(mediaAssetDetails?.tags?.Genre)}}
+        </span>
+        <span *ngIf="mediaAssetDetails?.tags">
+          | {{kalturaUtilService.getTagsObjectValue(mediaAssetDetails?.tags['Parental Rating'])}}
+        </span>
+        <span *ngIf="mediaAssetDetails?.metas?.Runtime?.value">
+          | {{mediaAssetDetails?.metas?.Runtime?.value | mediaTime}}
+        </span>
+      </span>
+
+      <span class="meta">
+        {{mediaAssetDetails?.description}}
+      </span>
+      <div class="hindi-english">
+        <a href="">Family</a> . <a href="">Hindi</a> . <a href="">StarPlus</a>
+      </div>
+      <span class="meta" *ngIf="kalturaUtilService.getTagsObjectValue(mediaAssetDetails?.tags['Main Cast'])"><b>Cast :
+        </b>
+        {{kalturaUtilService.getTagsObjectValue(mediaAssetDetails?.tags['Main Cast'])}}</span>
+      <span class="meta" *ngIf="kalturaUtilService.getTagsObjectValue(mediaAssetDetails?.tags['Director'])"><b>Crew :
+        </b>
+        {{kalturaUtilService.getTagsObjectValue(mediaAssetDetails?.tags['Director'])}}</span>
+
+      <div class="share-actions clearfix">
+        <ng-container *ngIf="showWatchListButton">
+          <span class="addtolist" *ngIf="!isAddedToWatchList" (click)="toggleWatchlist(isAddedToWatchList)">
+            <i class="material-icons">playlist_add</i><br>
+            Watchlist
+          </span>
+          <span class="addtolist" *ngIf="isAddedToWatchList" style="color: #04A5E8; cursor: pointer;"
+            (click)="toggleWatchlist(isAddedToWatchList)">
+            <i class="material-icons" style="color:#04A5E8">playlist_add_check</i><br>
+            Watchlist
+          </span>
+        </ng-container>
+
+        <ng-container *ngIf="showFollowButton">
+
+        </ng-container>
+
+        <!-- <span class="addtolist">
+              <i class="material-icons">thumb_up</i><br>
+              Like
+          </span>
+          <span class="addtolist" style="color: #e7195b">
+              <i class="material-icons" style="color: #e7195b">thumb_up</i><br>
+              Liked
+          </span> -->
+        <span class="share">
+          <i class="material-icons">share</i><br>
+          Share
+          <span class="social-tooltip slide-in-left">
+            <!-- <share-buttons [theme]="'modern-dark'" (mouseenter)="setupDeepLink()" [include]="['facebook','twitter']"
+                      [show]="5" [url]="videoDeepUrl" [autoSetMeta]="true"></share-buttons>
+                  <share-buttons [theme]="'modern-dark'" (click)="copyToClipboard()" (mouseenter)="setupDeepLink()"
+                      [include]="['copy']" [show]="5" [url]="videoDeepUrl" [autoSetMeta]="true"></share-buttons> -->
+          </span>
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- <div class="rails-container">
+      <div *ngFor="let channel of categoryDetails?.channels; let i = index">
+        <div *ngIf="i > 0">
+          <div class="row" style="display: block" *ngIf="assetList[i]?.totalCount > 0">
+            <div class="col-lg-12 rail-info-container">
+              <div class="rail-title col-lg-11 col-md-11 col-sm-11 col-xs-11 padding0">
+                {{channel.name}}
+              </div>
+              <div class="more-button col-lg-1 col-md-1 col-sm-1 col-xs-1" *ngIf="assetList[i]?.totalCount > 20">
+                <button class="more-btn" (click)="openMore(channel.id, channel.name)">
+                  More
+                </button>
+              </div>
+            </div>
+
+            <div class="col-lg-12 rail-data-container">
+              <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="railConfigService.getViewTypeConfig(channel.description)"
+                [attr.id]="'carousel_' + i">
+
+                <div ngxSlickItem class="slide" *ngFor="let assetDetail of assetList[i]?.objects;let j = index">
+
+                  <div [class]=railConfigService.getRailTypeCssClass(channel.description)>
+                    <app-railItemView [imagesAsset]="assetDetail?.images" [name]="assetDetail?.name" [runtime]="assetDetail?.metas['Runtime']?.value"
+                      [isPremium]="assetDetail?.metas['Is Exclusive']?.value" [viewType]="channel.description" (click)="watchAsset(assetDetail.name, assetDetail.id, channel.name, channel.id)"></app-railItemView>
+                  </div>
+
+                </div>
+
+              </ngx-slick-carousel>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+    <!-- <div class="comment-section">
+            <div class="row">
+                <div class="col-lg-8">
+                    <span class="title">Comments & Likes</span>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-1 padding0 alignRight">
+                    <img src="{{IMAGE_CLOUDFRONT_URL}}{{IMAGE_BASE_KEY}}{{profilePicURL}}" onerror="this.src='../../../../assets/images/logo/login.png'"
+                        class="img-circle  img-responsive avatar">
+                </div>
+                <div class="form-group col-lg-11">
+
+                    <input type="text" class="form-control" id="usr">
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-1 padding0 alignRight img-responsive">
+                    <img src="{{IMAGE_CLOUDFRONT_URL}}{{IMAGE_BASE_KEY}}{{profilePicURL}}" onerror="this.src='../../../../assets/images/logo/login.png'"
+                        class="img-circle img-responsive avatar">
+                </div>
+                <div class="form-group col-lg-6">
+                    <p><strong>Cast:</strong> <br>
+                        Alia Bhat</p>
+                </div>
+            </div>
+        </div> -->
+  </div>
+</div>

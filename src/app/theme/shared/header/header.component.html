@@ -1,0 +1,528 @@
+<div *ngIf="!ugcPageVisited">
+  <span *appShellNoRender>
+
+    <div *ngIf="!appUtilService.checkIfPWA() && !ugcPageVisited">
+      <!--install-btn-->
+      <div id="installCard" *ngIf="installCard" (onscroll)="hideInstallCard()">
+        <span>
+          <div class="install-btn">
+            <div class="leftinstall">
+              <i (click)="closeInstallCard()" class="material-icons">close</i>
+            </div>
+            <div class="midinstall">
+              <div class="imglog">
+                <img [src]="watchoAppLogo">
+              </div>
+              <div class="textinstl">
+                <p>DOWNLOAD THE APP</p>
+                <!-- <span>Win an iphone</span> -->
+              </div>
+            </div>
+            <div class="rightinstall">
+              <a class="btn-pink moblink" href="https://lets.watcho.com/appdownload" target="_blank">Install Now</a>
+            </div>
+          </div>
+          <!--install-btn-->
+        </span>
+      </div>
+      <!--installCard-->
+    </div>
+    <!--appUtilServicePWA-->
+
+    <div *ngIf="!appUtilService.checkIfPWA() && !ugcPageVisited">
+      <div class="fullcover-header">
+        <div class="container p-0">
+          <div class="header">
+            <div class="nav-container">
+              <nav class="navbar navbar-expand-md navbar-no-bg fixed-top fixed-background">
+                <div id="desktop-nav-container" [hidden]="isMobileTabletView">
+                  <div class="d-inline-block left-nav-desktop-dropdown" ngbDropdown
+                    #leftDesktopNavDropdown="ngbDropdown">
+
+                    <!-- <button type="button" class="more-nav" data-toggle="collapse" data-target=".more-menu-collapse" aria-expanded="false">
+                        
+                    </button> -->
+                    <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+                      <div class="more-menu">
+                        <span class="close-more-menu"
+                          (click)="$event.stopPropagation(); leftDesktopNavDropdown.close()">
+                          <i class="la la-close"></i>
+                        </span>
+                        <div class="">
+                          <ul>
+                            <li class="close-more-menu">
+
+                              <i class="la la-video-camera"></i>
+                              <span i18n="@@UGCIdentifierText">Swag</span>
+
+                            </li>
+                            <li class="close-more-menu">
+
+                              <i class="la la-trophy"></i>
+                              <span i18n="@@UGCIdentifierText">Contest</span>
+
+                            </li>
+                            <li class="">
+                              <i class="la la-tv"></i>
+                              <span i18n="@@TVShowsIdentifierText">TV Shows</span>
+                            </li>
+                            <li class="">
+                              <i class="la la-play-circle"></i>
+                              <span i18n="@@TrendingVideosIdentifierText">Trending Videos</span>
+                            </li>
+                          </ul>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="mobile-tab-nav-container" class="{{height}}" [hidden]="!isMobileTabletView">
+                  <ng-sidebar-container>
+                    <ng-sidebar [(opened)]="_opened" [closeOnClickOutside]="_closeOnClickOutside"
+                      (onClosed)="_onClosed()" [closeOnClickBackdrop]="_closeOnClickBackdrop"
+                      (onPositionChange)="_positionChanged(this)">
+                      <div class="top-section">
+                        <div [hidden]="isUserLogin">
+                          <p class="large" (click)="openSignInModal()">Login to your account</p>
+                          <!-- <p>Sync your profile across devices</p> -->
+                        </div>
+                        <div class="row" [hidden]="!isUserLogin">
+                          <div class="image">
+                            <img [src]="userImage || ''"
+                              onerror="this.src='https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/user.png'"
+                              class="img-circle">
+                          </div>
+                          <p class="large">{{loginName}}</p>
+                        </div>
+                      </div>
+
+                      <div class="mobile-on-click" [hidden]="!isUserLogin">
+                        <div class="mobile-show" aria-labelledby="dropdownMenuLink">
+                          <ul>
+                            <li *ngIf="userCategory == '1'">
+                              <a class="dropdown-item" (click)="_toggleOpened()" (click)="clickMyDishTvSpace()"
+                                (click)="gtmTagEventButtonClickMyDishTvSpace()" routerLink="/user/mydishtvspace"><i
+                                  class="la la-tv"></i><span>My Dish Tv Space</span></a>
+                            </li>
+
+                            <li *ngIf="userCategory == '2'">
+                              <a class="dropdown-item" (click)="_toggleOpened()" (click)="clickMyD2hSpace()"
+                                (click)="gtmTagEventButtonClickMyD2hSpace()" routerLink="/user/myd2hspace"><i
+                                  class="la la-tv"></i><span>My D2h Space</span></a>
+                            </li>
+
+                            <li *ngIf="showContest">
+                              <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
+                                routerLink="/ugc/my-contest"><i class="la la-trophy"></i><span>Watcho SWAG</span></a>
+                            </li>
+
+                            <li>
+                              <a class="dropdown-item" (click)="_toggleOpened();gtmTagOnWatchoAurJeeto()"
+                                routerLink="/user/quiz"><i class="fa fa-list"></i><span>Watcho Aur Jeeto</span></a>
+                            </li>
+ 
+                            <li>
+                              <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
+                                routerLink="/spotlight"><div class="la-icon-sprite"></div><span>Spotlight</span></a>
+                            </li>
+
+                            
+                            <!-- <li>
+                              <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
+                                routerLink="/movies"><i class="la la-film"></i><span>Movies</span></a>
+                            </li> -->
+
+                            <li>
+                              <a class="dropdown-item" style="cursor: pointer" (click)="toogleFollowList()"
+                                (click)="clickFollowingMoEngageEvent()"><i class="la la-user"></i><span
+                                  i18n="@@SettingsIdentifierText">Following</span><i class="arrow-toogle fa"
+                                  [ngClass]="{'fa-chevron-down': !followToogleFlag, 'fa-chevron-up': followToogleFlag}"></i></a>
+                              <ul class="submenu follow follow-submenu" style="display: none">
+                                <li>
+                                  <a class="dropdown-item" (click)="_toggleOpened()"
+                                    routerLink="/user/followed-creators" (click)="clickCreatorsMoEngageEvent()">
+                                    <i class="la la-user"></i>
+                                    <span>Creators</span>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a class="dropdown-item" (click)="_toggleOpened()" routerLink="/user/followed-series"
+                                    (click)="clickSeriesMoEngageEvent()">
+                                    <i class="la la-mobile"></i><span>Series</span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
+                                (click)="gotoRechargeClickEvent()">
+                                <div class="Recharge-mobile-icon"></div><span>Recharge</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" (click)="_toggleOpened()" (click)="myWatchlistMoEngageClick()"
+                                (click)="gtmTagEventButtonClickMyWatchlist()" style="cursor: pointer"
+                                routerLink="/user/mywatchlist"><i class="la la-binoculars"></i><span
+                                  i18n="@@MyWatchlistIdentifierText">My
+                                  Watchlist</span></a>
+                            </li>
+                            <!-- <li>
+                            <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
+                              routerLink="/user/myuploads" (click)="clickMyUploadsMoEngageEvent()"
+                              (click)="gtmTagEventButtonClickMyUpload()"><i class="la la-upload"></i>
+                              <span i18n="@@MyUploadsIdentifierText">My
+                                Uploads</span></a>
+                          </li> -->
+                            <li>
+                              <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
+                                routerLink="/ugc/ugc-my-uploads" (click)="clickMyUploadsMoEngageEvent()"
+                                (click)="gtmTagEventButtonClickMyUpload()"><i class="la la-upload"></i>
+                                <span i18n="@@MyUploadsIdentifierText">My
+                                  Uploads</span></a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" (click)="_toggleOpened()"
+                                (click)="clickMembershipAndPlansPageMoEngage()"
+                                (click)="gtmTagEventButtonClickMembershipAndPlan()"
+                                routerLink="/user/membershipandplans"><i class="la la-certificate"></i><span
+                                  i18n="@@SettingsIdentifierText">Membership and
+                                  Plans</span></a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" (click)="_toggleOpened()" (click)="clickSettingsPageMoEngage()"
+                                (click)="gtmTagEventButtonClickAccountAndSetting()" routerLink="/user/settings"><i
+                                  class="la la-gear"></i><span i18n="@@SettingsIdentifierText">Account
+                                  & Settings</span></a>
+                            </li>
+                            <!-- <li>
+                            <a class="dropdown-item" (click)="_toggleOpened()" routerLink="/help">
+                              <i class="la la-question-circle"></i><span i18n="@@SettingsIdentifierText">Help</span>
+                            </a>
+                        </li> -->
+                            <li>
+                              <a class="dropdown-item" (click)="_toggleOpened()" routerLink="/help/faq">
+                                <i class="la la-question-circle"></i><span>FAQ</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" (click)="_toggleOpened()" routerLink="/help/createTicket">
+                                <i class="la la la-phone-square"></i><span>Contact Us</span>
+                              </a>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                      <!--mobile-on-click-->
+
+
+                    </ng-sidebar>
+                    <div style="clear:both;"></div>
+                  </ng-sidebar-container>
+                  <button (click)="_toggleOpened()" class="side-bar-nav__toggle"
+                    (click)="clickUserIconWebMoEngageEvent($event)"></button>
+                </div>
+                <div [hidden]="isMobileTabletView" class="desktop-hd-nav-top">
+                  <div id="desktop-head-nav">
+                    <div class="navbar-brand" (click)="gtmTagOnLogo()">
+                      <img itemprop="logo" alt="watcho-logo"
+                        src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png"
+                        routerLink="/" class="logo">
+                    </div>
+                    <div class="d-lg-block" id="desktop-main-nav" [hidden]="isMobileTabletView">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                          <a *ngIf="isHomeIsActive" class="nav-link active" routerLink="/"
+                            (click)="clickHomeMoEngageEvent()">Home</a>
+                          <a *ngIf="!isHomeIsActive" class="nav-link home-screen" routerLink="/"
+                            (click)="clickHomeMoEngageEvent()">Home</a>
+                        </li>
+                        <li class="nav-item ">
+                          <a *ngIf="ispremiumActive" class="nav-link active" [routerLink]="['/premium']"
+                            (click)="clickPremiumMoEngageEvent()">Originals</a>
+                          <a *ngIf="!ispremiumActive" class="nav-link premium-screen" [routerLink]="['/premium']"
+                            (click)="clickPremiumMoEngageEvent()">Originals</a>
+                        </li>
+                        <li class="nav-item movie-screen">
+                          <a *ngIf="isUgcActive" class="nav-link active" routerLink="/ugc-videos">Swag</a>
+                          <a *ngIf="!isUgcActive" class="nav-link" routerLink="/ugc-videos">Swag</a>
+                        </li>
+                        <li class="nav-item ">
+                          <a *ngIf="!isLiveTVActive" class="nav-link live-screen" [routerLink]="['/live-tv']"
+                            (click)="clickLiveTvMoEngageEvent()">Live
+                            TV</a>
+                          <a *ngIf="isLiveTVActive" class="nav-link active" [routerLink]="['/live-tv']"
+                            (click)="clickLiveTvMoEngageEvent()">Live
+                            TV</a>
+                        </li>
+                        <!-- <li class="nav-item movie-screen">
+                          <a *ngIf="isMoviesActive" class="nav-link active" routerLink="/movies">Movies</a>
+                          <a *ngIf="!isMoviesActive" class="nav-link" routerLink="/movies">Movies</a>
+                        </li> -->
+                        <li class="nav-item ">
+                          <a *ngIf="isspotlightActive" class="nav-link active" [routerLink]="['/spotlight']"
+                            (click)="clickSpotlightMoEngageEvent()">Spotlight</a>
+                          <a *ngIf="!isspotlightActive" class="nav-link spotlight-screen" [routerLink]="['/spotlight']"
+                            (click)="clickSpotlightMoEngageEvent()">Spotlight</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class=" collapse navbar-collapse">
+
+                  </div>
+                  <div class="form-inline right-nav-form">
+                    <span class="rupe-tag-icon">
+                      <a href="javascript:;" (click)="gotoRechargeClickEvent()">
+                        <span class="nav-rupe-icon"></span>
+                        <span class="new-tag">
+                          <div class="blink-item">NEW</div>
+                        </span>
+                      </a>
+                    </span>
+
+                    <span class="ugc-upload-icon">
+                      <a (click)="ugcUploadCheckForLoggin()">
+                        <i class="material-icons">
+                          backup
+                        </i>
+                      </a>
+                    </span>
+
+                    <!-- bell icon comes here -->
+                    <div *ngIf="isUserLogin">
+                      <app-notification></app-notification>
+                    </div>
+
+
+                    <span class="search-input">
+                      <input class="form-control" type="text" placeholder="Search Watcho" aria-label="Search"
+                        id="search-input-control" (keyup.enter)="$event.preventDefault()" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');"
+                        [ngModelOptions]="{standalone: true}" [(ngModel)]="searchQuery.query"
+                        (keyup.enter)="searchdefault()">
+                      <i class="material-icons searchicon" (mouseup)="focus()" (mousedown)="focus2($event)"
+                        (click)="clickSearchIconMoEngageEvent()">search</i>
+                      <i class="material-icons searchicon-mobile">search</i>
+
+                    </span>
+
+
+                    <!-- for logout user -->
+                    <div id="desktop-user-info-container">
+                      <!-- <button class="btn btn-no-bg" (click)="getAppUser()">App Sync Test</button> -->
+                      <button class="btn btn-pink" (click)="openSignInModal()" [hidden]="isUserLogin"
+                        i18n="@@SignInIdentifierText">Sign In</button>
+                      <!-- for loged in user -->
+                      <div class="user-info" [hidden]="!isUserLogin">
+                        <div class="dropdown">
+                          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img [src]="userImage || ''"
+                              onerror="this.src='https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/user.png'"
+                              class="" (click)="clickUserIconWebMoEngageEvent()">
+                          </a>
+                          <div class="dropdown-menu user-menu" aria-labelledby="dropdownMenuLink">
+                            <ul>
+                              <li *ngIf="userCategory == '1'" routerLink="/user/mydishtvspace"
+                                (click)="clickMyDishTvSpace()" (click)="gtmTagEventButtonClickMyDishTvSpace()">
+                                <a class="dropdown-item" style="cursor: pointer"><i class="la la-tv"></i><span>My Dish
+                                    Tv
+                                    Space</span></a>
+                              </li>
+
+                              <li *ngIf="userCategory == '2'" routerLink="/user/myd2hspace" (click)="clickMyD2hSpace()"
+                                (click)="gtmTagEventButtonClickMyD2hSpace()">
+                                <a class="dropdown-item" style="cursor: pointer"><i class="la la-tv"></i><span>My D2h
+                                    Space</span></a>
+                              </li>
+                              <li routerLink="/ugc/my-contest" *ngIf="showContest">
+                                <a class="dropdown-item" style="cursor: pointer"><i
+                                    class="la la-trophy"></i><span>Watcho SWAG</span></a>
+                              </li>
+                              <li routerLink="/user/quiz">
+                                <a class="dropdown-item" (click)="gtmTagOnWatchoAurJeeto()" style="cursor: pointer"><i class="fa fa-list"></i><span>Watcho
+                                    Aur Jeeto</span></a>
+                              </li>                             
+                              <li (click)="gotoRechargeClickEvent()" class="following-dropdown-item"
+                                (click)="stopBubbeling($event)">
+                                <a class="dropdown-item" style="cursor: pointer">
+                                  <div class="Rupe-nav-icon"></div>
+                                  <span i18n="@@MyRechargeIdentifierText">Recharge</span>
+                                </a>
+                              </li>
+                              <li class="following-dropdown-item" (click)="stopBubbeling($event)">
+                                <a class="dropdown-item" style="cursor: pointer"><i class="la la-user"></i><span
+                                    i18n="@@SettingsIdentifierText">Following</span></a>
+                                <ul class="submenu follow" (click)="toggleDropdownMenu()">
+                                  <li routerLink="/user/followed-creators" (click)="clickCreatorsMoEngageEvent()">
+                                    <a class="dropdown-item" style="cursor: pointer">
+                                      <i class="la la-user"></i>
+                                      <span>Creators</span>
+                                    </a>
+                                  </li>
+                                  <li routerLink="/user/followed-series" (click)="clickSeriesMoEngageEvent()">
+                                    <a class="dropdown-item" style="cursor: pointer">
+                                      <i class="la la-mobile"></i><span>Series</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                                <!--follow-->
+                              </li>
+                              <li routerLink="/user/mywatchlist" (click)="myWatchlistMoEngageClick()"
+                                (click)="gtmTagEventButtonClickMyWatchlist()">
+                                <a class="dropdown-item" style="cursor: pointer" routerLink="/user/mywatchlist"><i
+                                    class="la la-binoculars"></i><span i18n="@@MyWatchlistIdentifierText">My
+                                    Watchlist</span></a>
+                              </li>
+                              <!-- <li routerLink="/user/myuploads" (click)="clickMyUploadsMoEngageEvent()"
+                              (click)="gtmTagEventButtonClickMyUpload()">
+                              <a class="dropdown-item" style="cursor: pointer"><i class="la la-upload"></i>
+                                <span i18n="@@MyUploadsIdentifierText">My
+                                  Uploads</span></a>
+                            </li> -->
+                              <li>
+                                <a class="dropdown-item" (click)="_toggleOpened()" style="cursor: pointer"
+                                  routerLink="/ugc/ugc-my-uploads" (click)="clickMyUploadsMoEngageEvent()"
+                                  (click)="gtmTagEventButtonClickMyUpload()"><i class="la la-upload"></i>
+                                  <span i18n="@@MyUploadsIdentifierText">My
+                                    Uploads</span></a>
+                              </li>
+                              <li routerLink="/user/membershipandplans" (click)="clickMembershipAndPlansPageMoEngage()"
+                                (click)="gtmTagEventButtonClickMembershipAndPlan()">
+                                <a class="dropdown-item" style="cursor: pointer"><i class="la la-certificate"></i><span
+                                    i18n="@@SettingsIdentifierText">Membership
+                                    and Plans</span></a>
+                              </li>
+                              <li routerLink="/user/settings" (click)="clickSettingsPageMoEngage()"
+                                (click)="gtmTagEventButtonClickAccountAndSetting()">
+                                <a class="dropdown-item" style="cursor: pointer"><i class="la la-gear"></i><span
+                                    i18n="@@SettingsIdentifierText">Account
+                                    & Settings</span></a>
+                              </li>
+                              <!-- <li routerLink="/help">
+                              <a class="dropdown-item" style="cursor: pointer">
+                                <i class="la la-question-circle"></i>
+                                <span i18n="@@SettingsIdentifierText">Help</span></a>
+                            </li> -->
+                              <li routerLink="/help/faq">
+                                <a class="dropdown-item" style="cursor: pointer">
+                                  <i class="la la-question-circle"></i>
+                                  <span>FAQ</span></a>
+                              </li>
+                              <li routerLink="/help/createTicket">
+                                <a class="dropdown-item" style="cursor: pointer">
+                                  <i class="la la la-phone-square"></i>
+                                  <span>Contact Us</span></a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+                <div [hidden]="!isMobileTabletView" class="mobile-hd-nav-top">
+                  <div id="mobile-head-nav">
+                    <div class="navbar-brand" (click)="gtmTagOnLogo()">
+                      <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png"
+                        routerLink="/" class="logo" alt="watcho-logo">
+                    </div>
+                  </div>
+
+                  <div class="form-inline right-nav-form mobile-section">
+                    <span class="search-input">
+                      <i class="material-icons searchicon-mobile" (click)="searchdefault()"
+                        (click)="clickSearchIconMoEngageEvent()">search</i>
+                    </span>
+                  </div>
+                  <!--mobile-section-->
+
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--appUtilService-check-->
+
+  </span>
+  <span *appShellRender class="fullcover-header">
+    <div class="ssr-header headappshell container p-0">
+      <div class="header nav-container nav-bar-highlighted">
+        <nav class="navbar navbar-expand-md navbar-no-bg fixed-top">
+          <div class="menu-navheader">
+            <div class="appshellmenu"></div>
+          </div>
+          <div id="desktop-head-nav">
+            <div class="navbar-brand">
+              <!--TODO: change icon-->
+              <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png" class=""
+              alt="watcho-logo">
+            </div>
+            <div class="d-lg-block" id="desktop-main-nav">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">Originals</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">Swag</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">Live TV</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link">Spotlight</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-inline right-nav-form srch-rightonload">
+            <span class="search-input">
+              <i class="material-icons searchicon" style="color:#333333 !important;border-bottom: 0px !important;"
+                (click)="searchdefault()">search</i>
+            </span>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </span>
+
+
+
+  <div class="pwaheader-section" *ngIf="appUtilService.checkIfPWA() && onNavigationPage && !ugcPageVisited">
+    <div class="top-header">
+      <div class="pwalogo">
+        <a class="onclickpwa" href="#">
+          <img style="max-width:110px;"
+            src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-logo-small.png" alt="watcho-logo">
+        </a>
+      </div>
+      <!--pwalogo-->
+      <div class="pwasearch-section">
+        <div class="form-inline right-nav-form mobile-section">
+          <span class="search-input">
+            <i class="material-icons searchicon-mobile" (click)="searchdefault()"
+              (click)="clickSearchIconMoEngageEvent()">search</i>
+          </span>
+        </div>
+      </div>
+      <div class="pwaline"></div>
+    </div>
+
+    <!--pwasearch-section-->
+  </div>
+  <!--pwaheader-section-->
+</div>

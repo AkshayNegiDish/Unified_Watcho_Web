@@ -1,0 +1,107 @@
+<div class="card text-white">
+  <div [ngClass]="{'card-img': viewType === 'CIRCLE', 'img-fluid': viewType === 'CIRCLE'}"
+    (click)="blockedLinearChannel()">
+
+    <div *ngIf="!isUgc" class="card-img img-fluid" style="background-color: #2a2a2a;">
+      <span>
+        <div *ngIf="isPremium" class="badge premium-badge">ORIGINALS</div>
+      </span>
+      <span>
+        <div *ngIf="liveNow" class="live premium-badge">LIVE</div>
+      </span>
+      <span>
+        <div *ngIf="assetDetail.type === 0" class="channelLogo">
+          <img appLazyLoad class="channelImg" [src]="channelLogo" alt="">
+        </div>
+      </span>
+      <span *ngIf="showProgressBar" class="remove-continue-mobile">
+        <div class="icon-remove" (click)="removeFromContinueWatching($event)">
+          <i class="material-icons">close</i>
+        </div>
+      </span>
+      <div *ngIf="!safariFound;else safarifound">
+        <img appLazyLoad class="card-img img-fluid" [src]="thumbnailURL " (error)="imageLoadError($event)"
+          (load)="imageLoadEvent($event)"
+          onerror="this.src= 'https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/landscape.png'"
+          [alt]="assetDetail.name">
+      </div>
+      <ng-template #safarifound>
+        <img class="card-img img-fluid" [src]="thumbnailURL " (error)="imageLoadError($event)"
+          (load)="imageLoadEvent($event)"
+          onerror="this.src= 'https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/landscape.png'"
+          [alt]="assetDetail.name">
+      </ng-template>
+
+    </div>
+    <div *ngIf="!safariFound;else safarifound1">
+      <div *ngIf="isUgc" class="card-img img-fluid" style="background-color: #2a2a2a;">
+        <img appLazyLoad class="card-img img-fluid" [src]="malePlaceHolder " (error)="imageLoadError($event)"
+          (load)="imageLoadEvent($event)" [alt]="assetDetail.name">
+        <!-- <span class="ugcProfile">{{name | initial}}</span> -->
+      </div>
+    </div>
+    <ng-template #safarifound1>
+      <div *ngIf="isUgc" class="card-img img-fluid" style="background-color: #2a2a2a;">
+        <img class="card-img img-fluid" [src]="malePlaceHolder " (error)="imageLoadError($event)"
+          (load)="imageLoadEvent($event)" [alt]="assetDetail.name">
+        <!-- <span class="ugcProfile">{{name | initial}}</span> -->
+      </div>
+    </ng-template>
+
+
+
+    <div class="bar" *ngIf="showProgressBar">
+      <ngb-progressbar type="" [value]="watchedDuration"></ngb-progressbar>
+    </div>
+    <div id="description" class="description"
+      [ngClass]="{'padding-continue-remove': showProgressBar, 'padding-channel-circle': isChannel && viewType === 'CIRCLE', 'padding-channel-square': isChannel && viewType === 'SQUARE'}"
+      *ngIf="showDescription">
+      <div class="info" [hidden]="isChannel">
+        <div *ngIf="!isUgc" class="thumbnail-title">
+          <i *ngIf="['PORTRAIT','CIRCLE','SQUARE','CAROUSEL','PORTRAIT_2_3'].lastIndexOf(viewType.toUpperCase()) === -1"
+            class="material-icons">play_arrow</i>
+        </div>
+        <ng-container *ngIf="episodeNumber; else notAnEpisode">
+          <span *ngIf="!isChannel" class="name">E{{episodeNumber}} | {{assetDetail?.name | trim}}</span>
+        </ng-container>
+        <ng-template #notAnEpisode>
+          <span *ngIf="!isChannel" class="name">{{assetDetail?.name | trim}}</span>
+          <span *ngIf="isChannel"
+            class="name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </ng-template>
+        <div
+          *ngIf="['CIRCLE'].lastIndexOf(viewType.toUpperCase()) === -1 || ['SQUARE'].lastIndexOf(viewType.toUpperCase()) === -1">
+          <span *ngIf="duration" class="time">{{duration | mediaTime}}&nbsp;</span>
+          <span *ngIf="genres && ['CIRCLE'].lastIndexOf(viewType.toUpperCase()) === -1"
+            class="gentitle">{{genres}}&nbsp;</span>
+          <ng-container *ngIf="['PORTRAIT','PORTRAIT_2_3'].lastIndexOf(viewType.toUpperCase()) === -1;else notPortrait">
+            <p class="meta" *ngIf="assetDetail?.description && ['CIRCLE'].lastIndexOf(viewType.toUpperCase()) === -1">
+              {{assetDetail.description | trim: 90}}</p>
+          </ng-container>
+          <ng-template #notPortrait>
+            <p class="meta" *ngIf="assetDetail?.description && ['CIRCLE'].lastIndexOf(viewType.toUpperCase()) === -1">
+              {{assetDetail.description | trim: 60}}</p>
+          </ng-template>
+        </div>
+      </div>
+      <div *ngIf="!isUgc && ['PORTRAIT','PORTRAIT_2_3','CIRCLE', 'SQUARE'].lastIndexOf(viewType.toUpperCase()) !== -1"
+        class="icon-list">
+        <div class="abc">
+          <i class="material-icons">play_arrow</i><span class="watch">WATCH</span>
+        </div>
+      </div>
+      <div *ngIf="isUgc" class="icon-list">
+        <div class="abc">
+          <i class="material-icons">recent_actors</i><span class="view">VIEW</span>
+        </div>
+      </div>
+      <div *ngIf="showProgressBar" class="remove-continue" (click)="removeFromContinueWatching($event)">
+        <i class="material-icons">close</i><span>Remove from continue watching</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="content-metadata" *ngIf="appUtilService.checkIfPWA() && isImageLoaded">
+  <span>{{metadata}}</span>
+</div>

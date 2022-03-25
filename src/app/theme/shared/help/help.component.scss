@@ -1,0 +1,81 @@
+.ticket-height {
+    min-height: 70vh;
+}
+
+.help-section{
+    margin: 0 auto;
+    width: 100%;
+    float: left;
+    h2{
+        font-size: 28px;
+        float: left;
+        width: 100%;
+        color: #ffffff;
+    }
+    .anchor{
+        float: left;
+        width: 100%;
+        margin-top: 20px;
+        a {
+            display: inline-block;
+            width: 100%;
+            margin: 8px 0;
+            border-bottom: 1px solid #757575;
+        }
+        .btn {
+            width: 100%;
+            height: 50px;
+            color: #757575;
+            font-size: 18px;
+            background: transparent;
+            text-align: left;
+            padding-left: 0;
+            &:hover{
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+@media (min-width:320px) and (max-width:768px) {
+/********start********/
+.help-section{
+    max-width: 320px;
+    float: none;
+    h2{
+        font-size: 24px;
+    }
+    .anchor{
+        margin: 0;
+        a {
+            border: none;
+        }
+        .btn {
+            width: 100%;
+            background-color: #214BA3;
+            height: 40px;
+            font-size: 16px;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 2px;
+            &:hover{
+            background-color: #01adf0;  
+            }
+        }
+    }
+}
+
+/********End********/
+}
+
+@media (min-width:769px) and (max-width:992px) {
+/********start********/
+.ticket-height {
+    min-height: 60vh !important;
+  }  
+.help-section{
+    margin-top: 50px;
+}
+    
+/********End********/
+}

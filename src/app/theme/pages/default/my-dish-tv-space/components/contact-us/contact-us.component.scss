@@ -1,0 +1,335 @@
+$d2h-color: #9C42DC;
+$dishtv-color: #EF4923;
+
+
+
+.btnacive {
+  width: 300px;
+  height: 40px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 20px;
+
+}
+
+.submitbtn {
+  width: 300px;
+  height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  margin-top: 50px;
+
+}
+
+.btninacive {
+  width: 300px;
+  height: 40px;
+  background-color: #333;
+  margin-top: 50px;
+  border-radius: 4px;
+  cursor: pointer;
+
+
+}
+
+.btn-text {
+  text-align: center;
+  font-size: large;
+  font-weight: 400;
+  color: #e7e6e6;
+  padding-top: 8px;
+  position: relative;
+
+  &:hover {
+    font-weight: 500;
+    color: #fff;
+  }
+}
+
+.ticket-height {
+  margin-bottom: 20px;
+}
+
+.contect-info {
+  text-align: left;
+  font-size: large;
+  font-weight: 400;
+  color: #fff;
+  padding-top: 20px;
+}
+
+.contect-info1 {
+  text-align: left;
+  font-size: large;
+  font-weight: 400;
+}
+
+.help-section {
+  margin: 0 auto;
+  width: 100%;
+  float: left;
+
+  h2 {
+    font-size: 28px;
+    float: left;
+    width: 100%;
+    color: #FFFFFF;
+  }
+
+  .anchor {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+
+    button {
+      display: inline-block;
+      width: 100%;
+      margin: 8px 0;
+      border-bottom: 1px solid #757575;
+      border-radius: 0px;
+    }
+
+
+    .btn {
+      width: 100%;
+      height: 50px;
+      color: #757575;
+      font-size: 18px;
+      background: transparent;
+      text-align: left;
+      padding-left: 0;
+
+
+    }
+
+
+  }
+}
+
+@media (min-width:320px) and (max-width:768px) {
+
+  .container {
+    padding-right: 35px;
+    padding-left: 35px;
+  }
+
+  .contact-row {
+    width: 100%;
+  }
+
+  /********End********/
+}
+
+@media (min-width:769px) and (max-width:992px) {
+
+  /********start********/
+
+  .help-section {
+    margin-top: 50px;
+  }
+
+
+
+  /********End********/
+}
+
+
+
+.card-title {
+  margin-bottom: .75rem;
+  font-size: large;
+  font-weight: 100;
+  color: #757575;
+}
+
+.card-text {
+  font-size: 18px;
+  width: 100%;
+  font-weight: 400;
+  text-align: left;
+  border-bottom: 1px solid #757575;
+
+}
+
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  margin-left: 0px;
+  margin-right: auto;
+  background: none;
+  border: none;
+}
+
+.contectus-section {
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+
+textarea {
+  background-color: #000;
+}
+
+
+.d2h {
+  .card-text {
+    color: $d2h-color
+  }
+
+
+
+  .btnacive {
+    width: 300px;
+    height: 40px;
+    background-color: $d2h-color;
+
+  }
+
+  .submitbtn {
+    width: 300px;
+    height: 40px;
+    background-color: $d2h-color;
+  }
+
+  .contect-info1 {
+    text-align: left;
+    font-size: large;
+    font-weight: 400;
+    color: $d2h-color;
+  }
+
+
+  .help-section {
+    margin: 0 auto;
+    width: 100%;
+    float: left;
+
+    h2 {
+      font-size: 28px;
+      float: left;
+      width: 100%;
+      color: #FFFFFF;
+    }
+
+    .anchor {
+      float: left;
+      width: 100%;
+      margin-top: 20px;
+
+      button {
+        display: inline-block;
+        width: 100%;
+        margin: 8px 0;
+        border-bottom: 1px solid #757575;
+        border-radius: 0px;
+      }
+
+
+      .btn {
+        width: 100%;
+        height: 50px;
+        color: #757575;
+        font-size: 18px;
+        background: transparent;
+        text-align: left;
+        padding-left: 0;
+
+        &:hover {
+          color: $d2h-color;
+        }
+      }
+
+      .active {
+        color: $d2h-color;
+      }
+    }
+  }
+
+
+}
+
+
+.dishtv {
+  .card-text {
+    color: $dishtv-color
+  }
+
+
+
+  .btnacive {
+    width: 300px;
+    height: 40px;
+    background-color: $dishtv-color;
+
+  }
+
+  .submitbtn {
+    width: 300px;
+    height: 40px;
+    background-color: $dishtv-color;
+  }
+
+  .contect-info1 {
+    text-align: left;
+    font-size: large;
+    font-weight: 400;
+    color: $dishtv-color;
+  }
+
+
+  .help-section {
+    margin: 0 auto;
+    width: 100%;
+    float: left;
+
+    h2 {
+      font-size: 28px;
+      float: left;
+      width: 100%;
+      color: #FFFFFF;
+    }
+
+    .anchor {
+      float: left;
+      width: 100%;
+      margin-top: 20px;
+
+      button {
+        display: inline-block;
+        width: 100%;
+        margin: 8px 0;
+        border-bottom: 1px solid #757575;
+        border-radius: 0px;
+      }
+
+
+      .btn {
+        width: 100%;
+        height: 50px;
+        color: #757575;
+        font-size: 18px;
+        background: transparent;
+        text-align: left;
+        padding-left: 0;
+
+        &:hover {
+          color: $dishtv-color;
+        }
+      }
+
+      .active {
+        color: $dishtv-color;
+      }
+    }
+  }
+
+
+}

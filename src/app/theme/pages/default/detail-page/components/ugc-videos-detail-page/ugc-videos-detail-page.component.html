@@ -1,0 +1,47 @@
+<div class="base-page">
+  <div class="container p-0">
+  <app-kaltura-player *ngIf="assetDetails && reinitiatePlayer" [isAssetInWatchlist]='isAssetInWatchlist' [assetDetail]="assetDetails" [ugcPlayerFound]="false"></app-kaltura-player>
+  <div class="container ugc-fixes">
+    <div class="detail-section">
+      <app-asset-detail *ngIf="assetDetails" [assetDetails]="assetDetails"></app-asset-detail>
+      <div class="share-actions clearfix">
+        <app-like *ngIf="assetDetails" [assetDetails]="assetDetails"></app-like>
+        <app-watchlist *ngIf="assetDetails" [assetDetails]="assetDetails" (isInWatchlist)="isInWatchlist($event)" [videoId]="assetId"></app-watchlist>
+        <app-share *ngIf="assetDetails" [assetDetails]="assetDetails"></app-share>
+      </div>
+    </div>
+  </div>
+
+  <div class="creatorSection">
+    <div class="creatorProfileIcon">
+      <span>
+        {{appUtilService.getInitialFromName(creatorName)}}
+      </span>
+    </div>
+    <div class="creatorNameSection">
+      <h6 *ngIf="creatorName">{{creatorName}}</h6>
+      <p *ngIf="totalCount === 1">{{totalCount}} Video</p>
+      <p *ngIf="totalCount > 1">{{totalCount}} Videos</p>
+    </div>
+    <div class="followCreatorSection share-actions">
+      <app-follow-creator *ngIf="assetDetails" [hideFollowButton]="hideFollowButton" [assetDetails]="userAssetDetails"></app-follow-creator>
+    </div>
+  </div>
+  <!--creatorSection-->
+
+  <div class="moreVideoRail">
+    <app-rail-item *ngIf="moreVideoRailData" [channelId]="null" [channelName]="'More Videos from '+ creatorName" [seriesId]="kalturaUtilService.getTagsObjectValue(this.assetDetails?.tags?.SeriesId)"
+      [viewType]="'LANDSCAPE'" [screenId]="'ugcVideo'" [isCarousel]="false" [isYouMayAlsoLike]="false" [isSimilarMovie]="false"
+      [railData]="moreVideoRailData"  [showMoreButton]="isMoreVideos" [showHeader]="true"> </app-rail-item>
+  </div>
+  <div class="creatorRail">
+    <app-rail-item *ngIf="similarToCreator" [channelId]="662" [channelName]="'Similar to '+ creatorName" [viewType]="'CIRCLE'"
+      [screenId]="null" [isCarousel]="false" [isYouMayAlsoLike]="false" [isSimilarMovie]="false" [railData]="similarToCreator"  [showMoreButton]="true" [showHeader]="true">
+    </app-rail-item>
+  </div>
+  <!-- <app-rails-view [screenId]="screenId" [hideTopCarousel]="isDetailPage"></app-rails-view>  -->
+</div>
+<div class="creatorRail">
+  <app-rails-view [screenId]="screenId" [fromDetailScreen]="true"></app-rails-view>
+</div>
+</div>

@@ -1,0 +1,302 @@
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-colors.scss';
+$d2h-color: #9C42DC;
+$dishtv-color: #EF4923;
+
+
+.screen {
+    width: 100%;
+    top:0px;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, .9);
+    position: absolute;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.pop-up {
+    position: relative;
+    width: 60%;
+    height: fit-content;
+    background-color: #333;
+    margin-top: 80px;
+    margin-bottom: 40px;
+
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+}
+
+.crct-icon {
+    width: 10%;
+    margin-top: 5%;
+}
+
+.result {
+    display: flex;
+    justify-content: center;
+        color: #fb0050;
+    font-size: 34px;
+}
+
+.result-text {
+    color: #fff;
+    font-size: x-large;
+    margin-top: 2%;
+}
+
+
+.rmrk-text {
+    color: #fff;
+    font-size: large;
+}
+
+.time-unit {
+    color: #fff;
+    font-size: x-large;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.ok-btn {
+    color: #fff;
+    border-radius: 5px;
+    font-size: large;
+    background: #fb0050;
+    width: 20%;
+    line-height: unset;
+    border-width: 0px;
+    margin-bottom: 20px;
+}
+
+
+@media (min-width:1024px) and (max-width:1199px) {
+  
+
+    .screen {
+        height: fit-content;
+    }
+}
+
+@media (min-width:800px) and (max-width:1023px) {
+   
+
+    .screen {
+        width: 930px;
+        height: 556px;
+    }
+}
+
+@media (min-width:769px) and (max-width:800px) {
+    
+
+    .screen {
+        width: 737px;
+        height: 533px;
+    }
+}
+
+@media (min-width:601px) and (max-width:768px) {
+   
+
+    .screen {
+        height: fit-content;
+    }
+
+
+}
+
+@media (min-width:501px) and (max-width:600px) {
+    
+
+    .screen {
+        width: 570px;
+        height: 602px;
+    }
+
+    .pop-up {
+        width: 80%;
+        height: 50%;
+    }
+
+}
+
+@media (min-width:415px) and (max-width:500px) {
+    
+
+    .screen {
+        width: 470px;
+        height: 579px;
+    }
+
+    .pop-up {
+        width: 80%;
+        height: 50%;
+    }
+
+
+}
+
+@media (min-width:412px) and (max-width:414px) {
+    
+
+    .screen {
+        height: fit-content;
+    }
+
+    .pop-up {
+        width: 80%;
+        height: fit-content;
+    }
+
+    .time-unit {
+        margin-top: 0px;
+    }
+
+    .ok-btn {
+        line-height: 70%;
+        font-size: 14px;
+        margin-top: -10px;
+    }
+
+    .rmrk-text {
+        font-size: 14px;
+    }
+
+    .result-text {
+            font-size: 16px;
+    }
+
+}
+
+@media (min-width:376px) and (max-width:411px) {
+    
+
+    .screen {
+        height: fit-content;
+    }
+
+    .pop-up {
+        width: 80%;
+        height: fit-content;
+    }
+
+    .result-text {
+            font-size: 16px;
+    }
+
+    .rmrk-text {
+        font-size: 14px;
+    }
+
+    .ok-btn {
+        font-size: 14px;
+        line-height: 10px;
+    }
+
+}
+
+@media (min-width:361px) and (max-width:375px) {
+   
+
+    .screen {
+        height: fit-content;
+    }
+
+    .pop-up {
+        width: 90%;
+        height: fit-content;
+    }
+
+    .time-unit {
+        margin-top: 0px;
+    }
+
+    .ok-btn {
+        line-height: 70%;
+        font-size: 14px;
+        margin-top: -10px;
+    }
+
+    .rmrk-text {
+        font-size: 14px;
+    }
+
+    .result-text {
+            font-size: 16px;
+    }
+
+}
+
+@media (min-width:321px) and (max-width:360px) {
+    
+
+    .screen {
+        height: fit-contene;
+    }
+
+    .pop-up {
+        width: 90%;
+        height: fit-content;
+    }
+
+    .crct-icon {
+    width: 10%;
+    margin-top: 5%;
+}
+
+    .time-unit {
+        margin-top: 0px;
+    }
+
+    .ok-btn {
+        line-height: 70%;
+        font-size: medium;
+        margin-top: -10px;
+    }
+
+    .rmrk-text {
+        font-size: 14px;
+    }
+
+    .result-text {
+            font-size: 16px;
+    }
+
+}
+
+@media (min-width:240px) and (max-width:320px) {
+    
+
+    .screen {
+        height: fit-content;
+    }
+
+    .pop-up {
+        width: 90%;
+        height: fit-content;
+    }
+
+    .time-unit {
+        margin-top: 0px;
+    }
+
+    .ok-btn {
+        line-height: 70%;
+        font-size: 14px;
+        margin-top: -10px;
+    }
+
+    .rmrk-text {
+        font-size: 14px;
+    }
+
+    .result-text {
+        font-size: 16px;
+    }
+
+}

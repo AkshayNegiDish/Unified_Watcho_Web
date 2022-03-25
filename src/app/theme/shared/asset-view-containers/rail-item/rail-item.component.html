@@ -1,0 +1,97 @@
+<ng-container *ngIf="!loading">
+  <div *ngIf="isCarousel">
+    <!-- <div *ngIf="!appUtilService.checkIfPWA();else pwaApp">
+      <div class="jumbotron">
+        <div id="main-carousel" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <ng-container *ngFor="let item of topCarouselItems; let i = index">
+              <li data-target="#main-carousel" [attr.data-slide-to]="i" [class.active]="item.isActive == true"></li>
+            </ng-container>
+
+
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let item of topCarouselItems; let i = index"
+              [attr.id]="'top_carousel_item' + item.id" [class.active]="item.isActive == true">
+              <app-top-carousel-item [placement]="placement" [carouselItemData]="item"
+                (click)="watchAsset(item.title, item.id, channelName, channelId, item.type, item?.externalId, item?.startDate, item?.linearAssetId)"
+                (click)="gtmTagOnCarouselClick(item,i,item.title, item.id, channelName, channelId, item.type)"
+                (click)="moEngageTagOnCarouselClick(item,i+1,item.title, item.id, item.type, item.genre)">
+              </app-top-carousel-item>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#main-carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#main-carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+    </div> -->
+    <div class="top-carousel-slick">
+      <app-top-carousel-item [placement]="placement" [dotsPlacement]="showCarouselDots"
+        [carouselItemData]="topCarouselItems" [viewType]="viewType" [showHeader]="showHeader"
+        [channelName]="channelName"
+        (itemDetails)="watchAsset($event.title, $event.id, channelName, channelId, $event.type, $event?.externalId, $event?.startDate, $event?.linearAssetId)"
+        (itemDetails)="gtmTagOnCarouselClick($event,$event.index,$event.title, $event.id, channelName, channelId, $event.type)">
+      </app-top-carousel-item>
+    </div>
+
+
+  </div>
+
+  <div *ngIf="!isCarousel"
+    [ngClass]="{'rails-container': true, 'container': true, 'p-0': true, 'rail-top-padding': !showHeader}">
+    <div class="row" style="display: block" *ngIf="assetList?.objects?.length > 0 || assetList?.totalCount > 0">
+      <div *ngIf="!bannerSeries && showHeader" class="col-lg-12 rail-info-container">
+        <div class="rail-title noCursorPointer padding0" *ngIf="!showMoreButton">
+          {{channelName}}
+        </div>
+        <div class="rail-title padding0" *ngIf="showMoreButton" (click)="openMore(channelId, channelName, $event)">
+          {{channelName}}
+        </div>
+        <div class="more-button" *ngIf="showMoreButton">
+          <button class="more-btn" (click)="openMore(channelId, channelName, $event)">
+            Show All
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-12 rail-data-container">
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="railConfig"
+          [attr.id]="'carousel_' + channelId" (afterChange)="slickAfterChange($event, slickModal)"
+          (init)="slickInit($event, slickModal)">
+
+          <div ngxSlickItem class="slide" *ngFor="let assetDetail of assetList?.objects;let j = index">
+
+            <div [class]="railViewTypeClass">
+              <app-railItemView [assetDetail]="assetDetail" [liveNow]="liveNow"
+                [runtime]="assetDetail?.metas['Runtime']?.value" [isPremium]="assetDetail?.metas['Is Exclusive']?.value"
+                [viewType]="viewType" [showDescription]="true" [isContinueWatching]="isContinueWatching"
+                [episodeNumber]="assetDetail?.metas['Episode number']?.value" [imagesAsset]="assetDetail?.images"
+                (click)="railAssetClickMoEngageEvent(j+1, assetDetail)" [mediaType]="assetDetail?.type"
+                [watchedDuration]="getWatchedDuration(assetDetail.id)"
+                (click)="watchAsset(assetDetail.name, assetDetail.id, channelName, channelId, assetDetail.type, assetDetail?.externalIds, assetDetail?.startDate, assetDetail?.linearAssetId,null, j)"
+                (outputEvent)="outputEvent($event)"
+                (click)="gtmTagOnRailClick(assetDetail,j, assetDetail.name, assetDetail.id, channelName, channelId, assetDetail.type, assetDetail?.externalIds, assetDetail?.startDate, assetDetail?.linearAssetId)">
+              </app-railItemView>
+            </div>
+          </div>
+
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="loading">
+  <div *ngIf="isCarousel; else rails">
+    <app-default-shell [showRails]="false" [showCarousel]="true" [showLoader]="false"></app-default-shell>
+  </div>
+  <ng-template #rails>
+    <app-default-shell [showRails]="true" [showCarousel]="false" [showLoader]="false"></app-default-shell>
+  </ng-template>
+</ng-container>

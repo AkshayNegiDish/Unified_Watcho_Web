@@ -1,0 +1,114 @@
+<div class="top-section-mambership">
+  <!--container-->
+  <div class="container">
+    <div class="row">
+      <div class="steps bread-crumbs">
+        <div class="col-lg-12 col-xs-12 col-md-12 mamber-padding">
+          <div class="bread-crumbs-wrapper">
+            <div class="line"></div>
+            <div class="line-active" style="width: 0%;"></div>
+            <ul>
+              <li class="active">
+                <div class="dot">
+                  <span>Choose Plan</span>
+                </div>
+              </li>
+              <li class="" *ngIf="!isUserLoggedIn">
+                <div class="dot">
+                  <span>Sign In</span>
+                </div>
+              </li>
+              <li class="">
+                <div class="dot">
+                  <span>Make Payment</span>
+                </div>
+              </li>
+              <li class="">
+                <div class="dot">
+                  <span>Confirmation</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+       
+      <div class="steps" >
+        <div class="col-lg-12 col-xs-12 col-md-12 mamber-padding" *ngFor="let item of subscriptionPlanList">
+          <div class="selection-card" role="presentation" [ngClass]="{'active': item.IsSubscribed === 1}" (click)="gotoSelectedPlan(item.SubscriptionPlanID, item.IsSubscribed)">
+            <div class="desc">
+              <div class="payment-title">{{item.SubscriptionPlanName}}</div>
+              <div class="payment-title-2" *ngIf="item.Discount > 0">SAVE ₹{{item.SubscriptionPrice - item.SubscriptionActualPrice}}</div>
+              <div class="price-container">
+                <span class="price-icon">₹</span>
+                <span class="plan-price">{{item.SubscriptionActualPrice}}</span>
+                <span class="plan-duration">
+                <span *ngIf="item.SubscriptionPlanDuration === 1">  /  month</span>
+                <span *ngIf="item.SubscriptionPlanDuration > 1 && item.SubscriptionPlanDuration < 12">  /  {{item.SubscriptionPlanDuration}} months</span>
+                <span *ngIf="item.SubscriptionPlanDuration === 12">  /  year</span>
+              </span>
+              </div>
+              <div class="plan-meta">
+              <span>
+                <span class="payment-bullet">{{item.SubscriptionPlanDescription}}</span>
+              </span>
+                <span *ngIf="item.IsSubscribed === 1">
+                  <span class="payment-bullet plan-active"> Active
+                    <i class="material-icons">check_circle_outline</i>
+                  </span>
+                </span>
+              </div>
+              <div class="plan-label" *ngIf="item.Discount > 0">
+                <div class="plan-discount">{{item.Discount}}%</div>
+                <div class="plan-discount-meta">OFF</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 mamber-padding" *ngIf="!isUserLoggedIn && !loading">
+          <div class="proceed-signin">
+            <button class="btn btn-pink" (click)="signInToProceed()" >Sign In to proceed</button>
+          </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 mamber-padding" *ngIf="showCancelMembershipButton">
+          <div class="proceed-signin">
+            <button class="btn btn-pink" (click)="cancelMembership()" >Cancel Membership</button>
+          </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 mamber-padding" *ngIf="subscriptionPlanList.length == 0 && !loading">
+          <div class="subscription-no-result-found">
+              <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/no-result.png">
+              <div class="subscription-no-result-text">
+                   <span>No Result Found</span>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-xs-12 col-md-12 mamber-padding" *ngIf="subscriptionPlanList.length > 0 && !loading">
+          <div class="meta">
+            <div class="desc">
+              <ul>
+                <li>
+                  <span class="text">
+                    By clicking Start Membership you authorize us to charge as per the selected pack.
+                  </span>
+                </li>
+                <li>
+                  <span class="text">
+                     By continuing you agree to <a [href]="termsOfUse" target="_blank">Terms of Use</a>.
+                  </span>
+                </li>
+                <li>
+                  <span class="text">
+                    Got questions? Please raise a support ticket in Help section or write us at <a href="mailto:hello@watcho.com" target="_top">hello@watcho.com</a>.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+      </div>
+    </div>
+  </div>
+</div>

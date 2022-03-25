@@ -1,0 +1,129 @@
+
+@import '~assets/scss/theme-fonts.scss';
+
+.tab-top{
+    width: 100%;
+    float: left;
+    padding: 20px 0 10px;
+    .imgbox{
+        float: left;
+        width: 12%;
+        img{
+            width: 100%;
+        }
+    }
+    .mid-tab{
+        width: 72%;
+        float: left;
+        margin-left: 15px;
+        color :$fonts-white-color;
+        h4{
+            margin-top: 0;
+            font-size: 20px;
+        }
+        p.text-tab{
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+    .stat-times{
+        float: right;
+        width: 9%;
+        margin-top: 10px;
+        color: #fff;
+        font-weight: 500;
+    }
+}
+
+
+.channelshare{
+    float: left;
+    color :$fonts-white-color;
+    text-align: center;
+    width: 100%;
+    margin-top: 0;
+}
+
+
+.nav-tabs > li > a{ color: #333 !important; }
+.rails{
+    float: left;
+    width: 100%;
+}
+
+.rail-title {
+    font-size: 18px;
+    font-weight: 400;
+    // font-family: 'HelveticaNeueBold';
+    margin: 10px 0px 12px 0px;
+    color: $theme-heading;
+    h2{
+      font-size: 20px;
+      font-weight: 400;
+    }
+    :hover{
+        color: $netflix-chnaget-color;
+    }
+  }
+
+  .catchupRail{
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  @media (min-width:320px) and (max-width:480px) {
+
+    .tab-top{
+        padding: 20px 10px 10px;
+        position: relative;
+        .imgbox{
+               width: 50px;
+        }
+        .mid-tab{  
+             width: 100%;
+             margin-left: 0;
+             h4{
+                margin-top: -40px;
+                margin-left: 55px;
+                margin-bottom: 40px;
+                font-size: 14px;
+             }
+             p{
+                font-size: 14px;
+                line-height: 20px;
+                text-align: justify;
+             }
+        }
+        .stat-times{
+            width: calc(100% - 95px);
+            text-align: right;
+            margin: 0 0 0 0;
+            font-size: 12px;
+            position: absolute;
+            right: 15px;
+            top: 28px;
+        
+        }
+    }
+  }
+
+  @media (min-width:481px) and (max-width:991px) {
+    .tab-top{
+        padding: 20px 10px 10px;
+        .imgbox{
+               width: 80px;
+        }
+        .mid-tab{  
+                width: calc(100% - 210px);
+            
+        }
+        .stat-times{
+                width: 100px;
+                margin-left: 10px;
+                text-align: right;
+        
+        }
+    }
+  }
+

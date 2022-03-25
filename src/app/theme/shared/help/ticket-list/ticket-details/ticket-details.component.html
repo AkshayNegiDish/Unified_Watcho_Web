@@ -1,0 +1,28 @@
+<div class="ticket-height">
+<div class="container" *ngIf="!loading">
+  <h2 class="title">{{title}}</h2>
+  <div class="listing"  >
+    <div class="content" *ngFor="let ticket of ticketList.data.comments"> 
+      <div class="static">
+        <span *ngIf="ticket.author_id != 368637040892">Me</span>
+        <span *ngIf="ticket.author_id === 368637040892">Watcho Admin</span>
+        <span class="currentDate">{{formatAMPM(ticket.created_at)}}</span>
+      </div>
+      <div class="description"><span>{{ticket.plain_body}}</span><span class="createdDate">{{(ticket.created_at) | date :'mediumDate'}}</span></div>
+    </div>
+  </div>
+  <div class="comment">
+      <form [formGroup]="form" novalidate (submit)="submit()" #myform="ngForm">
+          <div class="form-group add-comment">
+            <input type="text" class="form-control" formControlName="comment" placeholder="Add a comment" required>
+              <!-- <p class="alert alert-danger" *ngIf="(form.get('comment').hasError('required') || form.get('comment').hasError('pattern')) && myform.submitted">Please add a comment</p> -->
+          </div>
+          <div class="form-group add-comment-submit">
+              <button type="submit" class="btn mb-2"><i class="material-icons">send</i></button>
+          </div>
+      </form>
+  </div>
+  </div>
+  <ngx-loading [show]="loading" class="col-lg-offset-5" *ngIf="loading" [config]="{ backdropBorderRadius: '0px' }">
+    </ngx-loading>
+</div>

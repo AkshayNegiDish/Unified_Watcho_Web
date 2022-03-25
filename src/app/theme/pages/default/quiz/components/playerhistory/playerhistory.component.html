@@ -1,0 +1,40 @@
+
+    <div class="ldrbrd">
+        <p class="ldrbrd-txt">You have given {{questionsCorrected}} correct answers and won Rs {{reward}} till now. Keep playing and keep winning more</p>
+    </div>
+    <div ngbDropdown class="d-inline-block col-12">
+        <button class="btn btn-outline-primary col-12" id="dropdownBasic1" ngbDropdownToggle>{{selectedValue}}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <div ngbDropdownItem class="option" *ngFor="let campaign of campaignList; let i = index" (click)="onSelect(i)"><p>{{campaign['name']}}</p></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p class="tbl-txt1">Questions Attempted: {{questionsAttempted}}</p>
+        </div>
+        <div class="col-6">
+            <p class="prize-txt">Prize Won:Rs.{{reward}}</p>
+        </div>
+    </div>
+    <div class="plyr-history">
+        <p class="ldrbrd-txt">Questions Attempted by you</p>
+    </div>
+    <div *ngIf="(totalCount===undefined || (totalCount>0));else nodataTemplate">
+    <div class="row col" *ngFor="let quiz of userQuiz; let i = index">
+        <div class="col-12">
+            <p class="tbl-txt2">Q{{i+1}}. {{quiz['title']}}</p>
+        </div>
+        <div class="col-6">
+            <p class="tbl-txt2">Your Answer<br>Option {{getOption(i)['option']}}</p>
+        </div>
+        <div class="col-6">
+            <img src="https://s3.ap-southeast-1.amazonaws.com/ads.assets/watcho-quiz/images_Assets/Khelojeeto/{{(getOption(i)['isCorrect'] ? 'correct' : 'incorrect')}}.png" class="crct-icon" alt="...">
+        </div>
+    </div>
+</div>
+     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+<ng-template #nodataTemplate>
+    <div class="nodata col-12">
+        <p class="font-weight-reguler">No Data Found</p>
+    </div>
+  </ng-template>

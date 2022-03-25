@@ -1,0 +1,174 @@
+
+@import '~assets/scss/theme-fonts.scss';
+
+.common-text {
+  max-width: 100% !important;
+  margin: 0 auto;
+  padding: 0px 0 10px;
+  text-align: center;
+
+  h1 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 15px 0px 30px 0px;
+    color :$fonts-white-color;
+    text-align: center;
+    width: 100%;
+    float: left;
+  }
+
+  p {
+    font-size: 18px;
+    font-weight: 300;
+    color :$fonts-white-color;
+    margin-bottom: 30px;
+
+  }
+  .tags{
+    li{
+      &:hover{
+        // background: $blue-Lighter-chnage-color;
+      }
+    }
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background:transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.center {
+  text-align: center;
+  button{
+    background: $blue-Lighter-chnage-color;
+    height: 40px;
+    &:hover{
+      color: #fff;
+      background: $blue-bg-chnage-color;
+    }
+  }
+}
+
+.width {
+  width: 250px;
+}
+
+.font-normal {
+  font-weight: normal !important;
+}
+
+.contentpreference-desktop-view{
+    width: 100%;
+    float: left;
+    .contentpreference-page{
+      width: 100%;
+      float: left;
+      text-align: center;
+      padding: 0;
+      .cover-preference{
+        margin: 10px;
+        width: 18%;
+        float: none;
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        &:hover .hover-check{
+            display: block !important;
+            transition: 0.5s;
+        }
+        img{ 
+          height: 119px;
+          width: 100%;
+          // width: 210px;
+          border-radius: 10px;
+         }
+        .hover-check {
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          left: 50%;
+          display: none;
+          transition: 0.25s;
+          i{
+            font-size: 25px;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            background: #333333b0;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+}
+
+/*****************************Responsive-view********************************/
+
+
+@media (min-width:320px) and (max-width:480px){
+/****************start****************/   
+.common-text{
+  p{
+    font-size: 13px;
+  }
+}  
+.contentpreference-desktop-view{
+  .contentpreference-page{
+    .cover-preference{
+      width: 43%;
+    }
+    .hover-check {
+      i{
+        font-size: 20px !important;
+        width: 35px !important;
+        height: 35px !important;
+        line-height: 35px !important;
+      }
+    }
+  }
+} 
+
+/****************end****************/  
+}
+
+
+@media (min-width:481px) and (max-width:768px){
+/****************start****************/    
+  .contentpreference-desktop-view{
+    .contentpreference-page{
+      .cover-preference{
+        width: 40%;
+      }
+      .hover-check {
+        i{
+          font-size: 20px !important;
+          width: 35px !important;
+          height: 35px !important;
+          line-height: 35px !important;
+        }
+      }
+    }
+  } 
+  
+/****************end****************/  
+}
+
+
+

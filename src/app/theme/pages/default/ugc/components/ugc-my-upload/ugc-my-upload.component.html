@@ -1,0 +1,151 @@
+<div class="base-page">
+  <div class="container p-0 ugc-my-upload">
+    <h2>My Uploads</h2>
+    <div class="watcho-brand-color-border"></div>
+    <ngb-tabset #t="ngbTabset">
+      <ngb-tab id="pending-videos">
+        <ng-template ngbTabTitle>
+          <div class="pending-tab" (click)="getPendingUgcVideos(true)">Pending</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="first-tab">
+            <div class="rail-data-container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+              (scrolled)="getMoreVideos()" *ngIf="!noResultFound">
+              <ng-container *ngFor="let video of videos">
+                <div class="card text-white">
+                  <div class="card-img1">
+                    <img class="img" [src]="video.videoThumbnail" (error)="handleImageError($event)">
+                    <div class="description">
+                      <div class="icon-list"
+                        *ngIf="video.status === VideoStatus[VideoStatus.REJECTED].toString(); else pendingVideos">
+                        <i class="material-icons" style="color: red">
+                          error
+                        </i><span class="review">Rejected</span>
+                      </div>
+                      <ng-template #pendingVideos>
+                        <div class="icon-list">
+                          <i class="material-icons">
+                            watch_later
+                          </i><span class="review">In Review</span>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="pending-description">
+                    <div class="content">
+                      <span>{{video.title}}</span>
+                      <span>{{video.genre}}</span>
+                    </div>
+                    <div class="delete" (click)="showInfoModal(video.status)"><i
+                        class="fa info-icon fa-exclamation-circle"></i>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div *ngIf="noResultFound" class="placeholder container">
+              <img class="img" [src]="placeholderImage">
+            </div>
+          </div>
+          <span class="container">
+            <app-default-rail-shell *ngIf="loading" [viewType]="'LANDSCAPE'">
+            </app-default-rail-shell>
+          </span>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab id="uploaded-videos">
+        <ng-template ngbTabTitle>
+          <div class="uploaded-tab" (click)="getMypload(true)">Uploaded</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="second-tab">
+            <div class=" rail-data-container" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+              (scrolled)="getMoreMyUploadsVideos()" *ngIf="!noResultFound">
+              <ng-container *ngFor="let video of kalturaAssetListResponse">
+                <div class="card text-white">
+                  <div class="card-img1 clickable-item" (click)="watchAsset(video?.name, video?.id, video?.type)">
+                    <img class="img" [src]="video.images | thumbnail: 'LANDSCAPE'" (error)="handleImageError($event)">
+                    <div class="description">
+                      <div class="icon-list review-like" *ngIf="viewCountObject">
+                        <ng-container *ngFor="let asset of viewCountObject">
+                          <div *ngIf="asset?.assetId == video?.id">
+                            <span class="review-icon ">
+                              <span class="material-icons">
+                                visibility
+                              </span><span class="review-count">{{asset?.views}}</span>
+                            </span>
+                            <span class="like-icon">
+                              <span class="material-icons">
+                                favorite
+                              </span><span class="like-count">{{asset?.likes}}</span>
+                            </span>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pending-description">
+                    <div class="content">
+                      <span>{{video?.name}}</span>
+                      <span>{{video?.tags?.Genre?.objects[0]?.value}}</span>
+                    </div>
+                    <div class="delete" (click)="removeFromMyUploads(video.externalId, $event)"><i
+                        class="material-icons">
+                        delete
+                      </i></div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div *ngIf="noResultFound" class="placeholder container">
+              <img class="img" [src]="placeholderImage">
+            </div>
+          </div>
+          <span class="container">
+            <app-default-rail-shell *ngIf="loading" [viewType]="'LANDSCAPE'">
+            </app-default-rail-shell>
+          </span>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>
+
+<ng-template #inReview let-modal>
+
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <div class="in-review-icon"><span class="material-icons">
+        query_builder
+      </span></div>
+    <h3>In Review</h3>
+    <div>
+      <h5>Your video has been successfully submitted and is under review.</h5>
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+
+</ng-template>
+
+<ng-template #rejectedModal let-modal>
+
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    <div class="rejected-icon"><span class="material-icons">
+        highlight_off
+      </span></div>
+    <h3>Rejected</h3>
+    <div>
+      <h5>Your video has been rejected due to non-abidance of our terms and conditions. Please visit T&C from "More menu
+        for details and re-upload a new video basis guidelines".</h5>
+    </div>
+  </div>
+  <div class="modal-footer">
+  </div>
+
+</ng-template>
+
+<app-back-button></app-back-button>

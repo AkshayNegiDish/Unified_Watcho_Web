@@ -1,0 +1,200 @@
+<div *appShellNoRender>
+  <div *ngIf="!appUtilService.checkIfPWA()">
+    <div class="bottom-nav-container">
+      <ul class="bottom-nav">
+        <li (click)="toggleActive()" class="link-container active">
+          <a routerLink="/" (click)="clickHomeMoEngageEvent()">
+            <span class="iconContainer homeContainer">
+              <i *ngIf="isHomeIsActive" class="homeIcon active">
+              </i>
+              <i *ngIf="!isHomeIsActive" class="homeIcon inActive">
+              </i>
+            </span>
+            <span *ngIf="isHomeIsActive" class="active">HOME</span>
+            <span *ngIf="!isHomeIsActive" class="inActive">HOME</span>
+          </a>
+        </li>
+        <li (click)="toggleActive()" class="link-container">
+          <a routerLink="/premium" (click)="clickPremiumMoEngageEvent()">
+            <span class="iconContainer premiumContainer">
+              <i *ngIf="ispremiumActive" class="premium active">
+              </i>
+              <i *ngIf="!ispremiumActive" class="premium inActive">
+              </i>
+            </span>
+            <span *ngIf="ispremiumActive" class="active">ORIGINALS</span>
+            <span *ngIf="!ispremiumActive" class="inActive">ORIGINALS</span>
+          </a>
+        </li>
+        <!-- <li (click)="toggleActive()" class="link-container">
+          <a routerLink="/spotlight">
+            <span class="iconContainer spotlightContainer" (click)="clickSpotlightMoEngageEvent()">
+              <i *ngIf="isspotlightActive" class="spotlight active">
+              </i>
+              <i *ngIf="!isspotlightActive" class="spotlight inActive">
+              </i>
+            </span>
+            <span *ngIf="isspotlightActive" class="active">SPOTLIGHT</span>
+            <span *ngIf="!isspotlightActive" class="inActive">SPOTLIGHT</span>
+          </a>
+        </li> -->
+        <li (click)="toggleActive()" class="link-container">
+          <a routerLink="/ugc-videos">
+            <div class="swagimg">
+              <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-swag.png">
+            </div>
+          </a>
+        </li>
+        <li (click)="toggleActive()" class="link-container">
+          <a routerLink="/live-tv" (click)="clickLiveTvMoEngageEvent()">
+            <span class="iconContainer liveTVContainer">
+              <i *ngIf="isLiveTVActive" class="liveTV active">
+              </i>
+              <i *ngIf="!isLiveTVActive" class="liveTV inActive">
+              </i>
+            </span>
+            <span *ngIf="isLiveTVActive" class="active">LIVE TV</span>
+            <span *ngIf="!isLiveTVActive" class="inActive">LIVE TV</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--appUtilService.checkIfPWA-->
+</div>
+
+
+
+<div class="pwaheader-nav-mobile" *ngIf="appUtilService.checkIfPWA()">
+  <div class="bottom-nav-container">
+    <ul class="bottom-nav">
+      <li (click)="toggleActive()" class="link-container active">
+        <a routerLink="/" (click)="clickHomeMoEngageEvent()">
+          <span class="iconContainer homeContainer">
+            <i *ngIf="isHomeIsActive" class="homeIcon active">
+            </i>
+            <i *ngIf="!isHomeIsActive" class="homeIcon inActive">
+            </i>
+          </span>
+          <span *ngIf="isHomeIsActive" class="active">HOME</span>
+          <span *ngIf="!isHomeIsActive" class="inActive">HOME</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/premium" (click)="clickPremiumMoEngageEvent()">
+          <span class="iconContainer premiumContainer">
+            <i *ngIf="ispremiumActive" class="premium active">
+            </i>
+            <i *ngIf="!ispremiumActive" class="premium inActive">
+            </i>
+          </span>
+          <span *ngIf="ispremiumActive" class="active">ORIGINALS</span>
+          <span *ngIf="!ispremiumActive" class="inActive">ORIGINALS</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/spotlight">
+          <div class="swagimg">
+            <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-swag.png">
+          </div>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/live-tv" (click)="clickLiveTvMoEngageEvent()">
+          <span class="iconContainer liveTVContainer">
+            <i *ngIf="isLiveTVActive" class="liveTV active">
+            </i>
+            <i *ngIf="!isLiveTVActive" class="liveTV inActive">
+            </i>
+          </span>
+          <span *ngIf="isLiveTVActive" class="active">LIVE TV</span>
+          <span *ngIf="!isLiveTVActive" class="inActive">LIVE TV</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/side-nav"></a>
+        <span class="iconContainer MoreContainer">
+          <i class="More active">
+          </i>
+          <i class="More inActive">
+          </i>
+        </span>
+        <span class="active">More</span>
+        <span class="inActive">More</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="pwaheader-nav-mobile" *ngIf="appUtilService.checkIfPWA()">
+  <div class="bottom-nav-container">
+    <ul class="bottom-nav">
+      <li (click)="toggleActive()" class="link-container active">
+        <a routerLink="/" (click)="clickHomeMoEngageEvent()">
+          <span class="iconContainer homeContainer">
+            <i *ngIf="isHomeIsActive" class="homeIcon active">
+            </i>
+            <i *ngIf="!isHomeIsActive" class="homeIcon inActive">
+            </i>
+          </span>
+          <span *ngIf="isHomeIsActive" class="active">HOME</span>
+          <span *ngIf="!isHomeIsActive" class="inActive">HOME</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/premium" (click)="clickPremiumMoEngageEvent()">
+          <span class="iconContainer premiumContainer">
+            <i *ngIf="ispremiumActive" class="premium active">
+            </i>
+            <i *ngIf="!ispremiumActive" class="premium inActive">
+            </i>
+          </span>
+          <span *ngIf="ispremiumActive" class="active">ORIGINALS</span>
+          <span *ngIf="!ispremiumActive" class="inActive">ORIGINALS</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/spotlight">
+          <!-- <span class="iconContainer spotlightContainer" (click)="clickSpotlightMoEngageEvent()">
+            <i *ngIf="isspotlightActive" class="spotlight active">
+            </i>
+            <i *ngIf="!isspotlightActive" class="spotlight inActive">
+            </i>
+          </span>
+          <span *ngIf="isspotlightActive" class="active">SPOTLIGHT</span>
+          <span *ngIf="!isspotlightActive" class="inActive">SPOTLIGHT</span> -->
+          <div class="swagimg">
+            <img src="https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/watcho-swag.png">
+          </div>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/live-tv" (click)="clickLiveTvMoEngageEvent()">
+          <span class="iconContainer liveTVContainer">
+            <i *ngIf="isLiveTVActive" class="liveTV active">
+            </i>
+            <i *ngIf="!isLiveTVActive" class="liveTV inActive">
+            </i>
+          </span>
+          <span *ngIf="isLiveTVActive" class="active">LIVE TV</span>
+          <span *ngIf="!isLiveTVActive" class="inActive">LIVE TV</span>
+        </a>
+      </li>
+      <li (click)="toggleActive()" class="link-container">
+        <a routerLink="/more-page">
+          <span class="iconContainer MoreContainer">
+            <i *ngIf="isMoreActive" class="More active">
+            </i>
+            <i *ngIf="!isMoreActive" class="More inActive">
+            </i>
+          </span>
+          <span *ngIf="isMoreActive" class="active">More</span>
+          <span *ngIf="!isMoreActive" class="inActive">More</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--pwaheader-nav-mobile-->

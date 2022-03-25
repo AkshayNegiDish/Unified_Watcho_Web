@@ -1,0 +1,201 @@
+<div class="base-page " *ngIf="!loading">
+  <div class="container p-0 channel-schedule-page">
+    <div class="channel-schedule">
+      <app-kaltura-player *ngIf="channelAssetDetails && reinitiatePlayer" [assetDetail]="channelAssetDetails"
+        [programAssetDetail]="posterImage" [isLive]='true' [showWaterMark]="true"></app-kaltura-player>
+    </div>
+
+    <ngb-tabset #t="ngbTabset">
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="Playingtab" (click)="isSchedule()">Now Playing</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="first-tab">
+            <div class="tab-top">
+              <div class="imgbox">
+                <div [hidden]="!isImagChnnlLoaded">
+                  <img *ngIf="channelAssetDetails" [src]="channelAssetDetails?.images | thumbnail: 'SQUARE':100:100:80"
+                    (load)="onImageLoaded($event)" [alt]="channelAssetDetails.name">
+                </div>
+                <div [hidden]="isImagChnnlLoaded">
+                  <app-default-rail-item-shell *ngIf="!isImageLoaded" [viewType]="'LANDSCAPE'">
+                  </app-default-rail-item-shell>
+                </div>
+              </div>
+              <div *ngIf="posterImage">
+                <div class="mid-tab">
+                  <div class="tab-cover">
+                    <div class="tab-left-section">
+                      <h4>{{posterImage?.name}}</h4>
+                      <span class="gerne-dot">{{gerne}}</span>
+                      <span class="name-dot">{{videoDuration}}</span>
+                    </div>
+                    <div class="tab-right-section">
+                      <div class="stat-times">
+                        <span>Start &nbsp; {{posterImage?.startDate * 1000 | date:'HH:mm'}}</span>
+                        <div class="endnow">End &nbsp;&nbsp;&nbsp; {{posterImage?.endDate * 1000 | date:'HH:mm'}}
+                        </div>
+                      </div>
+                      <div *ngIf="!isMobileOrTabletView" style="display: block" class="channelshare share-actions">
+                        <app-share *ngIf="channelAssetDetails" [assetDetails]="channelAssetDetails"></app-share>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-tab">{{posterImage?.description}}</p>
+                  <div *ngIf="isMobileOrTabletView" style="display: block" class="channelshare share-actions">
+                    <app-share *ngIf="channelAssetDetails" [assetDetails]="channelAssetDetails"></app-share>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf='!posterImage'>
+                <div class="mid-tab">
+                  <div class="tab-cover">
+                    <div class="tab-left-section">
+                      <h4>EPG Information not available</h4>
+                    </div>
+                    <div class="tab-right-section">
+                      <div style="display: block" class="channelshare share-actions">
+                        <app-share *ngIf="channelAssetDetails" [assetDetails]="channelAssetDetails"></app-share>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="rails">
+              <app-rail-item [showLiveChannel]="true" [channelName]="'Live'" [screenId]="'live'"
+                [viewType]="'LANDSCAPE'" [showMoreButton]="true" [showHeader]="true">
+              </app-rail-item>
+              <app-rail-item [showSimilarChannel]="true" [channelName]="'Similar Channel'" [screenId]="'similarChannel'"
+                [viewType]="'CIRCLE'" [showMoreButton]="true" [showHeader]="true"></app-rail-item>
+              <app-rails-view [screenId]="screenId" [fromDetailScreen]="true"></app-rails-view>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab>
+        <ng-template ngbTabTitle>
+          <div class="Scheduletab" (click)="scroll('collapser_' +posterImage?.startDate, posterImage?.startDate)">Schedule</div>
+        </ng-template>
+        <ng-template ngbTabContent>
+          <div class="next-tab">
+            <div class="epg-accordion">
+              <ngx-loading [show]="datechanged" class="col-lg-offset-5" [config]="{ backdropBorderRadius: '0px' }">
+              </ngx-loading>
+              <div>
+                <div class="rail-title padding0"><div class="title-epg">Epg Schedule</div>
+                  <div class="day-selector-container">
+                    <div ngbDropdown class="d-inline-block">
+                      <button type="button" id="dropdownBasic2" ngbDropdownToggle class="btn btn-dark-outline "
+                        *ngIf="!todayFlag">{{headerDate
+                                      | date : 'EEE'}}, &nbsp;
+                        {{currentDay}}</button>
+                      <button type="button" id="dropdownBasic2" ngbDropdownToggle class="btn btn-dark-outline  "
+                        *ngIf="todayFlag">Today,
+                        &nbsp;
+                        {{currentDay}}</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                        <div (click)="preventPropagation($event)" class="dropdown-menu-nav-header ng-binding input">
+                          <button [disabled]="prev" class="button pull-left" (click)="pastDays()"> <i
+                              class="la la-angle-left nav-back pull-xs-left input"></i>
+                          </button>
+                          <span style="text-align: center"> {{head}} </span>
+                          <button [disabled]="!prev" class="button pull-right" (click)="pastDays()"> <i
+                              class="la la-angle-right nav-next pull-xs-right  input"></i></button>
+                        </div>
+                        <div *ngFor="let day of week.weekday; let i = index">
+                          <div *ngIf="5>i">
+                            <ng-container *ngIf="day.id === date;else other_content">
+                              <div class="item-box">
+                                <button style="color:#224ba3;" (click)="dateChanged(day.wholeDate)"
+                                  class="dropdown-item">Today&nbsp;
+                                  {{day.date}}</button><br>
+                              </div>
+                            </ng-container>
+
+                            <ng-template #other_content>
+                              <div class="item-box">
+                                <button class="dropdown-item" (click)="dateChanged(day.wholeDate)">{{day.name}}
+                                  &nbsp;
+                                  {{day.date}}</button><br>
+                              </div>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="scroll-tab">
+                  <ng-container *ngFor="let programs of channelDetails; let i = index">
+                    <div>
+                      <div class="epg-item">
+                        <div [attr.id]="'collapser_' +programs?.startDate" (click)="toggleInfoBar(programs?.startDate)" class="item-info clearfix">
+                          <div class="col-xs-3 text-truncate">
+                            <i class="la la-info-circle"></i>
+                            <span class="m-l-1 hidden-sm-down  ng-binding ">{{programs?.startDate
+                                                *
+                                                1000 | date:'HH:mm'}} -
+                              {{programs?.endDate * 1000 | date:'HH:mm'}}</span>  
+                          </div>
+                          <div class="col-xs-6 col-lg-7 ng-binding">
+                            {{programs?.name}}
+                          </div>
+                          <div *ngIf="programs?.metas?.allowCatchup?.value === 'true' &&   posterImage?.startDate >= programs?.endDate ">
+                            <i class="material-icons playIconOnCard" (click)="goToCatchupPage(programs)">
+                              play_circle_outline
+                            </i>
+                          </div>
+  
+                        </div>
+                        <div [attr.id]="'collapsed_' +programs?.startDate" style="display : none" class="expanded-row" *ngIf="programs">
+                          <div class="row">
+                            <div class="col col-xs-12 col-sm-8 col-lg-6">
+                              <div class="program-item-content" *ngIf="programs.description">
+                                <div *ngIf="posterImage?.startDate === programs.startDate" class="live-programs-tag">Live</div>
+                                <p class="ng-binding">{{programs.description}} <a
+                                    ng-show="(text | cut: length).length > length &amp;&amp; !expend"
+                                    ng-click="expend = !expend" class="ng-binding ng-hide"></a>
+                                </p>
+  
+                                <div class="media-meta-line " style-class="" data="program.tags_metas"
+                                  metas="component.metas" labels="component.labels">
+  
+                                </div>
+                                <div class="media-meta-table m-b-0" data="program.tags_metas" asset-type="program.type"
+                                  config="component.tags_metas" label-width="col-xs-4 col-sm-2"
+                                  content-width="col-xs-8 col-sm-10">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col col-sm-4 col-lg-3 col-lg-offset-3 text-xs-right hidden-sm-down">
+                              <div class="img-container ratio-16x9 box-shadow-1 ng-scope">
+                                <div class="media-poster"><img class="img-fluid" (error)="imageLoadError($event)"
+                                    [src]="kalturaUtilService.getImageByOrientation(programs.images, 'LANDSCAPE')"
+                                    [alt]="programs.name">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div *ngIf="channelDetails.length === 0">
+                <p class="noEpg">There is no EPG available for Selected Date</p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>
+<div *ngIf="loading">
+  <span>
+    <app-live-shell></app-live-shell>
+  </span>
+</div>

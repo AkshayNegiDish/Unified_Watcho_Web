@@ -1,0 +1,13 @@
+<ng-container>
+  <div class="profile-icon">
+    <span class="Follow-profile" (click)="toggleSeriesFollowing()" [hidden]="isSeriesFollowed">
+        <i class="fa fa-user"></i><br>
+        Follow
+    </span>
+    <span  style="color:#04A5E8; cursor: pointer;" (click)="toggleSeriesFollowing()" [hidden]="!isSeriesFollowed">
+      <i class="fa fa-user-plus" style="color: #04A5E8"></i><br>
+      Following
+    </span>
+  </div>
+  </ng-container>
+  

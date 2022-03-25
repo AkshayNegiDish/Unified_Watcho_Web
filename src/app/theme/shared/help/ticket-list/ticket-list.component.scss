@@ -1,0 +1,93 @@
+.container {
+    color: #ffffff;
+    width: 100%;
+    position: relative;
+    .ticket-height {
+        min-height: 70vh;
+    }
+    h2 {
+        font-size: 20px;
+    }
+    .content {
+        position: relative;
+        .anchor {
+            cursor: pointer;
+            background-color: #2d2d2d;
+            position: relative;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 4px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+    }
+    .static {
+        span{
+            &:first-child{
+                font-weight:600;
+            }
+        }
+        .currentDate {
+        position: absolute;
+        right: 10px;
+        }
+    }
+}
+
+/deep/.noFooter {
+    display: none !important;
+}
+
+.placeholder {
+    align-items: center;
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    min-height: auto;
+    .img {
+      height: 50%;
+      width: 40%;
+      margin: 120px auto;
+      vertical-align: middle;
+    }
+    .no-result-found{
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      padding: 0 auto 0 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      color: #757575;
+    }
+  }
+
+@media (min-width:320px) and (max-width:480px) {
+/********start********/
+.placeholder {
+    .no-result-found{
+        font-size: 22px !important;
+        bottom: 18% !important;
+    }
+}
+
+}
+
+@media (min-width:481px) and (max-width:768px) {
+/********start********/
+.placeholder {
+    .no-result-found{
+       font-size: 25px !important;
+    }
+}
+
+
+}   
+
+
+@media (min-width:769px) and (max-width:992px) {
+ /********start********/
+  .ticket-height {
+     min-height: 60vh !important;
+   }   
+}

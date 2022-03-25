@@ -1,0 +1,75 @@
+<div *ngIf="!isShowFullRegisterGrievancePage" class="container">
+  <div class="maintitle">
+    <h2>Register Grievance</h2>
+  </div>
+  <div class="show-section">
+    <div class="mobile-content-left" (click)="viewOTTContact()">Register Grievance for OTT Content</div>
+    <div class="content-left">Register Grievance for OTT Content</div>
+    <div class="content-right">
+      <button (click)="viewOTTContact()">View</button>
+    </div>
+  </div>
+  <div class="show-section">
+    <div class="mobile-content-left" (click)="viewSocialMediaContent()">Register Grievance for Social Media Content</div>
+    <div class="content-left">Register Grievance for Social Media Content</div>
+    <div class="content-right">
+      <button (click)="viewSocialMediaContent()">View</button>
+    </div>
+  </div>
+  <div class="contact-details">
+    <div class="contact-info">
+      <div class="contact-title">Contact Person</div>
+      <span class="contant-data">Sopan Ghosh</span>
+    </div>
+    <div class="contact-info">
+      <div class="contact-title">Address</div>
+      <span class="contant-data">FC - 09, Sector 16A, Film City , Noida - 201 301</span>
+    </div>
+    <div class="contact-info">
+      <div class="contact-title">Telephone Number (Landline)</div>
+      <span class="contant-data">01205047545</span>
+    </div>
+    <!-- <div class="contact-info">
+      <div class="contact-title">Mobile No.</div>
+      <span class="contant-data">9711611302</span>
+    </div> -->
+    <div class="contact-info">
+      <div class="contact-title">Email</div>
+      <span class="contant-data">sopan.ghosh@dishd2h.com</span>
+    </div>
+  </div>
+</div>
+<div *ngIf="isShowFullRegisterGrievancePage" class="container">
+  <div class="mobapp-maintitle">
+    <h2>Register Grievance</h2>
+    <hr>
+  </div>
+  <div class="mobapp-show-section">
+    <div class="mobapp-content-left" (click)="viewOTTContact()">Register Grievance for OTT Content</div>
+  </div>
+  <div class="mobapp-show-section">
+    <div class="mobapp-content-left" (click)="viewSocialMediaContent()">Register Grievance for Social Media Content</div>
+  </div>
+  <div class="mobapp-contact-details">
+    <div class="mobapp-contact-info">
+      <div class="mobapp-contact-title">Contact Person</div>
+      <span class="mobapp-contant-data">Sopan Ghosh</span>
+    </div>
+    <div class="mobapp-contact-info">
+      <div class="mobapp-contact-title">Address</div>
+      <span class="mobapp-contant-data">FC - 09, Sector 16A, Film City , Noida - 201 301</span>
+    </div>
+    <div class="mobapp-contact-info">
+      <div class="mobapp-contact-title">Telephone Number (Landline)</div>
+      <span class="mobapp-contant-data">01205047545</span>
+    </div>
+    <!-- <div class="mobapp-contact-info">
+      <div class="mobapp-contact-title">Mobile No.</div>
+      <span class="mobapp-contant-data">9711611302</span>
+    </div> -->
+    <div class="mobapp-contact-info">
+      <div class="mobapp-contact-title">Email</div>
+      <span class="mobapp-contant-data">sopan.ghosh@dishd2h.com</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-colors.scss';
+$d2h-color: #9C42DC;
+$dishtv-color: #EF4923;
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.col-12 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.font-weight-light {
+    text-align: center;
+    color: #fff;
+    font-size: large;
+}
+
+.font-weight-reguler {
+    text-align: center;
+    color: #fff;
+    font-size: x-large;
+}
+
+.btn {
+    border-radius: 3px;
+    font-size: large;
+    background: #fb0050;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    width: 30%
+}
+
+.btn-primary {
+    border-color: #FA0050;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #FE6294;
+    border-color: #FA0050;
+}
+
+@media (min-width:1025px) and (max-width:1920px) {
+    .row {
+        margin-left: 5%;
+    }
+}
+
+@media (min-width:769px) and (max-width:1024px) {
+    .row {
+        margin-left: 3%;
+    }
+}
+
+@media (min-width:320px) and (max-width:768px) {
+    .font-weight-light {
+        font-size: medium;
+    }
+
+    .font-weight-bold {
+        font-size: large;
+    }
+
+    .btn {
+        font-size: medium;
+    }
+}

@@ -1,0 +1,31 @@
+<div class="base-page">
+  <div class="container p-0">
+
+  <app-kaltura-player *ngIf="assetDetails && reinitiatePlayer" [isAssetInWatchlist]='isAssetInWatchlist' [assetDetail]="assetDetails"></app-kaltura-player>
+  <div class="container descriptionPadding">
+    <div class="detail-section">
+      <app-asset-detail *ngIf="assetDetails" [assetDetails]="assetDetails"></app-asset-detail>
+      <div class="share-actions clearfix" [ngClass]="{'start-over': isMobileTabletView === true}">
+        <div *ngIf="showRating"> 
+           <app-rating *ngIf="assetDetails" [assetDetails]="assetDetails"></app-rating>
+        </div>
+        <div>
+          <div *ngIf= "showLike">
+            <app-like *ngIf="assetDetails" [assetDetails]="assetDetails"></app-like>
+          </div>
+          <app-startover *ngIf="isMobileTabletView && assetDetails"></app-startover>
+          <app-watchlist *ngIf="assetDetails" [assetDetails]="assetDetails" (isInWatchlist)="isInWatchlist($event)" [videoId]="assetId"></app-watchlist>
+          <app-share *ngIf="assetDetails" [assetDetails]="assetDetails"></app-share>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-rail-item *ngIf="assetDetails" [channelId]="assetId" [channelName]="null" [viewType]="viewType" [screenId]="screenId" [isCarousel]="false"
+    [isYouMayAlsoLike]="true" [isSimilarMovie]="false" [railData]="null" [showMoreButton]="true" [showHeader]="true">
+  </app-rail-item>
+  <!-- <app-rail-item *ngIf="assetDetails" [channelId]="assetId" [channelName]="null" [viewType]="viewType" [screenId]="screenId" [isCarousel]="false"
+    [isYouMayAlsoLike]="false" [isSimilarMovie]="true" [railData]="null">
+  </app-rail-item> -->
+</div>
+  <app-rails-view [screenId]="screenId" [fromDetailScreen]="true"></app-rails-view>
+</div>

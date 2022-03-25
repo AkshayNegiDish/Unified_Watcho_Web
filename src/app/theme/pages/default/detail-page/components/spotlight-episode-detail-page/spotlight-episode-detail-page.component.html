@@ -1,0 +1,31 @@
+<div class="base-page">
+  <div class="container p-0">
+
+  <app-kaltura-player *ngIf="assetDetails && reinitiatePlayer" [isAssetInWatchlist]='isAssetInWatchlist' [assetDetail]="assetDetails"
+    [seriesId]="seriesId" [seasonNumber]="seasonNumber" (episodeId)='getCurrentEpisodeDetails($event)'></app-kaltura-player>
+  <div class="container descriptionPadding">
+    <div class="detail-section" *ngIf="!showDescriptionShell">
+      <app-asset-detail *ngIf="assetDetails && !nextEpisodePlayed" [assetDetails]="assetDetails"></app-asset-detail>
+      <app-asset-detail *ngIf="nextEpisodeDetails && nextEpisodePlayed" [assetDetails]="nextEpisodeDetails">
+      </app-asset-detail>
+      <div class="share-actions clearfix">
+        <app-watchlist *ngIf="assetDetails && !nextEpisodePlayed" [assetDetails]="assetDetails"
+          (isInWatchlist)="isInWatchlist($event)" [videoId]="assetId"></app-watchlist>
+        <app-watchlist *ngIf="nextEpisodeDetails && nextEpisodePlayed" [assetDetails]="nextEpisodeDetails"
+          (isInWatchlist)="isInWatchlist($event)" [videoId]="assetId"></app-watchlist>
+        <app-share *ngIf="assetDetails && !nextEpisodePlayed" [assetDetails]="assetDetails"></app-share>
+        <app-share *ngIf="nextEpisodeDetails && nextEpisodePlayed" [assetDetails]="nextEpisodeDetails"></app-share>
+      </div>
+    </div>
+    <app-description-shell *ngIf="showDescriptionShell"></app-description-shell>
+  </div>
+
+  <app-rail-item *ngFor="let seasonData of seasonsArray; let i = index" [seriesId]="seriesId"
+    [channelId]="'spotlightSeries'" [channelName]="'Season ' + seasonData.objects[0].metas['Season number'].value"
+    [viewType]="'LANDSCAPE'" [screenId]="'spotlightSeries'" [isCarousel]="false" [isYouMayAlsoLike]="false"
+    [isSimilarMovie]="false" [railData]="seasonData" [showMoreButton]="true" [showHeader]="true">
+  </app-rail-item>
+
+</div>
+  <app-rails-view [screenId]="screenId" [fromDetailScreen]="true"></app-rails-view>
+</div>

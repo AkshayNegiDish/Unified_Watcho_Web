@@ -1,0 +1,46 @@
+
+@import '~assets/scss/theme-fonts.scss';
+.base-page{
+    margin-top: 70px;
+    height: 75vh;
+
+}
+.notfundpage {
+    position: relative;
+    width: 100%;
+    float: left;
+    height: 500px;
+}
+.icon{
+    position: absolute;
+    left: 50%;
+    color:$fonts-grey-color;
+    top: 65%;
+    transform: translate(-50%,-50%);
+    display: inline-block;
+    text-align: center;
+    i{ 
+        font-size: 144px;
+        margin-bottom: 30px;
+        color:$blue-bg-chnage-color;
+        background-image: -webkit-gradient( linear, left top, right top, color-stop(0.3, #e94058), color-stop(0.6, #f9a53c), color-stop(0.75, #6dba8a), color-stop(0.85, #224ca3) );
+        background-image: gradient( linear, left top, right top, color-stop(0.5, #e94058), color-stop(0.6, #f9a53c), color-stop(0.75, #6dba8a), color-stop(0.85, #224ca3) );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    p{
+        font-size: 32px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    span{
+        font-size: 18px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+    button.btn.btn-pink.router-link-active {
+    margin-top: 10%;
+    width: 100px;
+    height: 46px;
+}
+}

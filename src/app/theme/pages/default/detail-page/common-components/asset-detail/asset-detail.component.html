@@ -1,0 +1,65 @@
+<div class="asset-detail">
+  <div class="title-movie-page">
+    <div class="left-title">
+      <h1>{{assetDetails?.name}}</h1>
+    </div>
+    <!-- <div class="btn-right-more" *ngIf="showTrailer || showMovie">
+      <div class="color-btn btn-pink" (click)="checkMovieOrTrailer()">{{showTrailerOrMovie}}</div>
+    </div> -->
+    <app-show-trailer *ngIf='assetDetails' [assetDetails]="assetDetails"></app-show-trailer>
+  </div>
+  <!--title-movie-page-->
+  <!-- <span class="meta"></span> -->
+  <span class="meta">
+    <span *ngIf="assetDetails?.tags?.Genre | tagObject">
+      {{assetDetails.tags.Genre | tagObject}}
+    </span>
+    <span *ngIf="assetDetails?.tags['Parental Rating']">
+      | {{assetDetails?.tags['Parental Rating'] | tagObject}}
+    </span>
+    <!-- <span *ngIf="assetDetails?.metas?.Year?.value">
+      | {{assetDetails?.metas?.Year?.value}}
+    </span> -->
+    <span *ngIf="showMeta && assetDetails?.mediaFiles[0]?.duration">
+      | {{assetDetails?.mediaFiles[0]?.duration | mediaTime}}
+    </span>
+    <span *ngIf="episodeCount">
+      | {{episodeCount}}&nbsp;Episodes
+    </span>
+  </span>
+  <span class="meta">
+    {{assetDetails?.description}}
+  </span>
+  <!-- <div class="hindi-english">
+      <a href="">Family</a> . <a href="">Hindi</a> . <a href="">StarPlus</a>
+    </div> -->
+  <div class="show-text" *ngIf="assetDetails.tags['Main Cast'] || assetDetails.tags['Director']"> <button class="show-text-btn"
+      id="btnToggle" (click)="toggle()">More</button></div>
+  <div class="cast-n-crew">
+    <ng-container>
+      <span *ngIf="assetDetails.tags['Main Cast']" class="meta"><b>Cast :
+        </b>
+        <span>
+          {{assetDetails.tags["Main Cast"] | tagObject}}
+        </span>
+      </span>
+      <span *ngIf="assetDetails.tags['Director']" class="meta"><b>Crew :
+        </b>
+        <span>
+          {{assetDetails.tags["Director"] | tagObject}}
+        </span>
+      </span>
+      <span *ngIf="(assetDetails.tags['NatureOfContent'] | tagObject) !== ''" class="meta"><b>Content advisory :
+      </b>
+      <span>
+        {{assetDetails.tags["NatureOfContent"] | tagObject}}
+      </span>
+    </span>
+    </ng-container>
+
+    <!-- <button class="less-text">Read Less</button>-->
+  </div>
+  <!--cast-n-crew-->
+
+</div>
+<!--asset-detail-->

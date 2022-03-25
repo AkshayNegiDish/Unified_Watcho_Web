@@ -1,0 +1,72 @@
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-colors.scss';
+
+.cancel-membership-modal {
+  // width: 514px;
+  // height: auto;
+  // padding: 35px;
+  .close {
+    position: absolute;
+    z-index: 9;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    right: -10px;
+    top: -10px;
+    background: #fff;
+    opacity: 1;
+    z-index: 9999;
+    text-align: center;
+    line-height: 34px;
+    font-weight: 400;
+    font-size: 30px
+  }
+  .modal-header {
+    .text {
+      font-size: 22px;
+      color: $theme-white;
+    }
+  }
+  .modal-body {
+    padding: 25px 0px 0px 0px !important;
+    .details {
+      text-align: center;
+      display: grid;
+      color: $theme-light-grey;
+      span, a, button {
+        padding: 5px;
+        margin: 10px;
+      }
+      .text1 {
+        color: $theme-light-grey;
+        font-size: 18px;
+      }
+      .text2 {
+        color: $theme-light-grey;
+      }
+      .text3 {
+        color: $theme-light-grey;
+      }
+      .btn {
+        //width: 50%;
+      }
+    }
+  }
+  .modal-footer {
+    border-top: 0px solid #e5e5e5 !important;
+    .btn-blue {
+      background: none !important;
+      &.hover {
+        background : none !important;
+      }
+    }
+    a {
+      color: $theme-light-grey;
+      text-decoration: none;
+      &.hover {
+        color: $theme-light-grey;
+        text-decoration: none;
+      }
+    }
+  }
+}

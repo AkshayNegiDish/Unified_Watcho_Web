@@ -1,0 +1,25 @@
+<ng-container>
+  <div class="posterChannel"> 
+    <div *ngIf="showWaterMark" class="ChannelLogo">
+      <img [src]="channelLogo" alt="">
+  </div>
+  <div [hidden]="!isImageLoaded" class="videopage jumbotron">
+    <div class="inner-details" *ngIf="assetDetail">
+      <img *ngIf="!isMobileView" (load)="imageLoadEvent($event)" (error)="showErrorImage($event)"
+        [src]="assetDetail?.images | thumbnail: 'CAROUSEL':1170:362:80" [alt]="assetDetail.name">
+      <img *ngIf="isMobileView" (load)="imageLoadEvent($event)" [src]="assetDetail?.images | thumbnail: 'LANDSCAPE':420:237:80"
+        [alt]="assetDetail.name">
+      <div class="play-icon" (click)="playVideo()">
+        <i class="material-icons">
+          play_arrow
+        </i>
+      </div>
+    </div>
+  </div>
+  </div>
+</ng-container>
+
+<div class="videopage jumbotron" [hidden]="isImageLoaded">
+  <app-default-rail-shell [showCarousel]="'true'" [viewType]="viewType">
+  </app-default-rail-shell>
+</div>

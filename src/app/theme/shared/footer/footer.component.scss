@@ -1,0 +1,266 @@
+@import '~assets/scss/theme-colors.scss';
+@import '~assets/scss/theme-constants.scss';
+
+.app-footer{
+    background-color: $theme-black-color-change;
+    padding: 10px 0px;
+    margin-top: 132px;
+}
+#back2Top{ cursor: pointer;}
+.app-footer .items span {
+    text-transform: uppercase;
+}
+
+.app-footer .links {
+    margin-top: 30px;
+}
+
+.app-footer .info {
+    margin-top: 10px !important;
+}
+
+.app-footer .rights {
+    margin: 14px 0 !important;
+}
+.app-footer .items span{
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+    color:$fonts-grey-color;
+}
+.app-footer .info span{
+    color:$fonts-grey-color;
+}
+.app-footer .items a{
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+    color:$fonts-grey-color;
+}
+.app-footer .items a:hover{
+    color: $fonts-white-color;
+}
+.app-footer .links {
+    margin: 10px 0;
+    float: left;
+    width: 100%;
+}
+
+.app-footer .info {
+    margin-top: 30px;
+    font-size: 13px;
+    font-weight: 400;
+    color: $fonts-white-color;
+    text-align: justify;
+}
+.app-footer .rights{
+    margin-top: 30px;
+    font-size: 13px;
+    font-weight: 400;
+    color: $fonts-white-color;
+    display: block;
+}
+.titlepadding0{
+    width: 55%;
+    float: left;
+    padding-right: 65px;
+}
+.title-footer{
+    text-align: justify;
+    float: left;
+    color:$fonts-grey-color;
+}
+.center-icon {
+    float: left;
+    width: 40%;
+}
+.footerbackground {
+    float: right;
+}
+
+.app-footer .apps {
+    margin: 10px 0;
+    float: right;
+    width: 45%;
+}
+.app-footer .apps img{
+    margin-right: 0;
+    float: right;
+    width: 135px;
+    height: 40px;;
+}
+.app-footer .apps h5{
+    margin-top: 0;
+    color:$fonts-grey-color;
+}
+@media (min-width: 768px) {
+    
+    .app-footer{
+        .items{
+            width: auto;
+            flex: none;
+            padding: 0 12px 0 0;
+            float: left;
+            &:last-child{
+                padding-left: 0
+            }
+        }
+        p{
+            font-size: 13px;
+            font-weight: 300;
+        }
+    }
+}
+   
+a span{
+    color:#333;
+}
+
+
+
+a.googleplay img{
+    width: 150px;
+    height: 60px;
+    margin-right: 0 !important;
+    margin-top: -10px;
+}
+a.appstore img{
+    width: 130px;
+    height: 40px;
+    margin-right: 0px !important;
+    margin-top: -10px;
+}
+
+.down-top {
+    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+
+    #back2Top {
+    width: 50px;
+    height: 50px;
+    color: $fonts-white-color;
+    background: $blue-Lighter-chnage-color;
+    display: inline-block;
+    line-height: 50px;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 10px;
+    transition: 0.25s;
+        &:hover{
+            color: $fonts-white-color;
+            background:$blue-bg-chnage-color; 
+            transition: 1.2s;
+        }
+    }
+
+}
+
+/********************Responsive-view*********************/
+
+@media (min-width:320px) and (max-width:480px){
+/****************start**************/
+.down-top{ display: none; }
+.app-footer .links{	margin-top:0;}
+.items{padding: 0 3px;vertical-align: top;text-align: center;display: inline-block;}
+.items a{ font-size: 13px !important;letter-spacing: 0.5px; }
+.info span{ font-size: 11px; display: inline-block; text-align: center;line-height: 16px;}
+
+.app-footer{ padding: 0;margin-bottom:80px; }
+.titlepadding0{ width: 100%; float: left;padding: 10px;text-align: center;}
+.app-footer .apps{width: 100%;margin: 0;}
+.center-icon{text-align: center;width: 100%;}
+.footerbackground{text-align: center; margin-top: 15px;width: 100%;}
+.app-footer .apps h5{ font-size: 13px; }
+a.appstore img{ width: 120px;}
+a.googleplay img{ width: 140px;}
+
+
+
+/****************End**************/
+}    
+
+
+@media (min-width:481px) and (max-width:768px){
+/****************start**************/
+    .down-top{ display: none; }
+    .items{padding: 0 3px;vertical-align: top;text-align: center;display: inline-block;}
+    .info span{ font-size: 13px; display: inline-block; text-align:  center;}
+    .app-footer{ padding: 0;margin-bottom:80px; }
+    .titlepadding0{ width: 100%; float: left;padding: 10px;text-align: center;}
+    .app-footer .apps{width: 100%;margin: 0;}
+    .center-icon{text-align: center;width: 100%;}
+    .footerbackground{text-align: center; margin-top: 15px;width: 100%;}
+    .app-footer .apps h5{ font-size: 13px; }
+    a.appstore img{ width: 120px;}
+    a.googleplay img{ width: 140px;}
+    .fb-icon, .twitter-icon, .instagram-icon{ width: 35px;height: 35px;line-height: 35px; }
+    .fb-icon i, .instagram-icon i, .twitter-icon i{ font-size: 21px; }
+    
+  
+/****************End**************/
+}
+
+@media (min-width:769px) and (max-width:992px){
+/****************start**************/
+    .down-top{ display: none; }
+    .items{padding: 0 3px;vertical-align: top;text-align: center;display: inline-block;}
+    .info span{ font-size: 12px; display: inline-block; text-align: justify;}
+    .app-footer{ margin-bottom: 10%; }
+    .titlepadding0{ width: 40%;padding-right: 15px; }
+    .app-footer .apps{margin-top: 10px; width: 60%;}
+    .center-icon{ float: left; }
+    .footerbackground{float: right;}
+    .app-footer .apps h5{ font-size: 13px; }
+    a.appstore img{ width: 120px;}
+    a.googleplay img{ width: 140px;}
+    .fb-icon, .twitter-icon, .instagram-icon{ width: 35px;height: 35px;line-height: 35px; }
+    .fb-icon i, .instagram-icon i, .twitter-icon i{ font-size: 21px; }
+ .app-footer .apps .footerbackground  img{width: 115px !important;height: 34px;}
+ .app-footer .apps .footerbackground  a.appStoreImg{
+    background-size: contain !important;
+    width: 115px !important;
+   
+}
+.app-footer .apps .footerbackground  a.googlePlayImg
+{
+    background-size: contain !important;
+    width: 145px !important;
+    margin-right: 0;
+    
+}
+/****************End**************/
+}
+
+
+@media (min-width:993px) and (max-width:1024px){
+/****************start**************/
+.app-footer{ margin-bottom: 2%; }
+.titlepadding0{ width: 45%;padding-right: 15px; }
+.app-footer .apps{margin-top: 10px; width: 53%;}
+.down-top{ right: 0; } 
+
+/****************End**************/
+}
+
+@media (min-width:1025px) and (max-width:1200px){
+/****************start**************/
+    .app-footer{ margin-bottom: 2%; }
+    .titlepadding0{ width: 45%;padding-right: 15px; }
+    .app-footer .apps{margin-top: 10px; width: 52%;}
+    .down-top{ right: 0; } 
+    
+/****************End**************/
+}
+
+.noFooter {
+    display: block;
+    margin-top: 63px !important;
+    width: 100vw;
+}
+
+
+
+
+

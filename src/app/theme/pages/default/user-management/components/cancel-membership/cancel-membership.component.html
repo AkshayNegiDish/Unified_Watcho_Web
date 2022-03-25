@@ -1,0 +1,69 @@
+<div class="cancel-membership-modal">
+
+  <div class="pull-right">
+    <!-- <span class="close " aria-hidden="true" (click)="activeModal.dismiss('Cross click')">&times;</span> -->
+  </div>
+  <div class="modal-header">
+    <span class="text">
+      Cancel Membership
+    </span>
+  </div>
+  <div class="modal-body">
+    <div class="details" *ngIf="isSubscriptionCanceledSussessfully">
+      <span class="text1">
+      Your Subscription has been canceled.
+    </span>
+      <button class="btn btn-blue" (click)="continueToWatcho()">
+        Continue to Watcho
+      </button>
+    </div>
+    <div class="details" *ngIf="!isSubscriptionCanceledSussessfully">
+      <span class="text1">
+      Do you really want to go?
+    </span>
+      <span class="text2">
+      Cancellation will be effective at the end of your billing cycle.
+    </span>
+      <span class="text3">
+      You can start your membership anytime.
+    </span>
+      <button class="btn btn-blue" (click)="cancelAutoRenewal()">
+        Yes, Confirm Cancellation
+      </button>
+      <a href="javascript:;" class="link" (click)="activeModal.dismiss('Cross click')">
+        No, I changed my mind
+      </a>
+    </div>
+  </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+</div>
+
+<!-- <div class="cancel-membership-modal">
+  <div class="modal-header">
+    <span class="text">
+      Cancel Membership
+    </span>
+  </div>
+  <div class="modal-body">
+    <div class="details" *ngIf="isSubscriptionCanceledSussessfully">
+      <span class="text1">
+        Subscription is cancelled successfully
+      </span>
+      <button class="btn btn-blue" (click)="continueToWatcho()">
+        Continue to Watcho
+      </button>
+    </div>
+    <div class="details" *ngIf="!isSubscriptionCanceledSussessfully">
+      <span class="text1">
+        Are you sure you want to cancel the membership
+      </span>
+      <button class="btn btn-blue" (click)="cancelSubscription()">
+        Yes, Confirm Cancellation
+      </button>
+      <a href="javascript:;" class="link" (click)="activeModal.dismiss('Cross click')">
+        No, I changed my mind
+      </a>
+      <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+    </div>
+  </div>
+</div> -->

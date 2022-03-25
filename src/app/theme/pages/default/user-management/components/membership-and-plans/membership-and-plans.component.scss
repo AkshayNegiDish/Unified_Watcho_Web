@@ -1,0 +1,1001 @@
+
+@import '~assets/scss/theme-fonts.scss';
+@import '~assets/scss/theme-colors.scss';
+
+.steps{
+    margin:0 auto;
+    padding:20px 0px;
+    width: 100%;
+    min-height: 250px;
+    .free-new-user{
+        padding: 0 15px;
+        h2{
+           margin: 35px 0 30px;
+           font-size: 25px;
+        }
+        p{
+            font-size: 15px;
+            color: #f9a53c;
+        }
+    }
+    h2{
+        margin-top:0;
+        font-size: 40px;
+        color: $fonts-white-color;
+        font-weight: 500;
+    }
+    p{
+        font-size: 18px;
+        line-height: 30px;
+        margin-bottom: 10px;
+        color: $fonts-white-color;
+        font-weight: 400;
+    }
+    ul{
+        list-style: none;
+        margin:0;
+        padding:0;
+        margin-bottom: 20px;
+        li{
+            position: relative;
+            margin-bottom: 6px;
+            color: $fonts-white-color;
+            font-weight: 400;
+            font-size: 18px;
+            input{
+                margin: 0 15px 0 0;
+                cursor: pointer;
+            }
+        // &:before{
+        //     content: '✓';
+        //     color: #e7195b;
+        //     }
+        }
+    }
+    h5{
+        font-size: 18px;
+        margin-top:40px;
+        color: $fonts-white-color;
+        font-weight: 400;
+    }
+.plans{
+    box-sizing: border-box;
+    padding: 10px;
+    transition: 0.5s all;
+    border: 1px solid #ccc;
+    min-height: 214px;
+    margin-bottom: 30px;
+    &:hover{
+        transform: scale3d(1.2, 1.2, 1.2) translate3d(0, 0, 0);
+        z-index: 44;
+        transition: 0.5s;
+        transition-delay: 0.05s;
+        box-shadow: 0px 1px 11px 0px rgba(0, 0, 0, 0.4);
+    }
+    .plan-pack{
+        padding: 10px;
+        position: relative;
+        margin-bottom: 15px;
+        max-width: 400px;
+        color: $fonts-white-color;
+        font-weight: 400;
+        h1{
+            font-size: 20px;
+            font-weight: 400;
+            margin-top:5px;
+            color: $theme-heading;
+        }
+       
+        .discount{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            height: 70px;
+            width: 70px;
+            border-radius: 50%;
+            color: $theme-white;
+            font-size: 14px;
+            padding: 15px 0;
+            text-align: center;
+            background: $pink-bg-color;
+            .small{
+                font-size: 12px;
+                display: block;
+            }
+        }
+    }
+    .plan-description{
+        display: inline-block;
+        width: 100%;
+        margin-top: 8px;
+    }
+} 
+
+
+.mambership-planbtn{
+    text-align: center;
+    .btmamber{
+        height: 43px;
+        line-height: 40px;
+        width: 83%;
+        max-width: 300px;
+        display: inline-block;
+        border-radius: 0;
+        font-size: 16px;
+        color: #388e3d;
+        transition: 0.25s all;
+        border: 2px solid #388e3d;
+        background: transparent;
+        text-decoration: none;
+        cursor: not-allowed;
+    }
+}
+    .mamber-padding{
+        padding: 0 !important;
+        margin-bottom: 15px;
+    }
+    .meta {
+        .desc {
+            margin: 30px 0;
+            width: 37%;
+            margin-left: auto;
+            margin-right: auto;
+            ul {
+                list-style: none;
+                li {
+                    &:before {
+                        content: "\2022";
+                        color: $fonts-grey-color;
+                        font-weight: bold;
+                        display: inline-block;
+                        width: 1em;
+                        margin-left: -1em;
+                    }
+                }
+            }
+            .text {
+                font-size: 13px;
+                color: $fonts-grey-color;
+            }
+        }
+    }
+}
+.imagePlaceholder{
+    height: 658px;
+}
+.mamber-ship-banner{
+    width: 100%;
+    padding: 0;
+    float: left;
+    img{
+        width: 100%;
+        border-radius: 10px;    
+    }
+}
+
+.plan-placeholder {
+    height: 100%;
+    width: 100%;
+}
+.top-section-mambership{
+    position: relative;
+    .steps.bannercont{
+        position: absolute;
+        right: 0;
+        top: 2%;
+        width: 50%;
+        .bannercont-width{
+            max-width: 600px;
+            width: 100%;
+        }
+        h2{
+            float:left;
+            background-image: -webkit-gradient(linear,left top,right top,color-stop(.3,#e94058),color-stop(.6,#f9a53c),color-stop(.75,#6dba8a),color-stop(.85,#224ca3));
+            background-image: gradient(linear,left top,right top,color-stop(.5,#e94058),color-stop(.6,#f9a53c),color-stop(.75,#6dba8a),color-stop(.85,#224ca3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        p{
+            padding-left:15px;
+            width:calc(100% - 15px);
+            float:left;
+        }
+        ul{
+            padding-left:25px;
+            width:calc(100% - 25px);
+            float:left;
+        }
+    }
+}
+
+.user-pack-detail{
+    i{
+        color: #e7195b;
+        float: left;
+        margin-top: 9px;
+        font-size: 14px;
+    }
+    span{
+        color: #e7195b;
+        font-size: 25px;
+        margin-left: 5px;
+       
+    }
+}
+.subscription-no-result-found{
+    text-align: center;
+    img{
+        max-width: 400px;
+        width: 100%;
+        padding:  0 50px;
+    }
+    .subscription-no-result-text {
+        margin: 25px 0;
+        span{
+            font-size:18px;
+            color: $fonts-grey-color;
+        }
+    }
+}
+
+.selection-card {
+    position: relative;
+    border-radius: 2px;
+    background-color: $theme-black-secondary;
+    //box-shadow: 2px 2px 5px 4px rgb(62, 62, 62);
+    padding: 12px 12px 12px 20px;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    cursor: pointer;
+    //transition: box-shadow .3s ease-in-out;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    &:hover {
+        box-shadow:2px 2px 5px 4px #242424;
+        transition: box-shadow .3s ease-in-out;
+    }
+}
+
+.selection-card{
+    &.active{
+        border: 1px solid $blue-Lighter-chnage-color;
+        &:hover {
+            box-shadow: none;
+        }
+    }
+    .desc{
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+.plan-active {
+    float: right;
+    color: $blue-Lighter-chnage-color;
+    line-height: 24px;
+    i{
+        float: right;
+        margin-left: 4px;
+    }
+}
+
+.payment-title {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+    color: #fff;
+    line-height: normal;
+    padding-bottom: 3px;
+}
+
+.payment-title-2 {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: left;
+    color: #757575;
+    line-height: normal;
+}
+
+.price-container {
+    position: relative;
+    color: #fff;
+    .price-icon {
+        font-size: 16px;
+        color: $pink-bg-color;
+    }
+    .plan-price {
+        font-size: 25px;
+        color: $pink-bg-color;
+    }
+}
+
+.plan-meta {
+    font-size: 14px;
+    text-align: left;
+    color: #fff;
+    line-height: normal;
+    margin-top: 5px;
+    .payment-bullet {
+
+    }
+}
+
+.plan-label {
+    position: absolute;
+    top: 0;
+    right: 8px;
+    width: 50px;
+    padding: 5px;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    background-color: $pink-bg-color;
+    & :after {
+        content: "";
+        display: block;
+        bottom: 0;
+        left: 0;
+        border-left: 26px solid $theme-black-secondary;
+        border-right: 26px solid $theme-black-secondary;
+        border-top: 8px solid transparent;
+        position: absolute;
+    }
+}
+
+.plan-label .plan-discount {
+    font-size: 18px;
+}
+
+.plan-label .plan-discount-meta {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.proceed-signin {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/*********************bread crumbs************************/
+
+.bread-crumbs {
+    margin-top: 25px;
+    min-height: 0px;
+}
+
+
+.bread-crumbs-wrapper {
+    position: relative;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    ul {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        li {
+            text-align: center;
+            list-style: none;
+            padding: 0;
+            width: auto;
+            font-size: 10px;
+            color:
+                    #919191;
+            z-index: 1;
+        }
+        li.active .dot {
+            border-color: #04a5e8;
+        }
+    }
+}
+
+.line {
+    position: absolute;
+    bottom: 11px;
+    border: 1px solid #808080;
+    width: 100%;
+}
+
+.line-active {
+    position: absolute;
+    bottom: 11px;
+    border: 1px solid #04a5e8;
+    width: 0;
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    border: 2px solid $theme-black;
+    border-top-color: rgb(216, 216, 216);
+    border-right-color: rgb(216, 216, 216);
+    border-bottom-color: rgb(216, 216, 216);
+    border-left-color: rgb(216, 216, 216);
+    background: $theme-black;
+    margin: 7px auto 0;
+    -webkit-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
+    span {
+        position: absolute;
+        width: 150px;
+        transform: translateX(-50%);
+        top: -20px;
+        font-size: 14px;
+    }
+}
+
+/*********************bread crumbs end************************/
+
+
+
+/*********************Responsive************************/
+
+@media (min-width:320px) and (max-width:480px){
+/**********start**********/
+
+.top-section-mambership{
+    .steps.bannercont{      
+        top: 1%;
+        width: 86%;
+        padding-top: 14px;
+        h2{
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        p{
+            font-size: 9px;
+            line-height: 14px;
+            margin-bottom: 4px;
+        }
+        ul{
+            li{
+                font-size: 9px;
+                line-height: 14px;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.plan-placeholder {
+    height: 100%;
+    width: 100%;
+}
+
+.mamber-ship-banner{
+    padding: 8px;
+    
+}
+.steps{
+    .mambership-planbtn{
+        position: absolute;
+        bottom: 32px;
+        right: 25px;
+        width: 100px;
+    }
+    .free-new-user{
+        
+        h2{
+           margin: 25px 0 20px;
+           font-size: 15px;
+        }
+        p{
+            font-size: 10px;
+        }
+    }
+    h2{
+        font-size: 15px;
+    }
+    p{
+        font-size: 12px;
+        line-height: 17px;
+    }
+    ul{
+        li{
+            font-size: 12px;
+        }
+    }
+    .plans{
+        margin-bottom: 10px;
+        padding: 5px 5px 10px;
+        min-height: auto;
+        .mambership-planbtn{
+            .btmamber[_ngcontent-c9] {
+                height: 35px;
+                line-height: 33px;
+                font-size: 14px;
+                border: 1px solid #388e3d;
+                border-radius: 8px;
+            }
+          } 
+        .plan-pack{
+            font-size: 12px;
+            margin-bottom: 0;
+            h1{
+                font-size: 15px;
+            }
+            .discount{
+                height: 50px;
+                width: 50px;
+                font-size: 10px;
+                padding: 10px 0;
+            }
+        }
+    }
+}  
+
+.selection-card{
+    width: 280px;
+}
+.bread-crumbs-wrapper{
+    width: 100%;
+    max-width: 80%;
+}
+
+.price-container{
+    .plan-price{
+        font-size: 18px;
+    }
+} 
+.steps .mamber-padding{
+  margin-bottom: 10px;
+}
+.payment-title{
+    font-size: 13px;
+}
+.plan-meta{
+    font-size: 12px;
+}
+.plan-duration{
+    span{
+        font-size: 12px;
+    }
+}
+.plan-label{
+    .plan-discount{
+        font-size: 16px;
+    }
+    .plan-discount-meta{
+        font-size: 10px;
+    }
+}
+
+.dot{
+    span{
+    font-size: 12px;
+    }
+}
+    .steps{
+        .meta{
+            .desc{
+                width: 260px;
+            }
+        }
+    }
+/***********end*********/
+}
+    
+@media (min-width:481px) and (max-width:768px){
+/**********start**********/
+.top-section-mambership{
+    .steps.bannercont{      
+        top:3%;
+        width: 52%;
+        padding-top: 14px;
+        h2{
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        p{
+            font-size: 9px;
+            line-height: 14px;
+            margin-bottom: 4px;
+        }
+        ul{
+            li{
+                font-size: 9px;
+                line-height: 14px;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.plan-placeholder {
+    height: 100%;
+    width: 100%;
+}
+
+.mamber-ship-banner{
+    padding: 8px;
+}
+.steps{
+    .mambership-planbtn{
+        position: absolute;
+        bottom: 32px;
+        right: 25px;
+        width: 100px;
+    }
+    .free-new-user{
+        
+        h2{
+           margin: 25px 0 20px;
+           font-size: 15px;
+        }
+        p{
+            font-size: 10px;
+        }
+    }
+    h2{
+        font-size: 17px;
+    }
+    p{
+        font-size: 12px;
+        line-height: 19px;
+    }
+    ul{
+        li{
+            font-size: 13px;
+        }
+    }
+    .plans{
+        min-height: auto;
+        .mambership-planbtn{
+            .btmamber[_ngcontent-c9] {
+                height: 35px;
+                line-height: 33px;
+                font-size: 14px;
+                border: 1px solid #388e3d;
+                border-radius: 8px;
+            }
+          } 
+        margin-bottom: 10px;
+        .plan-pack{
+            font-size: 13px;
+            max-width: 100%;
+            margin-bottom: 0;
+            h1{
+                font-size: 16px;
+            }
+            .discount{
+                height: 60px;
+                width: 60px;
+                font-size: 11px;
+                padding: 12px 0;
+            }
+        }
+    }
+}  
+
+.selection-card{
+    width: 350px;
+}
+.bread-crumbs-wrapper{
+    width: 100%;
+    max-width: 70%;
+}
+    .steps{
+        .meta{
+            .desc{
+                width: 330px;
+            }
+        }
+    }
+
+/***********end*********/
+}
+
+@media (min-width:600px) and (max-width:768px){
+
+    .top-section-mambership{
+        .steps.bannercont{      
+          
+            h2{
+                font-size: 17px;
+                margin-bottom:8px;
+            }
+            p{
+                font-size: 11px;
+                line-height: 17px;
+                margin-bottom: 4px;
+            }
+            ul{
+                li{
+                    font-size: 11px;
+                    line-height: 17px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+}
+
+@media (min-width:768px) and (max-width:768px){
+
+    .top-section-mambership{
+        .steps.bannercont{      
+          top: 11%;
+        }
+    }
+
+    .steps{
+        .free-new-user{
+            padding: 0 5px;
+        }
+        .mambership-planbtn{
+            position: initial;           
+            width: 100%;
+            margin-top: 15px;
+        }
+        .plans{
+            min-height: 178px;
+            .plan-pack{
+                padding: 0;
+                .discount {
+                    height: 40px;
+                    width: 40px;
+                    font-size: 11px;
+                    padding: 7px 0;
+                    top: 0;
+                    right: 0;
+                }
+            }
+        }
+        .mamber-padding{
+            .col-md-3{
+               padding: 0 5px !important;
+            }
+        }
+      .mambership-planbtn{
+        .btmamber {
+            height: 35px;
+            line-height: 33px;
+           
+        }
+      } 
+    } 
+}
+
+@media (min-width:769px) and (max-width:992px){
+/**********start**********/
+
+
+.steps{
+    .free-new-user{
+        padding: 0 5px;
+    }
+    .plans{
+        min-height: 178px;
+        .plan-pack{
+            padding: 0;
+            .discount {
+                height: 40px;
+                width: 40px;
+                font-size: 11px;
+                padding: 7px 0;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
+    .mamber-padding{
+        .col-md-3{
+           padding: 0 5px !important;
+        }
+    }
+    .mambership-planbtn{
+        .btmamber {
+            height: 35px;
+            line-height: 33px;
+           
+        }
+      } 
+} 
+.top-section-mambership{
+    .steps.bannercont{      
+      top:3%;
+  
+        p{
+            padding-right: 25px;
+            font-size: 14px;
+        }
+        ul{
+            li{
+                padding-right: 25px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+
+
+
+    .plan-placeholder {
+        height: 100%;
+        width: 100%;
+    }
+    
+    .mamber-ship-banner{
+        padding: 8px;
+    }
+    .steps{
+        h2{
+            font-size: 17px;
+        }
+        p{
+            font-size: 12px;
+            line-height: 19px;
+        }
+        ul{
+            li{
+                font-size: 13px;
+            }
+        }
+        .plans{
+            margin-bottom: 10px;
+            .plan-pack{
+                font-size: 13px;
+                h1{
+                    font-size: 16px;
+                }
+                .discount{
+                    height: 50px;
+                    width: 50px;
+                    font-size: 11px;
+                    top: 0;
+                    right: 0;
+                }
+            }
+        }
+    }  
+    
+/***********end*********/
+}
+
+
+@media (min-width:993px) and (max-width:1024px){
+    /**********start**********/
+    .top-section-mambership{
+        .steps.bannercont{      
+         
+      h2{
+          font-size: 28px;
+      }
+            p{
+                padding-right: 25px;
+                font-size: 15px;
+            }
+            ul{
+                li{
+                    padding-right: 25px;
+                    font-size: 15px;
+                }
+            }
+        }
+    }    
+
+
+        .plan-placeholder {
+            height: 100%;
+            width: 100%;
+        }
+        
+        .mamber-ship-banner{
+            padding: 8px;
+        }
+        .steps{
+            h2{
+                font-size: 17px;
+            }
+            p{
+                font-size: 12px;
+                line-height: 19px;
+            }
+            ul{
+                li{
+                    font-size: 13px;
+                }
+            }
+            .plans{
+                margin-bottom: 10px;
+                .plan-pack{
+                    font-size: 13px;
+                    padding: 15px;
+                    h1{
+                        font-size: 16px;
+                    }
+                    .discount{
+                        height: 50px;
+                        width: 50px;
+                        font-size: 11px;
+                        top: 0;
+                        right: 0;
+                    }
+                }
+            }
+        }  
+        
+    /***********end*********/
+    }
+
+    @media (min-width:1025px) and (max-width:1200px){
+        /**********start**********/
+        .top-section-mambership{
+            .steps.bannercont{ 
+                .bannercont-width{
+                    max-width: 495px;
+                    width: 100%;
+                }     
+             
+          h2{
+              font-size: 32px;
+          }
+                p{
+                    padding-right: 25px;
+                    font-size: 15px;
+                }
+                ul{
+                    li{
+                        padding-right: 25px;
+                        font-size: 15px;
+                    }
+                }
+            }
+        }    
+    
+    
+            .plan-placeholder {
+                height: 100%;
+                width: 100%;
+            }
+            
+            .mamber-ship-banner{
+                padding: 8px;
+            }
+            .steps{
+                h2{
+                    font-size: 17px;
+                }
+                p{
+                    font-size: 12px;
+                    line-height: 19px;
+                }
+                ul{
+                    li{
+                        font-size: 13px;
+                    }
+                }
+                .plans{
+                    margin-bottom: 10px;
+                    .plan-pack{
+                        font-size: 13px;
+                        padding: 15px;
+                        h1{
+                            font-size: 16px;
+                        }
+                        .discount{
+                            height: 50px;
+                            width: 50px;
+                            font-size: 12px;
+                            top: 0;
+                            right: 0;
+                        }
+                    }
+                }
+            }  
+            
+        /***********end*********/
+        }

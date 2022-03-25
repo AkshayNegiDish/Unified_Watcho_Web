@@ -1,0 +1,87 @@
+<div class="container">
+
+  <div class="steps bread-crumbs">
+    <div class="col-lg-12 col-xs-12 col-md-12">
+      <div class="bread-crumbs-wrapper">
+        <div class="line"></div>
+        <div class="line-active" style="width: 100%;"></div>
+        <ul>
+          <li class="active">
+            <div class="dot">
+              <span>Choose Plan</span>
+            </div>
+          </li>
+          <li class="active">
+            <div class="dot">
+              <span>Make Payment</span>
+            </div>
+          </li>
+          <li class="active">
+            <div class="dot">
+              <span>Confirmation</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="subscription-plan-detail">
+    <ul class="list-inline">
+      <li>
+        <div class="subscription-detail">
+          <span class="">
+
+          </span>
+        </div>
+      </li>
+      <li *ngIf="!loading">
+        <div class="subscription-success" *ngIf="isPaymentSuccessfull">
+          <span class="success-icon"><i class="material-icons">
+            check_circle
+            </i></span>
+          <span class="success-text">Your Payment was successful</span>
+          <span class="name">
+            You can now enjoy watching Premium Content on Watcho
+          </span>
+          <span class="detail" *ngIf="updatePaymentStatusCommand.TotalPayableAmount >= 0">
+            Total Amount : ₹{{updatePaymentStatusCommand.TotalPayableAmount}}
+          </span>
+          <span class="detail" *ngIf="updatePaymentStatusCommand.OrderID">
+            Order Id : {{updatePaymentStatusCommand.OrderID}}
+          </span>
+          <span class="detail" *ngIf="updatePaymentStatusCommand.TransactionNo">
+            Transaction Id : {{updatePaymentStatusCommand.TransactionNo}}
+          </span>
+          <span class="action">
+<!--            <button class="btn btn-blue" (click)="proceed()">Continue</button>-->
+            <a href="javascript:;" [routerLink]="['/']">Back to Home</a>
+          </span>
+        </div>
+        <div class="subscription-success" *ngIf="!isPaymentSuccessfull">
+          <span class="failure-icon"><i class="material-icons">
+            clear
+            </i></span>
+          <span class="success-text">Oops! Error processing your payment request</span>
+          <span class="name">
+            For further queries write us at <a href="mailto:hello@watcho.com" target="_top">hello@watcho.com</a>
+          </span>
+<!--          <span class="detail" *ngIf="updatePaymentStatusCommand.TotalPayableAmount >= 0">-->
+<!--            Amount Paid : ₹{{updatePaymentStatusCommand.TotalPayableAmount}}-->
+<!--          </span>-->
+<!--          <span class="detail" *ngIf="updatePaymentStatusCommand.OrderID">-->
+<!--            Order Id : {{updatePaymentStatusCommand.OrderID}}-->
+<!--          </span>-->
+<!--          <span class="detail" *ngIf="updatePaymentStatusCommand.TransactionNo">-->
+<!--            Transaction Id : {{updatePaymentStatusCommand.TransactionNo}}-->
+<!--          </span>-->
+          <span class="action">
+            <a href="javascript:;" [routerLink]="['/']">Back to Home</a>
+            <a href="javascript:;" [routerLink]="['/user/membershipandplans']">Retry</a>
+<!--            <button class="btn btn-blue" (click)="proceed()">Retry</button>-->
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+</div>

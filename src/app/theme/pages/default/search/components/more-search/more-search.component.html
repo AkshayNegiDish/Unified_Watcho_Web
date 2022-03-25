@@ -1,0 +1,55 @@
+<div class="base-page container p-0">
+  <div class="container padding-container0">
+    <app-pwa-header *ngIf="isPwa"
+      [displayName]="kalturaUtilService.getMediaTypeNameById(mediaTypeId) + ' - '+ searchList.totalCount + ' RESULTS'">
+    </app-pwa-header>
+    <app-deep-search-filter (shortedBy)="getShorting($event)" (genres)=getGenres($event)
+      (submitted)='addFilters($event)'>
+    </app-deep-search-filter>
+  </div>
+  <div class="rails-container" *ngIf="searchList">
+    <div class="row" *ngIf="!isPwa">
+      <div class="col-lg-12 rail-info-container">
+        <div class="rail-title col-lg-11 col-md-11 col-sm-11 col-xs-11">
+          <h2 *ngIf="!noResultFound && searchList?.totalCount === 1">
+            All {{railTitle}} Result ({{searchList.totalCount}})
+          </h2>
+          <h2 *ngIf="!noResultFound && searchList?.totalCount > 1">
+            All {{railTitle}} Results ({{searchList.totalCount}})
+          </h2>
+          <h2 *ngIf="noResultFound && !showLoader">
+            All {{railTitle}} Result (0)
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 rail-data-container">
+        <div class="border-padding" *ngFor="let assetObject of searchList.objects;let i = index">
+          <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
+            <div class="widescreen-landscape-item">
+              <app-railItemView [imagesAsset]="assetObject?.images" [name]="assetObject?.name"
+                [runtime]="assetObject?.metas['Runtime']?.value" [isPremium]="assetObject?.metas['Is Exclusive']?.value"
+                (click)="watchAsset(assetObject.name, assetObject.id, assetObject.type, assetObject?.startDate, assetObject?.linearAssetId, i)"
+                [assetDetail]="assetObject" [viewType]="railViewType" [showDescription]="true"
+                [mediaType]="assetObject?.type"></app-railItemView>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="noResultFound && !showLoader" class="placeholder">
+          <img class="img" [src]="placeholderImage">
+          <div class="no-result-found"> No result found </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-default-rail-shell *ngIf="showLoader" [viewType]="'LANDSCAPE'">
+        </app-default-rail-shell>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="back-button">
+  <app-back-button></app-back-button>
+</div>

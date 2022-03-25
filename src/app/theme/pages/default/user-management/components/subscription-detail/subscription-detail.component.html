@@ -1,0 +1,97 @@
+<div class="container">
+
+  <div class="steps bread-crumbs">
+    <div class="col-lg-12 col-xs-12 col-md-12">
+      <div class="bread-crumbs-wrapper">
+        <div class="line"></div>
+        <div class="line-active" style="width: 50%;"></div>
+        <ul>
+          <li class="active">
+            <div class="dot">
+              <span>Choose Plan</span>
+            </div>
+          </li>
+          <li class="active">
+            <div class="dot">
+              <span>Make Payment</span>
+            </div>
+          </li>
+          <li class="">
+            <div class="dot">
+              <span>Confirmation</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="subscription-plan-detail">
+    <ul class="list-inline" *ngIf="!loading">
+      <li>
+        <div class="subscription-detail">
+          <span class="name">
+            {{selectedSubscriptionDetails.SubscriptionPlanName}}
+          </span>
+          <span class="desc">
+            You're paying&nbsp;<s class="" *ngIf="isCouponValid">₹{{selectedSubscriptionDetails.SubscriptionActualPrice}}</s>
+            <span *ngIf="isCouponValid">&nbsp;</span>
+            <span class="amount">₹{{payableAmount}}</span> for this transaction
+          </span>
+          <span class="desc">
+            {{selectedSubscriptionDetails.SubscriptionPlanDescription}}
+          </span>
+        </div>
+      </li>
+      <li>
+        <form>
+          <div class="detail-label coupon-label">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" required="" class="form-control" name="appliedCoupon" id="appliedCoupon" [ngClass]="{'readonly': isCouponValid}" [(ngModel)]="appliedCoupon"
+                       [ngModelOptions]="{standalone: true}" maxlength="10">
+                <span class="input-labelleft">Enter Coupon</span>
+              </div>
+            </div>
+            <!--<span class="error-msg" *ngIf="couponErrorMessage">{{couponErrorMessage}}</span>-->
+          </div>
+              <div class="detail-value ">
+                <a href="javascript:;" class="" *ngIf="!isCouponValid" (click)="redeemCoupon($event)">Redeem Coupon</a>
+                <a href="javascript:;" class="" *ngIf="isCouponValid" (click)="removeAppliedCoupon($event)">Remove Coupon</a>
+              </div>
+        </form>
+      </li>
+      <li *ngIf="isCouponValid">
+        <div class="applied-coupon">
+          <span class="text">
+            <i class="material-icons">check_circle</i> <span class="dis">"{{appliedCoupon}}"</span> <span>applied. You saved</span> <span class="amount">₹{{selectedSubscriptionDetails.SubscriptionActualPrice - payableAmount}}</span>
+          </span>
+        </div>
+      </li>
+      <li class="proceed" *ngIf="isDishD2hUserLogedin">
+        <div class="detail-value Proceed-to-pay-btn" *ngIf="payableAmount > 0">
+          <button class="btn-pink btn-pay-now" (click)="proceedToPayClickEvent($event, PaymentMethod.PAYMENT_GATEWAY)">Pay (₹{{payableAmount}})</button>
+          <button class="btn-pink btn-pay-wallet" (click)="proceedToPayClickEvent($event, PaymentMethod.DISHD2H_WALLET)">Pay by {{dishD2hUserType}} Wallet (₹{{payableAmount}})</button>
+        </div>
+        <div class="detail-value Proceed-to-pay-btn" *ngIf="payableAmount === 0">
+          <button class="btn-pink btn-pay-now1" (click)="proceedToPayClickEvent($event, PaymentMethod.PAYMENT_GATEWAY)">Proceed</button>
+        </div>
+        <div class="detail-value Proceed-to-pay-btn">
+          <a href="javascript:;" routerLink="/user/membershipandplans" >Back</a>
+        </div>
+      </li>
+      <li class="proceed" *ngIf="!isDishD2hUserLogedin">
+        <div class="detail-value Proceed-to-pay-btn" *ngIf="payableAmount > 0">
+          <button class="btn-pink btn-pay-now1" (click)="proceedToPayClickEvent($event, PaymentMethod.PAYMENT_GATEWAY)">Pay (₹{{payableAmount}})</button>
+        </div>
+        <div class="detail-value Proceed-to-pay-btn" *ngIf="payableAmount === 0">
+          <button class="btn-pink btn-pay-now1" (click)="proceedToPayClickEvent($event, PaymentMethod.PAYMENT_GATEWAY)">Proceed</button>
+        </div>
+        <div class="detail-value Proceed-to-pay-btn">
+          <a href="javascript:;" routerLink="/user/membershipandplans" >Back</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+</div>

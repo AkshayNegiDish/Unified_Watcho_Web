@@ -1,0 +1,12 @@
+<ng-container>
+  <div class="profile-icon" *ngIf="!hideFollowButton">
+    <span class="Follow-profile" (click)="toggleFollowing()" [hidden]="isCreatorFollowed">
+      <i class="fa fa-user"></i><br>
+      Follow
+    </span>
+    <span style="color:#04A5E8; cursor: pointer;" (click)="toggleFollowing()" [hidden]="!isCreatorFollowed">
+      <i class="fa fa-user-plus" style="font-size:22px;color:#04A5E8;display: block;"></i>
+      Following
+    </span>
+  </div>
+</ng-container>

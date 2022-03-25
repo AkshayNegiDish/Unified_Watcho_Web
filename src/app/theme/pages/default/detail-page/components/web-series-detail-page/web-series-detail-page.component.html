@@ -1,0 +1,36 @@
+<div class="base-page">
+  <!-- <div [id]="divId" style="width: 1170px; height: 658px;"></div> -->
+<div class="container p-0">
+
+  <app-poster *ngIf="assetDetails" [assetDetail]="assetDetails" (click)="playEvent()"></app-poster>
+  <div class="container descriptionPadding">
+    <div class="detail-section">
+      <app-asset-detail *ngIf="assetDetails" [episodeCount]="episodeCount" [assetDetails]="assetDetails"></app-asset-detail>
+      <div class="share-actions clearfix">
+        <div *ngIf="showRating"> 
+            <app-rating *ngIf="assetDetails" [assetDetails]="assetDetails"></app-rating>
+        </div>
+        <div>
+          <div *ngIf= "showLike">
+            <app-like *ngIf="assetDetails" [assetDetails]="assetDetails"></app-like>
+          </div>
+          <app-follow-series *ngIf="assetDetails" [assetDetails]="assetDetails"></app-follow-series>
+          <app-share *ngIf="assetDetails" [assetDetails]="assetDetails"></app-share>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-rail-item *ngFor="let seasonData of seasonsArray; let i = index" [seriesId]="seriesId" [channelId]="null"
+    [channelName]="'Season ' + seasonData.objects[0].metas['Season number'].value" [viewType]="'LANDSCAPE'" [screenId]="'webEpisodes'" [isCarousel]="false"
+    [isYouMayAlsoLike]="false" [isSimilarMovie]="false" [railData]="seasonData"  [showMoreButton]="true" [showHeader]="true">
+  </app-rail-item>
+
+  <app-rail-item *ngIf="clipRail" [channelId]="null" [channelName]="'Clips'" [viewType]="'LANDSCAPE'" [screenId]="null"
+    [isCarousel]="false" [isYouMayAlsoLike]="false" [isSimilarMovie]="false" [railData]="clipRail"  [showMoreButton]="false" [showHeader]="true">
+  </app-rail-item>
+  
+</div>
+  <app-rails-view [screenId]="screenId" [fromDetailScreen]="true"></app-rails-view>
+</div>
+<app-back-button></app-back-button>

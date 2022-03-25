@@ -1,0 +1,537 @@
+<span *appShellNoRender>
+
+
+    <div class="base-page container p-0">
+
+        <div class="uploadsContainer" *ngIf="showUploadsContainer">
+            <!-- my upload -->
+
+            <div class="upload-video">
+
+                <div class="container p-0">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Upload Video</h1>
+                            <p>Post a video to your account</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="left-section">
+                                <file-drop (onFileDrop)="dropped($event)" (onFileLeave)="fileLeave($event)">
+                                    <div class="left-top" *ngIf="noUploads">
+
+                                        <ul class="list-inline">
+                                            <li class="video-upload">
+                                                <div (click)="browseFile()" class="thumbnail-icon">
+                                                    <div class="icon"><i class="fa fa-cloud-upload"></i></div>
+                                                    <div class="uplodefst upload-video-name" *ngIf="fileName !== ''">
+                                                        <!-- Label-->
+                                                        <span class="">{{fileName}}</span>
+                                                        <i class="material-icons thumbnail-cancel cancel-crop"
+                                                            style="cursor: pointer;" (click)="cancelVideo($event)">
+                                                            cancel
+                                                        </i>
+                                                    </div>
+                                                    <h4>Select video to upload <br>or drag and drop file</h4>
+                                                </div>
+                                                <ul class="list-inline">
+                                                    <li>MP4 format only</li>
+                                                    <li>720x1280 resolution or lower</li>
+                                                    <li>Min. 10 seconds</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <div *ngIf="shaowVideoUploadLoader" class="video-upload-progress">
+                                            <div class="lds-ring">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </file-drop>
+                                <div class="left-top">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <div class="custom-modal upload-modal">
+                                                <div>
+                                                    <div class="input-group">
+                                                        <div class="image-box">
+                                                            <div class="uplodefst">
+                                                                <!-- Image preview controls -->
+                                                                <div
+                                                                    [hidden]="thumbnailSelected === false || thumbnailCropped === true">
+                                                                    <image-cropper
+                                                                        [imageChangedEvent]="imageChangedEvent"
+                                                                        [maintainAspectRatio]="true"
+                                                                        [aspectRatio]="16 / 9" [format]="'jpeg'"
+                                                                        [autoCrop]="false"
+                                                                        (imageCropped)="imageCropped($event)"
+                                                                        [outputType]="'base64'" [resizeToWidth]="1170"
+                                                                        [onlyScaleDown]="true" #imageCropper>
+                                                                    </image-cropper>
+                                                                    <div class="crop-controls">
+                                                                        <i class="material-icons accept-crop"
+                                                                            style="cursor: pointer;"
+                                                                            (click)="cropImage(imageCropper)">
+                                                                            check_circle_outline
+                                                                        </i>
+                                                                        <i class="material-icons cancel-crop"
+                                                                            style="cursor: pointer;"
+                                                                            (click)="cancelImageSelect(imageCropper)">
+                                                                            cancel
+                                                                        </i>
+                                                                    </div>
+                                                                </div>
+                                                                <div [hidden]="thumbnailCropped === false"
+                                                                    class="cropped-thumbnail-container">
+                                                                    <img class="thumbnail-img" src="#"
+                                                                        (load)="croppedImageLoaded()" />
+                                                                    <i [ngClass]="{'material-icons thumbnail-cancel cancel-crop' : true,'disabled-icon' : shaowVideoUploadLoader}"
+                                                                        style="cursor: pointer;"
+                                                                        (click)="closeThumbnail()">
+                                                                        cancel
+                                                                    </i>
+                                                                    <div *ngIf="showThumbnailUploadLoader === true"
+                                                                        class="thumbnail-upload-progress">
+                                                                        <div class="lds-ring">
+                                                                            <div></div>
+                                                                            <div></div>
+                                                                            <div></div>
+                                                                            <div></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div *ngIf="thumbnailSelected !== true"
+                                                                    class="no-thumbnail-browse">
+                                                                    <span class="upload-img-section">
+                                                                        <button (click)="browseThumbnail()">
+                                                                            <div class="icon"><i
+                                                                                    class="fa fa-photo"></i></div>
+                                                                        </button>
+                                                                        <input type="file" id="uploadThumbnailFile"
+                                                                            accept="image/*" hidden
+                                                                            (change)="videoThumbnailSelected($event)" />
+                                                                        <h4>Select video thumbnail</h4>
+                                                                    </span>
+
+                                                                    <ul class="list-inline">
+                                                                        <li>Image should be 16:9 ratio.</li>
+                                                                        <li>Image size 2MB max.</li>
+                                                                    </ul>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="right-section">
+                                <form>
+                                    <div class="card" *ngIf="contestArray.contestModal.length > 0 && showContest">
+                                        <div class="label">
+                                            <label>Contest</label>
+                                        </div>
+                                        <div class="select-div">
+                                            <select class="genre-select" [disabled]="shaowVideoUploadLoader"
+                                                id="uploadVideoContestSelect"
+                                                (change)="contestSelect($event.target.value)">
+                                                <option>None</option>
+                                                <option *ngFor="let contest of contestArray.contestModal; let i = index"
+                                                    [value]="contest.id"
+                                                    [selected]="contestId ? +contestId === +contest.id : i === 0 ?  contest.id : null ">
+                                                    {{contest.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="label">
+                                            <label>Title</label>
+                                            <!-- <span>Required 0/25</span> -->
+                                        </div>
+                                        <input type="text" class="form-control" name="title"
+                                            (keyup.enter)="$event.preventDefault()"
+                                            [ngModelOptions]="{standalone: true}" [(ngModel)]="uploadVideoTitle"
+                                            maxlength="25" [disabled]="shaowVideoUploadLoader" />
+                                    </div>
+                                    <div class="card description">
+                                        <div class="label">
+                                            <label>Description</label>
+                                            <!-- <span>Required 0/25</span> -->
+                                        </div>
+                                        <textarea class="description-txtarea" rows="4" cols=25
+                                            [ngModelOptions]="{standalone: true}" [(ngModel)]="uploadVideoDescription"
+                                            maxlength="60" [disabled]="shaowVideoUploadLoader">
+
+                            </textarea>
+                                        <span class="remaining-text">({{60-uploadVideoDescription.length}}/60)</span>
+                                    </div>
+                                    <div class="card">
+                                        <div class="label">
+                                            <label>Genre</label>
+                                        </div>
+                                        <div class="select-div">
+                                            <select class="genre-select" [disabled]="shaowVideoUploadLoader"
+                                                id="uploadVideoGenreSelect"
+                                                (change)="ugcGenreSelect($event.target.value)">
+                                                <option selected>Genre</option>
+                                                <option *ngFor="let genre of uploadVideoGenres" [value]="genre.id">
+                                                    {{genre.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="card upload">
+                                        <button (click)="uploadVideo()"
+                                            [disabled]=" uploadButtonText === 'Uploading...'"
+                                            class="btn-pink upload-data" disabled="true">{{uploadButtonText}}</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <ng-container *ngIf="channel">
+                <!-- <app-rail-item [channelId]="channel.id" [channelName]="channel.name" [viewType]="channel.description"
+                [screenId]="screenId" [isCarousel]="false" [hideTitle]="true">
+                </app-rail-item> -->
+            </ng-container>
+            <!-- <div *ngIf="noUploads">
+                <div class="no-uploads-container" (click)="browseFile()">
+
+                    <file-drop (onFileDrop)="dropped($event)" (onFileLeave)="fileLeave($event)">
+                        <div class="new-upload-icon-container">
+                            <i class="material-icons txt-pink">backup</i>
+                        </div>
+                        <div class="new-upload-txt">
+                            <div class="new-upload-txt-primary">
+                                Select video for upload
+                            </div>
+                            <div class="new-upload-txt-secondary">
+                                Or drag and drop video file
+                            </div>
+                        </div>
+                    </file-drop>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <!-- <ng-template #uploadModal let-modal>
+        <div class="custom-modal upload-modal">
+
+            <div class="pull-right"> -->
+    <!-- <span class="close " aria-hidden="true" (click)="modal.dismiss('Cross click')">&times;</span> -->
+    <!-- </div>
+            <div class="modal-body">
+                <div>
+                    <div class="new-video-upload-title">
+                        New Video Upload
+                    </div>
+                    <div class="new-video-upload-form">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="col-lg-6 upload-form-label title-lbl">
+                                    Selected video
+                                </div>
+                                <div class="col-lg-6 video-name">
+                                    <div class="uplodefst"> -->
+    <!-- Label-->
+    <!-- <span class="">{{fileName}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="vertical-offset-4">
+                                <div class="input-group">
+                                    <div class="col-lg-6 upload-form-label thumbnail-lbl">
+                                        Thumbnail
+                                        <small id="emailHelp" class="form-text text-muted">A wide display-image that
+                                            viewers will see for your video.</small>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="uplodefst"> -->
+    <!-- Image preview controls -->
+    <!-- <div [hidden]="thumbnailSelected === false || thumbnailCropped === true">
+                                                <image-cropper [imageChangedEvent]="imageChangedEvent"
+                                                    [maintainAspectRatio]="true" [aspectRatio]="16 / 9" [format]="jpeg"
+                                                    [autoCrop]="false" (imageCropped)="imageCropped($event)"
+                                                    [outputType]="base64" [resizeToWidth]="1170" [onlyScaleDown]="true"
+                                                    #imageCropper>
+                                                </image-cropper>
+                                                <div class="crop-controls">
+                                                    <i class="material-icons accept-crop" style="cursor: pointer;"
+                                                        (click)="cropImage(imageCropper)">
+                                                        check_circle_outline
+                                                    </i>
+                                                    <i class="material-icons cancel-crop" style="cursor: pointer;"
+                                                        (click)="cancelImageSelect(imageCropper)">
+                                                        cancel
+                                                    </i>
+                                                </div>
+                                            </div>
+                                            <div [hidden]="thumbnailCropped === false"
+                                                class="cropped-thumbnail-container">
+                                                <img class="thumbnail-img" src="#" (load)="croppedImageLoaded()" />
+                                                <div *ngIf="showThumbnailUploadLoader === true"
+                                                    class="thumbnail-upload-progress">
+                                                    <div class="lds-ring">
+                                                        <div></div>
+                                                        <div></div>
+                                                        <div></div>
+                                                        <div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="thumbnailSelected !== true" class="no-thumbnail-browse">
+                                                <button (click)="browseThumbnail()">Upload thumbnail</button>
+                                                <input type="file" id="uploadThumbnailFile" accept="image/*" hidden
+                                                    (change)="videoThumbnailSelected($event)" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="vertical-offset-4">
+                                <div class="input-group">
+                                    <div class="col-lg-6 upload-form-label title-lbl">
+                                        Title
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="uplodefst"> -->
+    <!-- Input box-->
+    <!-- <input type="text" class="form-control" name="title"
+                                                (keyup.enter)="$event.preventDefault()"
+                                                [ngModelOptions]="{standalone: true}" [(ngModel)]="uploadVideoTitle" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="vertical-offset-4">
+                                <div class="input-group">
+                                    <div class="col-lg-6 upload-form-label genre-lbl">
+                                        Genre
+                                        <small id="genreHelp" class="form-text text-muted">Categories for your video.
+                                            E.g. Comedy, Action, Drama, etc. <br /> Please select from the list.</small>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="uplodefst"> -->
+    <!-- Input box-->
+    <!-- <select class="genre-select" id="uploadVideoGenreSelect"
+                                                (change)="ugcGenreSelect($event.target.value)">
+                                                <option selected>Genre</option>
+                                                <option *ngFor="let genre of uploadVideoGenres" [value]="genre.id">
+                                                    {{genre.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="vertical-offset-4">
+                                <div class="input-group">
+                                    <div class="col-lg-6 upload-form-label description-lbl">
+                                        Description
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="uplodefst"> -->
+    <!-- Input box-->
+    <!-- <textarea class="description-txtarea" rows="4" cols=25
+                                                [ngModelOptions]="{standalone: true}"
+                                                [(ngModel)]="uploadVideoDescription">
+
+                                                </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="vertical-offset-4">
+                                <div class="input-group">
+                                    <div class="col-lg-12 upload-form-btn">
+                                        <button (click)="uploadVideo()" class="btn-pink uploderifp">Upload
+                                            Video</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isVideoUploading === true">
+                    <progress-bar [progress]="uploadProgress" [color]="'#e7195b'">
+                    </progress-bar>
+                </div>
+            </div>
+        </div>
+    </ng-template> -->
+    <ng-template #ifpModal let-modal>
+        <div class="custom-modal ifp-modal">
+            <div class="modal-body">
+                <div class="new-video-upload-title">
+                    Watcho Campus Connect
+                </div>
+                <div class="form-group">
+                    <!-- <div class="row">
+                                        <div class="input-group">
+                                            <div class="col-lg-6 upload-form-label title-lbl">
+                                                <div class="row">
+                                                  Watcho Campus Connect
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 video-name">
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-offset-2">
+                                                        <span class="">Test</span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div> -->
+                    <div class="vertical-offset-4">
+                        <div class="input-group">
+                            <div class="col-lg-4 upload-form-label thumbnail-lbl">
+                                Select Competition
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="uplodefst">
+                                    <!-- Image preview controls -->
+                                    <div ngbDropdown class="d-inline-block_">
+                                        <button class="btn-outline-primary" id="dropdownBasic2"
+                                            ngbDropdownToggle>{{festivalName}}</button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                                            <div *ngFor="let meta of ifpMeta">
+                                                <button (click)="populateTheme(meta)"
+                                                    class="dropdown-item">{{meta.festivalName}}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-offset-4">
+                        <div class="input-group">
+                            <div class="col-lg-4 upload-form-label title-lbl">
+                                Select Theme
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="uplodefst">
+                                    <div ngbDropdown class="d-inline-block_">
+                                        <button class="btn-outline-primary" id="dropdownBasic23"
+                                            ngbDropdownToggle>{{themeName}}</button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic23">
+                                            <div *ngFor="let oneTheme of metaTheme">
+                                                <button (click)="getValuesFromThemeDropDown(oneTheme)"
+                                                    class="dropdown-item">{{oneTheme.themeName}}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="vertical-offset-4" *ngIf="showInstruction">
+                        <div class="input-group">
+                            <div class="col-lg-12 upload-form-label genre-lbl totalcover">
+                                <h5>{{instructions.instructionHeader}}</h5>
+                                <ul>
+                                    <li *ngFor="let instruction of instructions.instructions">{{instruction}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vertical-offset-4">
+                        <div class="input-group">
+                            <div class="col-lg-4 upload-form-label genre-lbl">
+                                Enter Passcode
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="uplodefst">
+                                    <!-- Input box-->
+                                    <input type="text" class="form-control" [(ngModel)]="videoContentRequest.passcode"
+                                        name="Passcode" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-offset-4">
+                        <div class="input-group">
+                            <div class="col-lg-8 upload-form-label description-lbl">
+                                <input type="checkbox" id="chkTerms" [(ngModel)]="isTermsChecked"
+                                    class="termsAndCondition">
+                                <label for="chkTerms"><a class="link" [href]="termsOfUse" target="_blank">Accept Terms
+                                        and Conditions</a></label>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="col-lg-12">
+                                    <div class="uplodefst">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical-offset-4">
+                        <div class="input-group">
+                            <div class="col-lg-12 upload-form-btn">
+                                <button class="btn-pink uploderifp" (click)="submitIFPForm()">Upload Video</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+
+    <ng-template #downloadInAppModal>
+        <div class="custom-modal downloadInAppmodal">
+            <div class="modal-body">
+                <div class="new-video-upload-title">
+                    Download Watcho App
+                </div>
+                <div class="form-group">
+
+                    <div class="vertical-offset-4">
+                        <div class="input-group">
+                            <div class="col-lg-12 upload-form-btn">
+                                <div class="pop-onlytab">
+                                    <a class="appstore" href="https://itunes.apple.com/in/app/watcho/id1440733653?mt=8"
+                                        target="_blank">
+                                        <img alt="Download on the App Store"
+                                            src="../../../../assets/images/ios-app@2x.png">
+                                    </a>
+                                </div>
+                                <div class="pop-onlytab">
+                                    <a class="googleplay"
+                                        href='https://play.google.com/store/apps/details?id=com.watcho&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
+                                        target="_blank">
+                                        <img alt='Get it on Google Play'
+                                            src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</span>
+<input id="file-selector" type="file" hidden accept=".mp4" (change)="fileBrowsed($event)" />

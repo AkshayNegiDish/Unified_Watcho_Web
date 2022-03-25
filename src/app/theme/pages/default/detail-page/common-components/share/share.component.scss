@@ -1,0 +1,60 @@
+
+@import '~assets/scss/theme-fonts.scss';
+
+@media (min-width:320px) and (max-width:480px){
+    /*************start***************/
+     .span.share.share-icon{
+      font-size: 12px !important;
+        span{
+         font-size: 13px !important;
+         i{
+          font-size: 20px;
+         }
+        }
+      }
+/************End******************/
+}
+
+.share{
+  position: relative;
+  .social-tooltip{
+      display: none;
+      font-size: 20px;
+      color:$meta-font-color;
+      padding-bottom: 9px;
+      padding-left: 0;
+      share-buttons{
+        float: left;
+      }
+      button{
+         float: left; 
+         background: transparent;
+         border: none;
+         outline: none;
+         height: 25px;
+         padding-right: 0px;
+         padding-left: 8px;
+         i{
+            font-size: 15px;
+            margin: 0 4px;
+            color: #757575;
+            &:hover{
+            color: #214BA3;
+           }
+         }
+         
+      }
+  }
+  &:hover .social-tooltip{
+      display:block;
+  }
+
+  textarea{
+    font-size: 16px
+  }
+  
+}
+
+.shareButton{
+     padding-right: 0px;
+}

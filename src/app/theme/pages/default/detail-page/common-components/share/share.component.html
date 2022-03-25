@@ -1,0 +1,22 @@
+<!--<div class="share-actions clearfix">-->
+<!-- <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+<span class="share share-icon">
+  <i (mouseenter)="setupDeepLink()" (click)="setupDeepLink()" class="material-icons">share</i><br>
+  Share
+  <span class="social-tooltip slide-in-left">
+    <button class="shareButton" (mouseenter)="setupDeepLink()" (click)="setupDeepLink()">
+      <i class="fa fa-facebook" (click)="openFbShareWindow()"></i>
+    </button>
+
+    <button class="shareButton" (mouseenter)="setupDeepLink()" (click)="setupDeepLink()">
+      <i class="fa fa-twitter" (click)="openTwitterShareWindow()"></i>
+    </button>
+    <!-- <share-buttons [theme]="'modern-dark'" (mouseenter)="setupDeepLink()" (click)="setupDeepLink()"
+      [include]="['facebook','twitter']" [show]="5" [url]="videoDeepUrl" [autoSetMeta]="true"
+      (click)="shareMoEngageEvent(assetDetails.type)">
+    </share-buttons> -->
+    <button class="shareButton" (mouseenter)="setupDeepLink()" (click)="copyText(videoDeepUrl, $event)">
+      <i class="fa fa-link"></i></button>
+  </span>
+</span>
+<!--</div>-->

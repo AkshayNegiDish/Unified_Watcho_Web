@@ -1,0 +1,8 @@
+<div *ngIf="sectionList" class="container faq-section">
+  <h2 class="title-faq">faq</h2>
+  <div *ngFor="let section of sectionList">
+      <a class="anchor" (click)="watchArticles(section.id)">
+        <div class="section">{{section.name}}<i class="la la-angle-right"></i></div>
+      </a>
+  </div>
+</div>

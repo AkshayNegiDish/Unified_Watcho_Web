@@ -1,0 +1,49 @@
+  <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
+    <div *ngIf="(totalCount===undefined || (totalCount>0));else nodataTemplate">
+      <div *ngIf="currentCampaign && currentCampaign.length">
+        <div *ngFor="let item of currentCampaign" class="c-grid col-12">
+          <img style="float: left;" class="card-img col-4" src="{{item.campaignImage}}" alt="Card image cap">
+          <div style="float: left;" class="col-8">
+            <span class="card-title">{{item.name}}</span>
+            <p class="card-text">{{item.description}}</p>
+            <p class="card-text2">Best of luck</p>
+            <div class="col-12 endsection">
+              <div class="col-10 date">
+                <p>Start Date: {{item.startDate|date:'dd/MM/yyyy'}}</p>
+                <p>Start Time: {{item.startDate| date:'shortTime'}}</p>
+                <p>Total no. of questions: {{item.questionCount}}</p>
+              </div>
+              <a href="javascript:void(0)" (click)="onClickStart(item)" class="col-3 btn">Start Quiz</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="upcomingCampaign && upcomingCampaign.length">
+        <div class="heading2"> Upcoming Quiz Campaign </div>        
+        <div *ngFor="let item of upcomingCampaign" class="c-grid col-12">
+          <img style="float: left;" class="card-img col-4" src="{{item.campaignImage}}" alt="Card image cap">
+          <div style="float: left;" class="col-8">
+            <span class="card-title">{{item.name}}</span>
+            <p class="card-text">{{item.description}}</p>
+            <p class="card-text2">Best of luck</p>
+            <div class="col-12 endsection">
+              <div class="col-10 date">
+                <p>Start Date: {{item.startDate|date:'dd/MM/yyyy'}}</p>
+                <p>Start Time: {{item.startDate| date:'shortTime'}}</p>
+                <p>Total no. of questions: {{item.questionCount}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #nodataTemplate>
+    <div class="nodata col-12">
+        <p class="font-weight-reguler">No Data Found</p>
+    </div>
+  </ng-template>
+  <quiz-popup *ngIf="popup && popup.titleMessage" (popupEvent)="closePopup($event)" [popupDetail]="popup"></quiz-popup>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+
+

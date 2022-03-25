@@ -1,0 +1,124 @@
+<span *appShellNoRender>
+  <div class="ugc-top-Creators-desktop"
+    *ngIf="!isMobileOrTabletView && creatorCommandArray.creatos.length > 0 && !loading">
+    <div class="container p-0">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="col-8 col-9 p-0">
+            <h1>Watcho's UGC Videos</h1>
+            <p>Top videos for you</p>
+            <ul class="ugc-section" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="400"
+              (scrolled)="getMoreVideos()">
+              <li *ngFor="let video of ugcVideosCommand.ugcVideos; let i = index"
+                [ngClass]="{'third-element' :  (i+1)%3 == 0}" (click)="openPlayerModal(i)" style="cursor: pointer;">
+                <div class="ugc-img-desktop">
+                  <div class="user-img">
+                    <img appLazyLoad [src]="video.image" (error)="imageLoadError($event)">
+                  </div>
+                  <div class="ugc-upper-section">
+                    <div class="user-profile">
+                      <div class="user-name" [ngStyle]="video.bgColor">{{video.nameInitials}}</div>
+                    </div>
+                    <div class="ugc-icon-counts">
+                      <div class="left-icon" *ngIf="viewCountObject[video.id]">
+                        <i class="la las la-heart"></i>
+                        <span class="count-like">{{viewCountObject[video.id].likes}}</span>
+                      </div>
+                      <div class="right-icon" *ngIf="viewCountObject[video.id]">
+                        <i class="la eye la-eye"></i>
+                        <span class="count-number">{{viewCountObject[video.id].views}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <div class="top-creater-section">
+              <h2>Top Creators</h2>
+              <ul class="creater-list infinite-container" style="height: 100%;" infiniteScroll
+                [infiniteScrollDistance]="2" [infiniteScrollContainer]="'.infinite-container'" [fromRoot]="true"
+                [scrollWindow]="false" [infiniteScrollThrottle]="400" (scrolled)="getMoreCreators()">
+                <li *ngFor=" let creator of creatorCommandArray.creatos">
+                  <div (click)="goToAsset(creator.name, creator.id, creator.type)">
+                    <div class="creater-profile">
+                      <div class="user-creater" [ngStyle]="creator.bgColor">{{creator.nameInitials}}</div>
+                    </div>
+                    <div class="creater-right-cover">
+                      <h3>{{creator.name}}</h3>
+                      <a class="email-creater">@<span>{{creator.name}}</span></a>
+                    </div>
+                    <span class="arrow-creater">
+                      <i class="la las la-angle-right"></i>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!--end-ugc-top-Creators-desktop-->
+
+
+  <div class="ugc-video-list-desktop"
+    *ngIf="!isMobileOrTabletView && creatorCommandArray.creatos.length === 0 && !loading">
+    <div class="container p-0">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Watcho's UGC Videos</h1>
+          <p>Top videos for you</p>
+          <ul class="ugc-section" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="400"
+            (scrolled)="getMoreVideos()">
+            <li *ngFor="let video of ugcVideosCommand.ugcVideos; let i = index"
+              [ngClass]="{'third-element' :  (i+1)%3 == 0}" (click)="openPlayerModal(i)" style="cursor: pointer;">
+              <div class="ugc-img-desktop">
+                <div class="user-img">
+                  <img appLazyLoad [src]="video.image" (error)="imageLoadError($event)">
+                </div>
+                <div class="ugc-upper-section">
+                  <div class="user-profile">
+                    <div class="user-name" [ngStyle]="video.bgColor">{{video.nameInitials}}</div>
+                  </div>
+                  <div class="ugc-icon-counts">
+                    <div class="left-icon" *ngIf="viewCountObject[video.id]">
+                      <i class="la las la-heart"></i>
+                      <span class="count-like">{{viewCountObject[video.id].likes + video.startLikes}}</span>
+                    </div>
+                    <div class="right-icon" *ngIf="viewCountObject[video.id]">
+                      <i class="la eye la-eye"></i>
+                      <span class="count-number">{{viewCountObject[video.id].views}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end-ugc-video-list-desktop-->
+  <div *ngIf="loading">
+    <app-default-shell [ugcLandscape]="true" [showCarousel]="false" [showRails]="false" [showLoader]="false">
+    </app-default-shell>
+  </div>
+</span>
+
+
+<div *ngIf="isMobileOrTabletView">
+  <app-ugc-video-mobile [ugcVideosChangeEvent]="ugcVideosChangeEvent" [totalVideos]="totalVideos"
+    (getMoreVideos)="this.getMoreVideos(true);"></app-ugc-video-mobile>
+</div>
+
+
+
+<span *appShellRender>
+  <app-default-shell [ugcLandscape]="true" [showCarousel]="false" [showRails]="false" [showLoader]="false">
+  </app-default-shell>
+</span>

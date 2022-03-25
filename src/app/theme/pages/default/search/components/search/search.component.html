@@ -1,0 +1,102 @@
+<div class="container p-0" *ngIf="!appUtilService.checkIfPWA()">
+  <div class="container mobile-serch">
+    <div class="mobile search-bar">
+      <i class="first material-icons" routerLink="/">arrow_back</i>
+      <input class="form-control" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="mobileSearchQuery"
+        (keyup.enter)="mobileViewSearch($event)" placeholder="Search Watcho" id="mobile-input-control">
+      <i class="secnd material-icons" (click)="clearSearchQuery()">close</i>
+    </div>
+    <div class="title-serch" *ngIf="noResultFound">
+      <h4>No result found</h4>
+    </div>
+  </div>
+  <!-- <div class="base-page serch-mobile-section" *ngIf="!loading">  -->
+
+  <div class="base-page">
+    <!-- <div class="rails-container" *ngIf="assetList"> -->
+
+    <div class="">
+      <div *ngIf="noResultFound" class="row noResultFound">
+        <div class="col-lg-12 rail-info-container">
+          <div class="rail-title col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            <h2>No results found</h2>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="showPopularSearch">
+        <app-search-child [mediaType]="mediaType" [showPopularSearch]="true"
+          (noResultFoundEvent)="noResultFoundEvent($event)" #searchChildComponent></app-search-child>
+      </ng-container>
+      <ng-container *ngIf="!noResultFound">
+        <ng-container *ngIf="searchQuery?.query">
+          <ng-container *ngFor="let mediaType of mediaTypesIds;let i = index">
+            <app-search-child [mediaType]="mediaType" [showPopularSearch]="false"
+              (noResultFoundEvent)="noResultFoundEvent($event)" #searchChildComponent></app-search-child>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!searchQuery?.query">
+          <app-search-child [mediaType]="mediaType" [showPopularSearch]="true"
+            (noResultFoundEvent)="noResultFoundEvent($event)" #searchChildComponent></app-search-child>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<!--appUtilService.checkIfPWA-->
+
+<ng-container *ngIf="loading">
+  <!-- <app-default-rail-shell [viewType]="railViewType" [isCarousel]="false">
+  </app-default-rail-shell>
+  <app-default-rail-shell [viewType]="railViewType" [isCarousel]="false">
+  </app-default-rail-shell>
+  <app-default-rail-shell [viewType]="railViewType" [isCarousel]="false">
+  </app-default-rail-shell> -->
+</ng-container>
+<!-- <app-no-result *ngIf="noResultFound"></app-no-result> -->
+
+
+<div class="pwaheader-serchresult container p-0" *ngIf="appUtilService.checkIfPWA()">
+  <div class="container mobile-serch">
+    <div class="mobile search-bar">
+      <i class="first material-icons" routerLink="/">arrow_back</i>
+      <input class="form-control" type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="mobileSearchQuery"
+        (keyup.enter)="mobileViewSearch($event)" placeholder="Search Watcho" id="mobile-input-control">
+      <i class="secnd material-icons" (click)="clearSearchQuery()">close</i>
+    </div>
+    <div class="title-serch" *ngIf="noResultFound">
+      <h4>No result found</h4>
+    </div>
+  </div>
+  <!-- <div class="base-page serch-mobile-section" *ngIf="!loading">  -->
+
+  <div class="base-page">
+    <!-- <div class="rails-container" *ngIf="assetList"> -->
+
+    <div class="">
+      <div *ngIf="noResultFound" class="row noResultFound">
+        <div class="col-lg-12 rail-info-container">
+          <div class="rail-title col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            <h2>No results found</h2>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="showPopularSearch">
+        <app-search-child [mediaType]="mediaType" [showPopularSearch]="true"
+          (noResultFoundEvent)="noResultFoundEvent($event)" #searchChildComponent></app-search-child>
+      </ng-container>
+      <ng-container *ngIf="!noResultFound">
+        <ng-container *ngIf="searchQuery?.query">
+          <ng-container *ngFor="let mediaType of mediaTypesIds;let i = index">
+            <app-search-child [mediaType]="mediaType" [showPopularSearch]="false"
+              (noResultFoundEvent)="noResultFoundEvent($event)" #searchChildComponent></app-search-child>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!searchQuery?.query">
+          <app-search-child [mediaType]="mediaType" [showPopularSearch]="true"
+            (noResultFoundEvent)="noResultFoundEvent($event)" #searchChildComponent></app-search-child>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<!--pwaheader-serchresult-->

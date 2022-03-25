@@ -1,0 +1,104 @@
+<!-- <div class="top-carousel-item-container">
+  <img [src]="thumbnailUrl" alt="">
+  <div class="row info-container" style="width: 71%;
+    float: right;
+    margin-left: 14.3%;">
+      <span class="play-btn">
+        <i class="fa fa-play"></i>
+      </span>
+      <div class="program-info">
+        <div class="row title-container">
+          <span>{{carouselItemData.title}}</span>
+        </div>
+        <div class="row other-meta-title">
+          <span>{{carouselItemData.duration | mediaTime}}</span>
+          <span *ngIf="carouselItemData.duration">&nbsp; &nbsp; | &nbsp; &nbsp; </span>
+          <span>{{carouselItemData.genre}}</span>
+        
+        </div>
+      </div>
+  </div>
+</div> -->
+<div>
+  <div class="container title-container">
+    <div *ngIf="showHeader" class="carousel-name ">
+      {{channelName}}
+    </div>
+  </div>
+  <div [class]="carouselType">
+    <div [ngClass]="{ 'pwa-carousel' : appUtilService.checkIfPWA() }">
+      <div [class]="'container-fluid ' + dotsPlacement+'-dots'">
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+          <div ngxSlickItem *ngFor="let item of carouselItemData" class="slide">
+            <div (click)="watchAsset(item)">
+              <img class="img-fluid" [src]="item.thumbnailURL" alt="" onerror="this.src='https://d1f8xt8ufwfd45.cloudfront.net/web/placeholder-images/banner.png'">
+              <div [hidden]="isLDS2" class="carousel-shadow">
+                <div class="carousel-text">
+                  <div class="badge premium-badge" *ngIf="item.isPremium">
+                    ORIGINALS
+                  </div>
+                  <div class="text-item-carousel">
+                    <span>{{item.title | trim : 30}} </span>
+                  </div>
+                  <div class="duration-section" *ngIf="item.genre">
+                    <ng-container *ngFor="let genre of item.genre; let i = index">
+                      <span class="slide-dotstop" *ngIf="i<3">
+                        {{genre | titlecase}}
+                      </span>
+                    </ng-container>
+                  </div>
+                  <ng-template class="duration-section" #seriesSection>
+                    <span class="series-carousel"> Hollywood &nbsp;Seasons</span>
+                  </ng-template>
+                  <div class="description-section">
+                    <p>
+                      {{item.description | trim : 250}}
+                    </p>
+                  </div>
+                  <div class="Play-btn">
+                    <i class="material-icons">play_arrow</i>
+                    <span class="watch-text">Watch now</span>
+                  </div>
+                </div>
+              </div>
+              <div [hidden]="!isLDS2" class="LSDcoverslider">
+                <div class="badge premium-badge">
+                  Premium
+                </div>
+                <div class="Play-btn">
+                  <span class="rightsliderlds2">
+                    <div class="watch-now-icon"><svg _ngcontent-c20="" height="45" viewBox="0 0 26 26" width="45">
+                        <path _ngcontent-c20=""
+                          d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z">
+                        </path>
+                      </svg></div>
+                    <span>Watch now</span>
+                  </span>
+                </div>
+                <div class="duration-section">
+                  <span>Action,Adventure,Hollywood</span>
+                </div>
+              </div>
+              <div class="nav-shadow"></div>
+              <div class="icononmobileview">
+                <div class="leftmobile">
+                </div>
+                <div class="rightmobile">
+                  <i class="material-icons">
+                    play_arrow
+                  </i>
+                  <span class="infoicon-mobile"></span>
+                </div>
+              </div>
+              <div *ngIf="item.type === 0" class="channelLogo">
+                  <img class="card-img" [src]="item.logoUrl" alt="">
+              </div>
+            </div>
+          </div>
+
+          <!-- <img src="{{ slide.img }}" alt="" width="100%"> -->
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</div>

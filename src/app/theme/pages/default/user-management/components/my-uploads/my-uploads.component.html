@@ -1,0 +1,60 @@
+<span *appShellNoRender>
+  <div  *ngIf="!loading">
+<div class="container myUploads">
+  <div class="page-title">
+    <h2>My Uploads</h2>
+  </div>
+  <div class="row rail-data-container">
+    <ng-container *ngIf="kalturaAssetListResponse">
+      <div class="card text-white"  *ngFor="let response of kalturaAssetListResponse.objects">
+        <div  class="card-img" style="display: none;" (click)="watchAsset(response.name, response.id, response.type)">
+          <span class="remove-mobile myUploadsClose">
+            <div class="icon-remove" (click)="removeFromMyUploads(response?.externalId, $event)">
+                <i class="material-icons">close</i>
+            </div>
+          </span><!--remove-mobile-->
+          <span>
+            <!-- <div class="badge premium-badge">PREMIUM</div> -->
+          </span>
+          <img class="img" [id]="response.id" [attr.data]="response.entryId" [src]="response.images | thumbnail: 'LANDSCAPE'"  (error)="imageLoadError($event)" (load)="imageLoadEvent($event)" 
+            [alt]="response.name">
+          <div class="description">
+              <div *ngIf="viewCountObject">
+                  <div *ngFor="let asset of viewCountObject">
+                    <span class="viewCount" *ngIf="asset?.assetId === response?.id">
+                        <i class="la eye la-eye"></i>
+                      {{asset?.views}}
+                    </span>
+                  </div>
+                </div>
+            <span class="name"> {{response.name | trim: 40}}</span>
+            <span class="meta">{{response.description | trim: 50}}</span>
+            <div class="icon-list" (click)="removeFromMyUploads(response?.externalId, $event)">
+                <i class="material-icons">close</i><span>Remove from my uploads</span>
+            </div>
+          </div>
+        </div>
+        <div class="img-shell" [id]="response.entryId">
+          <app-default-rail-item-shell [viewType]="viewType"></app-default-rail-item-shell>
+        </div>
+
+      </div>
+    </ng-container>
+  </div>
+  
+  <div *ngIf="noResultFound" class="placeholder">
+    <img class="img" [src]="placeholderImage">
+  </div>
+</div>
+  </div>
+<div *ngIf="loading">
+  <app-default-rail-shell></app-default-rail-shell>
+</div>
+</span>
+<span *appShellRender>
+  <!-- <div class="base-page"> -->
+    <app-default-rail-shell></app-default-rail-shell>
+    <!-- <app-listing-pages-shell></app-listing-pages-shell> -->
+  <!-- </div> -->
+</span>
+<app-back-button></app-back-button>

@@ -1,0 +1,112 @@
+.ticket-height {
+    min-height: 70vh;
+}
+.container {
+    color: #ffffff;
+    width: 100%;
+    position: relative;
+  
+    h2 {
+        font-size: 20px;
+    }
+    .content {
+        position: relative;
+        background-color: #2d2d2d;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 4px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        display: inline-block;
+        width: 100%;
+    }
+    .static {
+        display: inline-block;
+        width: 100%;
+        span{
+            &:first-child{
+                width: 70%;
+                display: inline-block;
+                font-weight:600;
+            }
+        }
+        .currentDate {
+        position: absolute;
+        right: 10px;
+        // width: 26%;
+        }
+    }
+    .description {
+        display: inline-block;
+        width: 100%;
+        span{
+            &:first-child{
+                width: 70%;
+                display: inline-block;
+            }
+        }
+        .createdDate {
+        position: absolute;
+        right: 10px;
+        // width: 26%;
+        }
+    }
+    .anchor {
+        cursor: pointer;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 50px;
+        font-size: 14px;
+        color: #ffffff;
+        background-color: #2d2d2d;
+        outline: none !important;
+        &:focus {
+            outline: none !important;
+        }
+    }
+    .btn {
+        background-color: #214BA3;
+        border-radius: 50%;
+        width: 50px;
+        .material-icons {
+            line-height: 1.5;
+            color: #ffffff;
+        }
+    }
+    .listing {
+        height: 500px;
+        overflow: auto;
+        margin-bottom: 20px;
+    }
+
+}
+.form-group {
+    padding-left: 0px;
+    &.add-comment {
+       width: calc(100% - 80px);
+       float: left;
+       input{
+           box-shadow: none;
+            border: none;
+       }
+    }
+    &.add-comment-submit {
+        width: 50px;
+        float: right;
+    }
+}
+/deep/.noFooter {
+    display: none !important;
+}
+@media(max-width:768px){
+    .container {
+        .content {
+            margin-bottom: 5px;
+        }
+    }
+}
+

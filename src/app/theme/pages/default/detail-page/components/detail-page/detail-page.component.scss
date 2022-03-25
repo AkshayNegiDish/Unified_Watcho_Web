@@ -1,0 +1,272 @@
+
+@import '~assets/scss/theme-fonts.scss';
+
+.base-page {
+    min-height: 100vh;
+}
+.base-page .jumbotron {
+    padding: 0px;
+    max-height: 362px;
+}
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+// for main carousel
+.jumbotron .carousel .carousel-item {
+    max-height: 362px;
+    border-radius: 10px;
+}
+
+.jumbotron .carousel .carousel-indicators {
+    width: inherit;
+}
+.jumbotron .carousel {
+    .carousel-control-prev, .carousel-control-next {
+        height: 26%;
+        top: 33%;
+        width: 86px;
+    }
+}
+#main-carousel {
+    .carousel-control-prev, .carousel-control-next {
+        visibility: hidden;
+    }
+}
+
+#main-carousel:hover {
+    .carousel-control-prev, .carousel-control-next {
+        visibility: visible;
+    }
+}
+// for rails
+.base-page .rails-container {
+    min-height: 580px;
+}
+.rail-info-container {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.rail-data-container {
+    min-height: 150px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.railControl.left {
+    position: absolute;
+    left: 0px;
+}
+.railControl.right {
+    position: absolute;
+    right: 0px;
+}
+.railControl:focus {
+    outline: none;
+}
+.rail-info-container{
+    .rail-title{
+        font-size: 15px;
+        font-weight: 400;
+        margin: 0px 0px 0px 0px;
+        padding-left: 15px;
+        color:$fonts-grey-color;
+        cursor: pointer;
+    }
+    :hover{
+        color: $netflix-chnaget-color;
+    }
+}
+.rail-data-container{
+    margin-top: 10px;
+}
+.rail-data-container:hover {
+    /deep/.slick-prev, /deep/.slick-next {
+        visibility: visible;
+    }
+
+    /deep/.slick-disabled {
+        visibility: hidden;
+    }
+}
+
+/deep/.slick-slide:focus {
+    outline: none;
+}
+
+/deep/.slick-prev, /deep/.slick-next {
+    visibility: hidden;
+    height: 44px;
+    width: auto;
+    z-index: 2;
+}
+
+/deep/.slick-prev {
+    left:0;
+}
+
+/deep/.slick-next {
+    right:0;
+}
+
+/deep/.slick-prev:hover:before {
+    content: "\f053";
+    color: $rail-controls-color;
+    font-size: 30px;
+    font: normal normal normal 24px/1 FontAwesome;
+    background: rgba(0,0,0,.5);
+    padding: 10px 8px 10px 8px;
+}
+
+/deep/.slick-prev:before {
+    content: "\f053";
+    color: $rail-controls-color;
+    font-size: 30px;
+    font: normal normal normal 24px/1 FontAwesome;
+    background: rgba(0,0,0,.5);
+    padding: 10px 8px 10px 8px;
+  }
+  
+/deep/.slick-next:before {
+    content: "\f054";
+    color: $rail-controls-color;
+    font-size: 30px;
+    font: normal normal normal 24px/1 FontAwesome;
+    background: rgba(0,0,0,.5);
+    padding: 10px 8px 10px 8px;
+  }
+/deep/.owl-carousel {
+    .owl-stage-outer{
+        height: 200px !important;  
+    }
+}
+.custom-carousel{
+    background: #000 !important;
+}
+.social-tooltip{
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.24);
+    display: none;
+    position: absolute;
+    width: 192px;
+    left: -120px;
+    bottom: -50px;
+    background-color: #fff;
+    padding: 11px 15px 6px 25px;
+    border-radius: 9px;
+    text-align: center;
+    z-index: 2;
+    }
+ .slide-in-left{
+     -webkit-animation: slideinleft  .6s;
+     -moz-animation: slideinleft  .6s;
+     -o-animation: slideinleft  .6s;
+     animation: slideinleft  .6s;
+ }
+
+.inner-details{
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    img{
+        max-width: 100%;
+    }
+    
+}
+
+.detailpage{
+    position: relative;
+    .actions{
+        padding:15px;
+        font-size: 20px;
+        color: #ffffff;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding-left: 20px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 26%, rgba(0, 0, 0, 0.65) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+        span{
+            text-align: center;
+            padding: 10px;
+            display: block;
+            float: left;
+            min-width: 100px;
+            cursor: pointer;
+        }
+        i{
+            font-size: 30px;
+            vertical-align: middle;
+        }
+        .play-btn{
+            float:right;
+            margin-top: 28px;
+            i{
+                margin-bottom: 2px;
+            }
+        }
+        .share{
+            position: relative;
+            .social-tooltip{
+                display: none;
+                font-size: 20px;
+                color:$meta-font-color;
+                i{
+                    margin: 0 10px;
+                }
+            }
+            &:hover .social-tooltip{
+                display:block;
+            }
+            
+        }
+    }
+}
+
+.detail-section{
+    padding:0 20px; 
+    margin-bottom: 40px;
+    margin-top: 15px;
+    h1{
+        font-size: 30px;
+        color:$theme-heading;
+        line-height: 36px;
+        margin: 0;
+        .like{
+            font-size: 16px;
+            float:right;
+            color:#577fbc;
+            i{
+                font-size: 20px;
+            }
+        }
+    }
+    .meta{
+        color: $meta-font-color;
+        font-size: 16px;
+        font-weight: 300;
+        text-align: left;
+        word-spacing: 1px;
+        display: block;
+        margin: 5px 0 10px 0;
+    }
+}
+
+@media only screen and (max-width:768px) {
+
+    #main-carousel {
+        .carousel-control-prev, .carousel-control-next {
+            visibility: visible;
+            width: 35px;
+            .carousel-control-next-icon,.carousel-control-prev-icon{
+                padding: 12px;
+              }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .rail-data-container{
+        margin-bottom: 10px;
+    }
+}
+

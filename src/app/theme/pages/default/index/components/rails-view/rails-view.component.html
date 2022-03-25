@@ -1,0 +1,101 @@
+<span *appShellNoRender>
+  <div class="base-page" *ngIf="screenLayout && !showNoResultFound" infiniteScroll [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="200" (scrolled)="onScroll()">
+    <div *ngIf="hideTopCarousel; else showCarousel">
+      <ng-container *ngFor="let channel of screenLayout; let i = index">
+        <!-- <div *ngIf="channel.description.toUpperCase() === recomendedFlag ; else regular_content">
+          <div *ngFor="let recomended of resomendedDetail?.recomendedDetails.slice().reverse()">
+            <app-rail-item [channelId]="recomended.channelId" [firstLoad]="firstLoad"
+              [channelName]="'Recommended-' + recomended.channelName" [screenId]="screenId" [isCarousel]="false"
+              [isYouMayAlsoLike]="false" [isSimilarMovie]="false" [railData]="null">
+            </app-rail-item>
+          </div>
+        </div> -->
+        <div>
+          <div class="adsContainer" *ngIf="channel.channelType === 'DFP'; else noAds">
+              <google-gpt [AdData]="channel.ADUnitId"></google-gpt>
+          </div>
+          <ng-template #noAds>
+            <div *ngIf="channel.layout === LayoutType[LayoutType.HRO].toString();else noHero ">
+              <app-hero [channelDetails]="channel"></app-hero>
+            </div>
+            <ng-template #noHero>
+              <app-rail-item [channelId]="channel.id" [firstLoad]="firstLoad" [channelName]="channel.name"
+                [viewType]="channel.imageType" [screenId]="screenId" [isCarousel]="false" [isYouMayAlsoLike]="false"
+                [isSimilarMovie]="false" [railData]="null" [isContinueWatching]="channel.isContinueWatching"
+                [isWatchlist]="channel.isWatchListRail" [showMoreButton]="channel.showMoreButton" [isBecauseYouWatchedRail]="channel.isBecauseYouWatchedRail"
+                [showHeader]="channel.showHeader" [pageSize]="channel.listingLayoutContentSize" [isRecommendedForYouRail]="channel.isRecommendedForYouRail"
+                [morePageSize]="channel.pageSize">
+              </app-rail-item>
+            </ng-template>
+          </ng-template>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #showCarousel>
+      <ng-container *ngFor="let channel of screenLayout; let i = index">
+        <div *ngIf="loadMoreRailsFlag > i ">
+          <!-- <div *ngIf="channel.description.toUpperCase() === recomendedFlag; else other_content">
+            <div *ngFor="let recomended of resomendedDetail?.recomendedDetails.slice().reverse()">
+              <app-rail-item [firstLoad]="firstLoad" [channelId]="recomended.channelId"
+                [channelName]="'Recommended-' + recomended.channelName" [screenId]="screenId" [isCarousel]="false"
+                [isYouMayAlsoLike]="false" [isSimilarMovie]="false" [railData]="null">
+              </app-rail-item>
+            </div>
+          </div> -->
+          <div>
+            <div class="adsContainer" *ngIf="channel.channelType === 'DFP'; else noAds">
+                <google-gpt [AdData]="channel.ADUnitId"></google-gpt>
+            </div>
+            <ng-template #noAds>
+              <div *ngIf="channel.layout === LayoutType[LayoutType.HRO].toString();else noHero ">
+                <app-hero [channelDetails]="channel"></app-hero>
+              </div>
+              <ng-template #noHero>
+                <app-rail-item *ngIf="channel.layout === LayoutType[LayoutType.CAR].toString()" [firstLoad]="firstLoad"
+                  [channelId]="channel.id" [channelName]="channel.name" [viewType]="channel.imageType"
+                  [screenId]="screenId" [isCarousel]="true" [showCarouselDots]="channel.carouselDots"
+                  [isYouMayAlsoLike]="false" [isSimilarMovie]="false" [showMoreButton]="channel.showMoreButton"
+                  [railData]="null" [showHeader]="channel.showHeader" [pageSize]="channel.listingLayoutContentSize">
+                </app-rail-item>
+                <app-rail-item *ngIf="channel.layout !== LayoutType[LayoutType.CAR].toString()" [firstLoad]="firstLoad"
+                  [channelId]="channel.id" [channelName]="channel.name" [viewType]="channel.imageType"
+                  [isContinueWatching]="channel.isContinueWatching" [isWatchlist]="channel.isWatchListRail" [isBecauseYouWatchedRail]="channel.isBecauseYouWatchedRail"
+                  [screenId]="screenId" [isCarousel]="false" [isYouMayAlsoLike]="false" [isSimilarMovie]="false"
+                  [railData]="null" [showMoreButton]="channel.showMoreButton" [listingLayout]="channel.listingLayout"
+                  [filters]="channel?.moreViewConfig?.filters ? channel?.moreViewConfig?.filters : null "
+                  [sortable]="channel?.moreViewConfig?.sortable ? channel?.moreViewConfig?.sortable : null"
+                  [showHeader]="channel.showHeader" [pageSize]="channel.listingLayoutContentSize" [isRecommendedForYouRail]="channel.isRecommendedForYouRail"
+                  [morePageSize]="channel.pageSize">
+                </app-rail-item>
+                <div class="rail-div" [hidden]="(i >= loadMoreRailsFlag - 5)">
+                </div>
+              </ng-template>
+            </ng-template>
+          </div>
+        </div>
+
+
+      </ng-container>
+    </ng-template>
+
+  </div>
+
+  <div class="container p0 no-result" *ngIf="showNoResultFound">
+    <!--  no result found image -->
+    <img class="img img-fluid" [src]="noResultPicture" alt="">
+    <div>No Results Available</div>
+  </div>
+  <div class="base-page" *ngIf="loading">
+    <app-default-shell [showLoader]="!fromDetailScreen"></app-default-shell>
+  </div>
+  <!-- <ng-container *ngIf="loading2">
+    <app-default-rail-shell [viewType]="'LANDSCAPE'" [showCarousel]="false">
+    </app-default-rail-shell>
+  </ng-container> -->
+</span>
+<span *appShellRender>
+  <div class="base-page">
+    <app-default-shell [showLoader]="!fromDetailScreen"></app-default-shell>
+  </div>
+</span>

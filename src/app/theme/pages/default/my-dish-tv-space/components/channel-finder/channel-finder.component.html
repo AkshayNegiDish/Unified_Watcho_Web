@@ -1,0 +1,115 @@
+<div class="container" (window:resize)="onResize($event)" [ngClass]="platform?platform:''">
+  <div class="upper-menu">
+    <div class="row">
+      <div class="col-lg-12 rail-data-container category">
+        <div *ngIf="(genreList && genreList.length)">
+          <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="railConfig">
+            <div ngxSlickItem class="slide" *ngFor="let genre of genreList; let i = index">
+              <div #wrap (click)="onClickGenre($event,i,wrap)" class="category-wrapper">
+                <div class="card">
+                  <img src="./assets/images/mydishtvspace/{{genre.channelgenre}}.png" class="card-img-top category-img"
+                    alt="...">
+                  <div class="card-body">
+                    <p class="card-text">{{genre.channelgenre}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="search-input">
+    <input aria-label="Search" (input)="onSearchChange($event.target.value)" class="form-control"
+      placeholder="Search channel" type="text"><i _ngcontent-c2="" class="material-icons searchicon">search</i><i
+      class="material-icons searchicon-mobile">search</i>
+  </span>
+  <div *ngIf="(allChannelList && allChannelList.length); else blankLayout">
+    <div class="row channels-wrapper justify-content-center">
+      <div class="card1" *ngFor="let response of channelList">
+        <!-- <img src="{{response.images['70x53']}}" class="card-img-top" alt="{{response.name}}"> -->
+        <p class="card-text chnumber">{{response.lcn}}</p>
+        <div class="card-body">
+          <!-- <p class="card-text">{{response.lcn}}</p> -->
+          <p class="card-text text-truncate">{{response.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #blankLayout>
+    <div class="row justify-content-center">
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+      <div class="card1">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px' }"></ngx-loading>
+</div>

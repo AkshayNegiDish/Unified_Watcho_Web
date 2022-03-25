@@ -1,0 +1,192 @@
+
+@import '~assets/scss/theme-fonts.scss';
+
+.inner-details{
+  height: 362px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  img{
+      max-width: 100%;
+      width: 100%;
+      height: 100%;
+  }
+  .play-icon {
+    position: absolute;
+    // bottom: 24px;
+    // right: 30px;
+    top: 50%;
+    left: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    i.material-icons{
+        background: #0909097a !important;
+        font-size: 50px;
+        color: $fonts-white-color;
+        border: 3px solid $fonts-white-color;
+        border-radius: 50%;
+        transition: 1.2s;
+        &:hover{
+          color: $blue-bg-chnage-color !important;
+          transition: 0.5s;
+        }
+    }
+  }
+  
+}
+
+.jumbotron{
+  padding: 0px;
+}
+.videopage.jumbotron{
+    height:362px;  
+    border-radius: 15px !important; 
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #eee;
+    margin-top: 6px;
+}
+.posterChannel{
+  position: relative;
+  .ChannelLogo{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 9;
+    img{
+      border-radius: 50%;
+      height: 80px;
+      width: 80px;
+    }
+  }
+}
+
+@media (min-width:320px) and (max-width:480px){
+/*************start***************/
+      .videopage.jumbotron{ 
+         height:100%;
+         margin-bottom: 10px !important;
+         margin-top: 0px;
+         .inner-details{
+           height: 100%;
+           width: 100%;
+           border-radius: 0;
+           img{
+             width: 100%;
+            }
+           .play-icon{
+            //  bottom: 10px !important;
+            //  right: 20px !important;
+             i.material-icons{
+              font-size: 25px !important;
+              border: 2px solid;
+             }
+           }
+         }
+       }
+
+       .posterChannel{
+        .ChannelLogo{
+          img{
+            height: 30px;
+            width: 30px;
+          }
+        }
+      }
+/************End******************/       
+}
+
+@media (min-width:481px) and (max-width:768px){
+/*************start***************/
+            .videopage.jumbotron{ 
+               height:100%;
+               margin-bottom: 15px !important;
+               .inner-details{
+                 height: 100%;
+                 width: 100%;
+                 border-radius: 0;
+                 img{
+                  width: 100%;
+                  }
+                 .play-icon{
+                  //  bottom: 10px !important;
+                  //  right: 20px !important;
+                   i.material-icons{
+                    font-size: 25px !important;
+                    border: 2px solid;
+                   }
+                 }
+               }
+             }
+             .posterChannel{
+              .ChannelLogo{
+                img{
+                  height: 50px;
+                  width: 50px;
+                }
+              }
+            }
+/************End******************/           
+}
+
+
+@media (min-width:769px) and (max-width:992px){
+  /*************start***************/
+                .videopage.jumbotron{ 
+                   height:100%;
+                   margin-bottom: 15px !important;
+                   .inner-details{
+                    //  height: 100%;
+                     width: 100%;
+                     border-radius: 0;
+                     img{
+                      width: 100%;
+                      height: 100%;
+                      }
+                     .play-icon{
+                      //  bottom: 15px !important;
+                      //  right: 25px !important;
+                       i.material-icons{
+                        font-size: 25px !important;
+                        border: 2px solid;
+                       }
+                     }
+                   }
+                 }
+/************End******************/           
+}  
+
+@media (min-width:993px) and (max-width:1024px){
+  /*************start***************/
+                .videopage.jumbotron{ 
+                   height:100%;
+                   margin-bottom: 15px !important;
+                   .inner-details{
+                     width: 100%;
+                     border-radius: 0;
+                     img{
+                      width: 100%;
+                      height: 100%;
+                      }
+                   }
+                 }
+/************End******************/           
+}  
+
+@media (min-width:1025px) and (max-width:1199px){
+  /*************start***************/
+                .videopage.jumbotron{ 
+                   height:100%;
+                   margin-bottom: 15px !important;
+                   .inner-details{
+                     width: 100%;
+                     border-radius: 0;
+                     img{
+                      width: 100%;
+                      height: 100%;
+                      }
+                   }
+                 }
+/************End******************/ 
+}

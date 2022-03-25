@@ -1,0 +1,90 @@
+
+@import '~assets/scss/theme-fonts.scss';
+
+.device-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: 15px;
+    border-bottom: 1px solid #777;
+
+    .btn {
+      display: block;
+      margin-top: 15px
+    }
+  }
+}
+
+.common-text {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+
+.device-management-modal {
+  .tab-content {
+    padding: 40px 40px 40px 40px;
+  }
+
+  .modal-body {
+    padding: 0px 0px 0px 0px;
+  }
+}
+
+.device-management-modal {
+  width: 382px;
+  height: auto;
+
+  .heading {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .icon {
+    padding: 0px 5px 0px 0px;
+  }
+
+  .close {
+    position: absolute;
+    z-index: 9;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    right: -10px;
+    top: -10px;
+    background: #fff;
+    opacity: 1;
+    z-index: 9999;
+    text-align: center;
+    line-height: 34px;
+    font-weight: 400;
+    font-size: 30px
+  }
+
+  .pull-right {
+    cursor: pointer;
+  }
+}
+
+ ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li{
+        width: 100%;
+        float: left;
+        margin-bottom: 10px;
+        padding: 12px 0;
+        border-bottom: 1px solid $border-color-light; 
+        .devices-icon {
+            float: left;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+          .delet-devices{
+              float: right;
+              cursor: pointer;
+            }
+        }
+    } 

@@ -1,0 +1,22 @@
+<div class="notification-list " (click)="toggleNotification()">
+  <i *ngIf="showNotificationDot" class="fa fa-circle icondot"></i>
+  <i class="la la-bell"></i>
+  <div class="notification-dropdownbell notificationdisplay" *ngIf="showNotificationBox">
+    <ul>
+      <ng-container *ngFor='let notification of notificationMessages'>
+        <li class="clearfix" *ngIf="notification.status != 'Deleted'">
+          <div class="redtxt" *ngIf="notification.status == 'Read'">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <p>{{notification.message}}</p>
+            <i class="material-icons onhover" (click)="deleteNotification(notification.id, $event)">delete</i>
+          </div>
+          <div class="unrdtxt" *ngIf="notification.status != 'Read'">
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <p>{{notification.message}}</p>
+            <i class="material-icons onhover" (click)="deleteNotification(notification.id, $event)">delete</i>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="parentalModal" id="parentalModal">
+  <div class="modal-header">
+    <h4 class="modal-title text-center">{{name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0">
+    <ngx-loading [show]="loading" class="col-lg-offset-5" *ngIf="loading" [config]="{ backdropBorderRadius: '0px' }">
+    </ngx-loading>
+    <div class="form-group">
+      <div class="input-group">
+        <div id="divOuter">
+          <div id="divInner">
+              <input id="codeBox1" type="text" placeholder="*" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(1, $event)" (focus)="onFocusEvent(1)" (keydown)="onKeyDownEvent('#codeBox1', $event)"  maxlength="1"/>
+              <input id="codeBox2" type="text" placeholder="*" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(2, $event)" (focus)="onFocusEvent(2)" (keydown)="onKeyDownEvent('#codeBox2', $event)"  maxlength="1"/>
+              <input id="codeBox3" type="text" placeholder="*" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(3, $event)" (focus)="onFocusEvent(3)" (keydown)="onKeyDownEvent('#codeBox3', $event)"  maxlength="1"/>
+              <input id="codeBox4" type="text" placeholder="*" inputmode="numeric" pattern="[0-9]*" autocomplete="off" (keyup)="onKeyUpEvent(4, $event)" (focus)="onFocusEvent(4)" (keydown)="onKeyDownEvent('#codeBox1', $event)"  maxlength="1"/>
+            <!-- <input id="parental-pin" tabindex="0" type="text" autofocus [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="userPin" (keyup.enter)="enableDisableParental()" maxlength="4" /> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Close</button> -->
+    <button type="button" class="btn btn-outline-dark" id="pin"
+      (click)="enableDisableParental()">{{buttonName}}</button>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="ticket-height">
+  <h2 class="title" *ngIf="!loading">My Tickets</h2>
+  <div class="content" *ngIf= "ticketList">
+    <div *ngFor="let ticket of ticketList.data.results" class="anchor" (click)="showTicketDetails(ticket.id,ticket.subject,ticket.requester_id)">
+      <div class="static">
+        <span>Me</span>
+        <span class="currentDate">{{formatAMPM(ticket.created_at)}}</span></div>
+      <div class="subjectName"><span>Re: </span>{{ticket.subject}}</div>
+    </div>
+  </div>
+  <div class="row">
+      <div *ngIf="noResultFound && !loading" class="placeholder">
+          <img class="img" [src]="placeholderImage">
+          <div class="no-result-found"> No result found </div>
+      </div>
+  </div>
+
+  <ngx-loading [show]="loading" class="col-lg-offset-5" *ngIf="loading" [config]="{ backdropBorderRadius: '0px' }">
+    </ngx-loading>
+  </div>
+</div>

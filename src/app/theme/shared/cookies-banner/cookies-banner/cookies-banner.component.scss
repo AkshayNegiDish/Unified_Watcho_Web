@@ -1,0 +1,35 @@
+div.sticky {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: #141414;
+    padding: 0;
+    z-index: 999;
+    left: 0;
+    font-size: 16px;
+    color: #878787;
+    min-height: 60px;
+    border-top: 1px solid #282828;
+  span{
+    width: 84%;
+    float: left;
+    padding: 15px 0 15px 20px;
+
+  }
+        button{
+            margin: 16px 50px 13px 15px;
+            float: right;
+      }
+  i{
+  
+    font-size: 22px;
+    position: absolute;
+    right: 6px;
+    bottom: 38px;
+    cursor: pointer;
+    &:hover{
+        color: #214BA3;;
+    }
+  }
+
+}
